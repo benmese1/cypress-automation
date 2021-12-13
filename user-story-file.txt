@@ -1,0 +1,16 @@
+EPIC demoblaze: Create demoblaze.com
+
+Story one: initial bootstraping of site. 
+	S1 T1: a quick api sanity check to make sure site is up and functional
+	S1 T2: Two UI tests. The first verifies the header content. 
+		The second verifies that the header content navigates to the correct page (Home to homepage, etc) 
+
+Story Two: build out header
+	S2 T1: four different tests. Each test verifies the contents of one of the header nav modals	
+		contact, about us, log in and sign up modals 
+
+Story Three: Build out home page 
+	S3 T1: quick api test to verify randomly selected home page elements
+	S3 T2: Two UI tests. The first verifies the category nav menu items
+		The second verifies that the homepage displays the correct items according to the category nav menu
+
