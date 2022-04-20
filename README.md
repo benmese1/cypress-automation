@@ -38,10 +38,8 @@ The author suggests you do the same:)
 
 8.) The tests in this project are under the test folder. 
     The integration folder with default cypress example tests have been left for training and example purposes
-Tests are separated by epic 
-    test -> epic-demoblaze 
-and stories 
-    test -> epic-demoblaze-> story-one, etc. 
+Tests are separated by epic (Please see below): 
+    test -> epic-demoblaze -> story-one, etc. 
 The test are named S1 T1 for story one, test one. 
 
 9.) The author considered a number of different naming conventions for organizing these tests, some of them probably better than the above, but stayed with this naming convention for ease of comparison with the user story file. 
