@@ -1,0 +1,5 @@
+{
+  "name": "Monte",
+  "topic": "v/y/d/k/deposit",
+  "payload": "\"[{\\name\\:\\\"mgfqv\\\",\\type\\:\\\"byte\\\",\\min\\:1,\\max\\:100000,\\default\\:1}]\""
+}
