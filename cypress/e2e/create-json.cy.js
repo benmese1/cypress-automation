@@ -1,5 +1,5 @@
-import data from '../fixtures/data-example.json'
-import {dataCreation} from '../support/data-factory'
+// import data from '../fixtures/data-example.json'
+import {dataCreation} from '../support/factory/main.js'
 
 describe('writing data to json file', () => {
     let fileName = 'dataTest.json';
