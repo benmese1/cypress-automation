@@ -5,13 +5,16 @@ Before you start running the tests in this project, there are a few things you n
 1.) Install node. 
     You can download and install node from here https://nodejs.org/en/download/
 
-1.a) Although typescript was not implemented in ths project for time reasons, feel free to add it in anticipation of future improvements to this project.  
+1.a) install cypress
+    cd into the folder that will contain your cypress repo, and npm install cypress --save-dev
+
+2.) Although typescript was not implemented in ths project for time reasons, feel free to add it in anticipation of future improvements to this project.  
     cd into project folder
     npm install --save-dev typescript
     or install globally
     npm install -g typescript
 
-2.) clone the repo 
+2.a) clone the repo 
 
 3.) in your command prompt, cd into the folder which contains the cloned repo and 
     npm i
