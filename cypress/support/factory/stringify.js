@@ -1,5 +1,7 @@
 import stringifyObject from 'stringify-object';
 
+// THIS FUNCTIONALITY HAS BEEN DEPRECATED. PLEASE STAY TUNED FOR FUTURE IMPROVEMENTS
+
 
 
 export function prettyString (object) {

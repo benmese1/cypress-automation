@@ -12,27 +12,21 @@ let randomData = {
     ]
 }
 
-let dataData = {"name":"Rodrick","topic":"iot_device/topic","payload":[{"name":"lazuf","type":"byte","min":1,"max":100000,"default":1}]};
+let randomPayload = {"name":"h-g-m-f-latitude", "type":"location",
+                     "lat":39.943436,"long":-74.915885,"radius":1000000}
 
-let finalData = {};
+// JSON.stringify flattens the data into one line in a format that the data simulator can accept. 
+// However, the simulator can only accept one object per data file. So, for right now we will need
+// to add additional payload, and keep the data file to one object. Once an api is built (Krishna
+// said it is in progress) we can start pushing data directly up to an api. 
 
-// might have to pull out the payload as an array of objects, stringify that, remove "" from the ints and 
-// booleans, then put it back. Nothing else has quite done it right yet, despite multiple different attempts. 
-
-// after we flatten data properly, we will move on to creating as much of it as we want. 
+// still need a "Rosetta Stone" of payload explanations so we can mock them out and then create 
+// the different data types we might need. 
 export function dataCreation(fileName) {
-
-    // finalData = randomData.assign(dataData)
-    randomData = {...randomData, dataData }
 
       cy.writeFile('cypress/data/files/' + fileName, JSON.stringify(randomData))
 
 }
-
-export function additionalDataCreation(fileName) {
-    cy.writeFile('cypress/data/files/' + fileName, JSON.stringify(randomData))
-}
-
 
 
   
