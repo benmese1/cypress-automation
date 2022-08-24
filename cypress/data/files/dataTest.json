@@ -1,1 +1,5 @@
-{"name":"Mckayla","topic":"iot_device/topic","payload":[{"name":"qdwnl","type":"string","min":1,"max":100000,"default":1}]}
+{
+  "name": "Shania",
+  "topic": "iot_device/topic",
+  "payload": []
+}
