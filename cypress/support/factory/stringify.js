@@ -1,17 +1,22 @@
-import stringifyObject from 'stringify-object';
+const faker = require("faker")
 
-// THIS FUNCTIONALITY HAS BEEN DEPRECATED. PLEASE STAY TUNED FOR FUTURE IMPROVEMENTS
-
-
-
-export function prettyString (object) {
-
-	const pretty = stringifyObject(object, {
-		indent: '  ',
-		singleQuotes: false,
-		inlineCharacterLimit: 1000
-	});
-	
-
+let randomPayload = [
+{
+    "name": faker.random.alpha(5),
+    "static": false,
+    "type": randomWord,
+    "min": 1,
+    "max": 100000,
+    "default": 1
 }
+]
 
+let longLat = [{
+    "name": faker.random.alpha(5) + '-latitude',
+    "static": false,
+    "type": "location",
+    "lat": faker.address.latitude(),
+    "long": faker.address.longitude(),
+    "radius": faker.datatype.number({ 'min': 1, 'max': 1000000 }
+    )
+}]

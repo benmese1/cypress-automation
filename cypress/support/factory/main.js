@@ -40,20 +40,13 @@ export function dataCreation(fileName, p = 1) {
     const randomNumber = faker.datatype.number({ 'min': 0, 'max': randomPayload.length - 1 });
     let nums = randomPayload[randomNumber];
 
-    for (let i = 1; i <= p + 1; i++) {
-        randomData.payload.push[randomPayload[0]]
+    for (let i = 1; i <= p; i++) {
+        randomData.payload.push(nums)
     }
 
-    cy.log(randomPayload[0])
-    // writeToFile(fileName);
-
-    // cy.writeFile('cypress/data/files/' + fileName, JSON.stringify(randomData))
     cy.writeFile('cypress/data/files/' + fileName, randomData)
 
 }
 
-function writeToFile (fileName) {
-    cy.writeFile('cypress/data/files/' + fileName, randomData)
-}
 
 

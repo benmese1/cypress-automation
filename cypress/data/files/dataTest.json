@@ -1,5 +1,14 @@
 {
-  "name": "Shania",
+  "name": "Kelsie",
   "topic": "iot_device/topic",
-  "payload": []
+  "payload": [
+    {
+      "name": "ljqje-latitude",
+      "static": false,
+      "type": "location",
+      "lat": "-1.7369",
+      "long": "77.7776",
+      "radius": 982827
+    }
+  ]
 }
