@@ -34,8 +34,10 @@ let randomPayload = [{
 // to add additional payload, and keep the data file to one object. Once an api is built (Krishna
 // said it is in progress) we can start pushing data directly up to an api. 
 
-// still need a "Rosetta Stone" of payload explanations so we can mock them out and then create 
-// the different data types we might need. 
+// the file sample_build.json represents real client data, we just don't know what all of the fields 
+// are, exactly. We are building out some of the files now into different data types (per their names)
+// and plan on being able to specify so many of one type or another and randomly grabbing so many items 
+// from each file. Also, we want to be able to specify if we want specific items from each file. 
 export function dataCreation(fileName, p = 1) {
     const randomNumber = faker.datatype.number({ 'min': 0, 'max': randomPayload.length - 1 });
     let nums = randomPayload[randomNumber];
