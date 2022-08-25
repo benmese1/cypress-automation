@@ -4,8 +4,17 @@ import {dataCreation} from '../support/factory/main.js'
 describe('writing data to json file', () => {
     let fileName = 'dataTest.json';
 
+    let dataObject = {
+        "random": true,
+        "count": 1,
+        "name": "name",
+        "topic": "iot_device/topic",
+        "payload": [{name:'random'}]
+    }
+
     before(() => {
-        dataCreation(fileName);
+        // dataCreation(dataObject, fileName);
+        cy.createJSON(fileName)
       })
     
 
