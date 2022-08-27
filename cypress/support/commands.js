@@ -4,8 +4,6 @@ Cypress.Commands.add('createJSON', (fileName) => {
 
     cy.writeFile('cypress/data/files/' + fileName, cy.fixture('chassis'))
 
-
-
 })
 
 

@@ -1,14 +1,30 @@
 {
-  "name": "Kelsie",
+  "name": "Brandyn",
   "topic": "iot_device/topic",
   "payload": [
     {
-      "name": "ljqje-latitude",
+      "name": "h-general-device_ip",
+      "default": "172.31.34.14",
+      "min": 0,
       "static": false,
-      "type": "location",
-      "lat": "-1.7369",
-      "long": "77.7776",
-      "radius": 982827
+      "type": "string",
+      "max": 24
+    },
+    {
+      "name": "h-general-device_ip",
+      "default": "172.31.34.14",
+      "min": 0,
+      "static": false,
+      "type": "string",
+      "max": 24
+    },
+    {
+      "name": "h-general-device_ip",
+      "default": "172.31.34.14",
+      "min": 0,
+      "static": false,
+      "type": "string",
+      "max": 24
     }
   ]
 }

@@ -6,15 +6,15 @@ describe('writing data to json file', () => {
 
     let dataObject = {
         "random": true,
-        "count": 1,
+        "count": 3,
         "name": "name",
         "topic": "iot_device/topic",
         "payload": [{name:'random'}]
     }
 
     before(() => {
-        // dataCreation(dataObject, fileName);
-        cy.createJSON(fileName)
+        dataCreation(fileName, dataObject);
+        // cy.createJSON(fileName)
       })
     
 
