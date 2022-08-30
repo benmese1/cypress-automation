@@ -7,10 +7,9 @@ const temp = require('./types/temperature');
 const reportHeader = require('./types/report-header');
 
 let dataTypes = [chassis.chassisArr, general.generalArr, hgmf.hgmfArr, reportHeader.reportHeaderArr, temp.tempArr];
-let dataTypeCount = faker.datatype.number({'min':0, 'max': dataTypes.length});
-let DTrandom = dataTypes[dataTypeCount];
 
-let random_index = Math.floor(Math.random() * dataTypes.length);
+
+// let random_index = Math.floor(Math.random() * dataTypes.length);
 
 let randomData = {
     "name": faker.name.firstName(),
@@ -18,20 +17,22 @@ let randomData = {
     "payload": []
 };
 
-// need to stringify the data in the payload
+// need to stringify the data in the payload'
 
 // for loop pushes same object data.count amount of times. Occasionally fails as well. Might be a race condition. 
 // forEach loop works as intended, and pulls entire array of objects into payload. 
 
-function randomDataCall () {
-    return DTrandom[dataTypeCount];
-}
-
 export function dataCreation(fileName, data) {
 
-    for(let i=0; i<data.count; i++){
-        
-        randomData.payload.push(randomDataCall());
+    for (let i = 0; i < data.count; i++) {
+
+        // let jsonString = JSON.stringify(randomDataCall(), null, 2);
+
+        // let jString = jsonString.replaceAll(/[^\w\s]/gi, '',);
+
+        randomData.payload.push(JSON.stringify(randomDataCall(), null, '/[^\w\s]/gi,'));
+        // randomData.payload.push(JSON.stringify(jString));
+
     }
 
     // DTrandom.forEach((dt) => {
@@ -40,6 +41,14 @@ export function dataCreation(fileName, data) {
 
     cy.writeFile('cypress/data/files/' + fileName, randomData);
 
+}
+
+function randomDataCall() {
+
+    let dataTypeCount = faker.datatype.number({ 'min': 0, 'max': dataTypes.length - 1 });
+    let DTrandom = dataTypes[dataTypeCount];
+
+    return DTrandom[dataTypeCount];
 }
 
 

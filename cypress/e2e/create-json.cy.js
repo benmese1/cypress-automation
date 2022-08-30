@@ -6,7 +6,7 @@ describe('writing data to json file', () => {
 
     let dataObject = {
         "random": true,
-        "count": 3,
+        "count": 15,
         "name": "name",
         "topic": "iot_device/topic",
         "payload": [{name:'random'}]
