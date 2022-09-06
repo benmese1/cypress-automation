@@ -1,12 +1,21 @@
-import './types/util';
 const faker = require("faker");
 const chassis = require('./types/chassis');
 const general = require('./types/general');
-const hgmf = require('./types/h-g-m-f');
-const temp = require('./types/temperature');
+const gmf = require('./types/gmf');
+const random = require('./types/random');
 const reportHeader = require('./types/report-header');
+const temp = require('./types/temperature');
+const tpms = require('./types/tpms')
+const voltage = require('./types/voltage')
 
-let dataTypes = [chassis.chassisArr, general.generalArr, hgmf.hgmfArr, reportHeader.reportHeaderArr, temp.tempArr];
+let dataTypes = [chassis.chassisArr, 
+                general.generalArr, 
+                gmf.gmfArr, 
+                random.randomArr, 
+                reportHeader.reportHeaderArr, 
+                temp.tempArr,
+                tpms.tpmsArr, 
+                voltage.voltageArr];
 
 
 // let random_index = Math.floor(Math.random() * dataTypes.length);
@@ -26,12 +35,8 @@ export function dataCreation(fileName, data) {
 
     for (let i = 0; i < data.count; i++) {
 
-        // let jsonString = JSON.stringify(randomDataCall(), null, 2);
-
-        // let jString = jsonString.replaceAll(/[^\w\s]/gi, '',);
-
-        randomData.payload.push(JSON.stringify(randomDataCall(), null, '/[^\w\s]/gi,'));
-        // randomData.payload.push(JSON.stringify(jString));
+        // randomData.payload.push(JSON.stringify(randomDataCall(), null, '/[^\w\s]/gi,'));
+        randomData.payload.push(JSON.stringify(randomDataCall()));
 
     }
 
