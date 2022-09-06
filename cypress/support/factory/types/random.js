@@ -1,6 +1,6 @@
 
 
-let randomArr = [
+export let randomArr = [
     { "name": "_index", "default": "device_report_data_live", "min": 0, "static": false, "type": "string", "max": 36 },
     { "name": "_type", "default": "_doc", "min": 0, "static": false, "type": "string", "max": 24 },
     { "name": "_id", "min": 0, "static": false, "type": "string", "max": 24 },
@@ -16,4 +16,4 @@ let randomArr = [
     { "name": "h-sort", "type": "timestamp", "tsformat": "default" },
     { "name": "s-sort", "type": "timestamp", "tsformat": "default" },
     { "name": "device_id", "min": 0, "static": false, "type": "string", "max": 12 }
-]
+];

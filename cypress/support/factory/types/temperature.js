@@ -17,4 +17,4 @@ export let tempArr = [
     { "name": "s-temperature-display_name", "min": 0, "default": "Temperature", "static": false, "type": "string", "max": 48 },
     { "name": "s-temperature-ambient_temp", "type": "int", "min": 1, "max": 100, "default": 10 },
     { "name": "s-temperature-internal_temp", "type": "int", "min": 1, "max": 100, "default": 31 }
-]
+];

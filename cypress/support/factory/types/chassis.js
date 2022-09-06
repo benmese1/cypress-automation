@@ -28,5 +28,3 @@ export let chassisArr = [
     { "name": "s-chassis-code2", "type": "int", "min": 1, "max": 1000, "default": 255 },
     { "name": "s-chassis-cargo_state_tmc", "default": "Empty", "min": 5, "static": false, "type": "string", "max": 24 },
 ];
-
-let chassisItems = chassisArr[Math.floor(Math.random() * chassisArr.length)];

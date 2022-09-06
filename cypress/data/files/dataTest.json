@@ -1,21 +1,17 @@
 {
-  "name": "Lizeth",
+  "name": "Jana",
   "topic": "iot_device/topic",
   "payload": [
-    "{\n/[^ws]/gi,\"name\": \"h-report_header-event_id\",\n/[^ws]/gi,\"type\": \"int\",\n/[^ws]/gi,\"min\": 1,\n/[^ws]/gi,\"max\": 1000,\n/[^ws]/gi,\"default\": 100\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-general-device_ip\",\n/[^ws]/gi,\"default\": \"172.31.34.14\",\n/[^ws]/gi,\"min\": 0,\n/[^ws]/gi,\"static\": false,\n/[^ws]/gi,\"type\": \"string\",\n/[^ws]/gi,\"max\": 24\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-general-device_ip\",\n/[^ws]/gi,\"default\": \"172.31.34.14\",\n/[^ws]/gi,\"min\": 0,\n/[^ws]/gi,\"static\": false,\n/[^ws]/gi,\"type\": \"string\",\n/[^ws]/gi,\"max\": 24\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-temperature-name\",\n/[^ws]/gi,\"min\": 0,\n/[^ws]/gi,\"static\": false,\n/[^ws]/gi,\"type\": \"string\",\n/[^ws]/gi,\"max\": 24\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-chassis-id\",\n/[^ws]/gi,\"default\": \"\",\n/[^ws]/gi,\"min\": 1,\n/[^ws]/gi,\"type\": \"int\",\n/[^ws]/gi,\"max\": 10000000000\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-temperature-name\",\n/[^ws]/gi,\"min\": 0,\n/[^ws]/gi,\"static\": false,\n/[^ws]/gi,\"type\": \"string\",\n/[^ws]/gi,\"max\": 24\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-general-device_ip\",\n/[^ws]/gi,\"default\": \"172.31.34.14\",\n/[^ws]/gi,\"min\": 0,\n/[^ws]/gi,\"static\": false,\n/[^ws]/gi,\"type\": \"string\",\n/[^ws]/gi,\"max\": 24\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-report_header-event_id\",\n/[^ws]/gi,\"type\": \"int\",\n/[^ws]/gi,\"min\": 1,\n/[^ws]/gi,\"max\": 1000,\n/[^ws]/gi,\"default\": 100\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-report_header-event_id\",\n/[^ws]/gi,\"type\": \"int\",\n/[^ws]/gi,\"min\": 1,\n/[^ws]/gi,\"max\": 1000,\n/[^ws]/gi,\"default\": 100\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-temperature-name\",\n/[^ws]/gi,\"min\": 0,\n/[^ws]/gi,\"static\": false,\n/[^ws]/gi,\"type\": \"string\",\n/[^ws]/gi,\"max\": 24\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-report_header-event_id\",\n/[^ws]/gi,\"type\": \"int\",\n/[^ws]/gi,\"min\": 1,\n/[^ws]/gi,\"max\": 1000,\n/[^ws]/gi,\"default\": 100\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-report_header-event_id\",\n/[^ws]/gi,\"type\": \"int\",\n/[^ws]/gi,\"min\": 1,\n/[^ws]/gi,\"max\": 1000,\n/[^ws]/gi,\"default\": 100\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-general-device_ip\",\n/[^ws]/gi,\"default\": \"172.31.34.14\",\n/[^ws]/gi,\"min\": 0,\n/[^ws]/gi,\"static\": false,\n/[^ws]/gi,\"type\": \"string\",\n/[^ws]/gi,\"max\": 24\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-g-m-f-received_time_stamp\",\n/[^ws]/gi,\"type\": \"timestamp\",\n/[^ws]/gi,\"tsformat\": \"default\"\n}",
-    "{\n/[^ws]/gi,\"name\": \"h-g-m-f-received_time_stamp\",\n/[^ws]/gi,\"type\": \"timestamp\",\n/[^ws]/gi,\"tsformat\": \"default\"\n}"
+    "{\"name\":\"h-tpms_beta-num_sensors\",\"type\":\"int\",\"min\":1,\"max\":1000000000,\"default\":100}",
+    "{\"name\":\"h-tpms_alpha-num_sensors\",\"type\":\"int\",\"min\":1,\"max\":1000000000,\"default\":100}",
+    "{\"name\":\"s-g-m-f-num_satellites\",\"type\":\"int\",\"min\":1,\"max\":100000000000,\"default\":100000000}",
+    "{\"name\":\"s-report_header-ack_n\",\"type\":\"int\",\"min\":0,\"max\":1,\"default\":1}",
+    "{\"name\":\"h-report_header-event_id\",\"type\":\"int\",\"min\":1,\"max\":1000,\"default\":100}",
+    "{\"name\":\"h-g-m-f-speed_kms\",\"type\":\"int\",\"min\":1,\"max\":1000000,\"default\":0}",
+    "{\"name\":\"h-chassis-age_seconds\",\"type\":\"int\",\"min\":1,\"max\":100,\"default\":1}",
+    "{\"name\":\"s-tpms_alpha-received_time\",\"type\":\"timestamp\",\"tsformat\":\"default\"}",
+    "{\"name\":\"h-tpms_alpha-num_sensors\",\"type\":\"int\",\"min\":1,\"max\":1000000000,\"default\":100}",
+    "{\"name\":\"h-general-device_ip\",\"default\":\"172.31.34.14\",\"min\":0,\"static\":false,\"type\":\"string\",\"max\":24}",
+    "{\"name\":\"h-voltage-main_power\",\"type\":\"float\",\"min\":1,\"max\":20,\"precision\":3}"
   ]
 }

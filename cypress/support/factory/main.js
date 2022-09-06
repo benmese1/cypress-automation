@@ -8,17 +8,14 @@ const temp = require('./types/temperature');
 const tpms = require('./types/tpms')
 const voltage = require('./types/voltage')
 
-let dataTypes = [chassis.chassisArr, 
-                general.generalArr, 
-                gmf.gmfArr, 
-                random.randomArr, 
-                reportHeader.reportHeaderArr, 
-                temp.tempArr,
-                tpms.tpmsArr, 
-                voltage.voltageArr];
-
-
-// let random_index = Math.floor(Math.random() * dataTypes.length);
+let dataTypes = [chassis.chassisArr,
+general.generalArr,
+gmf.gmfArr,
+random.randomArr,
+reportHeader.reportHeaderArr,
+temp.tempArr,
+tpms.tpmsArr,
+voltage.voltageArr];
 
 let randomData = {
     "name": faker.name.firstName(),
@@ -27,9 +24,6 @@ let randomData = {
 };
 
 // need to stringify the data in the payload'
-
-// for loop pushes same object data.count amount of times. Occasionally fails as well. Might be a race condition. 
-// forEach loop works as intended, and pulls entire array of objects into payload. 
 
 export function dataCreation(fileName, data) {
 
@@ -49,11 +43,15 @@ export function dataCreation(fileName, data) {
 }
 
 function randomDataCall() {
+    let dataTypeCount = Math.floor(Math.random() * dataTypes.length);
 
-    let dataTypeCount = faker.datatype.number({ 'min': 0, 'max': dataTypes.length - 1 });
-    let DTrandom = dataTypes[dataTypeCount];
+    let DTresponse = dataTypes[dataTypeCount];
 
-    return DTrandom[dataTypeCount];
+    let DTinnerResponse = Math.floor(Math.random() * DTresponse.length);
+
+    let DTdata = DTresponse[DTinnerResponse];
+
+    return DTdata;
 }
 
 

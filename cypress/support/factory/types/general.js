@@ -23,5 +23,5 @@ export let generalArr = [
     { "name": "s-general-device_type", "default": "freight-l", "min": 0, "static": false, "type": "string", "max": 12 },
     { "name": "s-general-customer_seq_number", "type": "int", "min": 1, "max": 100000, "default": 100 },
     { "name": "s-general-device_seq_number", "type": "int", "min": 1, "max": 100000, "default": 100 },
-    { "name": "s-general-old_record_id", "type": "int", "min": 1, "max": 1000, "default": 1 },
-]
+    { "name": "s-general-old_record_id", "type": "int", "min": 1, "max": 1000, "default": 1 }
+];

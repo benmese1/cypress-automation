@@ -1,7 +1,7 @@
 
 
 
-let voltageArr = [
+export let voltageArr = [
     {"name":"h-voltage-id","default":"","min":1,"type":"int","max":10000000000},
     {"name":"h-voltage-status","min":0,"static":false,"type":"string","max":12},
     {"name":"h-voltage-received_time_stamp","type":"timestamp","tsformat":"default"},
@@ -32,4 +32,4 @@ let voltageArr = [
     {"name":"s-voltage-aux_power","type":"float","min":1,"max":20,"precision":3},    
     {"name":"s-voltage-charge_power","type":"int","min":1,"max":10,"default":1},
     {"name":"s-voltage-battery_power","type":"float","min":1,"max":200,"precision":3}
-]
+];

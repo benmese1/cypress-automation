@@ -67,4 +67,4 @@ export let gmfArr = [
     { "name": "s-g-m-f-altitude_field", "default": "enabled", "min": 0, "static": false, "type": "string", "max": 24 },
     { "name": "s-g-m-f-speedheading_field", "default": "enabled", "min": 0, "static": false, "type": "string", "max": 24 },
     { "name": "s-g-m-f-speed_miles", "type": "int", "min": 1, "max": 100, "default": 0 }
-]
+];

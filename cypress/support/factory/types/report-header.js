@@ -24,5 +24,5 @@ export let reportHeaderArr = [
     { "name": "s-report_header-r_t_i-hour", "type": "int", "min": 0, "max": 23, "default": 10 },
     { "name": "s-report_header-r_t_i-minutes", "type": "int", "min": 0, "max": 59, "default": 10 },
     { "name": "s-report_header-r_t_i-seconds", "type": "int", "min": 0, "max": 59, "default": 10 },
-    { "name": "s-report_header-ack_n", "type": "int", "min": 0, "max": 1, "default": 1 },
-]
+    { "name": "s-report_header-ack_n", "type": "int", "min": 0, "max": 1, "default": 1 }
+];
