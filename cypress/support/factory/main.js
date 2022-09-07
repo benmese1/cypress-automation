@@ -23,20 +23,18 @@ let randomData = {
     "payload": []
 };
 
-// need to stringify the data in the payload'
-
-export function dataCreation(fileName, data) {
-
-    for (let i = 0; i < data.count; i++) {
-
-        // randomData.payload.push(JSON.stringify(randomDataCall(), null, '/[^\w\s]/gi,'));
+export function randomDataCreation(fileName, count) {
+    for (let i = 0; i < count; i++) {
         randomData.payload.push(JSON.stringify(randomDataCall()));
-
     }
+    cy.writeFile('cypress/data/files/' + fileName, randomData);
+}
 
-    // DTrandom.forEach((dt) => {
-    //         randomData.payload.push(dt);
-    //       })
+export function specificDataCreation(fileName, arr) {
+
+    arr.forEach((arrs) => {
+        randomData.payload.push(dataTypes[arrs]);
+    })
 
     cy.writeFile('cypress/data/files/' + fileName, randomData);
 

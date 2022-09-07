@@ -1,20 +1,16 @@
 // import data from '../fixtures/data-example.json'
-import {dataCreation} from '../support/factory/main.js'
+import {randomDataCreation} from '../support/factory/main.js';
+import {specificDataCreation} from '../support/factory/main.js';
 
 describe('writing data to json file', () => {
     let fileName = 'dataTest.json';
-
-    let dataObject = {
-        "random": true,
-        "count": 11,
-        "name": "name",
-        "topic": "iot_device/topic",
-        "payload": [{name:'random'}]
-    }
+    let count = 5;
+    let specificDatatArr = ['chassis.chassisArr', 'generalArr', 'tempArr'];
 
     before(() => {
-        dataCreation(fileName, dataObject);
-        // cy.createJSON(fileName)
+        // randomDataCreation(fileName, count);
+        specificDataCreation(fileName, specificDatatArr);
+
       })
     
 
