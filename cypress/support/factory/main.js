@@ -4,7 +4,7 @@ const general = require('./types/general');
 const gmf = require('./types/gmf');
 const random = require('./types/random');
 const reportHeader = require('./types/report-header');
-const temp = require('./types/temperature');
+const temp = require('./types/temp');
 const tpms = require('./types/tpms')
 const voltage = require('./types/voltage')
 
@@ -33,14 +33,33 @@ export function randomDataCreation(fileName, count) {
 export function specificDataCreation(fileName, arr) {
 
     arr.forEach((arrs) => {
-        randomData.payload.push(dataTypes[arrs]);
+        randomData.payload.push(getDataTypes(arrs))
+        // randomData.payload.push(dataTypes[arrs])
     })
 
     cy.writeFile('cypress/data/files/' + fileName, randomData);
 
 }
 
+const getDataTypes = DT => {
+    const types = {
+        chassis: chassis.chassisArr,
+        general: general.generalArr,
+        gmf: gmf.gmfArr,
+        ramdom: random.randomArr,
+        reportHeader: reportHeader.reportHeaderArr,
+        temp: temp.tempArr,
+        voltage: voltage.voltageArr
+    }
+
+    return types[DT] ?? "unknown data type"
+}
+
+
 function randomDataCall() {
+    // var size = Object.keys(dataTypes).length;
+
+    // let dataTypeCount = Math.floor(Math.random() * size);
     let dataTypeCount = Math.floor(Math.random() * dataTypes.length);
 
     let DTresponse = dataTypes[dataTypeCount];

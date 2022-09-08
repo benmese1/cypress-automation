@@ -5,11 +5,11 @@ import {specificDataCreation} from '../support/factory/main.js';
 describe('writing data to json file', () => {
     let fileName = 'dataTest.json';
     let count = 5;
-    let specificDatatArr = ['chassis.chassisArr', 'generalArr', 'tempArr'];
+    let specificDatatArr = ['chassis', 'general', 'temp'];
 
     before(() => {
-        // randomDataCreation(fileName, count);
-        specificDataCreation(fileName, specificDatatArr);
+        randomDataCreation(fileName, count);
+        // specificDataCreation(fileName, specificDatatArr);
 
       })
     

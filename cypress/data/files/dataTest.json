@@ -1,9 +1,11 @@
 {
-  "name": "Maurice",
+  "name": "Jettie",
   "topic": "iot_device/topic",
   "payload": [
-    null,
-    null,
-    null
+    "{\"name\":\"h-report_header-r_t_i-seconds\",\"type\":\"int\",\"min\":0,\"max\":59}",
+    "{\"name\":\"s-chassis-id\",\"default\":\"\",\"min\":1,\"type\":\"int\",\"max\":100000}",
+    "{\"name\":\"s-voltage-received_time_stamp\",\"type\":\"timestamp\",\"tsformat\":\"default\"}",
+    "{\"name\":\"h-general-company_id\",\"min\":0,\"static\":false,\"type\":\"string\",\"max\":16}",
+    "{\"name\":\"_score\",\"type\":\"int\",\"min\":1,\"max\":100000,\"default\":1}"
   ]
 }
