@@ -12,7 +12,7 @@ describe('writing data to json file', () => {
         // specificDataCreation(fileName, specificDatatArr);
 
       })
-    
+
 
     it('writes data to JSON file', () => {
         // cy.createJSON('iot.json', fileName);

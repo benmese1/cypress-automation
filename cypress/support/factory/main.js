@@ -25,7 +25,7 @@ let randomData = {
 
 export function randomDataCreation(fileName, count) {
     for (let i = 0; i < count; i++) {
-        randomData.payload.push(JSON.stringify(randomDataCall()));
+        randomData.payload.push(randomDataCall());
     }
     cy.writeFile('cypress/data/files/' + fileName, randomData);
 }
@@ -34,7 +34,6 @@ export function specificDataCreation(fileName, arr) {
 
     arr.forEach((arrs) => {
         randomData.payload.push(getDataTypes(arrs))
-        // randomData.payload.push(dataTypes[arrs])
     })
 
     cy.writeFile('cypress/data/files/' + fileName, randomData);
@@ -57,9 +56,6 @@ const getDataTypes = DT => {
 
 
 function randomDataCall() {
-    // var size = Object.keys(dataTypes).length;
-
-    // let dataTypeCount = Math.floor(Math.random() * size);
     let dataTypeCount = Math.floor(Math.random() * dataTypes.length);
 
     let DTresponse = dataTypes[dataTypeCount];
@@ -68,8 +64,26 @@ function randomDataCall() {
 
     let DTdata = DTresponse[DTinnerResponse];
 
-    return DTdata;
+    let stringData = JSON.stringify(DTdata);
+
+    let jsonString = stringData.replace(/[^a-zA-Z0-9-_:, ]/g, '');
+
+
+
+    // var output = '';
+    // for (var property in DTdata) {
+    //   output += property + ':' + DTdata[property]+'; ';
+    // }
+
+
+    return jsonString;
 }
+
+
+function replacer(key, value) {
+    return value.replace(/[^\w\s]/gi, '');
+}
+
 
 
 

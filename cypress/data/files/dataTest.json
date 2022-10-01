@@ -1,11 +1,11 @@
 {
-  "name": "Jettie",
+  "name": "Kaden",
   "topic": "iot_device/topic",
   "payload": [
-    "{\"name\":\"h-report_header-r_t_i-seconds\",\"type\":\"int\",\"min\":0,\"max\":59}",
-    "{\"name\":\"s-chassis-id\",\"default\":\"\",\"min\":1,\"type\":\"int\",\"max\":100000}",
-    "{\"name\":\"s-voltage-received_time_stamp\",\"type\":\"timestamp\",\"tsformat\":\"default\"}",
-    "{\"name\":\"h-general-company_id\",\"min\":0,\"static\":false,\"type\":\"string\",\"max\":16}",
-    "{\"name\":\"_score\",\"type\":\"int\",\"min\":1,\"max\":100000,\"default\":1}"
+    "name:h-temperature-internal_temp,type:float,min:1,max:200,precision:2",
+    "name:s-temperature-status,min:0,static:false,type:string,max:24",
+    "name:h-tpms_alpha-status,default:Unresponsive,min:0,static:false,type:string,max:24",
+    "name:h-_type,default:_doc,min:0,static:false,type:string,max:24",
+    "name:s-temperature-selector,min:0,static:false,type:string,max:24"
   ]
 }
