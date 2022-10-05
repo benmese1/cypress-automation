@@ -1,6 +1,6 @@
 // import data from '../fixtures/data-example.json'
-import {randomDataCreation} from '../support/factory/main.js';
-import {specificDataCreation} from '../support/factory/main.js';
+import {randomDataCreation} from '../../support/factory/main.js';
+import {specificDataCreation} from '../../support/factory/main.js';
 
 describe('writing data to json file', () => {
     let fileName = 'dataTest.json';
@@ -8,8 +8,8 @@ describe('writing data to json file', () => {
     let specificDatatArr = ['chassis', 'general', 'temp'];
 
     before(() => {
-        randomDataCreation(fileName, count);
-        // specificDataCreation(fileName, specificDatatArr);
+        // randomDataCreation(fileName, count);
+        specificDataCreation(fileName, specificDatatArr);
 
       })
 

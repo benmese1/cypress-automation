@@ -1,11 +1,474 @@
 {
-  "name": "Kaden",
+  "name": "Jamel",
   "topic": "iot_device/topic",
   "payload": [
-    "name:h-temperature-internal_temp,type:float,min:1,max:200,precision:2",
-    "name:s-temperature-status,min:0,static:false,type:string,max:24",
-    "name:h-tpms_alpha-status,default:Unresponsive,min:0,static:false,type:string,max:24",
-    "name:h-_type,default:_doc,min:0,static:false,type:string,max:24",
-    "name:s-temperature-selector,min:0,static:false,type:string,max:24"
+    [
+      {
+        "name": "h-chassis-id",
+        "default": "",
+        "min": 1,
+        "type": "int",
+        "max": 10000000000
+      },
+      {
+        "name": "h-chassis-status",
+        "default": "null",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "h-chassis-received_time_stamp",
+        "type": "timestamp",
+        "tsformat": "default"
+      },
+      {
+        "name": "h-chassis-selector",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 12
+      },
+      {
+        "name": "h-chassis-name",
+        "default": "Chassis",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "h-chassis-display_name",
+        "default": "Chassis/Cargo Sensor",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "h-chassis-condition",
+        "default": "Sensor Fault",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "h-chassis-cargo_state",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 12
+      },
+      {
+        "name": "h-chassis-dist_mm",
+        "type": "int",
+        "min": 1,
+        "max": 10,
+        "default": 1
+      },
+      {
+        "name": "h-chassis-age_seconds",
+        "type": "int",
+        "min": 1,
+        "max": 100,
+        "default": 1
+      },
+      {
+        "name": "h-chassis-code1",
+        "type": "int",
+        "min": 1,
+        "max": 1000,
+        "default": 255
+      },
+      {
+        "name": "h-chassis-code2",
+        "type": "int",
+        "min": 1,
+        "max": 1000,
+        "default": 255
+      },
+      {
+        "name": "h-chassis-cargo_state_tmc",
+        "default": "Empty",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "s-chassis-id",
+        "default": "",
+        "min": 1,
+        "type": "int",
+        "max": 100000
+      },
+      {
+        "name": "s-chassis-status",
+        "default": "null",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "s-chassis-received_time_stamp",
+        "type": "timestamp",
+        "tsformat": "default"
+      },
+      {
+        "name": "s-chassis-selector",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 12
+      },
+      {
+        "name": "s-chassis-name",
+        "default": "Chassis",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "s-chassis-display_name",
+        "default": "Chassis/Cargo Sensor",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "s-chassis-condition",
+        "default": "Sensor Fault",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "s-chassis-cargo_state",
+        "min": 1,
+        "static": false,
+        "type": "string",
+        "max": 12
+      },
+      {
+        "name": "s-chassis-dist_mm",
+        "type": "int",
+        "min": 1,
+        "max": 10,
+        "default": 1
+      },
+      {
+        "name": "s-chassis-age_seconds",
+        "type": "int",
+        "min": 1,
+        "max": 100,
+        "default": 1
+      },
+      {
+        "name": "s-chassis-code1",
+        "type": "int",
+        "min": 1,
+        "max": 1000,
+        "default": 255
+      },
+      {
+        "name": "s-chassis-code2",
+        "type": "int",
+        "min": 1,
+        "max": 1000,
+        "default": 255
+      },
+      {
+        "name": "s-chassis-cargo_state_tmc",
+        "default": "Empty",
+        "min": 5,
+        "static": false,
+        "type": "string",
+        "max": 24
+      }
+    ],
+    [
+      {
+        "name": "h-general-server_ip",
+        "default": "172.31.34.14",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "h-general-device_ip",
+        "default": "172.31.34.14",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "h-general-device_port",
+        "type": "int",
+        "min": 1,
+        "max": 10000,
+        "default": 1
+      },
+      {
+        "name": "h-general-server_port",
+        "type": "int",
+        "min": 1,
+        "max": 10000,
+        "default": 1
+      },
+      {
+        "name": "h-general-rawreport",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 300
+      },
+      {
+        "name": "h-general-uuid",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 36
+      },
+      {
+        "name": "h-general-company_id",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 16
+      },
+      {
+        "name": "h-general-device_type",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "h-general-c_s_n",
+        "type": "int",
+        "min": 1,
+        "max": 100000,
+        "default": 1
+      },
+      {
+        "name": "h-general-d_s_n",
+        "type": "int",
+        "min": 1,
+        "max": 100000,
+        "default": 1
+      },
+      {
+        "name": "h-general-old_record_id",
+        "type": "int",
+        "min": 1,
+        "max": 1000,
+        "default": 1
+      },
+      {
+        "name": "h-general-recieved_time_stamp",
+        "type": "timestamp",
+        "tsformat": "default"
+      },
+      {
+        "name": "s-general-server_ip",
+        "default": "172.31.34.14",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "s-general-device_ip",
+        "default": "172.31.34.14",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "s-general-device_port",
+        "type": "int",
+        "min": 1,
+        "max": 10000000,
+        "default": 100
+      },
+      {
+        "name": "s-general-server_port",
+        "type": "int",
+        "min": 1,
+        "max": 10000000,
+        "default": 100
+      },
+      {
+        "name": "s-general-rawreport",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 12
+      },
+      {
+        "name": "s-general-uuid",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 12
+      },
+      {
+        "name": "s-general-company_id",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 12
+      },
+      {
+        "name": "s-general-device_type",
+        "default": "freight-l",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 12
+      },
+      {
+        "name": "s-general-customer_seq_number",
+        "type": "int",
+        "min": 1,
+        "max": 100000,
+        "default": 100
+      },
+      {
+        "name": "s-general-device_seq_number",
+        "type": "int",
+        "min": 1,
+        "max": 100000,
+        "default": 100
+      },
+      {
+        "name": "s-general-old_record_id",
+        "type": "int",
+        "min": 1,
+        "max": 1000,
+        "default": 1
+      }
+    ],
+    [
+      {
+        "name": "h-temperature-id",
+        "type": "int",
+        "min": 1,
+        "max": 1000000000,
+        "default": 100
+      },
+      {
+        "name": "h-temperature-status",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "h-temperature-r_time_stamp",
+        "type": "timestamp",
+        "tsformat": "default"
+      },
+      {
+        "name": "h-temperature-selector",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "h-temperature-name",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "h-temperature-display_name",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "h-temperature-ambient_temp",
+        "type": "float",
+        "min": 1,
+        "max": 200,
+        "precision": 2
+      },
+      {
+        "name": "h-temperature-internal_temp",
+        "type": "float",
+        "min": 1,
+        "max": 200,
+        "precision": 2
+      },
+      {
+        "name": "s-temperature-id",
+        "type": "int",
+        "min": 1,
+        "max": 10000,
+        "default": 100
+      },
+      {
+        "name": "s-temperature-status",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "s-temperature-received_time",
+        "type": "timestamp",
+        "tsformat": "default"
+      },
+      {
+        "name": "s-temperature-selector",
+        "min": 0,
+        "static": false,
+        "type": "string",
+        "max": 24
+      },
+      {
+        "name": "s-temperature-name",
+        "min": 0,
+        "default": "Internal Gateway Temperature Sensors",
+        "static": false,
+        "type": "string",
+        "max": 48
+      },
+      {
+        "name": "s-temperature-display_name",
+        "min": 0,
+        "default": "Temperature",
+        "static": false,
+        "type": "string",
+        "max": 48
+      },
+      {
+        "name": "s-temperature-ambient_temp",
+        "type": "int",
+        "min": 1,
+        "max": 100,
+        "default": 10
+      },
+      {
+        "name": "s-temperature-internal_temp",
+        "type": "int",
+        "min": 1,
+        "max": 100,
+        "default": 31
+      }
+    ]
   ]
 }

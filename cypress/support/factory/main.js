@@ -54,7 +54,7 @@ const getDataTypes = DT => {
     return types[DT] ?? "unknown data type"
 }
 
-
+// still need to work on printing out the objects in randomData payload on one line (for each object)
 function randomDataCall() {
     let dataTypeCount = Math.floor(Math.random() * dataTypes.length);
 
@@ -66,7 +66,7 @@ function randomDataCall() {
 
     let stringData = JSON.stringify(DTdata);
 
-    let jsonString = stringData.replace(/[^a-zA-Z0-9-_:, ]/g, '');
+    // let jsonString = stringData.replace(/[^a-zA-Z0-9-_:, ]/g, '');
 
 
 
@@ -76,7 +76,7 @@ function randomDataCall() {
     // }
 
 
-    return jsonString;
+    return DTdata;
 }
 
 
