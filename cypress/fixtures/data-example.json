@@ -1,5 +1,0 @@
-{
-  "name": "iot_device-name1",
-  "topic": "iot_device/topic",
-  "payload": [{"name":"_score","type":"int","min":1,"max":100000,"default":1}]
-}

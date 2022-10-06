@@ -1,4 +1,4 @@
-
+//this test is currently deprecated
 
 describe('deleting json file', () => {
     

@@ -1,17 +1,17 @@
 
 
-Cypress.Commands.add('createJSON', (fileName, data) => {
+Cypress.Commands.add('createJSON', (fileName) => {
 
-    cy.writeFile('cypress/data/files/' + fileName, data)
-
-})
-
-
-Cypress.Commands.add('deleteJSON', (fileName) => {
-
-    // cy.exec(`rm -rf ${fileName}`);
+    cy.writeFile('cypress/data/files/' + fileName, cy.fixture('chassis'))
 
 })
+
+
+// Cypress.Commands.add('deleteJSON', (fileName) => {
+
+//     // cy.exec(`rm -rf ${fileName}`);
+
+// })
 
 
 
