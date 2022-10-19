@@ -1,5 +1,8 @@
 import {defineConfig} from 'cypress'
 
+import dotenv from 'dotenv'
+dotenv.config()
+
 export default defineConfig({
     chromeWebSecurity: false,
     fixturesFolder: 'cypress/fixtures',
@@ -23,12 +26,12 @@ export default defineConfig({
             // return require('./cypress/support/index.js')(on, config)
         },
         specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
-        baseUrl: 'http://localhost:3000',
+        baseUrl: process.env.BASE_URL,
     },
     env: {
-        username: 'qa_automation',
-        password: 'rN57ytdZFrvVbwlBSPc0$',
-        client_id: '2652adm3ps89eqhr5ap54kd85i',
-        redirect_uri: 'http://localhost:3000/login'
+        username: process.env.USERNAME,
+        password: process.env.PASSWORD,
+        client_id: process.env.CLIENT_ID,
+        redirect_uri: process.env.BASE_URL + '/login'
     },
 })

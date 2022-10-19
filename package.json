@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "cypress-real-events": "^1.7.1",
+    "dotenv": "^16.0.3",
     "fs-extra": "^10.0.0",
     "stringify-object": "^4.0.1"
   }
