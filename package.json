@@ -14,14 +14,14 @@
   "devDependencies": {
     "chainable": "^0.1.4",
     "clipboardy": "^3.0.0",
-    "cypress": "^10.9.0",
+    "cypress": "^10.10.0",
     "cypress-xpath": "^1.6.2",
     "faker": "^5.5.3",
-    "typescript": "^4.5.3",
     "mocha": "^10.0.0",
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^4.2.1",
-    "mochawesome-report-generator": "^6.2.0"
+    "mochawesome-report-generator": "^6.2.0",
+    "typescript": "^4.5.3"
   },
   "dependencies": {
     "cypress-real-events": "^1.7.1",

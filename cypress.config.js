@@ -25,4 +25,10 @@ export default defineConfig({
         specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
         baseUrl: 'http://localhost:3000',
     },
+    env: {
+        username: 'qa_automation',
+        password: 'rN57ytdZFrvVbwlBSPc0$',
+        client_id: '2652adm3ps89eqhr5ap54kd85i',
+        redirect_uri: 'http://localhost:3000/login'
+    },
 })
