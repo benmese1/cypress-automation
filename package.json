@@ -5,13 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "cy:dev": "npx cypress open --env fileConfig=development",
-    "cy:stage": "npx cypress open --env fileConfig=stage",
+    "cy:dev": "npx cypress open --env dev=1",
+    "cy:qa": "npx cypress open",
     "cypress": "cypress open"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^18.11.2",
     "chainable": "^0.1.4",
     "clipboardy": "^3.0.0",
     "cypress": "^10.6.0",
@@ -21,6 +22,7 @@
   },
   "dependencies": {
     "cypress-real-events": "^1.7.1",
+    "deepmerge": "^4.2.2",
     "fs-extra": "^10.0.0",
     "stringify-object": "^4.0.1"
   }
