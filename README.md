@@ -24,15 +24,12 @@ NOTE: for future installs (if using VSC), with project open click on Terminal ->
 5.) you should be able to open the cypress test GUI by typing: npx cypress open
     NOTE: there are scripts in the package.json file that allow you to launch the test GUI into individual environments. Feel free to use those as you see fit for your testing. 
 
---With the release of cypress 10, this functionality does not work as intended. It is the intent of the
---creator to fix this in a future release. You can, however, still use the script npm run cypress
---in order to open the cypress test GUI, sanse specific environment (for now)
 6.) this project typically executes tests from the cypress test runner (test GUI). The way this project is set up, you open the test runner in a particular environment. For example, if you want to execute your tests in the development environment you would open the terminal in VSC and type the following command;
     npm run cy:dev
-This command executes the following script npx cypress open --env fileConfig=development. Addition scripts can be found in the 
+This command executes the following script npx cypress open --env dev=1. Addition scripts can be found in the 
 package.json file. 
-If you wanted to execute your tests in the stage environment, you would;
-    npm run cy:stage
+If you wanted to execute your tests in the qa environment, you would;
+    npm run cy:qa
 Etc. This gives the tester a lot of control over specific environment variables, and for this project is the recommended way to execute these tests. 
 
 
