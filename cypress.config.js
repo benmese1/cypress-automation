@@ -1,4 +1,7 @@
-import { defineConfig } from 'cypress'
+import { defineConfig } from 'cypress';
+import merge from 'deepmerge'
+import * as path from 'path';
+import * as fs from 'fs-extra';
 
 export default defineConfig({
   fixturesFolder: 'cypress/fixtures',
@@ -6,12 +9,33 @@ export default defineConfig({
   videosFolder: 'cypress/videos',
   downloadsFolder: 'cypress/downloads',
   e2e: {
-    
-    // We've imported your old cypress plugins here.
-    // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
-      // return require('./cypress/support/index.js')(on, config)
+      if (config.env.dev) {
+        return {
+          baseUrl: "https://www.weather.com",
+          env: {
+            env: "dev",
+            auth_username: "<email>",
+            auth_password: "<password>",
+          },
+        };
+      } else
+        return {
+          baseUrl: "https://www.google.com/",
+          env: {
+            env: "qa",
+            auth_username: "<email>",
+            auth_password: "<password>",                  
+          },
+        };
     },
-    specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
   },
 })
+
+
+
+
+
+
+
+

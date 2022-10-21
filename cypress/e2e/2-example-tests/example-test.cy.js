@@ -9,7 +9,7 @@ describe('UI test verification for contact, about us, log in and sign up modals'
     it('verifies contact modal content', () => {
 
         // clicks on the contact nav option
-        cy.xpath('//a[@class="nav-link" and contains(text(), "Contact")]').click()
+        cy.xpath('//a[a@clss="nav-link" and contains(text(), "Contact")]').click()
 
         // fills out contact form
         // faker is a library that provides fake informatin so you don't need to hard-code it in, if you don't want to
