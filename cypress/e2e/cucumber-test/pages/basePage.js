@@ -1,6 +1,9 @@
 export default class BasePage {
 
-    getLoginButton() { return cy.get('a .MuiButton-root'); }
+    getLoginButton() {
+        return cy.get('a .MuiButton-root');
+    }
+
     pause(ms) {
         cy.wait(ms)
     }
@@ -12,5 +15,4 @@ export default class BasePage {
     setMobileViewport() {
         cy.viewport('iphone-x')
     }
-
 }

@@ -2,8 +2,13 @@ import BasePage from "./basePage.js";
 
 export default class LoginPage extends BasePage {
 
-    get incorrectUserPassMsg() { return cy.get('.errorMessage-customizable'); }
-    get submitButton() { return cy.get('.visible-lg .btn-primary'); }
+    get incorrectUserPassMsg() {
+        return cy.get('.errorMessage-customizable');
+    }
+
+    get submitButton() {
+        return cy.get('.visible-lg .btn-primary');
+    }
 
     open(user, pwd) {
         const args = {
