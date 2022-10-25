@@ -1,20 +1,26 @@
 
 
-Cypress.Commands.add('createJSON', (fileName) => {
+Cypress.Commands.add('logInDB', () => {
 
-    cy.writeFile('cypress/data/files/' + fileName, cy.fixture('chassis'))
+    // finds login field and clicks on it
+    cy.get('#login2').click();
+
+    // fills out login information and clicks on log in button
+    cy.get('#loginusername').type(Cypress.env('username'))
+    cy.wait(1000)
+    cy.get('#loginpassword').type(Cypress.env('password'))
+    cy.wait(1000)
+    cy.get('[onclick="logIn()"]').click()
 
 })
 
+Cypress.Commands.add('logOutDB', () => {
 
-// Cypress.Commands.add('deleteJSON', (fileName) => {
+    // finds login field and clicks on it
+    cy.wait(1000)
+    cy.get('#logout2').click();
 
-//     // cy.exec(`rm -rf ${fileName}`);
-
-// })
-
-
-
+})
 
 
 // Cypress.Commands.add('login', (email, password) => { ... })

@@ -21,11 +21,11 @@ export default defineConfig({
         };
       } else
         return {
-          baseUrl: "https://www.google.com/",
+          baseUrl: "https://www.demoblaze.com",
           env: {
             env: "qa",
-            auth_username: "<email>",
-            auth_password: "<password>",                  
+            username: "modistester",
+            password: "123456",                  
           },
         };
     },
