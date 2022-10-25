@@ -6,19 +6,22 @@ Cypress.Commands.add('logInDB', () => {
     cy.get('#login2').click();
 
     // fills out login information and clicks on log in button
-    cy.get('#loginusername').type(Cypress.env('username'))
-    cy.wait(1000)
-    cy.get('#loginpassword').type(Cypress.env('password'))
-    cy.wait(1000)
+    // this timeout is unique to this selector. It will query for this selector for up to one second
+    cy.get('#loginusername', { timeout: 1000 }).type(Cypress.env('username'))
+    cy.get('#loginpassword', { timeout: 1000 }).type(Cypress.env('password'))
     cy.get('[onclick="logIn()"]').click()
-
+    // a hard coded wait. The test will stop here for 1 sec, even if the element is available to interact with
+    cy.wait(1000)
+    // this is testing that the modal is no longer open
+    cy.get('#exampleModalLabel', { timeout: 2000 }).should('not.be.visible')
 })
 
+    
 Cypress.Commands.add('logOutDB', () => {
-
-    // finds login field and clicks on it
+    // here is a hard coded wait. Technically a dynamic wait is better, but these can be useful still
     cy.wait(1000)
-    cy.get('#logout2').click();
+    // finds logout link and clicks on it
+    cy.get('#logout2', { timeout: 2000 }).click();
 
 })
 
