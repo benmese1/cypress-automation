@@ -1,5 +1,5 @@
 {
     env:{
-        baseURL: "https://weather.com/"
+        baseURL: "https://dev-connect1.phillips-connect.com/"
     }
 }
