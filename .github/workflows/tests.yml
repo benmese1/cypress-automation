@@ -14,7 +14,7 @@ on:
         - dev
         - qa
       spec:
-        description: 'Enter specific specifications in format:
+        description: 'Enter specifications in format  :
                         --spec "cypress/integration/TestCase2.spec.js,cypress/integration/TestCase5.spec.js"'
         required: false
         default: ''
