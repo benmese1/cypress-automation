@@ -10,12 +10,12 @@ describe('writing data to json file', () => {
     before(() => {
         // randomDataCreation(fileName, count);
         specificDataCreation(fileName, specificDatatArr);
-
+        cy.log(Cypress.env('baseURL'))
       })
 
 
     it('writes data to JSON file', () => {
-        // cy.createJSON('iot.json', fileName);
+        cy.visit('/')
     })
 
 
