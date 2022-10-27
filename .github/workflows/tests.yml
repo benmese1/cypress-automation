@@ -13,6 +13,13 @@ on:
         options:
         - dev
         - qa
+      spec:
+        description: 'Enter specific test spec \
+                      Format is: \
+                      --spec "cypress/integration/TestCase2.spec.js,cypress/integration/TestCase5.spec.js"'
+        required: false
+        default: ''
+        type: string
 
 jobs:
   cypress:
@@ -36,8 +43,8 @@ jobs:
           CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
           USERNAME: qa_automation
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
-        if: "${{ github.event.inputs.env == 'dev' }}"
-        run:  npx cypress run --env dev=1
+        if: "${{ github.event.inputs.env == 'dev' }} || ${{ github.event.inputs.env == '' }}"
+        run:  npx cypress run --env dev=1 ${{ github.event.inputs.spec }}
 #        continue-on-error: true
 
       - name: Run Cypress (QA)
@@ -46,7 +53,7 @@ jobs:
           USERNAME: qa_automation
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
         if: "${{ github.event.inputs.env == 'qa' }}"
-        run: npx cypress run
+        run: npx cypress run${{ github.event.inputs.spec }}
 #        continue-on-error: true
         
       - name: 'Upload test results'
