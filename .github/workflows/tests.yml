@@ -14,7 +14,7 @@ on:
         - dev
         - qa
       spec:
-        description: 'Enter specific test specifications in format:
+        description: 'Enter specific specifications in format:
                         --spec "cypress/integration/TestCase2.spec.js,cypress/integration/TestCase5.spec.js"'
         required: false
         default: ''
@@ -35,7 +35,7 @@ jobs:
           node-version: 18
 
       - name: Install Node modules
-        run: npm ci
+        run: npm install
       
       - name: Run Cypress (DEV)
         env:
