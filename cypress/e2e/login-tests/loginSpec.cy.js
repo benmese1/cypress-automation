@@ -1,21 +1,23 @@
 describe('Login', () => {
     it('Success login test', () => {
-        cy.login(Cypress.env('username'), Cypress.env('password'));
+        cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
         cy.get("[aria-label='account of current user']").should('be.visible')
+        cy.get("[href='dashboard']").click()
+        cy.get("[href='dashboard']").click()
     })
 
     it('Incorrect password test', () => {
-        cy.login(Cypress.env('username'), 'incorrect');
+        cy.login(Cypress.env('username'), 'incorrect', { cacheSession: false });
         cy.contains('Incorrect username or password.')
     })
 
     it('Empty login test', () => {
-        cy.login(' ', ' ');
+        cy.login(' ', ' ', { cacheSession: false });
         cy.contains('The username you entered cannot be empty or contain only spaces')
     })
 
     it('Empty password test', () => {
-        cy.login(Cypress.env('username'), ' ');
+        cy.login(Cypress.env('username'), ' ', { cacheSession: false });
         cy.contains('The password you entered cannot be empty or contain only spaces');
     })
 })

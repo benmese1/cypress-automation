@@ -12,13 +12,19 @@ Cypress.Commands.add('createJSON', (fileName) => {
 // })
 
 
-Cypress.Commands.add('login', (user, pwd) => {
-    cy.visit("/login");
-    cy.get('.visible-lg #signInFormUsername').type(user);
-    cy.get('.visible-lg #signInFormPassword').type(pwd, {log: false});
-    cy.get('.visible-lg .btn-primary').click();
+Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
+    const login = () => {
+        cy.visit("/login");
+        cy.get('.visible-lg #signInFormUsername').type(user);
+        cy.get('.visible-lg #signInFormPassword').type(pwd, {log: false});
+        cy.get('.visible-lg .btn-primary').click();
+    }
+    if (cacheSession) {
+        cy.session(user, login)
+    } else {
+        login()
+    }
 })
-
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
