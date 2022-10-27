@@ -16,7 +16,7 @@
     "chainable": "^0.1.4",
     "clipboardy": "^3.0.0",
     "cypress": "^10.6.0",
-    "cypress-xpath": "^1.6.2",
+    "cypress-xpath": "^1.8.0",
     "faker": "^5.5.3",
     "typescript": "^4.5.3"
   },

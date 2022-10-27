@@ -1,6 +1,6 @@
 import testUser from '../../fixtures/users.json';
 
-describe('UI test verification for contact, about us, log in and sign up modals', () => {
+describe('runs basic intro tests', () => {
 
     beforeEach(() => {
         // this will visit the baseURL that you have set in your framework
@@ -38,8 +38,4 @@ describe('UI test verification for contact, about us, log in and sign up modals'
 
 
     })
-
-
-
-
 })

@@ -1,6 +1,47 @@
 
+Cypress.Commands.add('DEVlogin', (username, password) => {
+        cy.session([username, password], () => {
+            cy.visit('https://dev-connect1.phillips-connect.com/demo');
+            cy.get('button').contains('Login').click()
+
+            cy.origin(
+                "https://devconnect1userpooldomain.auth.us-west-2.amazoncognito.com/login",
+                { args: [username, password] },
+                ([username, password]) => {
+                    cy.get('#signInFormUsername').type(username, {force: true});
+                    cy.get('#signInFormPassword').type(password, {force: true});
+                    // cy.xpath('(//input[@name="signInSubmitButton"])[1]').click();
+                    cy.get('[name="signInSubmitButton"]').first().click({force: true});
+                }
+            );
+                cy.get('h1[class="font-bold"]').should('exist')
+        })
+
+    // const args = { username, password }
+    // cy.session(
+    //     args,
+    //     () => {
+    //         cy.origin('https://dev-connect1.phillips-connect.com/', { args }, ({ username, password }) => {
+    //             cy.visit('/login')
+    //             cy.contains('Username').find('input').type(username)
+    //             cy.contains('Password').find('input').type(password)
+    //             cy.get('button').contains('Login').click()
+    //         })
+    //         cy.url().should('contain', '/home')
+    //     },
+    //     {
+    //         validate() {
+    //             cy.request('/api/user').its('status').should('eq', 200)
+    //         },
+    //     }
+    // )
+
+})
+
+
 
 Cypress.Commands.add('logInDB', () => {
+    // we would usually put the cy.visit() here as well, but left it in the beforeEach, just for training purposes
 
     // finds login field and clicks on it
     cy.get('#login2').click();
@@ -16,7 +57,7 @@ Cypress.Commands.add('logInDB', () => {
     cy.get('#exampleModalLabel', { timeout: 2000 }).should('not.be.visible')
 })
 
-    
+
 Cypress.Commands.add('logOutDB', () => {
     // here is a hard coded wait. Technically a dynamic wait is better, but these can be useful still
     cy.wait(1000)

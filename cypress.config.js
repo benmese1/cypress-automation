@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress';
+// import xpath from 'cypress-xpath';
 import merge from 'deepmerge'
 import * as path from 'path';
 import * as fs from 'fs-extra';
@@ -9,14 +10,15 @@ export default defineConfig({
   videosFolder: 'cypress/videos',
   downloadsFolder: 'cypress/downloads',
   e2e: {
+    experimentalSessionAndOrigin: true,
     setupNodeEvents(on, config) {
       if (config.env.dev) {
         return {
           baseUrl: "https://www.weather.com",
           env: {
             env: "dev",
-            auth_username: "<email>",
-            auth_password: "<password>",
+            username: "<email>",
+            password: "<password>",
           },
         };
       } else
