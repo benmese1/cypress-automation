@@ -1,5 +1,5 @@
 {
     env:{
-        baseURL: "https://www.google.com/"
+        baseURL: "https://qa-connect1.phillips-connect.com/"
     }
 }

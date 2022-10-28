@@ -1,41 +1,43 @@
 import { defineConfig } from 'cypress';
-import merge from 'deepmerge'
-import * as path from 'path';
-import * as fs from 'fs-extra';
 
 export default defineConfig({
+  chromeWebSecurity: false,
   fixturesFolder: 'cypress/fixtures',
   screenshotsFolder: 'cypress/screenshots',
   videosFolder: 'cypress/videos',
   downloadsFolder: 'cypress/downloads',
+  reporter: "junit",
+  reporterOptions: {
+    mochaFile: "results/test-results.xml",
+    testCaseSwitchClassnameAndName: false
+  },
+  retries: {
+    runMode: 2,
+    openMode: 2,
+  },
   e2e: {
+    experimentalSessionAndOrigin: true,
     setupNodeEvents(on, config) {
       if (config.env.dev) {
         return {
-          baseUrl: "https://www.weather.com",
+          baseUrl: "https://dev-connect1.phillips-connect.com",
           env: {
             env: "dev",
-            auth_username: "<email>",
-            auth_password: "<password>",
+            username: "qa_automation",
+            password: "rN57ytdZFrvVbwlBSPc0$",
+            client_id: "2652adm3ps89eqhr5ap54kd85i",
           },
         };
       } else
         return {
-          baseUrl: "https://www.google.com/",
+          baseUrl: "https://qa-connect1.phillips-connect.com/",
           env: {
             env: "qa",
-            auth_username: "<email>",
-            auth_password: "<password>",                  
+            username: "",
+            password: "",
+            client_id: "2652adm3ps89eqhr5ap54kd85i",
           },
         };
     },
   },
 })
-
-
-
-
-
-
-
-

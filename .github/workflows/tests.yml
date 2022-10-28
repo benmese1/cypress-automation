@@ -1,16 +1,72 @@
-### Placeholder workflow
 name: Run tests
 on:
-  workflow_dispatch: {}
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened, edited]
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Select environment'
+        required: true
+        default: 'dev' 
+        type: choice
+        options:
+        - dev
+        - qa
+      spec:
+        description: 'Enter specifications in format     :
+                        --spec "cypress/integration/TestCase2.spec.js,cypress/integration/TestCase5.spec.js"'
+        required: false
+        default: ''
+        type: string
 
 jobs:
   cypress:
     name: Run Cypress
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-      - name: Echo repo dir
-        run: ls -lah .
+      - name: Install Node modules
+        run: npm install
+      
+      - name: Run Cypress (DEV)
+        env:
+          CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
+          USERNAME: qa_automation
+          PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
+        if: "${{ github.event.inputs.env == 'dev' }} || ${{ github.event.inputs.env == '' }}"
+        run:  npx cypress run --env dev=1 ${{ github.event.inputs.spec }}
+#        continue-on-error: true
+
+      - name: Run Cypress (QA)
+        env:
+          CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
+          USERNAME: qa_automation
+          PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
+        if: "${{ github.event.inputs.env == 'qa' }}"
+        run: npx cypress run${{ github.event.inputs.spec }}
+#        continue-on-error: true
+        
+      - name: 'Upload test results'
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: results/
+          retention-days: 30
+
+      - name: 'Upload screenshots'
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-screenshots
+          path: cypress/screenshots/
+          retention-days: 30
