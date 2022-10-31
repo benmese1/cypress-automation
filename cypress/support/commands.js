@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 Cypress.Commands.add('DEVlogin', (username, password) => {
         cy.session([username, password], () => {
@@ -16,6 +17,11 @@ Cypress.Commands.add('DEVlogin', (username, password) => {
             );
                 cy.get('h1[class="font-bold"]').should('exist')
         })
+=======
+Cypress.Commands.add('createJSON', (fileName) => {
+
+    cy.writeFile('cypress/data/files/' + fileName, cy.fixture('chassis'))
+>>>>>>> master
 
 })
 
@@ -39,6 +45,7 @@ Cypress.Commands.add('logInDB', () => {
 })
 
 
+<<<<<<< HEAD
 Cypress.Commands.add('logOutDB', () => {
     // here is a hard coded wait. Technically a dynamic wait is better, but these can be useful still
     cy.wait(1000)
@@ -50,6 +57,21 @@ Cypress.Commands.add('logOutDB', () => {
 
 // Cypress.Commands.add('login', (email, password) => { ... })
 //
+=======
+Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
+    const login = () => {
+        cy.visit("/login");
+        cy.get('.visible-lg #signInFormUsername').type(user);
+        cy.get('.visible-lg #signInFormPassword').type(pwd, {log: false});
+        cy.get('.visible-lg .btn-primary').click();
+    }
+    if (cacheSession) {
+        cy.session(user, login)
+    } else {
+        login()
+    }
+})
+>>>>>>> master
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
