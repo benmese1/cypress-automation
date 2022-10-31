@@ -17,25 +17,6 @@ Cypress.Commands.add('DEVlogin', (username, password) => {
                 cy.get('h1[class="font-bold"]').should('exist')
         })
 
-    // const args = { username, password }
-    // cy.session(
-    //     args,
-    //     () => {
-    //         cy.origin('https://dev-connect1.phillips-connect.com/', { args }, ({ username, password }) => {
-    //             cy.visit('/login')
-    //             cy.contains('Username').find('input').type(username)
-    //             cy.contains('Password').find('input').type(password)
-    //             cy.get('button').contains('Login').click()
-    //         })
-    //         cy.url().should('contain', '/home')
-    //     },
-    //     {
-    //         validate() {
-    //             cy.request('/api/user').its('status').should('eq', 200)
-    //         },
-    //     }
-    // )
-
 })
 
 

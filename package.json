@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "cy:dev": "npx cypress open --env dev=1",
-    "cy:qa": "npx cypress open",
+    "cy:dev": "npx cypress open --env fileConfig=dev",
+    "cy:qa": "npx cypress open --env fileConfig=qa",
     "cypress": "cypress open"
   },
   "author": "",
