@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "cy:dev": "npx cypress open --env dev=1",
-    "cy:qa": "npx cypress open",
+    "cy:dev": "npx cypress open --env fileConfig=dev",
+    "cy:qa": "npx cypress open --env fileConfig=qa",
     "cypress": "cypress open"
   },
   "author": "",
@@ -16,7 +16,7 @@
     "chainable": "^0.1.4",
     "clipboardy": "^3.0.0",
     "cypress": "^10.10.0",
-    "cypress-xpath": "^1.6.2",
+    "cypress-xpath": "^1.8.0",
     "faker": "^5.5.3",
     "mocha": "^10.0.0",
     "mochawesome": "^7.1.3",

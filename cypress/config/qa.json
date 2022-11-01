@@ -1,0 +1,9 @@
+
+{
+    "baseUrl": "https://qa-connect1.phillips-connect.com",
+    "env": {
+            "username": "qa_automation",
+            "password": "rN57ytdZFrvVbwlBSPc0$",
+            "client_id": "2652adm3ps89eqhr5ap54kd85i"
+          }
+}
