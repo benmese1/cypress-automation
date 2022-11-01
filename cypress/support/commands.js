@@ -1,31 +1,22 @@
-<<<<<<< HEAD
 
-Cypress.Commands.add('DEVlogin', (username, password) => {
-        cy.session([username, password], () => {
-            cy.visit('https://dev-connect1.phillips-connect.com/demo');
-            cy.get('button').contains('Login').click()
-
-            cy.origin(
-                "https://devconnect1userpooldomain.auth.us-west-2.amazoncognito.com/login",
-                { args: [username, password] },
-                ([username, password]) => {
-                    cy.get('#signInFormUsername').type(username, {force: true});
-                    cy.get('#signInFormPassword').type(password, {force: true});
-                    // cy.xpath('(//input[@name="signInSubmitButton"])[1]').click();
-                    cy.get('[name="signInSubmitButton"]').first().click({force: true});
-                }
-            );
-                cy.get('h1[class="font-bold"]').should('exist')
-        })
-=======
-Cypress.Commands.add('createJSON', (fileName) => {
-
-    cy.writeFile('cypress/data/files/' + fileName, cy.fixture('chassis'))
->>>>>>> master
-
+Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
+    const login = () => {
+        cy.visit("/login");
+        cy.get('.visible-lg #signInFormUsername').type(user);
+        cy.get('.visible-lg #signInFormPassword').type(pwd, {log: false});
+        cy.get('.visible-lg .btn-primary').click();
+    }
+    if (cacheSession) {
+        cy.session(user, login)
+    } else {
+        login()
+    }
 })
 
+Cypress.Commands.add('createJSON', (fileName) => {
+    cy.writeFile('cypress/data/files/' + fileName, cy.fixture('chassis'))
 
+})
 
 Cypress.Commands.add('logInDB', () => {
     // we would usually put the cy.visit() here as well, but left it in the beforeEach, just for training purposes
@@ -45,7 +36,6 @@ Cypress.Commands.add('logInDB', () => {
 })
 
 
-<<<<<<< HEAD
 Cypress.Commands.add('logOutDB', () => {
     // here is a hard coded wait. Technically a dynamic wait is better, but these can be useful still
     cy.wait(1000)
@@ -55,23 +45,8 @@ Cypress.Commands.add('logOutDB', () => {
 })
 
 
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-=======
-Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
-    const login = () => {
-        cy.visit("/login");
-        cy.get('.visible-lg #signInFormUsername').type(user);
-        cy.get('.visible-lg #signInFormPassword').type(pwd, {log: false});
-        cy.get('.visible-lg .btn-primary').click();
-    }
-    if (cacheSession) {
-        cy.session(user, login)
-    } else {
-        login()
-    }
-})
->>>>>>> master
+
+
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
