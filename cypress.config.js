@@ -1,6 +1,4 @@
 import { defineConfig } from 'cypress';
-// import xpath from 'cypress-xpath';
-import merge from 'deepmerge'
 import * as path from 'path';
 import fs from 'fs-extra';
 
