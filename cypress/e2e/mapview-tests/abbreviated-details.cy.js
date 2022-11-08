@@ -12,7 +12,7 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
         cy.get('p').contains('Asset List View 1').click({force: true}); 
         
         // Wait for the map to reload
-        cy.wait(20000);
+        cy.mapWait();
 
         // Click on the Asset 
         cy.xpath("//p[contains(text(), 'CFQU119342')]").click({force: true});

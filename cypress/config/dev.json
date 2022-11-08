@@ -4,6 +4,8 @@
         "env": {
                 "username": "qa_automation",
                 "password": "rN57ytdZFrvVbwlBSPc0$",
-                "client_id": "2652adm3ps89eqhr5ap54kd85i"
+                "client_id": "2652adm3ps89eqhr5ap54kd85i",
+                "TESTusername": "test1",
+                "TESTpassword": "Test@!@345"
               }
 }
