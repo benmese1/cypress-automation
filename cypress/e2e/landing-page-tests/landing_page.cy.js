@@ -1,4 +1,3 @@
-import '@4tw/cypress-drag-drop'
 
 describe('Landing page view test verification', () => {
 
