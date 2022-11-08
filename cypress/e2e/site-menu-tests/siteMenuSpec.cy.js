@@ -5,12 +5,12 @@ describe('Landing page view test verification', () => {
     })
 
     it('verify that the side menu opened after the menu bar click', () => {
-        cy.get('[data-testid="header"]').click('topLeft')
+        cy.get('[data-testid="header"] [role="button"]').click('topLeft')
         cy.get('[data-testid="side-menu"]').should('be.visible')
     })
 
     it('verify that menu item Asset List is linked to assets page', () => {
-        cy.get('[data-testid="header"]').click('topLeft')
+        cy.get('[data-testid="header"] [role="button"]').click('left')
         cy.get('[data-testid="side-menu"]')
             .should('be.visible')
             .contains('Asset List').click()
@@ -18,7 +18,7 @@ describe('Landing page view test verification', () => {
     })
 
     it('verify that menu item Asset Map is linked to the map page', () => {
-        cy.get('[data-testid="header"]').click('topLeft')
+        cy.get('[data-testid="header"] [role="button"]').click('center')
         cy.get('[data-testid="side-menu"]')
             .should('be.visible')
             .contains('Asset Map').click()
