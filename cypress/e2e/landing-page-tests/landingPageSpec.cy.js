@@ -10,9 +10,13 @@ describe('Landing page view test verification', () => {
         cy.contains('Welcome back, qa_automation')
     })
 
+    it('verify that location selector appeared', () => {
+        cy.get('[data-testid="location-selector-input"]').should('be.visible')
+    })
+
     it('verify that Organisation tile link to My Organization page', () => {
         cy.get('.relative [data-testid="dashboard-component"]').within(() => {
-            cy.contains('[data-testid="dashboard-tile-component"]', 'Organisation').should('be.visible').click()
+            cy.contains('[data-testid="dashboard-tile-component"]', 'Organization').should('be.visible').click()
             cy.url().should('include', '/organizations')
         })
     })
