@@ -20,6 +20,7 @@ export default defineConfig({
   videosFolder: 'cypress/videos',
   downloadsFolder: 'cypress/downloads',
   reporter: "junit",
+  defaultCommandTimeout: 8000,
   reporterOptions: {
     mochaFile: "results/test-results.xml",
     testCaseSwitchClassnameAndName: false

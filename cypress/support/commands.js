@@ -13,9 +13,14 @@ Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
     }
 })
 
+
+Cypress.Commands.add('mapWait', () => {
+    cy.intercept('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js').as('map');
+    cy.wait('@map');
+})
+
 Cypress.Commands.add('createJSON', (fileName) => {
     cy.writeFile('cypress/data/files/' + fileName, cy.fixture('chassis'))
-
 })
 
 Cypress.Commands.add('logInDB', () => {
