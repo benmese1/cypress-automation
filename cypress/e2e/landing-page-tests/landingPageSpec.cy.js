@@ -21,7 +21,10 @@ describe('Landing page view test verification', () => {
         })
     })
 
-    it.skip('verify that View is configurable by end user', () => {
-
+    it('verify that the Asset List tile link to the Asset Management page', () => {
+        cy.get('.relative [data-testid="dashboard-component"]').within(() => {
+            cy.contains('[data-testid="dashboard-tile-component"]', /^Asset List$/).should('be.visible').click()
+            cy.url().should('include', '/assets')
+        })
     })
 })
