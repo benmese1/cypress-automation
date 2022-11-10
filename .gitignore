@@ -5,3 +5,4 @@ videos/
 .vscode
 results/test-results.xml
 cypress/data/files/dataTest.json
+/.idea/
