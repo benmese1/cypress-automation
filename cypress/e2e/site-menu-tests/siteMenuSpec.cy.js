@@ -9,7 +9,7 @@ describe('Landing page view test verification', () => {
         cy.get('[data-testid="side-menu"]').should('be.visible')
     })
 
-    it.skip('verify that menu item Asset List is linked to assets page', () => {
+    it('verify that menu item Asset List is linked to assets page', () => {
         clickMenu()
         cy.get('[data-testid="side-menu"]')
             .should('be.visible')
@@ -17,7 +17,7 @@ describe('Landing page view test verification', () => {
         cy.url().should('include', '/assets')
     })
 
-    it.skip('verify that menu item Asset Map is linked to the map page', () => {
+    it('verify that menu item Asset Map is linked to the map page', () => {
         clickMenu()
         cy.get('[data-testid="side-menu"]')
             .should('be.visible')
