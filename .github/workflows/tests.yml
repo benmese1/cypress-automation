@@ -48,11 +48,11 @@ jobs:
 
       - name: Run Cypress (QA)
         env:
-          CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
+          CLIENT_ID: 584mrs4de25a4iqok485b6vhnc
           USERNAME: qa_automation
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
         if: "${{ github.event.inputs.env == 'qa' }}"
-        run: npx cypress run${{ github.event.inputs.spec }}
+        run: npx cypress run --env qa=1 ${{ github.event.inputs.spec }}
 #        continue-on-error: true
         
       - name: 'Upload test results'
@@ -68,5 +68,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-screenshots
+          path: cypress/screenshots/
+          retention-days: 30
+
+      - name: 'Upload video'
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-video
           path: cypress/screenshots/
           retention-days: 30
