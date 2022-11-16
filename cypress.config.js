@@ -12,7 +12,6 @@ function getConfigurationByFile(file) {
   return fs.readJson(pathToConfigFile);
 }
 
-
 export default defineConfig({
   chromeWebSecurity: false,
   fixturesFolder: 'cypress/fixtures',
@@ -38,16 +37,3 @@ e2e: {
   },
 },
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
