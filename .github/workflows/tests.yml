@@ -73,7 +73,6 @@ jobs:
 
       - name: 'Upload video'
         if: github.event.inputs.env != ''
-        when: always
         uses: actions/upload-artifact@v3
         with:
           name: test-video
