@@ -1,3 +1,4 @@
+
 describe('Landing page view test verification', () => {
 
     beforeEach(() => {
