@@ -21,16 +21,35 @@ Cypress.Commands.add('mapWait', () => {
 
 //Click on the Dashboard menu
 
-Cypress.Commands.add('dashboardMenu', () => {
+Cypress.Commands.add('dashboardMenu', (menu) => {
+    const dashboardMenu = ['Asset Map','Asset List','Devices','My Organization','User Management']
     cy.get('[data-testid="header"] [role="button"]').click()
-    cy.wait(1000)
+    cy.wait(500)
     cy.get('[data-testid="header"] [role="button"]').click()
+    cy.get('[data-testid="side-menu"]').should('be.visible')
+    dashboardMenu.forEach((dashboard) => {
+        if(menu == dashboard ){
+            cy.contains(dashboard).click({ force: true })
+            cy.wait(100)
+            cy.end()  
+        }  
+        else{
+            cy.log("check the selector for dashboard")
+        } 
+    })
+    
+
+
+        
+
+
+
 })
 
 //logout from the application
 Cypress.Commands.add('logout', () => {
     cy.get('[data-testid="AccountCircleIcon"]').should('be.visible').click()
-    cy.wait(1000)
+    cy.wait(100)
     cy.get('li[role="menuitem"]').click()
 })
 
