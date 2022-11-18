@@ -19,6 +19,22 @@ Cypress.Commands.add('mapWait', () => {
     cy.wait('@map');
 })
 
+//Click on the Dashboard menu
+
+Cypress.Commands.add('dashboardMenu', () => {
+    cy.get('[data-testid="header"] [role="button"]').click()
+    cy.wait(1000)
+    cy.get('[data-testid="side-menu"]').should('be.visible')
+    cy.get('[data-testid="header"] [role="button"]').click()
+})
+
+//logout from the application
+Cypress.Commands.add('logout', () => {
+    cy.get('[data-testid="AccountCircleIcon"]').should('be.visible').click()
+    cy.wait(1000)
+    cy.get('li[role="menuitem"]').click()
+})
+
 Cypress.Commands.add('createJSON', (fileName) => {
     cy.writeFile('cypress/data/files/' + fileName, cy.fixture('chassis'))
 })

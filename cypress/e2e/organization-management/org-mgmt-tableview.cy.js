@@ -1,16 +1,14 @@
+
 describe('Validate data on the Organization management table view',() =>{
     
 
-    /*beforeEach(() => {
+    beforeEach(() => {
         cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false});
         cy.get("[aria-label='account of current user']").should('be.visible');
-     })*/
+     })
  
-     /*it('Click on My Organization module and verify that fields present on My Organization management table view', () =>{   
-         cy.get('[data-testid="header"] [role="button"]').click({force: true})
-        cy.wait(2000)
-        cy.get('[data-testid="side-menu"]').should('be.visible')
-        cy.get('[data-testid="header"] [role="button"]').click({force: true})
+     it('Click on My Organization module and verify that fields present on My Organization management table view', () =>{   
+        cy.dashboardMenu()
         cy.get('[data-testid="side-menu"]')
             .should('be.visible')
             .contains('My Organization').click({force: true})
@@ -36,15 +34,10 @@ describe('Validate data on the Organization management table view',() =>{
          cy.get('[data-field="added_date"]').should('be.visible').contains('Created') 
          cy.log("Created field visible on org mgmt table")
 
-     })*/
+     })
 
-     it('Click on My Organization module and verify that data present on My Organization management table view', () =>{ 
-        cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false});
-        cy.get("[aria-label='account of current user']").should('be.visible');  
-        cy.get('[data-testid="header"] [role="button"]').click({force: true})
-        cy.wait(2000)
-        cy.get('[data-testid="side-menu"]').should('be.visible')
-        cy.get('[data-testid="header"] [role="button"]').click({force: true})
+     it('Click on My Organization module and verify that data present on My Organization management table view', () =>{  
+        cy.dashboardMenu()
         cy.get('[data-testid="side-menu"]')
             .should('be.visible')
             .contains('My Organization').click({force: true})
@@ -53,8 +46,15 @@ describe('Validate data on the Organization management table view',() =>{
         //verifying data on the org mgmt table   
         //verify name of the organizaton
         cy.xpath("//span[contains(text(), 'Philliips Connect')]").should('include.text', "Philliips Connect");
-        cy.log("Philliips Connect organnization name present in org mgmt table")
-
+        cy.log("Philliips Connect organization name present in org mgmt table")
+        //Time zone data validation
+        cy.get("div:nth-of-type(2) > div:nth-of-type(3) > .MuiDataGrid-cellContent").should('include.text', "EST");
+        cy.log("EST present in org mgmt table")
+        //Updated validation
+        cy.get("div:nth-of-type(2) > div:nth-of-type(6)").should('include.text', "11/1/2022")
+        cy.log("Date present in org mgmt table view")
+        //logout from the application
+        cy.logout() 
 
      })
         
