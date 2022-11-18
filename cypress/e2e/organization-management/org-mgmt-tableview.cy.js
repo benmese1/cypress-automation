@@ -17,22 +17,16 @@ describe('Validate data on the Organization management table view',() =>{
          //verifying fields on the org mgmt table   
          //Name field visibility
          cy.get('[data-field="__tree_data_group__"]').should('be.visible').contains('Name') 
-         cy.log("name field visible on org mgmt table")
          //Description field visibility
          cy.get('[data-field="description"]').should('be.visible').contains('Description') 
-         cy.log("Description field visible on org mgmt table")
          //Timezone field visibility
          cy.get('[data-field="time_zones"]').should('be.visible').contains('Timezone') 
-         cy.log("Timezone field visible on org mgmt table")
          //No. of Devices field visibility
          cy.get('[data-field="asset_count"]').should('be.visible').contains('No. of Devices') 
-         cy.log("No. of Devices field visible on org mgmt table")
          //Updated field visibility
          cy.get('[data-field="updated_date"]').should('be.visible').contains('Updated') 
-         cy.log("Updated field visible on org mgmt table")
          //Created field visibility
          cy.get('[data-field="added_date"]').should('be.visible').contains('Created') 
-         cy.log("Created field visible on org mgmt table")
 
      })
 
@@ -46,13 +40,10 @@ describe('Validate data on the Organization management table view',() =>{
         //verifying data on the org mgmt table   
         //verify name of the organizaton
         cy.xpath("//span[contains(text(), 'Philliips Connect')]").should('include.text', "Philliips Connect");
-        cy.log("Philliips Connect organization name present in org mgmt table")
         //Time zone data validation
         cy.get("div:nth-of-type(2) > div:nth-of-type(3) > .MuiDataGrid-cellContent").should('include.text', "EST");
-        cy.log("EST present in org mgmt table")
         //Updated validation
         cy.get("div:nth-of-type(2) > div:nth-of-type(6)").should('include.text', "11/1/2022")
-        cy.log("Date present in org mgmt table view")
         //logout from the application
         cy.logout() 
 
