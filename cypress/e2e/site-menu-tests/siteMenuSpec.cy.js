@@ -28,6 +28,6 @@ describe('Landing page view test verification', () => {
     })
 
     const waitForLoad = () => {
-        cy.get('[data-testid="spinner"]', { timeout: 10000 }).should('not.exist')
+        cy.get('[data-testid="spinner"]', { timeout: 30000 }).should('not.exist')
     }
 })
