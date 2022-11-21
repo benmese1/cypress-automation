@@ -3,7 +3,7 @@ describe('Landing page view test verification', () => {
 
     beforeEach(() => {
         cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false});
-        waitForLoad()
+        cy.waitForLoad()
     })
 
     it('verify that the side menu opened after the menu bar click', () => {
@@ -26,8 +26,4 @@ describe('Landing page view test verification', () => {
             .contains('Asset Map').click()
         cy.url().should('include', '/map')
     })
-
-    const waitForLoad = () => {
-        cy.get('[data-testid="spinner"]', { timeout: 30000 }).should('not.exist')
-    }
 })
