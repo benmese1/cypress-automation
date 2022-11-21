@@ -25,7 +25,6 @@ Cypress.Commands.add('dashboardMenu', (menu) => {
     const dashboardMenu = ['Asset Map','Asset List','Devices','My Organization','User Management']
     cy.get('[data-testid="header"] [role="button"]').click()
     cy.wait(500)
-    cy.get('[data-testid="header"] [role="button"]').click()
     cy.get('[data-testid="side-menu"]').should('be.visible')
     dashboardMenu.forEach((dashboard) => {
         if(menu == dashboard ){
