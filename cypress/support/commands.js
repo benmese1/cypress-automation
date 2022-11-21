@@ -52,6 +52,7 @@ Cypress.Commands.add('logOutDB', () => {
 Cypress.Commands.add('dashboardMenu', () => {
     cy.get('[data-testid="header"] [role="button"]').click()
     cy.wait(1000)
+    cy.get('[data-testid="side-menu"]').should('be.visible')
     cy.get('[data-testid="header"] [role="button"]').click()
 })
 
