@@ -2,6 +2,7 @@ describe('Location Selector Component verification', () => {
 
     beforeEach(() => {
         cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false});
+        cy.waitForLoad()
     })
 
     it('check that location selector component is integrated to dashboard', () => {
@@ -14,19 +15,16 @@ describe('Location Selector Component verification', () => {
     it('check recent searches', () => {
         cy.get('.relative [data-testid="location-selector-input"]')
             .should('be.visible')
-            .type('Florida{enter}')
+        .type('Florida{enter}')
+        cy.waitForLoad()
 
-        cy.get('[data-testid="header"]').click('center')
-        cy.get('[data-testid="location-selector-input"]')
-            .should('be.visible')
-            .type('California{enter}')
+        cy.searchLocation('California')
 
-        cy.get('[data-testid="header"]').click('center')
-        cy.get('[data-testid="location-selector-input"]')
-            .click('center')
-            .type('{selectall}{backspace}a{backspace}')
+        cy.searchLocation(' ', false)
+        cy.get('[data-testid="location-selector"]')
+            .type('{backspace}')
 
-        cy.get('[data-testid="dashboard-component"] [role="presentation"]').within(() => {
+        cy.get('[data-testid="filter-bar-sub-header"] [role="presentation"]').within(() => {
                 cy.contains('California')
                 cy.contains('Florida')
             }

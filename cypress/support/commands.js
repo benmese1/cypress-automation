@@ -82,9 +82,35 @@ Cypress.Commands.add('logOutDB', () => {
 
 })
 
-Cypress.Commands.add('waitForLoad', () => {
+/** Set location on Asset Map page
+ * @param {string} location - searched location value
+ * @param {boolean} isSubmit - type enter if true, default is true
+ */
+Cypress.Commands.add('searchLocation', (location, isSubmit) => {
+    if (typeof isSubmit === 'undefined') {
+        isSubmit = true
+    }
+    cy.get('[data-testid="location-button"]').click()
+    cy.get('[data-testid="location-selector"]')
+        .type('{selectall}{backspace}')
+        .type(location)
+
+    if (isSubmit) {
+        cy.get('[data-testid="location-selector"]').type('{enter}')
+        cy.waitForLoad()
+    }
+})
+
+/**
+ * Waits until the spinner disappears from the page
+ * @param {number} timeout - timeout in milliseconds, default is 30 sec
+ */
+Cypress.Commands.add('waitForLoad', (timeout) => {
+    if (typeof timeout === 'undefined') {
+        timeout = 30000
+    }
     cy.wait(2000)
-    cy.get('[data-testid="spinner"]', {timeout: 30000}).should('not.exist')
+    cy.get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist')
 })
 
 //
