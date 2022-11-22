@@ -82,8 +82,10 @@ Cypress.Commands.add('logOutDB', () => {
 
 })
 
-
-
+Cypress.Commands.add('waitForLoad', () => {
+    cy.wait(2000)
+    cy.get('[data-testid="spinner"]', {timeout: 30000}).should('not.exist')
+})
 
 //
 // -- This is a child command --
