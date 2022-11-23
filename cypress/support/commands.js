@@ -1,4 +1,3 @@
-
 Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
     const login = () => {
         cy.visit("/login");
@@ -13,6 +12,33 @@ Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
     }
 })
 
+Cypress.Commands.add('waitForLoad', (timeout) => {
+    if (typeof timeout === 'undefined') {
+        timeout = 30000
+    }
+    cy.wait(2000)
+    cy.get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist')
+})
+
+Cypress.Commands.add('openAssetsList', () => {
+    cy.get('[data-testid="header"] [role="button"]')
+        .click('left')
+        .get('[data-testid="side-menu"]')
+        .should('be.visible')
+        .contains('Asset List')
+        .click()
+        .url()
+        .should('include', '/assets')
+        .get(".MuiDataGrid-row", {timeout: 30000})
+        .should('be.visible');
+})
+
+Cypress.Commands.add('searchAssets', (searchCriteria) => {
+    cy.get("input[placeholder='Search']")
+        .should('be.visible')
+        .type(searchCriteria)
+        .wait(1000);
+})
 
 Cypress.Commands.add('mapWait', () => {
     cy.intercept('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js').as('map');
@@ -31,25 +57,43 @@ Cypress.Commands.add('logInDB', () => {
 
     // fills out login information and clicks on log in button
     // this timeout is unique to this selector. It will query for this selector for up to one second
-    cy.get('#loginusername', { timeout: 1000 }).type(Cypress.env('username'))
-    cy.get('#loginpassword', { timeout: 1000 }).type(Cypress.env('password'))
+    cy.get('#loginusername', {timeout: 1000}).type(Cypress.env('username'))
+    cy.get('#loginpassword', {timeout: 1000}).type(Cypress.env('password'))
     cy.get('[onclick="logIn()"]').click()
     // a hard coded wait. The test will stop here for 1 sec, even if the element is available to interact with
     cy.wait(1000)
     // this is testing that the modal is no longer open
-    cy.get('#exampleModalLabel', { timeout: 2000 }).should('not.be.visible')
+    cy.get('#exampleModalLabel', {timeout: 2000}).should('not.be.visible')
 })
-
 
 Cypress.Commands.add('logOutDB', () => {
     // here is a hard coded wait. Technically a dynamic wait is better, but these can be useful still
     cy.wait(1000)
     // finds logout link and clicks on it
-    cy.get('#logout2', { timeout: 2000 }).click();
-
+    cy.get('#logout2', {timeout: 2000}).click();
 })
 
+Cypress.Commands.add('showHideColumnAssetsList', (columnName) => {
+    cy.get('[data-testid="TripleDotsVerticalIcon"]').eq(1).click({force: true})
+        .get('.MuiDataGrid-menuList').should('be.visible')
+        .contains('Show columns').click()
+        .get('.MuiDataGrid-panel').should('be.visible')
+        .contains(columnName).click()
+        .wait(1000);
+})
 
+Cypress.Commands.add('addAssetsFilter', (columnName, operator, value) => {
+    cy.get('[data-testid="TripleDotsVerticalIcon"]').eq(1).click({force: true})
+        .get('.MuiDataGrid-menuList').should('be.visible')
+        .contains('Filter').click()
+        .get('.MuiDataGrid-filterForm').should('be.visible')
+        .get('.MuiDataGrid-filterFormColumnInput select').last().select(columnName)
+        .get('.MuiDataGrid-filterFormOperatorInput select').last().select(operator);
+    if (!operator.includes('empty')) {
+        cy.get('.MuiDataGrid-filterFormValueInput input').last().type(value)
+    }
+    cy.wait(1000);
+})
 
 
 //

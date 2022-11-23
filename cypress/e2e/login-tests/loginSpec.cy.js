@@ -7,12 +7,12 @@ describe('Login', () => {
 
     it('Incorrect password test', () => {
         cy.login(Cypress.env('username'), 'incorrect', { cacheSession: false });
-        cy.contains('Incorrect username or password.')
+        cy.contains('Incorrect username or password.');
     })
 
     it('Empty login test', () => {
         cy.login(' ', ' ', { cacheSession: false });
-        cy.contains('The username you entered cannot be empty or contain only spaces')
+        cy.contains('The username you entered cannot be empty or contain only spaces');
     })
 
     it('Empty password test', () => {
