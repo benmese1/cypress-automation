@@ -12,14 +12,6 @@ Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
     }
 })
 
-Cypress.Commands.add('waitForLoad', (timeout) => {
-    if (typeof timeout === 'undefined') {
-        timeout = 30000
-    }
-    cy.wait(2000)
-    cy.get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist')
-})
-
 Cypress.Commands.add('openAssetsList', () => {
     cy.get('[data-testid="header"] [role="button"]')
         .click('left')
@@ -43,6 +35,39 @@ Cypress.Commands.add('searchAssets', (searchCriteria) => {
 Cypress.Commands.add('mapWait', () => {
     cy.intercept('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js').as('map');
     cy.wait('@map');
+})
+
+//Click on the Dashboard menu
+
+Cypress.Commands.add('dashboardMenu', (menu) => {
+    const dashboardMenu = ['Asset Map','Asset List','Devices','My Organization','User Management']
+    cy.get('[data-testid="header"] [role="button"]').click()
+    cy.wait(500)
+    cy.get('[data-testid="side-menu"]').should('be.visible')
+    dashboardMenu.forEach((dashboard) => {
+        if(menu == dashboard ){
+            cy.contains(dashboard).click({ force: true })
+            cy.wait(100)
+            cy.end()
+        }
+        else{
+            cy.log("check the selector for dashboard")
+        }
+    })
+
+
+
+
+
+
+
+})
+
+//logout from the application
+Cypress.Commands.add('logout', () => {
+    cy.get('[data-testid="AccountCircleIcon"]').should('be.visible').click()
+    cy.wait(100)
+    cy.get('li[role="menuitem"]').click()
 })
 
 Cypress.Commands.add('createJSON', (fileName) => {
@@ -95,6 +120,36 @@ Cypress.Commands.add('addAssetsFilter', (columnName, operator, value) => {
     cy.wait(1000);
 })
 
+/** Set location on Asset Map page
+ * @param {string} location - searched location value
+ * @param {boolean} isSubmit - type enter if true, default is true
+ */
+Cypress.Commands.add('searchLocation', (location, isSubmit) => {
+    if (typeof isSubmit === 'undefined') {
+        isSubmit = true
+    }
+    cy.get('[data-testid="location-button"]').click()
+    cy.get('[data-testid="location-selector"]')
+        .type('{selectall}{backspace}')
+        .type(location)
+
+    if (isSubmit) {
+        cy.get('[data-testid="location-selector"]').type('{enter}')
+        cy.waitForLoad()
+    }
+})
+
+/**
+ * Waits until the spinner disappears from the page
+ * @param {number} timeout - timeout in milliseconds, default is 30 sec
+ */
+Cypress.Commands.add('waitForLoad', (timeout) => {
+    if (typeof timeout === 'undefined') {
+        timeout = 30000
+    }
+    cy.wait(2000)
+    cy.get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist')
+})
 
 //
 // -- This is a child command --
