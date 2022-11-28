@@ -113,6 +113,37 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
     cy.get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist')
 })
 
+
+//Method Name :createNewOrganization 
+// Used to create a new Organization
+//Params parentorgname,divisioname,name,description,brand,timezone
+Cypress.Commands.add('createNewOrganization', (parentorgname,name,type,description,brand,timezone) => {
+    cy.get('button').contains("Create New").click();
+    cy.get('#org_key').click();
+    cy.get('li').contains(parentorgname).click();   
+    cy.get('#name').type(name);
+    cy.get('#type').clear();
+    cy.get('#type').type(type);
+    cy.get('#description').type(description);
+    cy.get('#brand').type(brand);
+    cy.get('#time_zones').click();
+    cy.get('li').contains(timezone).click();
+    cy.get('.MuiGrid-root > [data-testid="global-button-component"]').click();
+   
+})
+// This method is used to navigate to menu item inside left menu bar
+// Click on left menu icon and click on menu item
+
+Cypress.Commands.add('navigateToLeftmenuItemsInHomePage', (menu) => {
+    cy.get("[role='button']").click();
+    cy.get('b').contains(menu).click({force: true});
+    if (menu==="Organization") {
+        cy.url().should('include', '/organizations');
+    } 
+    
+   
+})
+
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
