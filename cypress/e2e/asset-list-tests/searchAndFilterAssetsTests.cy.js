@@ -1,8 +1,8 @@
 describe('Search and filter assets', () => {
 
     beforeEach(() => {
-        cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false});
-        cy.waitForLoad();
+        cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false})
+            .waitForLoad();
     });
 
     it('Search asset by address test', () => {

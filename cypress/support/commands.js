@@ -6,9 +6,9 @@ Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
         cy.get('.visible-lg .btn-primary').click();
     }
     if (cacheSession) {
-        cy.session(user, login)
+        cy.session(user, login);
     } else {
-        login()
+        login();
     }
 })
 
@@ -33,41 +33,37 @@ Cypress.Commands.add('searchAssets', (searchCriteria) => {
 })
 
 Cypress.Commands.add('mapWait', () => {
-    cy.intercept('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js').as('map');
-    cy.wait('@map');
+    cy.intercept('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js')
+        .as('map')
+        .wait('@map');
 })
 
 //Click on the Dashboard menu
 
 Cypress.Commands.add('dashboardMenu', (menu) => {
-    const dashboardMenu = ['Asset Map','Asset List','Devices','My Organization','User Management']
-    cy.get('[data-testid="header"] [role="button"]').click()
-    cy.wait(500)
-    cy.get('[data-testid="side-menu"]').should('be.visible')
+    const dashboardMenu = ['Asset Map', 'Asset List', 'Devices', 'My Organization', 'User Management']
+    cy.get('[data-testid="header"] [role="button"]')
+        .click()
+        .wait(500)
+        .get('[data-testid="side-menu"]').should('be.visible')
     dashboardMenu.forEach((dashboard) => {
-        if(menu == dashboard ){
-            cy.contains(dashboard).click({ force: true })
-            cy.wait(100)
-            cy.end()
-        }
-        else{
-            cy.log("check the selector for dashboard")
+        if (menu === dashboard) {
+            cy.contains(dashboard)
+                .click({force: true})
+                .wait(100)
+                .end();
+        } else {
+            cy.log("check the selector for dashboard");
         }
     })
-
-
-
-
-
-
-
 })
 
 //logout from the application
 Cypress.Commands.add('logout', () => {
     cy.get('[data-testid="AccountCircleIcon"]').should('be.visible').click()
-    cy.wait(100)
-    cy.get('li[role="menuitem"]').click()
+        .wait(100)
+        .get('li[role="menuitem"]')
+        .click();
 })
 
 Cypress.Commands.add('createJSON', (fileName) => {
@@ -128,14 +124,15 @@ Cypress.Commands.add('searchLocation', (location, isSubmit) => {
     if (typeof isSubmit === 'undefined') {
         isSubmit = true
     }
-    cy.get('[data-testid="location-button"]').click()
-    cy.get('[data-testid="location-selector"]')
+    cy.get('[data-testid="location-button"]')
+        .click()
+        .get('[data-testid="location-selector"]')
         .type('{selectall}{backspace}')
-        .type(location)
-
+        .type(location);
     if (isSubmit) {
-        cy.get('[data-testid="location-selector"]').type('{enter}')
-        cy.waitForLoad()
+        cy.get('[data-testid="location-selector"]')
+            .type('{enter}')
+            .waitForLoad();
     }
 })
 
@@ -147,8 +144,8 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
     if (typeof timeout === 'undefined') {
         timeout = 30000
     }
-    cy.wait(2000)
-    cy.get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist')
+    cy.get('[data-testid="spinner"]', {timeout: timeout}).should('exist')
+        .get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist');
 })
 
 //
