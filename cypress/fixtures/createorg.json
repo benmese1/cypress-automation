@@ -1,0 +1,12 @@
+
+[
+    {
+      "suborg":{
+        "ParentOrganization":"Philliips Connect",
+        "Type":"custom",
+        "Description":"this is test org created by cypress automation",
+        "Brand":"mani",
+        "Timezone":"Mountain Standard (GMT-7)"
+      }
+    }
+]
