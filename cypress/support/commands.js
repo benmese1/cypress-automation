@@ -57,11 +57,6 @@ Cypress.Commands.add('dashboardMenu', (menu) => {
     })
 
 
-
-
-
-
-
 })
 
 //logout from the application
