@@ -37,6 +37,19 @@ Cypress.Commands.add('mapWait', () => {
     cy.wait('@map');
 })
 
+
+Cypress.Commands.add('compareText', (locator) => {
+    let elem1;
+    let elem2;
+    cy.get(locator).eq(0).then(($btn) => {
+        elem1  = $btn.text();  
+        cy.get(locator).eq(1).then(($btn1) => {
+         elem2 = $btn1.text(); 
+         return elem1.localeCompare(elem2); 
+     });     
+    });
+})
+
 //Click on the Dashboard menu
 
 Cypress.Commands.add('dashboardMenu', (menu) => {

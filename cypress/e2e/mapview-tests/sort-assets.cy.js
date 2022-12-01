@@ -24,53 +24,34 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
        cy.xpath("//span[contains(text(), 'Reported (Oldest)')]").click({force: true});
        cy.xpath("//li[contains(text(), 'Name (A to Z)')]").click({force: true});
 
-       let elem1;
-       let elem2;
-       cy.get('p[class="w-10/12 truncate text-sm text-primary sm:w-3/4"]').eq(0).then(($btn) => {
-           elem1  = $btn.text();  
-           cy.get('p[class="w-10/12 truncate text-sm text-primary sm:w-3/4"]').eq(1).then(($btn1) => {
-            elem2 = $btn1.text();  
-            cy.log(elem1.localeCompare(elem2));
-            assert.equal(elem1.localeCompare(elem2), -1, "The names are sorted in ascending order");
-        });     
+       cy.compareText('p[class="w-10/12 truncate text-sm text-primary sm:w-3/4"]')
+       .then((val) => {
+           assert.equal(val, -1, "The names are sorted in ascending order");    
        });
-
+      
+       
        cy.xpath("//span[contains(text(), 'Name (A to Z)')]").click({force: true});
        cy.xpath("//li[contains(text(), 'Name (Z to A)')]").click({force: true});
 
-       cy.get('p[class="w-10/12 truncate text-sm text-primary sm:w-3/4"]').eq(1).then(($btn) => {
-        elem1  = $btn.text();  
-        cy.get('p[class="w-10/12 truncate text-sm text-primary sm:w-3/4"]').eq(2).then(($btn1) => {
-         elem2 = $btn1.text();  
-         cy.log(elem1.localeCompare(elem2));
-         assert.equal(elem1.localeCompare(elem2), 1, "The names are sorted in descending order");
-        });     
+       cy.compareText('p[class="w-10/12 truncate text-sm text-primary sm:w-3/4"]')
+       .then((val) => {
+           assert.equal(val, 1, "The names are sorted in descending order");      
        });
-
+      
        cy.xpath("//span[contains(text(), 'Name (Z to A)')]").click({force: true});
        cy.xpath("//li[contains(text(), 'Location (A to Z)')]").click({force: true});
 
-       cy.get('span[class="truncate"]').eq(0).then(($btn) => {
-        elem1  = $btn.text();  
-        cy.get('span[class="truncate"]').eq(1).then(($btn1) => {
-         elem2 = $btn1.text();  
-         cy.log(elem1.localeCompare(elem2));
-         assert.equal(elem1.localeCompare(elem2), -1, "The names are sorted in ascending order");
-     });     
-    });
-
+       cy.compareText('span[class="truncate"]')
+       .then((val) => {
+           assert.equal(val, -1, "The location are sorted in ascending order");    
+       });
+      
        cy.xpath("//span[contains(text(), 'Location (A to Z)')]").click({force: true});
        cy.xpath("//li[contains(text(), 'Location (Z to A)')]").click({force: true});
 
-       cy.get('span[class="truncate"]').eq(1).then(($btn) => {
-        elem1  = $btn.text();  
-        cy.get('span[class="truncate"]').eq(2).then(($btn1) => {
-         elem2 = $btn1.text();  
-         cy.log(elem1.localeCompare(elem2));
-         assert.equal(elem1.localeCompare(elem2), 1, "The names are sorted in descending order");
-        });     
-       });
-
-
+       cy.compareText('span[class="truncate"]')
+       .then((val) => {
+           assert.equal(val, 1, "The location are sorted in descending order");
+       }); 
 })
 })
