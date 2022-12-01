@@ -47,9 +47,10 @@ Cypress.Commands.add('dashboardMenu', (menu) => {
     dashboardMenu.forEach((dashboard) => {
         if(menu == dashboard ){
             cy.contains(dashboard).click({ force: true })
-            cy.wait(100)
-            cy.end()
-        }
+              cy.wait(1000)         
+        
+        cy.end()  
+        }  
         else{
             cy.log("check the selector for dashboard")
         }
@@ -151,6 +152,25 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
     cy.get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist')
 })
 
+
+//Method Name :createNewOrganization 
+// Used to create a new Organization
+//Params parentorgname,divisioname,name,description,brand,timezone
+Cypress.Commands.add('createNewOrganization', (parentOrgName,name,type,description,brand,timezone) => {
+    cy.waitForLoad();
+    cy.get('button').contains("Create New").click();
+    cy.get('#org_key').click();
+    cy.get('li').contains(parentOrgName).click();   
+    cy.get('#name').type(name);
+    cy.get('#type').clear().type(type);
+    cy.get('#description').type(description);
+    cy.get('#brand').type(brand);
+    cy.get('#time_zones').click();
+    cy.get('li').contains(timezone).click();
+    cy.get('.MuiGrid-root > [data-testid="global-button-component"]').click();
+   
+})
+
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
@@ -162,3 +182,6 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+  
