@@ -1,21 +1,21 @@
 name: Run tests
 on:
-  pull_request:
-    branches: [master]
-    types: [opened, synchronize, reopened, edited]
+  schedule:
+    - cron:  '30 2 * * *'
+
   workflow_dispatch:
     inputs:
       env:
         description: 'Select environment'
         required: true
-        default: 'dev' 
+        default: 'qa' 
         type: choice
         options:
         - dev
         - qa
       spec:
         description: 'Enter specifications in format     :
-                        --spec "cypress/integration/TestCase2.spec.js,cypress/integration/TestCase5.spec.js"'
+                        --spec "cypress/e2e"'
         required: false
         default: ''
         type: string
@@ -23,7 +23,7 @@ on:
 jobs:
   cypress:
     name: Run Cypress
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repo
@@ -32,12 +32,12 @@ jobs:
       - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '18.2'
 
       - name: Install Node modules
         run: npm install
       
-      - name: Run Cypress (DEV)
+      - name: Run Cypress (QA)
         env:
           CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
           USERNAME: qa_automation
