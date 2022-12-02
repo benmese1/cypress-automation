@@ -10,16 +10,14 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
         // Assert the user is visible 
         cy.get("[aria-label='account of current user']").should('be.visible');
 
-        // Click Asset List View
-     //   cy.get('p').contains('Asset List View 1').click({force: true}); 
-          cy.get('path[d="M0 12H18V10H0V12ZM0 7H18V5H0V7ZM0 0V2H18V0H0Z"]').click({force:true});
-          cy.xpath("//b[contains(text(), 'Asset Map')]").click({force: true});
+        // Click Asset Maps
+        cy.dashboardMenu("Asset Map");
 
         // Wait for the map to reload
         cy.mapWait();
          
         cy.get('button[data-testid="filter-item-Status"]').click({force:true});
-        cy.wait(10000);
+        cy.get('div[data-testid="moving - 0"]', { timeout: 10000 }).should('be.visible');
         cy.get('div[data-testid="moving - 0"]').eq(0).click({force:true}).then(($btn) => {
             let elem1 = $btn.text();
             cy.get('div[class="text-sm font-bold text-typography"]').then(($div) => { 
