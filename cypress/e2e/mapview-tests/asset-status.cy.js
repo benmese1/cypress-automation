@@ -17,7 +17,6 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
         cy.mapWait();
          
         cy.get('[data-testid="filter-item-Status"]').click({force:true});
-        cy.wait(10000);
         cy.get('[data-testid="Moving - 0"]', { timeout: 10000 }).should('be.visible');
         cy.get('[data-testid="Moving - 0"]').eq(0).click({force:true}).then(($btn) => {
             let elem1 = $btn.text();
