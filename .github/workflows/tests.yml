@@ -1,7 +1,7 @@
 name: Run tests
 on:
   schedule:
-    - cron:  '30 2 * * *'
+    - cron:  '30 8 * * *'
 
   workflow_dispatch:
     inputs:
@@ -36,15 +36,6 @@ jobs:
 
       - name: Install Node modules
         run: npm install
-      
-      - name: Run Cypress (QA)
-        env:
-          CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
-          USERNAME: qa_automation
-          PASSWORD: ${{ secrets.DEV_AWS_PASSWORD }}
-        if: "${{ github.event.inputs.env == 'dev' || github.event.inputs.env == '' }}"
-        run:  npx cypress run --env dev=1 ${{ github.event.inputs.spec }}
-        continue-on-error: true
 
       - name: Run Cypress (QA)
         env:
