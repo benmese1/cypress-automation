@@ -38,13 +38,12 @@ Cypress.Commands.add('mapWait', () => {
 })
 
 
-Cypress.Commands.add('compareText', (locator) => {
-    let elem1;
-    let elem2;
-    cy.get(locator).eq(0).then(($btn) => {
-        elem1  = $btn.text();  
-        cy.get(locator).eq(1).then(($btn1) => {
-         elem2 = $btn1.text(); 
+Cypress.Commands.add('compareText', (locator1, locator2) => {
+    cy.get(`[data-testid="${locator1}"]`).then(($btn) => {
+        let elem1  = $btn.text();  
+        cy.wait(1000);
+        cy.get(`[data-testid="${locator2}"]`).then(($btn1) => {
+         let elem2 = $btn1.text(); 
          return elem1.localeCompare(elem2); 
      });     
     });

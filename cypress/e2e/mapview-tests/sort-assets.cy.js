@@ -9,47 +9,46 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
         // Assert the user is visible 
         cy.get("[aria-label='account of current user']").should('be.visible');
 
-        // Click Asset List View
-     //   cy.get('p').contains('Asset List View 1').click({force: true}); 
-          cy.get('path[d="M0 12H18V10H0V12ZM0 7H18V5H0V7ZM0 0V2H18V0H0Z"]').click({force:true});
-          cy.xpath("//b[contains(text(), 'Asset Map')]").click({force: true});
+        // Click Asset Maps
+        cy.dashboardMenu("Asset Map");
         
         // Wait for the map to reload
         cy.mapWait();
   
        //Click on the sort list
-       cy.xpath("//span[contains(text(), 'Reported (Most Recent)')]").click({force: true});
-       cy.xpath("//li[contains(text(), 'Reported (Oldest)')]").click({force: true});
+       cy.get('[data-testid="menu-sort"]').click({force: true});
+       cy.get('[data-testid="reported-oldest"]').click({force: true});
 
-       cy.xpath("//span[contains(text(), 'Reported (Oldest)')]").click({force: true});
-       cy.xpath("//li[contains(text(), 'Name (A to Z)')]").click({force: true});
+       cy.get('[data-testid="2022-10-10T14:38:00.000Z"]')
 
-       cy.compareText('p[class="w-10/12 truncate text-sm text-primary sm:w-3/4"]')
+       cy.get('[data-testid="menu-sort"]').click({force: true});
+       cy.get('[data-testid="name-a-z"]').click({force: true});
+
+       cy.compareText('63613ecbe6a7557846747341', '63613ecbe6a7557846746fff')
        .then((val) => {
            assert.equal(val, -1, "The names are sorted in ascending order");    
        });
-      
        
-       cy.xpath("//span[contains(text(), 'Name (A to Z)')]").click({force: true});
-       cy.xpath("//li[contains(text(), 'Name (Z to A)')]").click({force: true});
+       cy.get('[data-testid="menu-sort"]').click({force: true});
+       cy.get('[data-testid="name-z-a"]').click({force: true});
 
-       cy.compareText('p[class="w-10/12 truncate text-sm text-primary sm:w-3/4"]')
+       cy.compareText('63613ecbe6a755784674652d', '63613ecbe6a7557846747021')
        .then((val) => {
            assert.equal(val, 1, "The names are sorted in descending order");      
        });
       
-       cy.xpath("//span[contains(text(), 'Name (Z to A)')]").click({force: true});
-       cy.xpath("//li[contains(text(), 'Location (A to Z)')]").click({force: true});
+       cy.get('[data-testid="menu-sort"]').click({force: true});
+       cy.get('[data-testid="location-a-z"]').click({force: true});
 
-       cy.compareText('span[class="truncate"]')
+       cy.compareText('63613ecbe6a75578467465e7','63613ecbe6a755784674661d')
        .then((val) => {
            assert.equal(val, -1, "The location are sorted in ascending order");    
        });
       
-       cy.xpath("//span[contains(text(), 'Location (A to Z)')]").click({force: true});
-       cy.xpath("//li[contains(text(), 'Location (Z to A)')]").click({force: true});
+       cy.get('[data-testid="menu-sort"]').click({force: true});
+       cy.get('[data-testid="location-z-a"]').click({force: true});
 
-       cy.compareText('span[class="truncate"]')
+       cy.compareText('63613ecbe6a7557846747420', '63613ecbe6a7557846746769')
        .then((val) => {
            assert.equal(val, 1, "The location are sorted in descending order");
        }); 
