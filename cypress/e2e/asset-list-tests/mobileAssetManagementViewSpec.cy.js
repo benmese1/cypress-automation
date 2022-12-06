@@ -1,4 +1,4 @@
-describe('Mobile Asset Management View verification', {retries: 0}, () => {
+describe('Mobile Asset Management View verification', () => {
 
     beforeEach(() => {
         cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false});
