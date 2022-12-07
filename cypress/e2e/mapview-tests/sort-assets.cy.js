@@ -49,7 +49,7 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
        cy.get('[data-testid="menu-sort"]').click({force: true});
        cy.get('[data-testid="name-a-z"]').click({force: true});
 
-       cy.compareText('63613ecbe6a7557846747341', '63613ecbe6a7557846746fff')
+       cy.compareText()
        .then((val) => {
            assert.equal(val, -1, "The names are sorted in ascending order");    
        });
@@ -57,7 +57,7 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
        cy.get('[data-testid="menu-sort"]').click({force: true});
        cy.get('[data-testid="name-z-a"]').click({force: true});
 
-       cy.compareText('63613ecbe6a755784674652d', '63613ecbe6a7557846747021')
+       cy.compareText()
        .then((val) => {
            assert.equal(val, 1, "The names are sorted in descending order");      
        });
@@ -65,7 +65,7 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
        cy.get('[data-testid="menu-sort"]').click({force: true});
        cy.get('[data-testid="location-a-z"]').click({force: true});
 
-       cy.compareText('63613ecbe6a75578467465e7','63613ecbe6a755784674661d')
+       cy.compareText()
        .then((val) => {
            assert.equal(val, -1, "The location are sorted in ascending order");    
        });
@@ -73,7 +73,7 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
        cy.get('[data-testid="menu-sort"]').click({force: true});
        cy.get('[data-testid="location-z-a"]').click({force: true});
 
-       cy.compareText('63613ecbe6a7557846747420', '63613ecbe6a7557846746769')
+       cy.compareText()
        .then((val) => {
            assert.equal(val, 1, "The location are sorted in descending order");
        }); 
