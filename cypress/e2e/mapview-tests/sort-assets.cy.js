@@ -1,4 +1,6 @@
 const { time } = require("console");
+import 'dayjs/locale/nb'
+
 
 describe('Click on the canvas zoom the cluster and view the asset', () => {
     it('Success canvas click test and verify and view asset details', () => {
@@ -14,12 +16,62 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
         
         // Wait for the map to reload
         cy.mapWait();
-  
-       //Click on the sort list
+      
+        //Click on the sort list
        cy.get('[data-testid="menu-sort"]').click({force: true});
-       cy.get('[data-testid="reported-oldest"]').click({force: true});
+      // Assert the assets are sorted as per the recent date 
+        cy.get('[data-testid="reported-recent"]').click({force: true});
+        let time_prev = 0;
+        let index =0;
+        let today = new Date();
+        cy.get('[data-timestamp*="Z"]').each(($e) => { 
+                cy
+                .wrap($e).invoke('attr', 'data-timestamp')
+                .then($current_date => {
+               
+                 const date = new Date($current_date);
+                 if(index ==0)
+                 {
+                    index = index + 1;
+                 }
+                 else
+                 if(index > 0)
+                 {
+                    today = new Date(time_prev);
+                 }
+                
+                 expect(date).to.lte(today);  
+                 time_prev = $current_date;    
+                      
+             });
+         })
 
-       cy.get('[data-testid="2022-10-10T14:38:00.000Z"]')
+        //Click on the sort list
+        cy.get('[data-testid="menu-sort"]').click({force: true});
+       // Assert the assets are sorted as per the oldest date 
+       cy.get('[data-testid="reported-oldest"]').click({force: true});
+       time_prev = 0;
+       let ind = 0;
+       cy.get('[data-timestamp*="Z"]').each(($e) => { 
+               cy
+               .wrap($e).invoke('attr', 'data-timestamp')
+               .then($current_date => {
+                const date = new Date($current_date);
+                const current = new Date(time_prev);
+                if(ind == 0)
+                {
+                expect(date).to.lte(current);  
+                 ind = ind +1;
+                }
+                else
+                if(ind > 0)
+                {
+                    expect(current).to.lte(date);  
+                }
+                time_prev = $current_date;    
+                     
+            });
+        })
 
        cy.get('[data-testid="menu-sort"]').click({force: true});
        cy.get('[data-testid="name-a-z"]').click({force: true});
