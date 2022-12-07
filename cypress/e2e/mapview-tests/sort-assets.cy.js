@@ -27,7 +27,7 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
                 .wrap($e).invoke('attr', 'data-timestamp')
                 .then($current_date => {
                  const date = new Date($current_date);
-                 expect(date).to.lte(today);  
+                 expect(today).to.gte(date);
                  today = date;                         
              });
          })
@@ -42,8 +42,8 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
                .wrap($e).invoke('attr', 'data-timestamp')
                .then($current_date => {
                 const date = new Date($current_date);
-                const current = new Date(prev);
-                expect(current).to.lte(date);                
+                const prev_date = new Date(prev);
+                expect(prev_date).to.lte(date);                
                 prev = $current_date;                   
             });
         })
