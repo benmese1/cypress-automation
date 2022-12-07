@@ -1,6 +1,4 @@
 const { time } = require("console");
-import 'dayjs/locale/nb'
-
 
 describe('Click on the canvas zoom the cluster and view the asset', () => {
     it('Success canvas click test and verify and view asset details', () => {
