@@ -1,8 +1,8 @@
-
 describe('Landing page view test verification', () => {
 
     beforeEach(() => {
-        cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false});
+        cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false})
+            .waitForLoad();
     })
 
     it('verify that Landing page opened after login', () => {
@@ -26,5 +26,11 @@ describe('Landing page view test verification', () => {
             cy.contains('[data-testid="dashboard-tile-component"]', /^Asset List$/).should('be.visible').click()
             cy.url().should('include', '/assets')
         })
+    })
+
+    it(' Verify search placeholder text test', () => {
+        cy.get('[data-testid="location-selector-input"] input')
+            .invoke('attr', 'placeholder')
+            .should("equal", 'Find An Asset')
     })
 })
