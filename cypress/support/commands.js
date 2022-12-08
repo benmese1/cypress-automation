@@ -51,7 +51,7 @@ Cypress.Commands.add('compareText', () => {
 //Click on the Dashboard menu
 
 Cypress.Commands.add('dashboardMenu', (menu) => {
-    const dashboardMenu = ['Asset Map','Asset List','Devices','My Organization','User Management']
+    const dashboardMenu = ['Dashboard','Asset Map','Asset List','Devices','My Organization','My Account','User Management']
     cy.get('[data-testid="header"] [role="button"]').click()
     cy.wait(500)
     cy.get('[data-testid="side-menu"]').should('be.visible')
