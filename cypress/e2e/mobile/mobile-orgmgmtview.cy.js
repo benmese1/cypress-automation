@@ -10,8 +10,8 @@ describe('Mobile Organization Management View verification', () => {
         cy.waitForLoad(2000)
         cy.get("[aria-label='account of current user']").should('be.visible');
         cy.dashboardMenu('My Organization');
-        validatePageView()
-        validateCreateNew()
+        validatePageView();
+        validateCreateNew();
     })
 
     it('Ipad portrait view', () => {
@@ -19,8 +19,8 @@ describe('Mobile Organization Management View verification', () => {
         cy.waitForLoad(2000)
         cy.get("[aria-label='account of current user']").should('be.visible');
         cy.dashboardMenu('My Organization');
-        validatePageView()
-        validateCreateNew()
+        validatePageView();
+        validateCreateNew();
     })
 
     it('Samsung note9 portrait view', () => {
@@ -28,8 +28,8 @@ describe('Mobile Organization Management View verification', () => {
         cy.waitForLoad(2000)
         cy.get("[aria-label='account of current user']").should('be.visible');
         cy.dashboardMenu('My Organization');
-        validatePageView()
-        validateCreateNew()
+        validatePageView();
+        validateCreateNew();
     })
 
     
