@@ -1,19 +1,19 @@
-
 describe('Asset Management page export verification', () => {
 
     beforeEach(() => {
-        cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false});
-        cy.waitForLoad()
-        cy.dashboardMenu('Asset List')
+        cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false})
+            .waitForLoad()
+            .dashboardMenu('Asset List');
     })
 
     it('verify export button is visible and downloading CSV file', {retries: 0}, () => {
-        cy.url().should('include', '/assets')
-        cy.contains('button', 'Export')
+        cy.url()
+            .should('include', '/assets')
+            .contains('button', 'Export')
             .should('be.visible')
             .click()
-        cy.wait(2000)
-        cy.readFile(downloadsPath + exportFilename).should('contain', csvFileHeader)
+            .wait(2000)
+            .readFile(downloadsPath + exportFilename).should('contain', csvFileHeader)
     })
 
     const downloadsPath = 'cypress/downloads/'
