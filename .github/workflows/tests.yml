@@ -42,7 +42,7 @@ jobs:
           CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
           USERNAME: qa_automation
           PASSWORD: ${{ secrets.DEV_AWS_PASSWORD }}
-        if: "${{ github.event.inputs.env == 'dev' || github.event.inputs.env == '' }}"
+        if: "${{ github.event.inputs.env == 'dev' }}"
         run:  npx cypress run --env dev=1 ${{ github.event.inputs.spec }}
         continue-on-error: true
 
@@ -51,7 +51,7 @@ jobs:
           CLIENT_ID: 584mrs4de25a4iqok485b6vhnc
           USERNAME: qa_automation
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
-        if: "${{ github.event.inputs.env == 'qa' }}"
+        if: "${{ github.event.inputs.env == 'qa' || github.event.inputs.env == '' }}"
         run: npx cypress run --env qa=1 ${{ github.event.inputs.spec }}
         continue-on-error: true
         
