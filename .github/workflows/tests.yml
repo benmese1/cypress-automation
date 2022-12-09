@@ -2,6 +2,9 @@ name: Run tests
 on:
   schedule:
     - cron:  '30 8 * * *'
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened, edited]
 
   workflow_dispatch:
     inputs:
