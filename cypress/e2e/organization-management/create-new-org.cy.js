@@ -4,7 +4,7 @@ let randomnumber = Math.floor((Math.random() * 10000) );
 describe('Create New Organization management',() =>{
   
     beforeEach(() => {
-          cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false});
+          cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {cacheSession: false});
           cy.waitForLoad()
           .get("[aria-label='account of current user']").should('be.visible');
       })

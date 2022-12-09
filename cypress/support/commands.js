@@ -171,6 +171,7 @@ Cypress.Commands.add('createNewOrganization', (name,description,brand,timezone) 
     cy.get('#time_zones').click();
     cy.get('li').contains(timezone).click();
     cy.get('.MuiGrid-root > [data-testid="global-button-component"]').click();
+    cy.get('.MuiAlert-message').should('be.visible').contains('Organization Created Successfully!');
 
 })
 
