@@ -155,16 +155,26 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
     if (typeof timeout === 'undefined') {
         timeout = 30000
     }
-    cy.wait(2000)
-    cy.get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist');
+    cy.get('[data-testid="spinner"]', {timeout: timeout}).should('exist')
+        .get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist');
+    
 })
+
+Cypress.Commands.add('waitForSpinnerToLoad', (timeout) => {
+    if (typeof timeout === 'undefined') {
+        timeout = 30000
+    }
+     cy.get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist');
+    
+})
+
 
 //Method Name :createNewOrganization
 // Used to create a new Organization
 //Params parentorgname,divisioname,name,description,brand,timezone
 Cypress.Commands.add('createNewOrganization', (name,description,brand,timezone) => {
-    cy.waitForLoad();
-    cy.get('button').contains("Create New").click();
+    cy.waitForSpinnerToLoad()
+    .get('button').contains("Create New").click(); 
     cy.get('#name').type(name);
     cy.get('#description').type(description);
     cy.get('#brand').type(brand);

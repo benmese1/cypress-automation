@@ -6,7 +6,7 @@ describe('Create New Organization management',() =>{
     beforeEach(() => {
           cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false});
           cy.waitForLoad()
-          cy.get("[aria-label='account of current user']").should('be.visible');
+          .get("[aria-label='account of current user']").should('be.visible');
       })
   
      it('Click on Create and verify the newly organization created' , () =>{           
