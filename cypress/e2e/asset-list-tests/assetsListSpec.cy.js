@@ -26,6 +26,7 @@ describe('Asset Management page general tests', () => {
             .should('be.visible')
             .get('.mr-3')
             .should("contain.text", '1 - 100 of')
+            //go to second page
             .get('[aria-label="Go to page 2"]')
             .click()
             .get('[data-rowindex="100"] .MuiDataGrid-cell')
