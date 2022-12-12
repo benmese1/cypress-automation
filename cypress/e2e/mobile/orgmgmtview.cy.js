@@ -1,4 +1,4 @@
-const sizes = ['iphone-8', 'ipad-2', [1170, 2532],'samsung-note9']
+const sizes = ['iphone-8', 'ipad-2', [1170, 2532], 'samsung-note9']
 
 describe('Mobile Organization Management View verification', () => {
   sizes.forEach((size) => {
@@ -9,7 +9,7 @@ describe('Mobile Organization Management View verification', () => {
         cy.viewport(size)
       }
       
-      cy.loginmobile(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
+      cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
       cy.waitForLoad()
       cy.get("[aria-label='account of current user']").should('be.visible');
       cy.dashboardMenu('My Organization');
@@ -21,18 +21,33 @@ describe('Mobile Organization Management View verification', () => {
      * Validate buttons and fields on the organization management table
      */
     const validatePageView = () => {
-        cy.get('[data-testid="page"]').should('be.visible').contains('My Organization');
+        cy.get('[data-testid="page"]')
+          .should('be.visible')
+          .contains('My Organization');
         // Validate buttons
-        cy.get('[data-testid="global-button-component"]').contains('Upload').should('be.visible');
-        cy.get('[data-testid="global-button-component"]').contains('Export').should('be.visible');
-        cy.get('[data-testid="global-button-component"]').contains('Create New').should('be.visible');
+        //Upload button visible
+        cy.get('[data-testid="global-button-component"]')
+          .contains('Upload')
+          .should('be.visible');
+        //Export button visible
+        cy.get('[data-testid="global-button-component"]')
+          .contains('Export')
+          .should('be.visible');
+        //Create New button visible
+        cy.get('[data-testid="global-button-component"]')
+          .contains('Create New')
+          .should('be.visible');
         // Validate table
         //Validate Organization name present on the table
-          cy.get(".MuiDataGrid-virtualScroller").scrollTo('topLeft',{ ensureScrollable: false });
-          cy.get('[role="columnheader"][aria-label="Organization Name"]').should('be.visible');
+          cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
+            .scrollTo('topLeft',{ ensureScrollable: false })
+            .get('[role="columnheader"][data-field="name"]')
+            .should('be.visible');
         //Validate Created field name present on the table
-          cy.get(".MuiDataGrid-virtualScroller").scrollTo('topRight',{ ensureScrollable: false });
-          cy.get('[role="columnheader"][data-field="added_date"]').should('be.visible');   
+          cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
+            .scrollTo('topRight',{ ensureScrollable: false })
+            .get('[role="columnheader"][data-field="added_date"]')
+            .should('be.visible');   
     }
 
     /**

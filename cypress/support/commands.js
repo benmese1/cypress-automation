@@ -1,9 +1,9 @@
 Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
     const login = () => {
         cy.visit("/login");
-        cy.get('.visible-lg #signInFormUsername').type(user);
-        cy.get('.visible-lg #signInFormPassword').type(pwd, {log: false});
-        cy.get('.visible-lg .btn-primary').click();
+        cy.get('.visible-lg #signInFormUsername').type(user,{force: true});
+        cy.get('.visible-lg #signInFormPassword').type(pwd, {force: true});
+        cy.get('.visible-lg .btn-primary').click({force: true});
     }
     if (cacheSession) {
         cy.session(user, login);
@@ -177,22 +177,7 @@ Cypress.Commands.add('createNewOrganization', (parentOrgName,name,type,descripti
     cy.get('.MuiGrid-root > [data-testid="global-button-component"]').click();
 
 })
-/**
- * Login method only for Mobile View
- */
-Cypress.Commands.add('loginmobile', (user, pwd, {cacheSession = true} = {}) => {
-    const login = () => {
-        cy.visit("/login");
-        cy.get('.visible-lg #signInFormUsername').type(user,{force: true});
-        cy.get('.visible-lg #signInFormPassword').type(pwd, {force: true});
-        cy.get('.visible-lg .btn-primary').click({force: true});
-    }
-    if (cacheSession) {
-        cy.session(user, login);
-    } else {
-        login();
-    }
-})
+
 
 //
 // -- This is a child command --
