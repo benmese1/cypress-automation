@@ -24,26 +24,31 @@ describe('Mobile Organization Management View verification', () => {
         cy.get('[data-testid="page"]')
           .should('be.visible')
           .contains('My Organization');
+
         // Validate buttons
-        //Upload button visible
+        // Upload button visible
         cy.get('[data-testid="global-button-component"]')
           .contains('Upload')
           .should('be.visible');
-        //Export button visible
+
+        // Export button visible
         cy.get('[data-testid="global-button-component"]')
           .contains('Export')
           .should('be.visible');
-        //Create New button visible
+
+        // Create New button visible
         cy.get('[data-testid="global-button-component"]')
           .contains('Create New')
           .should('be.visible');
+
         // Validate table
-        //Validate Organization name present on the table
+        // Validate Organization name present on the table
           cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
             .scrollTo('topLeft',{ ensureScrollable: false })
             .get('[role="columnheader"][data-field="name"]')
             .should('be.visible');
-        //Validate Created field name present on the table
+
+        // Validate Created field name present on the table
           cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
             .scrollTo('topRight',{ ensureScrollable: false })
             .get('[role="columnheader"][data-field="added_date"]')
@@ -66,6 +71,4 @@ describe('Mobile Organization Management View verification', () => {
         cy.logout();
     }
   })
-  
-
 })
