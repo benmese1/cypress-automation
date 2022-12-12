@@ -1,10 +1,10 @@
 {
-  "baseUrl": "https://qa-connect1.phillips-connect.com",
-  "env": {
-    "username": "qa_automation@phillips-connect.com",
-    "password": "W2iM$a!@,%y=W=z",
-    "client_id": "584mrs4de25a4iqok485b6vhnc",
-    "TESTusername": "test1",
-    "TESTpassword": "Test@!@345"
-  }
+	"baseUrl": "https://qa-connect1.phillips-connect.com",
+	"env": {
+		"username": "qa_automation@phillips-connect.com",
+		"password": "W2iM$a!@,%y=W=z",
+		"client_id": "584mrs4de25a4iqok485b6vhnc",
+		"TESTusername": "test1",
+		"TESTpassword": "Test@!@345"
+	}
 }
