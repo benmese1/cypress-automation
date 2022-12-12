@@ -1,22 +1,19 @@
 // import data from '../fixtures/data-example.json'
-import {randomDataCreation} from '../../support/factory/main.js';
-import {specificDataCreation} from '../../support/factory/main.js';
+import { randomDataCreation } from '../../support/factory/main.js';
+import { specificDataCreation } from '../../support/factory/main.js';
 
 describe('writing data to json file', () => {
-    let fileName = 'dataTest.json';
-    let count = 5;
-    let specificDatatArr = ['chassis', 'general', 'temp'];
+	let fileName = 'dataTest.json';
+	let count = 5;
+	let specificDatatArr = ['chassis', 'general', 'temp'];
 
-    before(() => {
-        // randomDataCreation(fileName, count);
-        specificDataCreation(fileName, specificDatatArr);
-        cy.log(Cypress.env('baseURL'))
-      })
+	before(() => {
+		// randomDataCreation(fileName, count);
+		specificDataCreation(fileName, specificDatatArr);
+		cy.log(Cypress.env('baseURL'));
+	});
 
-
-    it('writes data to JSON file', () => {
-        cy.visit('/')
-    })
-
-
-})
+	it('writes data to JSON file', () => {
+		cy.visit('/');
+	});
+});
