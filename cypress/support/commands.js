@@ -157,24 +157,21 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
     }
     cy.get('[data-testid="spinner"]', {timeout: timeout}).should('exist')
         .get('[data-testid="spinner"]', {timeout: timeout}).should('not.exist');
+    
 })
-
 
 //Method Name :createNewOrganization
 // Used to create a new Organization
 //Params parentorgname,divisioname,name,description,brand,timezone
-Cypress.Commands.add('createNewOrganization', (parentOrgName,name,type,description,brand,timezone) => {
-    cy.waitForLoad();
-    cy.get('button').contains("Create New").click();
-    cy.get('#org_key').click();
-    cy.get('li').contains(parentOrgName).click();
+Cypress.Commands.add('createNewOrganization', (name,description,brand,timezone) => {
+    cy.get('button').contains("Create New").click(); 
     cy.get('#name').type(name);
-    cy.get('#type').clear().type(type);
     cy.get('#description').type(description);
     cy.get('#brand').type(brand);
     cy.get('#time_zones').click();
     cy.get('li').contains(timezone).click();
     cy.get('.MuiGrid-root > [data-testid="global-button-component"]').click();
+    cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Created Successfully!');
 
 })
 
