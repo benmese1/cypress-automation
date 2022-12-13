@@ -1,29 +1,29 @@
-Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
-    const login = () => {
-        cy.visit("/login");
-        cy.get('.visible-lg #signInFormUsername').type(user,{force: true});
-        cy.get('.visible-lg #signInFormPassword').type(pwd, {force: true});
-        cy.get('.visible-lg .btn-primary').click({force: true});
-    }
-    if (cacheSession) {
-        cy.session(user, login);
-    } else {
-        login();
-    }
-})
+Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
+	const login = () => {
+		cy.visit('/login');
+		cy.get('.visible-lg #signInFormUsername').type(user, { force: true });
+		cy.get('.visible-lg #signInFormPassword').type(pwd, { force: true });
+		cy.get('.visible-lg .btn-primary').click({ force: true });
+	};
+	if (cacheSession) {
+		cy.session(user, login);
+	} else {
+		login();
+	}
+});
 
 Cypress.Commands.add('openAssetsList', () => {
-    cy.get('[data-testid="header"] [role="button"]')
-        .click('left')
-        .get('[data-testid="side-menu"]')
-        .should('be.visible')
-        .contains('Asset List')
-        .click()
-        .url()
-        .should('include', '/assets')
-        .get(".MuiDataGrid-row", {timeout: 30000})
-        .should('be.visible');
-})
+	cy.get('[data-testid="header"] [role="button"]')
+		.click('left')
+		.get('[data-testid="side-menu"]')
+		.should('be.visible')
+		.contains('Asset List')
+		.click()
+		.url()
+		.should('include', '/assets')
+		.get('.MuiDataGrid-row', { timeout: 30000 })
+		.should('be.visible');
+});
 
 /** Pin column on Asset list page
  * @param {string} columnName - asset table column name
@@ -32,11 +32,11 @@ Cypress.Commands.add('openAssetsList', () => {
  */
 Cypress.Commands.add('pinColumn', (columnName, side) => {
 	cy.get('.MuiDataGrid-columnHeader[aria-label="' + columnName + '"] .MuiDataGrid-menuIcon button')
-        .click({ force: true })
-        .get('.MuiDataGrid-menuList')
-        .should('be.visible')
-        .contains('Pin to ' + side)
-        .click();
+		.click({ force: true })
+		.get('.MuiDataGrid-menuList')
+		.should('be.visible')
+		.contains('Pin to ' + side)
+		.click();
 });
 
 /** Unpin column on Asset list page
@@ -46,11 +46,11 @@ Cypress.Commands.add('pinColumn', (columnName, side) => {
  */
 Cypress.Commands.add('unpinColumn', (columnName) => {
 	cy.get('.MuiDataGrid-columnHeader[aria-label="' + columnName + '"] .MuiDataGrid-menuIcon button')
-        .click({ force: true })
-        .get('.MuiDataGrid-menuList')
-        .should('be.visible')
-        .contains('Unpin')
-        .click();
+		.click({ force: true })
+		.get('.MuiDataGrid-menuList')
+		.should('be.visible')
+		.contains('Unpin')
+		.click();
 });
 Cypress.Commands.add('searchAssets', (searchCriteria) => {
 	cy.get("input[placeholder='Search']").should('be.visible').type(searchCriteria).wait(1000);
@@ -135,6 +135,17 @@ Cypress.Commands.add('logOutDB', () => {
 	cy.get('#logout2', { timeout: 2000 }).click();
 });
 
+Cypress.Commands.add('assertFilterDates', (filter) => {
+	cy.get('[data-timestamp*="Z"]').each(($e) => {
+		cy.wrap($e)
+			.invoke('attr', 'data-timestamp')
+			.then(($current_date) => {
+				const date = new Date($current_date);
+				expect(filter).to.lte(date);
+			});
+	});
+});
+
 Cypress.Commands.add('showHideColumnAssetsList', (columnName) => {
 	cy.get('[data-testid="TripleDotsVerticalIcon"]')
 		.eq(1)
@@ -217,7 +228,6 @@ Cypress.Commands.add('createNewOrganization', (name, description, brand, timezon
 	cy.get('.MuiGrid-root > [data-testid="global-button-component"]').click();
 	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Created Successfully!');
 });
-
 
 //
 // -- This is a child command --
