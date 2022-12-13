@@ -147,7 +147,7 @@ describe('Verify the Asset Filter by dates', () => {
     cy.get('[data-testid="calendar-range-result"]').click({ force: true });
 
     //Click Previous 2nd Month assert the asset filters
-    // Get the Previous month using the date library and assert if all the assets are within the 
+    // Extract the previous 2nd month from the today's date and assert that all assets are within the date filter range
     let prevmonth1 = now.getMonth() - 1;
     let previousmonth1 = `${now.getFullYear()}` + "-" + `${prevmonth1}` + "-01";
     cy.get('[data-title="Oct"]').click({ force: true });
