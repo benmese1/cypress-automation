@@ -52,6 +52,7 @@ Cypress.Commands.add('unpinColumn', (columnName) => {
 		.contains('Unpin')
 		.click();
 });
+
 Cypress.Commands.add('searchAssets', (searchCriteria) => {
 	cy.get("input[placeholder='Search']").should('be.visible').type(searchCriteria).wait(1000);
 });
