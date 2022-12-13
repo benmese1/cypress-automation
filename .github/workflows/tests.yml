@@ -1,24 +1,21 @@
 name: Run tests
 on:
   schedule:
-    - cron:  '30 8 * * *'
-  pull_request:
-    branches: [master]
-    types: [opened, synchronize, reopened, edited]
+    - cron: '30 8 * * *'
 
   workflow_dispatch:
     inputs:
       env:
         description: 'Select environment'
         required: true
-        default: 'qa' 
+        default: 'qa'
         type: choice
         options:
-        - dev
-        - qa
+          - dev
+          - qa
       spec:
         description: 'Enter specifications in format     :
-                        --spec "cypress/e2e"'
+          --spec "cypress/e2e"'
         required: false
         default: ''
         type: string
@@ -31,7 +28,7 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        
+
       - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
@@ -57,7 +54,7 @@ jobs:
         if: "${{ github.event.inputs.env == 'qa' || github.event.inputs.env == '' }}"
         run: npx cypress run --env qa=1 ${{ github.event.inputs.spec }}
         continue-on-error: true
-        
+
       - name: 'Upload test results'
         if: ${{ always() }}
         uses: actions/upload-artifact@v3

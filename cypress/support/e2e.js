@@ -14,17 +14,16 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
-import './factory/main'
+import './commands';
+import './factory/main';
 import '@cypress/xpath';
-import "cypress-real-events/support";
-
+import 'cypress-real-events/support';
 
 Cypress.on(
-    'uncaught:exception',
-    () =>
-    //returning false here prevents cypress from failing the test
-    false
+	'uncaught:exception',
+	() =>
+		//returning false here prevents cypress from failing the test
+		false
 );
 
 // Alternatively you can use CommonJS syntax:
