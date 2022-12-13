@@ -11,6 +11,19 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 		login();
 	}
 });
+Cypress.Commands.add('login', (user, pwd, {cacheSession = true} = {}) => {
+    const login = () => {
+        cy.visit("/login");
+        cy.get('.visible-lg #signInFormUsername').type(user,{force: true});
+        cy.get('.visible-lg #signInFormPassword').type(pwd, {force: true});
+        cy.get('.visible-lg .btn-primary').click({force: true});
+    }
+    if (cacheSession) {
+        cy.session(user, login);
+    } else {
+        login();
+    }
+})
 
 Cypress.Commands.add('openAssetsList', () => {
 	cy.get('[data-testid="header"] [role="button"]')
@@ -108,6 +121,17 @@ Cypress.Commands.add('logOutDB', () => {
 	cy.get('#logout2', { timeout: 2000 }).click();
 });
 
+Cypress.Commands.add('assertFilterDates', (filter) => {
+    cy.get('[data-timestamp*="Z"]').each(($e) => {
+        cy
+            .wrap($e).invoke('attr', 'data-timestamp')
+            .then($current_date => {
+                const date = new Date($current_date);
+                expect(filter).to.lte(date);
+            });
+    })
+})
+
 Cypress.Commands.add('showHideColumnAssetsList', (columnName) => {
 	cy.get('[data-testid="TripleDotsVerticalIcon"]')
 		.eq(1)
@@ -180,6 +204,16 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
 //Method Name :createNewOrganization
 // Used to create a new Organization
 //Params parentorgname,divisioname,name,description,brand,timezone
+Cypress.Commands.add('createNewOrganization', (name, description, brand, timezone) => {
+	cy.get('button').contains('Create New').click();
+	cy.get('#name').type(name);
+	cy.get('#description').type(description);
+	cy.get('#brand').type(brand);
+	cy.get('#time_zones').click();
+	cy.get('li').contains(timezone).click();
+	cy.get('.MuiGrid-root > [data-testid="global-button-component"]').click();
+	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Created Successfully!');
+});
 
 Cypress.Commands.add('createNewOrganization', (name, description, brand, timezone) => {
 	cy.get('button').contains('Create New').click();
