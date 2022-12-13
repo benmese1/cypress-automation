@@ -48,7 +48,7 @@ jobs:
 
       - name: Run Cypress (QA)
         env:
-          CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
+          CLIENT_ID: 584mrs4de25a4iqok485b6vhnc
           USERNAME: test1
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
         if: "${{ github.event.inputs.env == 'qa' || github.event.inputs.env == '' }}"
