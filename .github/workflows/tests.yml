@@ -40,10 +40,10 @@ jobs:
       - name: Run Cypress (DEV)
         env:
           CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
-          USERNAME: qa_automation
+          USERNAME: test1
           PASSWORD: ${{ secrets.DEV_AWS_PASSWORD }}
         if: "${{ github.event.inputs.env == 'dev' }}"
-        run:  npx cypress run --env dev=1 ${{ github.event.inputs.spec }}
+        run: npx cypress run --env dev=1 ${{ github.event.inputs.spec }}
         continue-on-error: true
 
       - name: Run Cypress (QA)
