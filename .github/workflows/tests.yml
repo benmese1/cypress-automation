@@ -42,7 +42,7 @@ jobs:
           CLIENT_ID: 584mrs4de25a4iqok485b6vhnc
           USERNAME: qa_automation
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
-        if: "${{ github.event.inputs.env == 'qa' }}"
+        if: "${{ github.event.inputs.env == 'qa' || github.event.inputs.env == '' }}"
         run: npx cypress run --env qa=1 ${{ github.event.inputs.spec }}
         continue-on-error: true
 
