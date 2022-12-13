@@ -37,10 +37,19 @@ jobs:
       - name: Install Node modules
         run: npm install
 
+      - name: Run Cypress (DEV)
+        env:
+          CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
+          USERNAME: test1
+          PASSWORD: ${{ secrets.DEV_AWS_PASSWORD }}
+        if: "${{ github.event.inputs.env == 'dev' }}"
+        run: npx cypress run --env dev=1 ${{ github.event.inputs.spec }}
+        continue-on-error: true
+
       - name: Run Cypress (QA)
         env:
           CLIENT_ID: 584mrs4de25a4iqok485b6vhnc
-          USERNAME: qa_automation
+          USERNAME: test1
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
         if: "${{ github.event.inputs.env == 'qa' || github.event.inputs.env == '' }}"
         run: npx cypress run --env qa=1 ${{ github.event.inputs.spec }}
