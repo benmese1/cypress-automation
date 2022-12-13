@@ -88,6 +88,17 @@ Cypress.Commands.add('dashboardMenu', (menu) => {
 	});
 });
 
+Cypress.Commands.add('assertFilterDates', (filter) => {
+    cy.get('[data-timestamp*="Z"]').each(($e) => {
+        cy
+            .wrap($e).invoke('attr', 'data-timestamp')
+            .then($current_date => {
+                const date = new Date($current_date);
+                expect(filter).to.lte(date);
+            });
+    })
+})
+
 //logout from the application
 Cypress.Commands.add('logout', () => {
 	cy.get('[data-testid="AccountCircleIcon"]').should('be.visible').click().wait(100).get('li[role="menuitem"]').click();
@@ -120,17 +131,6 @@ Cypress.Commands.add('logOutDB', () => {
 	// finds logout link and clicks on it
 	cy.get('#logout2', { timeout: 2000 }).click();
 });
-
-Cypress.Commands.add('assertFilterDates', (filter) => {
-    cy.get('[data-timestamp*="Z"]').each(($e) => {
-        cy
-            .wrap($e).invoke('attr', 'data-timestamp')
-            .then($current_date => {
-                const date = new Date($current_date);
-                expect(filter).to.lte(date);
-            });
-    })
-})
 
 Cypress.Commands.add('showHideColumnAssetsList', (columnName) => {
 	cy.get('[data-testid="TripleDotsVerticalIcon"]')
