@@ -9,7 +9,7 @@ describe('Landing page view test verification', () => {
 		cy.get('[data-testid="side-menu"]').should('be.visible');
 	});
 
-	it('verify that menu item Asset List is linked to assets page', () => {
+	it('verify that menu item Devices are linked to assets page', () => {
 		clickDashboardMenu();
 		cy.get('[data-testid="side-menu"]').should('be.visible').contains('Devices').click();
 		cy.url().should('include', '/devices');
