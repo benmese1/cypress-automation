@@ -1,7 +1,7 @@
 import org from '../../fixtures/createorg.json';
 const sizes = ['samsung-note9', 'ipad-2', 'iphone-8', [1170, 2532]];
 
-describe('Create New Organization managemen', () => {
+describe('Create New Organization management', () => {
 	sizes.forEach((size) => {
 		let randomnumber = Math.floor(Math.random() * 10000);
 		it(`Create New Organization managemen filed validations on ${size} screen`, () => {
