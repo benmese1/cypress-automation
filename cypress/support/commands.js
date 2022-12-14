@@ -202,6 +202,10 @@ Cypress.Commands.add('createNewOrganization', (name, description, brand, timezon
 	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Created Successfully!');
 });
 
+Cypress.Commands.add('clickOutside', () => {
+	cy.get('body').click(0, 0);
+});
+
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
