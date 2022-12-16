@@ -192,9 +192,9 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
 // Used to create a new Organization
 //Params parentorgname,divisioname,name,description,brand,timezone
 Cypress.Commands.add('createNewOrganization', (name, description, brand, timezone) => {
-	cy.get('button').contains('Create New').click();
+	cy.xpath("//button[contains(text(),'Create New')]").click();
 	cy.get("[name='name']").type(name);
-	cy.xpath("//label[contains(text(),'Description')]/parent::div//textarea[@name='description']").type(description);
+	cy.get('textarea[name="description"]').type(description);
 	cy.get("[name='brand']").type(brand);
 	cy.get("[name='time_zones']").click();
 	cy.get('li').contains(timezone).click();
