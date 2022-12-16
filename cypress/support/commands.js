@@ -192,11 +192,11 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
 // Used to create a new Organization
 //Params parentorgname,divisioname,name,description,brand,timezone
 Cypress.Commands.add('createNewOrganization', (name, description, brand, timezone) => {
-	cy.get('button').contains('Create New').click();
-	cy.get('#name').type(name);
-	cy.get('#description').type(description);
-	cy.get('#brand').type(brand);
-	cy.get('#time_zones').click();
+	cy.xpath("//button[contains(text(),'Create New')]").click();
+	cy.get("[name='name']").type(name);
+	cy.get('textarea[name="description"]').type(description);
+	cy.get("[name='brand']").type(brand);
+	cy.get("[name='time_zones']").click();
 	cy.get('li').contains(timezone).click();
 	cy.get('.MuiGrid-root > [data-testid="global-button-component"]').click();
 	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Created Successfully!');
