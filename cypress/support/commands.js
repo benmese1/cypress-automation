@@ -36,11 +36,11 @@ Cypress.Commands.add('mapWait', () => {
 });
 
 Cypress.Commands.add('compareText', () => {
-	cy.get('[data-testid*="63613"]')
+	cy.get('[data-testid*="asset-"]')
 		.eq(0)
 		.then(($btn) => {
 			let elem1 = $btn.text();
-			cy.get('[data-testid*="63613"]')
+			cy.get('[data-testid*="asset-"]')
 				.eq(1)
 				.then(($btn1) => {
 					let elem2 = $btn1.text();
