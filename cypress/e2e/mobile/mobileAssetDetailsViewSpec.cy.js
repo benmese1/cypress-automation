@@ -5,7 +5,7 @@ const devices = [
     {device: 'ipad-2', orientation: 'landscape'},
 ]
 
-describe('Mobile Asset Management page -- details view verification', {retries: 0}, () => {
+describe('Mobile Asset Management page -- details view verification', () => {
     beforeEach(() => {
         cy.login(Cypress.env('username'), Cypress.env('password'), {cacheSession: false})
             .waitForLoad()
@@ -22,14 +22,16 @@ describe('Mobile Asset Management page -- details view verification', {retries: 
 
 const validateMobileDetails = () => {
     clickFirstCell();
-    cy.get('[data-testid="global-text-btn-component"]')
-        .contains('Show more')
-        .should('be.visible')
-        .click()
+    cy.get('[id="details-summary-content"]')
+        .contains('Asset ID')
+        .should('be.visible');
 
-    cy.get('[data-testid="global-text-btn-component"]')
-        .contains('Show less')
-        .should('be.visible')
+    cy.get('[id="details-summary"]')
+        .click();
+
+    cy.get('[id="details-summary-content"]')
+        .contains('Asset ID')
+        .should('not.be.visible');
 }
 
 const clickFirstCell = () => {
