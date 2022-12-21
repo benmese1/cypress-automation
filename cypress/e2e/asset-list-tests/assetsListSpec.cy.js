@@ -61,14 +61,14 @@ describe('Asset Management page general tests', () => {
 	it('Pin and unpin column in Asset list table test', () => {
 		//pin Device ID column to the left side
 		cy.pinColumn('Device ID', 'left')
-			.get('.MuiDataGrid-pinnedColumnHeaders--left .MuiDataGrid-columnHeaderTitle')
+			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
 			.should('have.text', 'Device ID')
 			//pin Battery Power colum to the right
 			.pinColumn('Battery Power', 'right')
-			.get('.MuiDataGrid-pinnedColumnHeaders--right .MuiDataGrid-columnHeaderTitle')
+			.get('[data-testid="items-list-pinned-column-right-header"] [data-testid="items-list-column-header"]')
 			.should('have.text', 'Battery Power')
 			.unpinColumn('Device ID')
-			.get('.MuiDataGrid-pinnedColumnHeaders--left .MuiDataGrid-columnHeaderTitle')
+			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
 			.should('not.exist');
 	});
 
@@ -76,10 +76,10 @@ describe('Asset Management page general tests', () => {
 		//pin Device ID and Battery Power columns to the left side
 		cy.pinColumn('Device ID', 'left');
 		cy.pinColumn('Battery Power', 'left')
-			.get('.MuiDataGrid-pinnedColumnHeaders--left .MuiDataGrid-columnHeaderTitle')
+			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
 			.first()
 			.should('have.text', 'Device ID')
-			.get('.MuiDataGrid-pinnedColumnHeaders--left .MuiDataGrid-columnHeaderTitle')
+			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
 			.last()
 			.should('have.text', 'Battery Power');
 	});
