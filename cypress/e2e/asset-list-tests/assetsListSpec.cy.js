@@ -1,6 +1,6 @@
 describe('Asset Management page general tests', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
 			.waitForLoad()
 			.dashboardMenu('Asset List');
 	});
@@ -11,17 +11,18 @@ describe('Asset Management page general tests', () => {
 
 	it('Verify assets table columns visibility', () => {
 		const columnHeadersList = [
-			'Company Name',
-			'Asset Name',
+			'Icon',
+			'Asset ID',
+			'Asset Nickname',
 			'Device ID',
-			'Product',
-			'Last Reported Date',
-			'Location',
-			'Asset Type',
+			'Product Name',
 			'Trip Status',
-			'Dwell Time',
-			'Battery Power',
+			'City',
+			'State',
+			'Asset Type',
+			'Battery Icon',
 			'Asset Tags',
+			'Last Event'
 		];
 		cy.get('.MuiDataGrid-columnHeaderTitle')
 			.each((el) => {
@@ -56,5 +57,31 @@ describe('Asset Management page general tests', () => {
 			.get('[data-testid="global-button-component"]')
 			.last()
 			.should('have.text', 'Add Asset');
+	});
+
+	it('Pin and unpin column in Asset list table test', () => {
+		//pin Device ID column to the left side
+		cy.pinColumn('Device ID', 'left')
+			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
+			.should('have.text', 'Device ID')
+			//pin Battery Power colum to the right
+			.pinColumn('Battery Icon', 'right')
+			.get('[data-testid="items-list-pinned-column-right-header"] [data-testid="items-list-column-header"]')
+			.should('have.text', 'Battery Icon')
+			.unpinColumn('Device ID')
+			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
+			.should('not.exist');
+	});
+
+	it('Pin multiple columns to one side in Asset list table test', () => {
+		//pin Device ID and Battery Power columns to the left side
+		cy.pinColumn('Device ID', 'left');
+		cy.pinColumn('Battery Icon', 'left')
+			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
+			.first()
+			.should('have.text', 'Device ID')
+			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
+			.last()
+			.should('have.text', 'Battery Icon');
 	});
 });

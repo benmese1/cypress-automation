@@ -35,6 +35,34 @@ Cypress.Commands.add('openDevices', () => {
 		.should('include', '/devices');
 });
 
+/** Pin column on Asset list page
+ * @param {string} columnName - asset table column name
+ * @param {string} side - there are only two options: left and right.
+ * NOTE: case-sensitive parameters!!!
+ */
+Cypress.Commands.add('pinColumn', (columnName, side) => {
+	cy.get('.MuiDataGrid-columnHeader[aria-label="' + columnName + '"] .MuiDataGrid-menuIcon button')
+		.click({ force: true })
+		.get('.MuiDataGrid-menuList')
+		.should('be.visible')
+		.contains('Pin to ' + side)
+		.click();
+});
+
+/** Unpin column on Asset list page
+ * @param {string} columnName - asset table column name
+ * @param {string} side - there are only two options: left and right.
+ * NOTE: case-sensitive parameters!!!
+ */
+Cypress.Commands.add('unpinColumn', (columnName) => {
+	cy.get('.MuiDataGrid-columnHeader[aria-label="' + columnName + '"] .MuiDataGrid-menuIcon button')
+		.click({ force: true })
+		.get('.MuiDataGrid-menuList')
+		.should('be.visible')
+		.contains('Unpin')
+		.click();
+});
+
 Cypress.Commands.add('searchAssets', (searchCriteria) => {
 	cy.get("input[placeholder='Search']").should('be.visible').type(searchCriteria).wait(1000);
 });
