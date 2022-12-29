@@ -7,7 +7,10 @@ describe('Side menu test verification', () => {
 	it('verify the header logo and side menu after clicking on the menu bar', () => {
 		cy.get('[data-testid="header-logo"]').should('be.visible')
 		clickDashboardMenu();
-		cy.get('[data-testid="side-menu"]').should('be.visible');
+		cy.get('[data-testid="side-menu"]')
+			.should('be.visible')
+			.contains('My Account')
+			.should('not.exist');
 	});
 
 	it('verify that menu item Asset List is linked to assets page', () => {

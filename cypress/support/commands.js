@@ -100,7 +100,6 @@ Cypress.Commands.add('dashboardMenu', (menu) => {
 		'Asset List',
 		'Devices',
 		'My Organization',
-		'My Account',
 		'User Management',
 	];
 	cy.get('[data-testid="header"] [role="button"]')
