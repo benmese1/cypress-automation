@@ -1,4 +1,4 @@
-describe('Landing stats view test verification', () => {
+describe('Landing stats view test verification', {retries: 0}, () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
 		cy.waitForLoad();
@@ -8,6 +8,12 @@ describe('Landing stats view test verification', () => {
 		cy.get('[data-testid="dashboard-tile-total-assets"]').should('be.visible').contains('Total Assets');
 
 		cy.get('[data-testid="dashboard-tile-total-assets"]').within(() => {
+			// Check the names of total asset groups
+			cy.contains('0-30k');
+			cy.contains('30-60k');
+			cy.contains('60k+');
+
+			// Check the value of total asset groups
 			cy.get('[data-testid="total-assets-secondary-value"]')
 				.should('have.length', 3)
 				.each((item) => {
@@ -46,7 +52,7 @@ describe('Landing stats view test verification', () => {
 	});
 
 	it('verify total miles travelled tile', () => {
-		cy.get('[data-testid="dashboard-tile-total-distance"]').should('be.visible').contains('Total Miles Travelled');
+		cy.get('[data-testid="dashboard-tile-total-distance"]').should('be.visible').contains('Total Miles Traveled');
 
 		cy.get('[data-testid="total-distance-value"]')
 			.should('be.visible')

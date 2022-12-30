@@ -1,37 +1,23 @@
 describe('Landing page view test verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false }).waitForLoad();
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {cacheSession: false})
+			.waitForLoad();
 	});
 
-	it('verify that Landing page opened after login', () => {
+	it('verify Landing page for user with first name', () => {
+		loginAsUserWithFirstName();
 		cy.url().should('include', '/dashboard');
-		cy.contains('Welcome back, qa_automation');
+		cy.contains('Welcome back, James');
 	});
 
 	it('verify that location selector appeared', () => {
 		cy.get('[data-testid="location-selector-input"]').should('be.visible');
 	});
 
-	it('verify that Organisation tile link to My Organization page', () => {
-		cy.get('.relative [data-testid="dashboard-component"]').within(() => {
-			cy.contains('[data-testid="dashboard-tile-component"]', 'Organization').should('be.visible').click();
-			cy.url().should('include', '/organizations');
-		});
-	});
-
-	it('verify that the Asset List tile link to the Asset Management page', () => {
-		cy.get('.relative [data-testid="dashboard-component"]').within(() => {
-			cy.contains('[data-testid="dashboard-tile-component"]', /^Asset List$/)
-				.should('be.visible')
-				.click();
-			cy.url().should('include', '/assets');
-		});
-	});
-
 	it(' Verify search placeholder text test', () => {
 		cy.get('[data-testid="location-selector-input"] input')
 			.invoke('attr', 'placeholder')
-			.should('equal', 'Find An Asset');
+			.should('equal', 'Search location');
 	});
 
 	it('Navigate into the map by clicking on "Asset Map" button test', () => {
