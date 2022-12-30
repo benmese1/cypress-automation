@@ -43,7 +43,7 @@ jobs:
           USERNAME: test1
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
         if: "${{ github.event.inputs.env.default == 'qa' || github.event.inputs.env.default == '' }}"
-        run: npx cypress open --env fileConfig=qa ${{ github.event.inputs.spec }}
+        run: npx cypress run --env ENV=qa ${{ github.event.inputs.spec }}
         continue-on-error: true
 
       - name: Run Cypress (DEV)
@@ -51,8 +51,8 @@ jobs:
           CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
           USERNAME: test1
           PASSWORD: ${{ secrets.DEV_AWS_PASSWORD }}
-        if: "${{ github.event.inputs.env == 'dev' }}"
-        run: npx cypress open --env fileConfig=dev ${{ github.event.inputs.spec }}
+        if: "${{ github.event.inputs.env.default == 'dev' }}"
+        run: npx cypress run --env ENV=dev ${{ github.event.inputs.spec }}
         continue-on-error: true
 
       - name: 'Upload test results'
