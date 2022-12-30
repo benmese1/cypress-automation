@@ -1,7 +1,13 @@
 describe('Landing page view test verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {cacheSession: false})
 			.waitForLoad();
+	});
+
+	it('verify Landing page for user with first name', () => {
+		loginAsUserWithFirstName();
+		cy.url().should('include', '/dashboard');
+		cy.contains('Welcome back, James');
 	});
 
 	it('verify that location selector appeared', () => {
