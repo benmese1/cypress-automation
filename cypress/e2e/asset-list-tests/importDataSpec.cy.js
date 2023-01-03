@@ -31,19 +31,13 @@ describe('Asset Management import verification', () => {
 			.get('.MuiDialogActions-root button')
 			.last()
 			.click()
-			// .get('.MuiCircularProgress-circle')
-			// .should("not.be.visible")
 			.get('.text-success')
 			.should("be.visible")
-			// .contains('1 asset has been added')
 			.get('[role="dialog"] [data-testid="global-button-component"]')
 			.should("be.visible")
 			.click()
-			// .waitForLoad()
-			// .get('[data-testid="snackbar-title"]')
-			// .should('have.text', 'Assets were uploaded Successfully!')
 			.searchAssets(assetName)
-			.get(".MuiDataGrid-row [data-field='name'] div")
+			.get("[data-field='name'] div")
 			.each(($item) => {
 				cy.wrap($item).should('have.text', assetName);
 			});
