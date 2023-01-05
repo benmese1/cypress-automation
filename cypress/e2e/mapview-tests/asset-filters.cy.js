@@ -1,5 +1,3 @@
-const { time } = require('console');
-
 describe('Verify and search assets using filters such as asset tags, asset search and gps signal', () => {
 	it('verify and view asset details by selecting asset filters', () => {
 		// Login to Dev Environment
