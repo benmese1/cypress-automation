@@ -1,6 +1,6 @@
 const { time } = require('console');
 
-describe('Click on the canvas zoom the cluster and view the asset', () => {
+describe('Verify and search assets using filters such as asset tags, asset search and gps signal', () => {
 	it('Success canvas click test and verify and view asset details', () => {
 		// Login to Dev Environment
 		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
