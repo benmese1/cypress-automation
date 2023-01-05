@@ -66,12 +66,18 @@ describe('Asset Management page general tests', () => {
 		cy.searchAssets('a').get('.text-typography').should('have.text', 'Keep typing...');
 	});
 
-	it('Add Asset button and Asset list header are visible test', () => {
+	it('Add Asset, Export, Upload buttons and Asset list header are visible test', () => {
 		cy.get('.text-3xl')
 			.should('have.text', 'Asset List')
-			.get('[data-testid="global-button-component"]')
-			.last()
-			.should('have.text', 'Add Asset');
+			//Add Asset button visibility check
+			.get('[data-testid="btn-sub-header-action-Add Asset"]')
+			.should('have.text', 'Add Asset')
+			//Export button visibility check
+			.get('[data-testid="btn-sub-header-action-Export"]')
+			.should('have.text', 'Export')
+			//Upload button visibility check
+			.get('[data-testid="btn-sub-header-action-Export"]')
+			.should('have.text', 'Export');
 	});
 
 	it('Pin and unpin column in Asset list table test', () => {
