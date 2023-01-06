@@ -35,7 +35,12 @@ describe('Landing page view test verification', () => {
 	});
 
 	it('Navigate into the map by clicking on "Asset Map" button test', () => {
-		cy.get('[data-testid="dashboard-component-buttons-asset-map"] button').click().url().should('include', 'map');
+		cy.get('[data-testid="dashboard-component-buttons-asset-map"] button')
+			.click()
+			.url()
+			.should('include', 'map')
+			.get('[aria-label="Map"]')
+			.should("be.visible");
 	});
 
 	it('Navigate into the Device Management page by clicking on "My Devices" button test', () => {
