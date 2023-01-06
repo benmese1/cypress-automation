@@ -6,10 +6,10 @@ describe('Landing page view test verification', () => {
 
 	it('verify moving assets', () => {
 		cy.get('[data-testid="dashboard-tile-total-assets"] p')
+			.first()
 			.invoke('text')
-			.then(parseInt)
-			.then((totalAssets) => {
-				cy.log(totalAssets)
+			.then((totalAssetsText) => {
+				const totalAssets = Number(totalAssetsText.replace(",",""))
 				cy.get('[data-testid="active-assets-value"]')
 					.invoke('text')
 					.then(parseFloat)
