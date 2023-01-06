@@ -4,6 +4,19 @@ describe('Landing page view test verification', () => {
 			.waitForLoad();
 	});
 
+	it('verify moving assets', () => {
+		cy.get('[data-testid="dashboard-tile-total-assets"] p')
+			.invoke('text')
+			.then(parseInt)
+			.then((totalAssets) => {
+				cy.log(totalAssets)
+				cy.get('[data-testid="active-assets-value"]')
+					.invoke('text')
+					.then(parseFloat)
+					.should('be.lessThan', totalAssets)
+			})
+	})
+
 	it('verify Landing page for user with first name', () => {
 		loginAsUserWithFirstName();
 		cy.url().should('include', '/dashboard');
