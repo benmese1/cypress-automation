@@ -23,19 +23,18 @@ describe('Landing page view test verification', () => {
 	})
 
 	it('verify Landing page for user with first name', () => {
-		loginAsUserWithFirstName();
 		cy.url().should('include', '/dashboard');
-		cy.contains('Welcome back, James');
+		cy.contains('Welcome back, Dinesh');
 	});
 
 	it('verify that location selector appeared', () => {
-		cy.get('[data-testid="location-selector-input"]').should('be.visible');
+		cy.get('[data-testid="selector-input"]').should('be.visible');
 	});
 
 	it(' Verify search placeholder text test', () => {
-		cy.get('[data-testid="location-selector-input"] input')
+		cy.get('[data-testid="selector-input"] input')
 			.invoke('attr', 'placeholder')
-			.should('equal', 'Search location');
+			.should('equal', 'Find An Asset');
 	});
 
 	it('Navigate into the map by clicking on "Asset Map" button test', () => {
