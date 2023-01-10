@@ -5,15 +5,20 @@ describe('Landing page view test verification', () => {
 	});
 
 	it('verify moving assets', () => {
-		cy.get('[data-testid="dashboard-tile-total-assets"] p')
-			.first()
+		cy.get('[data-testid="dashboard-tile-total-assets-value"]')
 			.invoke('text')
-			.then((totalAssetsText) => {
-				const totalAssets = Number(totalAssetsText.replace(",",""))
+			.then(parseFormattedTextToFloat)
+			.then(totalAssets => {
 				cy.get('[data-testid="active-assets-value"]')
 					.invoke('text')
-					.then(parseFloat)
+					.then(parseFormattedTextToFloat)
 					.should('be.lessThan', totalAssets)
+					.then(movingAssets => {
+						cy.get('[data-testid="inactive-assets-value"]')
+							.invoke('text')
+							.then(parseFormattedTextToFloat)
+							.should('eq', totalAssets - movingAssets)
+					})
 			})
 	})
 
@@ -56,3 +61,8 @@ describe('Landing page view test verification', () => {
 		cy.get('[data-testid="dashboard-tile-total-distance"]').click().url().should('include', 'assets');
 	});
 });
+
+async function parseFormattedTextToFloat (text) {
+	const value = text.match(/(\d|,|\.)+/g)[0]
+	return Number(value.replaceAll(",",""))
+}
