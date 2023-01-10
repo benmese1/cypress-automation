@@ -199,16 +199,20 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
 });
 
 //Method Name :createNewOrganization
-// Used to create a new Organization
-//Params parentorgname,divisioname,name,description,brand,timezone
-Cypress.Commands.add('createNewOrganization', (name, description, brand, timezone) => {
-	cy.xpath("//button[contains(text(),'Create New')]").click();
-	cy.get("[name='name']").type(name);
-	cy.get('textarea[name="description"]').type(description);
-	cy.get("[name='brand']").type(brand);
-	cy.get("[name='time_zones']").click();
+//Used to create a new Organization
+//Params companyname,brand,type,timezone,distancepreference
+Cypress.Commands.add('createNewOrganization', (companyname, brand, type, timezone, distancepref) => {
+	cy.get('[data-testid="btn-sub-header-action-Create New"]').click();
+	cy.get('[data-testid="input-org-name"]').type(companyname);
+	cy.get('[data-testid="input-org-brand"]').click();
+	cy.get('li').contains(brand).click();
+	cy.get('[data-testid="input-org-type"]').click();
+	cy.get('li').contains(type).click();
+	cy.get('[data-testid="input-org-timezone"]').click();
 	cy.get('li').contains(timezone).click();
-	cy.get('.MuiGrid-root > [data-testid="global-button-component"]').click();
+	cy.get('[data-testid="input-org-distance-unit-preference"]').click();
+	cy.get('li').contains(distancepref).click();
+	cy.get('[data-testid="btn-org-form-submit"]').click();
 	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Created Successfully!');
 });
 
