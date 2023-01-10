@@ -16,9 +16,10 @@ describe('Create New Organization management', () => {
 			cy.dashboardMenu('My Organization');
 			cy.createNewOrganization(
 				'SORG' + randomnumber,
-				org[0].suborg.Description,
 				org[0].suborg.Brand,
-				org[0].suborg.Timezone
+				org[0].suborg.Type,
+				org[0].suborg.Timezone,
+				org[0].suborg.DistanceUnitPreference
 			);
 			cy.logout();
 		});

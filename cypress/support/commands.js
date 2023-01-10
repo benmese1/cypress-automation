@@ -199,8 +199,8 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
 });
 
 //Method Name :createNewOrganization
-// Used to create a new Organization
-//Params parentorgname,divisioname,name,description,brand,timezone
+//Used to create a new Organization
+//Params companyname,brand,type,timezone,distancepreference
 Cypress.Commands.add('createNewOrganization', (companyname, brand, type, timezone, distancepref) => {
 	cy.get('[data-testid="btn-sub-header-action-Create New"]').click();
 	cy.get('[data-testid="input-org-name"]').type(companyname);

@@ -3,7 +3,8 @@
 		"suborg": {
 			"Brand": "Phillips",
 			"Type": "Fleet",
-			"Timezone": "Mountain Standard (GMT-7)"
+			"Timezone": "Mountain Standard (GMT-7)",
+			"DistanceUnitPreference": "Miles"
 		}
 	}
 ]
