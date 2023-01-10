@@ -3,16 +3,18 @@ describe('User Management page export verification', () => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
 			cacheSession: false,
 		})
-			.waitForLoad()
-			.get("[aria-label='account of current user']")
+			.waitForLoad();
+		cy.get("[aria-label='account of current user']")
 			.should('be.visible')
 			.dashboardMenu('User Management');
 	});
 
-	it('verify export button is visible and downloading CSV file', () => {
+	it('Verify export button is visible and downloading CSV file', () => {
 		cy.url().should('include', '/user-management');
+		//Verify Export button visibility on the user management 
 		cy.get('[aria-label="Export"]').should('be.visible').click({ force: true });
 		cy.wait(2000);
+		//From Export button verify "Download as CSV" functionality
 		cy.get('[role="menuitem"]')
 			.should('contain.text', 'Download as CSV')
 			.click({ force: true })

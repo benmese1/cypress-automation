@@ -1,18 +1,20 @@
-describe('Organization Management page export verification', () => {
+describe('Organization management page export verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
 			cacheSession: false,
 		})
-			.waitForLoad()
-			.get("[aria-label='account of current user']")
+			.waitForLoad();
+		cy.get("[aria-label='account of current user']")
 			.should('be.visible')
 			.dashboardMenu('My Organization');
 	});
 
-	it('verify export button is visible and downloading CSV file', () => {
+	it('Verify export button is visible and downloading CSV file', () => {
 		cy.url().should('include', '/organizations');
+		//Verify Export button visibility on the org management 
 		cy.get('[data-testid="asset-table-toolbar-export-btn"]').should('be.visible').click({ force: true });
 		cy.wait(2000);
+		//From Export button verify "Download as CSV" functionality
 		cy.get('[role="menuitem"]')
 			.contains('Download as CSV')
 			.click({ force: true })

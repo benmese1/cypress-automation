@@ -3,14 +3,14 @@ describe('Verify User management table view', () => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
 			cacheSession: false,
 		})
-			.waitForLoad()
-			.get("[aria-label='account of current user']")
+			.waitForLoad();
+		cy.get("[aria-label='account of current user']")
 			.should('be.visible')
 			.dashboardMenu('User Management');
 	});
 
 	it('Verify user management table columns visibility in table view', () => {
-		//verifying fields on the org mgmt table
+		//verifying fields on the user mgmt table
 		const columnsHeaderList = [
 			'Company/Sub Company',
 			'Last Name',

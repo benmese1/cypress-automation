@@ -3,8 +3,8 @@ describe('Verify Organization management table view', () => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
 			cacheSession: false,
 		})
-			.waitForLoad()
-			.get("[aria-label='account of current user']")
+			.waitForLoad();
+		cy.get("[aria-label='account of current user']")
 			.should('be.visible')
 			.dashboardMenu('My Organization');
 	});
