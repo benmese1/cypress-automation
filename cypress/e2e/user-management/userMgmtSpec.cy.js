@@ -1,11 +1,11 @@
-describe('Organization management page general tests', () => {
+describe('User management page general tests', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { 
             cacheSession: false 
         })
 			.waitForLoad()
 		    .get("[aria-label='account of current user']").should('be.visible')
-		    .dashboardMenu('My Organization');
+		    .dashboardMenu('User Management');
 	});
 
     it('Verify different buttons visibility on the page above table header', () => {
@@ -23,7 +23,7 @@ describe('Organization management page general tests', () => {
 			.should('be.visible')
 	})
 
-    it('Verify user management table is displayed', () => {
+    it('Verify organization management table is displayed', () => {
 		cy.get('[role="grid"]')
 			.should('be.visible');
 	});
