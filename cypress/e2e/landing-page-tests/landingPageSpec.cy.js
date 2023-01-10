@@ -4,20 +4,37 @@ describe('Landing page view test verification', () => {
 			.waitForLoad();
 	});
 
+	it('verify moving assets', () => {
+		cy.get('[data-testid="dashboard-tile-total-assets-value"]')
+			.invoke('text')
+			.then(parseFormattedTextToFloat)
+			.then(totalAssets => {
+				cy.get('[data-testid="active-assets-value"]')
+					.invoke('text')
+					.then(parseFormattedTextToFloat)
+					.should('be.lessThan', totalAssets)
+					.then(movingAssets => {
+						cy.get('[data-testid="inactive-assets-value"]')
+							.invoke('text')
+							.then(parseFormattedTextToFloat)
+							.should('eq', totalAssets - movingAssets)
+					})
+			})
+	})
+
 	it('verify Landing page for user with first name', () => {
-		loginAsUserWithFirstName();
 		cy.url().should('include', '/dashboard');
-		cy.contains('Welcome back, James');
+		cy.contains('Welcome back, Dinesh');
 	});
 
 	it('verify that location selector appeared', () => {
-		cy.get('[data-testid="location-selector-input"]').should('be.visible');
+		cy.get('[data-testid="selector-input"]').should('be.visible');
 	});
 
 	it(' Verify search placeholder text test', () => {
-		cy.get('[data-testid="location-selector-input"] input')
+		cy.get('[data-testid="selector-input"] input')
 			.invoke('attr', 'placeholder')
-			.should('equal', 'Search location');
+			.should('equal', 'Find An Asset');
 	});
 
 	it('Navigate into the map by clicking on "Asset Map" button test', () => {
@@ -48,3 +65,8 @@ describe('Landing page view test verification', () => {
 		cy.get('[data-testid="dashboard-tile-total-distance"]').click().url().should('include', 'assets');
 	});
 });
+
+async function parseFormattedTextToFloat (text) {
+	const value = text.match(/(\d|,|\.)+/g)[0]
+	return Number(value.replaceAll(",",""))
+}
