@@ -23,3 +23,4 @@ const clickFirstRow = () => {
 const clickOutside = () => {
 	cy.get('body').click(0, 0);
 };
+
