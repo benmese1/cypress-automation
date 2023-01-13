@@ -1,8 +1,8 @@
-const sizes = ['iphone-8', 'ipad-2', [1170, 2532], 'samsung-note9'];
+const sizes = ['iphone-8','ipad-2', [1170, 2532], 'samsung-note9'];
 
 describe('Mobile Organization Management View verification', () => {
 	sizes.forEach((size) => {
-		it(`Organization management table and filed validations on ${size} screen`, () => {
+		it(`Organization management table columns visibility on ${size} screen`, () => {
 			if (Cypress._.isArray(size)) {
 				cy.viewport(size[0], size[1]);
 			} else {
@@ -22,17 +22,16 @@ describe('Mobile Organization Management View verification', () => {
 		 */
 		const validatePageView = () => {
 			cy.get('[data-testid="page"]').should('be.visible').contains('My Organization');
-
-			// Validate buttons
-			// Upload button visible
-			cy.get('[data-testid="global-button-component"]').contains('Upload').should('be.visible');
-
-			// Export button visible
-			cy.get('[data-testid="global-button-component"]').contains('Export').should('be.visible');
-
-			// Create New button visible
-			cy.get('[data-testid="global-button-component"]').contains('Create New').should('be.visible');
-
+			// Verify Premium Columns button
+			cy.get('[data-testid="asset-table-toolbar-columns-btn"]').should('be.visible');
+			// Verify Filters button
+			cy.get('[data-testid="asset-table-toolbar-filter-btn"]').should('be.visible');
+			// Verify Density button
+			cy.get('[data-testid="asset-table-toolbar-density-btn"]').should('be.visible');
+			// Verify Export button
+			cy.get('[data-testid="asset-table-toolbar-export-btn"]').should('be.visible');
+			//Verify Create New button visibility
+			cy.get('[data-testid="btn-sub-header-action-Create New"]').should('be.visible');
 			// Validate table
 			// Validate Organization name present on the table
 			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
@@ -40,10 +39,10 @@ describe('Mobile Organization Management View verification', () => {
 				.get('[role="columnheader"][data-field="name"]')
 				.should('be.visible');
 
-			// Validate Created field name present on the table
+			// Validate Distance unit prefence field name present on the table
 			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
 				.scrollTo('topRight', { ensureScrollable: false })
-				.get('[role="columnheader"][data-field="added_date"]')
+				.get('[role="columnheader"][data-field="distance_unit_preference"]')
 				.should('be.visible');
 		};
 
@@ -51,9 +50,9 @@ describe('Mobile Organization Management View verification', () => {
 		 * Validate Create new button and cancel the dialog once create new drawer opened
 		 */
 		const validateCreateNew = () => {
-			cy.get('[data-testid="global-button-component"]').contains('Create New').click();
-			cy.get('[role="dialog"]').contains('Create New').should('be.visible');
-			cy.get('[data-testid="global-text-btn-component"]').contains('Cancel').click();
+			cy.get('[data-testid="btn-sub-header-action-Create New"]').click();
+			cy.get('[data-testid="text-style-wrapper"]').contains('Create Organization').should('be.visible');
+			cy.get('[data-testid="btn-org-form-cancel"]').contains('Cancel').click();
 			cy.logout();
 		};
 	});
