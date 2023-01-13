@@ -7,6 +7,15 @@
 			"Timezone": "Mountain Standard (GMT-7)",
 			"Role": "Customer Service",
 			"Phonenumber": "9876543210"
+		},
+		"edituser": {
+			"UserName": "jayfreshco",
+			"FirstName": "MuserJr",
+			"LastName": "phillip",
+			"Parentorg": "FEDEX",
+			"Timezone": "Mountain Standard (GMT-7)",
+			"Role": "Customer Service",
+			"Phonenumber": "9876543211"
 		}
 	}
 ]
