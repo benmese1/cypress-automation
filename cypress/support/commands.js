@@ -235,6 +235,18 @@ Cypress.Commands.add('createNewUser', (lastName, firstName, name, parentorg, ema
 	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('User Created Successfully!');
 });
 
+//Method Name :editUser
+//Used to edit a given user
+//Params name, lastName, firstName, phonenumber
+Cypress.Commands.add('editUser', (name, lastName, firstName, phonenumber) => {
+	cy.xpath('//div[text()="' + name + '"]').click();
+	cy.get('[data-testid="form-control-input-lastName"]').clear().type(lastName);
+	cy.get('[data-testid="form-control-input-firstName"]').clear().type(firstName);
+	cy.get('[data-testid="form-control-input-phoneNumber"]').clear().type(phonenumber);
+	cy.get('[data-testid="global-button-component"]').click();
+	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('User Updated Successfully!');
+});
+
 Cypress.Commands.add('clickOutside', () => {
 	cy.get('body').click(0, 0);
 });
