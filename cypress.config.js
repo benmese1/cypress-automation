@@ -29,6 +29,9 @@ export default defineConfig({
 		setupNodeEvents(on, config) {
 			const file = config.env.fileConfig || 'dev';
 
+			const getCompareSnapshotsPlugin = require('cypress-image-diff-js/dist/plugin');
+			getCompareSnapshotsPlugin(on, config);
+
 			return getConfigurationByFile(file);
 		},
 	},

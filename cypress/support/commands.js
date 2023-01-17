@@ -251,6 +251,10 @@ Cypress.Commands.add('clickOutside', () => {
 	cy.get('body').click(0, 0);
 });
 
+const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
+
+compareSnapshotCommand();
+
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
