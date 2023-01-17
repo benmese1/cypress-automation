@@ -1,3 +1,6 @@
+import assets from '../../fixtures/createasset.json';
+let prefix = Math.floor(100000 + Math.random() * 900000);
+
 describe('Asset Management page search tests', {retries: 0}, () => {
     beforeEach(() => {
         cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {cacheSession: false})
@@ -5,18 +8,31 @@ describe('Asset Management page search tests', {retries: 0}, () => {
             .dashboardMenu('Asset List');
     });
 
-    it('verify probably based search results for assets table', () => {
-        const assetName = 'Test Asset 44'
-        cy.get('[data-testid="items-list-search-input"]')
-            .should('be.visible')
-            .type(assetName)
+    it('verify search results for assets table', () => {
 
+        let assetNicknameToSearch = assets[0].asset.AssetNickname + prefix;
+        
+        // Create new asset for searching
+        cy.createNewAsset(assets[0].asset.CompanyName,
+        assets[0].asset.AssetId + prefix,
+        assetNicknameToSearch,
+        prefix, 
+        assets[0].asset.AssetType);
+
+        // Wait for 'Assets' table loading
+        cy.get("[role='cell'][data-field='name'] div")
+        .should("have.length.gte", 1)
+        
+        // Search created asset
+        cy.searchAssets(assetNicknameToSearch)
+
+        // Select 'Asset Nickname'
         showColumn('Asset Nickname')
 
-        // verify that results are probably based search
+        // Verify search result in 'Assets' table
         cy.get("[role='cell'][data-field='name'] div")
             .each(($item) => {
-                cy.wrap($item).should('contain.text', assetName);
+                cy.wrap($item).should('contain.text', assetNicknameToSearch);
             });
     });
 });
