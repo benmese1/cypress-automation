@@ -1,6 +1,7 @@
 import { defineConfig } from 'cypress';
 import * as path from 'path';
 import fs from 'fs-extra';
+import getCompareSnapshotsPlugin from 'cypress-image-diff-js/dist/plugin';
 
 function getConfigurationByFile(file) {
 	const pathToConfigFile = path.resolve('..', 'connect1-qa/cypress/config', `${file}.json`);
@@ -27,11 +28,9 @@ export default defineConfig({
 	e2e: {
 		experimentalSessionAndOrigin: true,
 		setupNodeEvents(on, config) {
-			const file = config.env.fileConfig || 'dev';
-
-			const getCompareSnapshotsPlugin = require('cypress-image-diff-js/dist/plugin');
 			getCompareSnapshotsPlugin(on, config);
 
+			const file = config.env.fileConfig || 'dev';
 			return getConfigurationByFile(file);
 		},
 	},
