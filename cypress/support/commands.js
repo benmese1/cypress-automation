@@ -114,10 +114,6 @@ Cypress.Commands.add('logout', () => {
 	cy.get('[data-testid="AccountCircleIcon"]').should('be.visible').click().wait(100).get('li[role="menuitem"]').click();
 });
 
-Cypress.Commands.add('createJSON', (fileName) => {
-	cy.writeFile('cypress/data/files/' + fileName, cy.fixture('chassis'));
-});
-
 Cypress.Commands.add('assertFilterDates', (filter) => {
 	cy.get('[data-timestamp*="Z"]').each(($e) => {
 		cy.wrap($e)
@@ -174,13 +170,20 @@ Cypress.Commands.add('searchLocation', (location, isSubmit) => {
 	if (typeof isSubmit === 'undefined') {
 		isSubmit = true;
 	}
-	cy.get('[data-testid="location-button"]')
-		.click()
-		.get('[data-testid="location-selector"]')
-		.type('{selectall}{backspace}')
-		.type(location);
+	cy.get('[data-testid="location-button"]').click({ force: true });
+	cy.wait(1000);
 	if (isSubmit) {
-		cy.get('[data-testid="location-selector"]').type('{enter}').waitForLoad();
+		cy.get('[data-testid="filter-bar-location-selector-wrapper"] button').type(
+			location + '{enter}',
+			{ delay: 100 },
+			{ force: true }
+		);
+	} else {
+		cy.get('[data-testid="filter-bar-location-selector-wrapper"] button').type(
+			location,
+			{ delay: 100 },
+			{ force: true }
+		);
 	}
 });
 
@@ -251,8 +254,15 @@ Cypress.Commands.add('clickOutside', () => {
 	cy.get('body').click(0, 0);
 });
 
-const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
+// a way to set your base screenshot in your test
+// https://docs.cypress.io/api/commands/screenshot
+Cypress.Commands.add('setBaseScreenshot', (nameOfFile) => {
+	cy.screenshot('.cypress/screenshots/base/' + nameOfFile);
+});
 
+// compares a screenshot to a base screenshot
+// https://www.npmjs.com/package/cypress-visual-regression
+const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
 compareSnapshotCommand();
 
 //

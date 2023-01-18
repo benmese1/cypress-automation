@@ -1,7 +1,7 @@
 import { defineConfig } from 'cypress';
 import * as path from 'path';
 import fs from 'fs-extra';
-import getCompareSnapshotsPlugin from 'cypress-image-diff-js/dist/plugin';
+import getCompareSnapshotsPlugin from 'cypress-visual-regression/dist/plugin';
 
 function getConfigurationByFile(file) {
 	const pathToConfigFile = path.resolve('..', 'connect1-qa/cypress/config', `${file}.json`);
@@ -12,7 +12,6 @@ function getConfigurationByFile(file) {
 export default defineConfig({
 	chromeWebSecurity: false,
 	fixturesFolder: 'cypress/fixtures',
-	screenshotsFolder: 'cypress/screenshots',
 	videosFolder: 'cypress/videos',
 	downloadsFolder: 'cypress/downloads',
 	reporter: 'junit',
@@ -21,16 +20,12 @@ export default defineConfig({
 		mochaFile: 'results/test-results.xml',
 		testCaseSwitchClassnameAndName: false,
 	},
-	retries: {
-		runMode: 2,
-		openMode: 2,
-	},
 	e2e: {
 		experimentalSessionAndOrigin: true,
 		setupNodeEvents(on, config) {
 			getCompareSnapshotsPlugin(on, config);
 
-			const file = config.env.fileConfig || 'dev';
+			const file = config.env.fileConfig;
 			return getConfigurationByFile(file);
 		},
 	},
