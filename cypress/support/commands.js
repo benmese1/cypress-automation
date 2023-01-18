@@ -216,6 +216,25 @@ Cypress.Commands.add('createNewOrganization', (companyname, brand, type, timezon
 	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Created Successfully!');
 });
 
+//Method Name :createNewAsset
+//Used to create a new Asset
+//Params - mandatory fields companyname, assetId, assetNickname, deviceId, assetType
+Cypress.Commands.add('createNewAsset', (companyName, assetId, assetNickname, deviceId, assetType) => {
+	cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
+
+	cy.get('[data-testid="autocomplete-customer_orgs_id"]').click().type(companyName)
+	cy.get('li').contains(companyName).click();
+
+	cy.get('[data-testid="form-control-input-asset_id"]').type(assetId);
+	cy.get('[data-testid="form-control-input-name"]').type(assetNickname);
+	cy.get('[data-testid="form-control-input-imei"]').type(deviceId);
+	cy.get('[data-testid="autocomplete-category"]').click();
+	cy.get('li').contains(assetType).click();
+
+	cy.get('[data-testid="global-button-component"]').click();
+	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Asset Created Successfully!');
+});
+
 //Method Name :createNewUser
 //Used to create a new User
 //Params Company/SubCompany,lastName,firstName,username,email,phonenumber,role
