@@ -7,7 +7,7 @@ describe('Asset Management page export verification', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('verify export button is visible and downloading CSV file', { retries: 0 }, () => {
+	it('verify export button is visible and downloading CSV file', () => {
 		cy.url()
 			.should('include', '/assets')
 			.contains('button', 'Export')

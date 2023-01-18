@@ -1,4 +1,4 @@
-describe('Asset Management page -- details view verification', { retries: 0 }, () => {
+describe('Asset Management page -- details view verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
 			.waitForLoad()
@@ -19,4 +19,3 @@ describe('Asset Management page -- details view verification', { retries: 0 }, (
 const clickFirstRow = () => {
 	cy.get('[role="grid"] [data-rowindex="0"]').click();
 };
-

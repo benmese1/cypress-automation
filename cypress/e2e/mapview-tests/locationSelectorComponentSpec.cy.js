@@ -1,6 +1,6 @@
 describe('Location Selector Component verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
 		cy.waitForLoad();
 	});
 

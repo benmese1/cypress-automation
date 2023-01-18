@@ -114,10 +114,6 @@ Cypress.Commands.add('logout', () => {
 	cy.get('[data-testid="AccountCircleIcon"]').should('be.visible').click().wait(100).get('li[role="menuitem"]').click();
 });
 
-Cypress.Commands.add('createJSON', (fileName) => {
-	cy.writeFile('cypress/data/files/' + fileName, cy.fixture('chassis'));
-});
-
 Cypress.Commands.add('assertFilterDates', (filter) => {
 	cy.get('[data-timestamp*="Z"]').each(($e) => {
 		cy.wrap($e)
@@ -174,13 +170,23 @@ Cypress.Commands.add('searchLocation', (location, isSubmit) => {
 	if (typeof isSubmit === 'undefined') {
 		isSubmit = true;
 	}
-	cy.get('[data-testid="location-button"]')
-		.click()
-		.get('[data-testid="location-selector"]')
-		.type('{selectall}{backspace}')
-		.type(location);
+	cy.get('[data-testid="location-button"]').click({ force: true });
+	cy.wait(1000);
 	if (isSubmit) {
-		cy.get('[data-testid="location-selector"]').type('{enter}').waitForLoad();
+		cy.get('[data-testid="filter-bar-location-selector-wrapper"] button').type(
+			location + '{enter}',
+			{ delay: 100 },
+			{ force: true }
+		);
+		// the map animation when you change location can take up to 6 seconds zooming out from one location
+		// and zooming in to another. This wait ensures the zoom is complete before other actions are taken.
+		cy.wait(6000);
+	} else {
+		cy.get('[data-testid="filter-bar-location-selector-wrapper"] button').type(
+			location,
+			{ delay: 100 },
+			{ force: true }
+		);
 	}
 });
 
@@ -222,7 +228,7 @@ Cypress.Commands.add('createNewOrganization', (companyname, brand, type, timezon
 Cypress.Commands.add('createNewAsset', (companyName, assetId, assetNickname, deviceId, assetType) => {
 	cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
 
-	cy.get('[data-testid="autocomplete-customer_orgs_id"]').click().type(`${companyName}{enter}`)
+	cy.get('[data-testid="autocomplete-customer_orgs_id"]').click().type(`${companyName}{enter}`);
 	cy.get('li').contains(companyName).click();
 
 	cy.get('[data-testid="form-control-input-asset_id"]').type(assetId);
@@ -239,10 +245,7 @@ Cypress.Commands.add('createNewAsset', (companyName, assetId, assetNickname, dev
 //Used to remove an Asset
 //Params - assetNickname
 Cypress.Commands.add('removeAsset', (assetNickname) => {
-
-	cy.searchAssets(assetNickname)
-	.get('[role="grid"] [data-rowindex="0"]')
-	.click()
+	cy.searchAssets(assetNickname).get('[role="grid"] [data-rowindex="0"]').click();
 
 	cy.get('[data-testid="details-drawer-remove-btn"]').click();
 
@@ -283,6 +286,14 @@ Cypress.Commands.add('editUser', (name, lastName, firstName, phonenumber) => {
 Cypress.Commands.add('clickOutside', () => {
 	cy.get('body').click(0, 0);
 });
+
+// https://reflect.run/articles/comparing-screenshots-in-cypress/
+// https://www.npmjs.com/package/cypress-image-diff-js?activeTab=readme
+// takes and compares a snapshot to the snapshot in your base folder
+// cypress has a default screenshot funtionality built in, if all you want to do is take a screenshot
+// https://docs.cypress.io/api/commands/screenshot
+const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
+compareSnapshotCommand();
 
 //
 // -- This is a child command --

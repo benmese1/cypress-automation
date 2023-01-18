@@ -5,6 +5,7 @@
 		"password": "W2iM$a!@,%y=W=z",
 		"client_id": "584mrs4de25a4iqok485b6vhnc",
 		"TESTusername": "test1",
-		"TESTpassword": "Test@!@345"
+		"TESTpassword": "Test@!@345",
+		"screenshotsFolder": "./cypress/screenshots"
 	}
 }
