@@ -1,7 +1,7 @@
 import { defineConfig } from 'cypress';
 import * as path from 'path';
 import fs from 'fs-extra';
-import getCompareSnapshotsPlugin from 'cypress-visual-regression/dist/plugin';
+import getCompareSnapshotsPlugin from 'cypress-image-diff-js/dist/plugin';
 
 function getConfigurationByFile(file) {
 	const pathToConfigFile = path.resolve('..', 'connect1-qa/cypress/config', `${file}.json`);

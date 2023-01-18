@@ -6,12 +6,6 @@
 		"client_id": "2652adm3ps89eqhr5ap54kd85i",
 		"TESTusername": "test1",
 		"TESTpassword": "Test@!@345",
-		"screenshotsFolder": "./cypress/screenshots",
-		"trashAssetsBeforeRuns": true,
-		"video": false,
-		"SNAPSHOT_BASE_DIRECTORY": "./cypress/screenshots/base",
-		"SNAPSHOT_DIFF_DIRECTORY": "./cypress/screenshots/diff",
-		"ALWAYS_GENERATE_DIFF": false,
-  		"ALLOW_VISUAL_REGRESSION_TO_FAIL": true
+		"screenshotsFolder": "./cypress/screenshots"
 	}
 }

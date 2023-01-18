@@ -260,9 +260,10 @@ Cypress.Commands.add('setBaseScreenshot', (nameOfFile) => {
 	cy.screenshot('.cypress/screenshots/base/' + nameOfFile);
 });
 
-// compares a screenshot to a base screenshot
-// https://www.npmjs.com/package/cypress-visual-regression
-const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
+// https://reflect.run/articles/comparing-screenshots-in-cypress/
+// https://www.npmjs.com/package/cypress-image-diff-js?activeTab=readme
+// takes and compares a snapshot to the snapshot in your base folder
+const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
 compareSnapshotCommand();
 
 //
