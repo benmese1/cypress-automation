@@ -185,6 +185,9 @@ Cypress.Commands.add('searchLocation', (location, isSubmit) => {
 			{ force: true }
 		);
 	}
+	// the map animation when you change location can take up to 6 seconds zooming our from one location
+	// and zooming in to another. This wait ensures the zoom is complete before other actions are taken.
+	cy.wait(6000);
 });
 
 /**
@@ -254,15 +257,11 @@ Cypress.Commands.add('clickOutside', () => {
 	cy.get('body').click(0, 0);
 });
 
-// a way to set your base screenshot in your test
-// https://docs.cypress.io/api/commands/screenshot
-Cypress.Commands.add('setBaseScreenshot', (nameOfFile) => {
-	cy.screenshot('.cypress/screenshots/base/' + nameOfFile);
-});
-
 // https://reflect.run/articles/comparing-screenshots-in-cypress/
 // https://www.npmjs.com/package/cypress-image-diff-js?activeTab=readme
 // takes and compares a snapshot to the snapshot in your base folder
+// cypress has a default screenshot funtionality built in, if all you want to do is take a screenshot
+// https://docs.cypress.io/api/commands/screenshot
 const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
 compareSnapshotCommand();
 
