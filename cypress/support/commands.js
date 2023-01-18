@@ -178,6 +178,9 @@ Cypress.Commands.add('searchLocation', (location, isSubmit) => {
 			{ delay: 100 },
 			{ force: true }
 		);
+		// the map animation when you change location can take up to 6 seconds zooming out from one location
+		// and zooming in to another. This wait ensures the zoom is complete before other actions are taken.
+		cy.wait(6000);
 	} else {
 		cy.get('[data-testid="filter-bar-location-selector-wrapper"] button').type(
 			location,
@@ -185,9 +188,6 @@ Cypress.Commands.add('searchLocation', (location, isSubmit) => {
 			{ force: true }
 		);
 	}
-	// the map animation when you change location can take up to 6 seconds zooming our from one location
-	// and zooming in to another. This wait ensures the zoom is complete before other actions are taken.
-	cy.wait(6000);
 });
 
 /**
@@ -228,7 +228,7 @@ Cypress.Commands.add('createNewOrganization', (companyname, brand, type, timezon
 Cypress.Commands.add('createNewAsset', (companyName, assetId, assetNickname, deviceId, assetType) => {
 	cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
 
-	cy.get('[data-testid="autocomplete-customer_orgs_id"]').click().type(`${companyName}{enter}`)
+	cy.get('[data-testid="autocomplete-customer_orgs_id"]').click().type(`${companyName}{enter}`);
 	cy.get('li').contains(companyName).click();
 
 	cy.get('[data-testid="form-control-input-asset_id"]').type(assetId);
@@ -245,10 +245,7 @@ Cypress.Commands.add('createNewAsset', (companyName, assetId, assetNickname, dev
 //Used to remove an Asset
 //Params - assetNickname
 Cypress.Commands.add('removeAsset', (assetNickname) => {
-
-	cy.searchAssets(assetNickname)
-	.get('[role="grid"] [data-rowindex="0"]')
-	.click()
+	cy.searchAssets(assetNickname).get('[role="grid"] [data-rowindex="0"]').click();
 
 	cy.get('[data-testid="details-drawer-remove-btn"]').click();
 

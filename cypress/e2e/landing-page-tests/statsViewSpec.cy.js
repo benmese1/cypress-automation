@@ -1,4 +1,4 @@
-describe('Landing stats view test verification', {retries: 0}, () => {
+describe('Landing stats view test verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
 		cy.waitForLoad();

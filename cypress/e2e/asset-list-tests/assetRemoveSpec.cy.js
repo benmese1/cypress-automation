@@ -1,43 +1,37 @@
 import assets from '../../fixtures/createasset.json';
 let prefix = Math.floor(100000 + Math.random() * 900000);
 
-describe('Asset Management removal tests', {retries: 0}, () => {
-    beforeEach( () => {
-        cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {cacheSession: false})
-            .waitForLoad()
-            .dashboardMenu('Asset List');
-    });
+describe('Asset Management removal tests', () => {
+	beforeEach(() => {
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+			.waitForLoad()
+			.dashboardMenu('Asset List');
+	});
 
-    it('Removed asset can`t be found in assets table', () => {
+	it('Removed asset can`t be found in assets table', () => {
+		let assetModel = assets[0].asset;
+		let assetNickname = assetModel.AssetNickname + prefix;
 
-        let assetModel = assets[0].asset;
-        let assetNickname =  assetModel.AssetNickname + prefix;
-        
-        // Create new asset for removing
-        cy.createNewAsset(assetModel.CompanyName,
-        assetModel.AssetId + prefix,
-        assetNickname,
-        prefix, 
-        assetModel.AssetType);
+		// Create new asset for removing
+		cy.createNewAsset(assetModel.CompanyName, assetModel.AssetId + prefix, assetNickname, prefix, assetModel.AssetType);
 
-        // Wait for 'Assets' table loading
-        getAssetListTableRow().should("have.length.gte", 1);
-        
-        // Search created asset and remove it
-        cy.removeAsset(assetNickname);
+		// Wait for 'Assets' table loading
+		getAssetListTableRow().should('have.length.gte', 1);
 
-        //Wait for 'Asset' table update
-        getAssetListTableRow().should("have.length", 0);
-        getAssetListTableRow().should("have.length.gte", 1);
+		// Search created asset and remove it
+		cy.removeAsset(assetNickname);
 
-         // Search removed asset
-         cy.searchAssets(assetNickname);
+		//Wait for 'Asset' table update
+		getAssetListTableRow().should('have.length', 0);
+		getAssetListTableRow().should('have.length.gte', 1);
 
-         getAssetListTableRow().should("have.length", 0);
-    });
-    
+		// Search removed asset
+		cy.searchAssets(assetNickname);
+
+		getAssetListTableRow().should('have.length', 0);
+	});
 });
 
 function getAssetListTableRow() {
-    return cy.get(".MuiDataGrid-row");
+	return cy.get('.MuiDataGrid-row');
 }
