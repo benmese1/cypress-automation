@@ -1,20 +1,16 @@
+import assets from '../../fixtures/createasset.json';
 let prefix = Math.floor(100000 + Math.random() * 900000);
 
 describe('Asset Management removal tests', {retries: 0}, () => {
-    beforeEach(function () {
-
-        cy.fixture('createasset').then((assets) => {
-            this.assets=assets
-         })
-
+    beforeEach( () => {
         cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {cacheSession: false})
             .waitForLoad()
             .dashboardMenu('Asset List');
     });
 
-    it('Removed asset can`t be found in assets table', function () {
+    it('Removed asset can`t be found in assets table', () => {
 
-        let assetModel = this.assets[0].asset;
+        let assetModel = assets[0].asset;
         let assetNickname =  assetModel.AssetNickname + prefix;
         
         // Create new asset for removing
