@@ -222,7 +222,7 @@ Cypress.Commands.add('createNewOrganization', (companyname, brand, type, timezon
 Cypress.Commands.add('createNewAsset', (companyName, assetId, assetNickname, deviceId, assetType) => {
 	cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
 
-	cy.get('[data-testid="autocomplete-customer_orgs_id"]').click().type(`${companyName}{enter}`)
+	cy.get('[data-testid="autocomplete-customer_orgs_id"]').click().type(companyName)
 	cy.get('li').contains(companyName).click();
 
 	cy.get('[data-testid="form-control-input-asset_id"]').type(assetId);
