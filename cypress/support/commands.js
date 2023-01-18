@@ -24,6 +24,7 @@ Cypress.Commands.add('openAssetsList', () => {
 		.get('.MuiDataGrid-row', { timeout: 30000 })
 		.should('be.visible');
 });
+
 Cypress.Commands.add('openDevices', () => {
 	cy.get('[data-testid="header"] [role="button"]')
 		.click('left')
@@ -64,7 +65,7 @@ Cypress.Commands.add('unpinColumn', (columnName) => {
 });
 
 Cypress.Commands.add('searchAssets', (searchCriteria) => {
-	cy.get("input[placeholder='Search']").should('be.visible').type(searchCriteria).wait(1000);
+	cy.get("input[placeholder='Search']").should('be.visible').clear().type(searchCriteria).wait(1000);
 });
 
 Cypress.Commands.add('searchDevices', (searchCriteria) => {
@@ -92,7 +93,6 @@ Cypress.Commands.add('compareText', () => {
 });
 
 //Click on the Dashboard menu
-
 Cypress.Commands.add('dashboardMenu', (menu) => {
 	const dashboardMenu = ['Dashboard', 'Asset Map', 'Asset List', 'Devices', 'My Organization', 'User Management'];
 	cy.get('[data-testid="header"] [role="button"]')
@@ -222,7 +222,7 @@ Cypress.Commands.add('createNewOrganization', (companyname, brand, type, timezon
 Cypress.Commands.add('createNewAsset', (companyName, assetId, assetNickname, deviceId, assetType) => {
 	cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
 
-	cy.get('[data-testid="autocomplete-customer_orgs_id"]').click().type(companyName)
+	cy.get('[data-testid="autocomplete-customer_orgs_id"]').click().type(`${companyName}{enter}`)
 	cy.get('li').contains(companyName).click();
 
 	cy.get('[data-testid="form-control-input-asset_id"]').type(assetId);
@@ -233,6 +233,20 @@ Cypress.Commands.add('createNewAsset', (companyName, assetId, assetNickname, dev
 
 	cy.get('[data-testid="global-button-component"]').click();
 	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Asset Created Successfully!');
+});
+
+//Method Name :removeAsset
+//Used to remove an Asset
+//Params - assetNickname
+Cypress.Commands.add('removeAsset', (assetNickname) => {
+
+	cy.searchAssets(assetNickname)
+	.get('[role="grid"] [data-rowindex="0"]')
+	.click()
+
+	cy.get('[data-testid="details-drawer-remove-btn"]').click();
+
+	cy.get('[data-testid="delete-confirmation-dialog-remove-btn"]').should('be.visible').click();
 });
 
 //Method Name :createNewUser
