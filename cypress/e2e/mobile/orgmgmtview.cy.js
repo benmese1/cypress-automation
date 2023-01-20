@@ -36,14 +36,14 @@ describe('Mobile Organization Management View verification', () => {
 			// Validate table
 			// Validate Organization name present on the table
 			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
-				.scrollTo('topLeft', { ensureScrollable: false })
-				.get('[role="columnheader"][data-field="name"]')
+				.scrollTo('topLeft', { ensureScrollable: false });
+			cy.get('[role="columnheader"][data-field="name"]')
 				.should('be.visible');
 
 			// Validate Distance unit prefence field name present on the table
 			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
-				.scrollTo('topRight', { ensureScrollable: false })
-				.get('[role="columnheader"][data-field="distance_unit_preference"]')
+				.scrollTo('topRight', { ensureScrollable: false });
+			cy.get('[role="columnheader"][data-field="distance_unit_preference"]')
 				.should('be.visible');
 		};
 

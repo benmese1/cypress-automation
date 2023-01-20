@@ -36,14 +36,14 @@ describe('Mobile User Management View verification', () => {
 			// Validate table
 			// Validate Company/Sub-company name present on the table
 			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
-				.scrollTo('topLeft', { ensureScrollable: false })
-				.get('[data-testid="column-header-company/sub-company"]')
+				.scrollTo('topLeft', { ensureScrollable: false });
+			cy.get('[data-testid="column-header-company/sub-company"]')
 				.should('be.visible');
 
 			// Validate Updated date field name present on the table
 			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
-				.scrollTo('topRight', { ensureScrollable: false })
-				.get('[data-testid="column-header-updated-date"]')
+				.scrollTo('topRight', { ensureScrollable: false });
+			cy.get('[data-testid="column-header-updated-date"]')
 				.should('be.visible');
 		};
 
