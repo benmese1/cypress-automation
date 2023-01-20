@@ -2,16 +2,15 @@ describe('User Management page export verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
 			cacheSession: false,
-		})
-			.waitForLoad();
-		cy.get("[aria-label='account of current user']")
-			.should('be.visible')
-			.dashboardMenu('User Management');
+		}).waitForLoad();
+		cy.get("[aria-label='account of current user']").should('be.visible');
+		// Click User Management
+		cy.dashboardMenu('User Management');
 	});
 
 	it('Verify export button is visible and downloading CSV file', () => {
 		cy.url().should('include', '/user-management');
-		//Verify Export button visibility on the user management 
+		//Verify Export button visibility on the user management
 		cy.get('[aria-label="Export"]').should('be.visible').click({ force: true });
 		cy.wait(2000);
 		//From Export button verify "Download as CSV" functionality

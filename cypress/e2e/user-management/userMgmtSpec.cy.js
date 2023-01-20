@@ -2,11 +2,10 @@ describe('User management page general tests', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
 			cacheSession: false,
-		})
-			.waitForLoad();
-		cy.get("[aria-label='account of current user']")
-			.should('be.visible')
-			.dashboardMenu('User Management');
+		}).waitForLoad();
+		cy.get("[aria-label='account of current user']").should('be.visible');
+		// Click User Management
+		cy.dashboardMenu('User Management');
 	});
 
 	it('Verify different buttons visibility on the page above table header', () => {

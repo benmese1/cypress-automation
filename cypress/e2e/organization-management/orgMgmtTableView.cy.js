@@ -2,11 +2,10 @@ describe('Verify Organization management table view', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
 			cacheSession: false,
-		})
-			.waitForLoad();
-		cy.get("[aria-label='account of current user']")
-			.should('be.visible')
-			.dashboardMenu('My Organization');
+		}).waitForLoad();
+		cy.get("[aria-label='account of current user']").should('be.visible');
+		// Click Organization Management
+		cy.dashboardMenu('My Organization');
 	});
 
 	it('Verify organization management table columns visibility in table view', () => {
