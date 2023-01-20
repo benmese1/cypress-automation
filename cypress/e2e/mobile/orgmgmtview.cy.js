@@ -12,7 +12,9 @@ describe('Mobile Organization Management View verification', () => {
 			cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
 				cacheSession: false,
 			}).waitForLoad();
-			cy.get("[aria-label='account of current user']").should('be.visible').dashboardMenu('My Organization');
+			cy.get("[aria-label='account of current user']").should('be.visible');
+			// Click Organization Management
+			cy.dashboardMenu('My Organization');
 			validatePageView();
 			validateCreateNew();
 

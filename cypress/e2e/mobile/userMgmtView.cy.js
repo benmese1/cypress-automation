@@ -12,7 +12,9 @@ describe('Mobile User Management View verification', () => {
 			cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
 				cacheSession: false,
 			}).waitForLoad();
-			cy.get("[aria-label='account of current user']").should('be.visible').dashboardMenu('User Management');
+			cy.get("[aria-label='account of current user']").should('be.visible');
+			// Click User Management
+			cy.dashboardMenu('User Management');
 			validatePageView();
 			validateCreateNew();
 
