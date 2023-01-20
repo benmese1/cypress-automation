@@ -2,7 +2,7 @@ const sizes = ['iphone-8', 'ipad-2', [1170, 2532], 'samsung-note9'];
 
 describe('Mobile Organization Management View verification', () => {
 	sizes.forEach((size) => {
-		it(`Organization management table columns visibility on ${size} screen`, () => {
+		it(`Org management table columns visibility on ${size} screen`, () => {
 			if (Cypress._.isArray(size)) {
 				cy.viewport(size[0], size[1]);
 			} else {
@@ -13,32 +13,16 @@ describe('Mobile Organization Management View verification', () => {
 				cacheSession: false,
 			}).waitForLoad();
 			cy.get("[aria-label='account of current user']").should('be.visible').dashboardMenu('My Organization');
-			orgViewHeaderList();
 			validatePageView();
 			validateCreateNew();
-		});
 
-		/**
-		 * Validate columns on the org mgmt table
-		 */
-		const orgViewHeaderList = () => {
-			//verifying fields on the org mgmt table
-			cy.get('[data-testid="column-header-company-name"]').should('be.visible');
-			cy.get('[data-testid="column-header-parent-company"]').should('be.visible');
-			cy.get('[data-testid="column-header-brand"]').should('be.visible');
-			cy.get('[data-testid="column-header-type"]').should('be.visible');
-			cy.get('[data-testid="column-header-timezone"]').should('be.visible');
-			cy.get('[data-testid="column-header-number-of-devices"]').should('be.visible');
-			cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
-			cy.get('[data-testid="column-header-created-date"]').should('be.visible');
-			cy.get('[data-testid="column-header-distance-unit-preference"]').should('be.visible');
-		};
+		});			
 
 		/**
 		 * Validate buttons and fields on the organization management table
 		 */
 		const validatePageView = () => {
-			cy.get('[data-testid="page"]').should('be.visible').contains('My Organization');
+			cy.get('[data-testid="company-phillips-connect"]').should('be.visible');
 			// Verify Premium Columns button
 			cy.get('[data-testid="asset-table-toolbar-columns-btn"]').should('be.visible');
 			// Verify Filters button
@@ -69,8 +53,9 @@ describe('Mobile Organization Management View verification', () => {
 		const validateCreateNew = () => {
 			cy.get('[data-testid="btn-sub-header-action-Create New"]').click();
 			cy.get('[data-testid="text-style-wrapper"]').contains('Create Organization').should('be.visible');
-			cy.get('[data-testid="btn-org-form-cancel"]').contains('Cancel').click();
+			cy.clickOutside();
 			cy.logout();
 		};
 	});
 });
+

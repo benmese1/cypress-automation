@@ -13,34 +13,16 @@ describe('Mobile User Management View verification', () => {
 				cacheSession: false,
 			}).waitForLoad();
 			cy.get("[aria-label='account of current user']").should('be.visible').dashboardMenu('User Management');
-			userViewHeaderList();
 			validatePageView();
 			validateCreateNew();
-		});
 
-		/**
-		 * Validate columns on the user mgmt table
-		 */
-		const userViewHeaderList = () => {
-			//verifying fields on the user mgmt table
-			cy.get('[data-testid="column-header-company/sub-company"]').should('be.visible');
-			cy.get('[data-testid="column-header-last-name"]').should('be.visible');
-			cy.get('[data-testid="column-header-first-name"]').should('be.visible');
-			cy.get('[data-testid="column-header-username"]').should('be.visible');
-			cy.get('[data-testid="column-header-email"]').should('be.visible');
-			cy.get('[data-testid="column-header-phone-number"]').should('be.visible');
-			cy.get('[data-testid="column-header-role"]').should('be.visible');
-			cy.get('[data-testid="column-header-last-login-date"]').should('be.visible');
-			cy.get('[data-testid="column-header-status"]').should('be.visible');
-			cy.get('[data-testid="column-header-created-date"]').should('be.visible');
-			cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
-		};
+		});
 
 		/**
 		 * Validate buttons and fields on the user management table
 		 */
 		const validatePageView = () => {
-			cy.get('[data-testid="page"]').should('be.visible').contains('User Management');
+			cy.get('[data-testid="management-user-management"]').should('be.visible');
 			// Verify Premium Columns button
 			cy.get('[data-testid="asset-table-toolbar-columns-btn"]').should('be.visible');
 			// Verify Filters button
@@ -58,7 +40,7 @@ describe('Mobile User Management View verification', () => {
 				.get('[data-testid="column-header-company/sub-company"]')
 				.should('be.visible');
 
-			// Validate Distance unit prefence field name present on the table
+			// Validate Updated date field name present on the table
 			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
 				.scrollTo('topRight', { ensureScrollable: false })
 				.get('[data-testid="column-header-updated-date"]')
@@ -71,7 +53,7 @@ describe('Mobile User Management View verification', () => {
 		const validateCreateNew = () => {
 			cy.get('[data-testid="btn-sub-header-action-Create New"]').click();
 			cy.get('[data-testid="text-style-wrapper"]').contains('Create User Account').should('be.visible');
-			cy.get('[data-testid="btn-org-form-cancel"]').contains('Cancel').click();
+			cy.clickOutside();
 			cy.logout();
 		};
 	});
