@@ -37,7 +37,7 @@ describe('Mobile User Management View verification', () => {
             cy.get('[data-testid="column-header-status"]').should('be.visible');
             cy.get('[data-testid="column-header-created-date"]').should('be.visible');
             cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
-		};
+    };
 
 		/**
 		 * Validate buttons and fields on the user management table
