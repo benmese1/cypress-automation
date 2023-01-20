@@ -9,13 +9,33 @@ describe('Mobile Organization Management View verification', () => {
 				cy.viewport(size);
 			}
 
-			cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
-			cy.waitForLoad();
-			cy.get("[aria-label='account of current user']").should('be.visible');
-			cy.dashboardMenu('My Organization');
+			cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
+				cacheSession: false,
+			})
+				.waitForLoad();
+			cy.get("[aria-label='account of current user']")
+				.should('be.visible')
+				.dashboardMenu('My Organization');
+			orgViewHeaderList();
 			validatePageView();
 			validateCreateNew();
 		});
+
+		/**
+		 * Validate columns on the org mgmt table
+		 */
+		const orgViewHeaderList = () => {
+			//verifying fields on the org mgmt table
+			cy.get('[data-testid="column-header-company-name"]').should('be.visible');
+			cy.get('[data-testid="column-header-parent-company"]').should('be.visible');
+			cy.get('[data-testid="column-header-brand"]').should('be.visible');
+			cy.get('[data-testid="column-header-type"]').should('be.visible');
+			cy.get('[data-testid="column-header-timezone"]').should('be.visible');
+			cy.get('[data-testid="column-header-number-of-devices"]').should('be.visible');
+			cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
+			cy.get('[data-testid="column-header-created-date"]').should('be.visible');
+			cy.get('[data-testid="column-header-distance-unit-preference"]').should('be.visible');
+		};
 
 		/**
 		 * Validate buttons and fields on the organization management table
