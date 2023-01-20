@@ -1,4 +1,4 @@
-const sizes = ['iphone-8','ipad-2', [1170, 2532], 'samsung-note9'];
+const sizes = ['iphone-8', 'ipad-2', [1170, 2532], 'samsung-note9'];
 
 describe('Mobile User Management View verification', () => {
 	sizes.forEach((size) => {
@@ -10,36 +10,31 @@ describe('Mobile User Management View verification', () => {
 			}
 
 			cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
-                cacheSession: false,
-            })
-                .waitForLoad();
-            cy.get("[aria-label='account of current user']")
-                .should('be.visible')
-                .dashboardMenu('User Management');
-            userViewHeaderList();
+				cacheSession: false,
+			}).waitForLoad();
+			cy.get("[aria-label='account of current user']").should('be.visible').dashboardMenu('User Management');
+			userViewHeaderList();
 			validatePageView();
 			validateCreateNew();
 		});
 
-        /**
+		/**
 		 * Validate columns on the user mgmt table
 		 */
 		const userViewHeaderList = () => {
 			//verifying fields on the user mgmt table
-            cy.get('[data-testid="column-header-company/sub-company"]').should('be.visible');
-            cy.get('[data-testid="column-header-last-name"]').should('be.visible');
-            cy.get('[data-testid="column-header-first-name"]').should('be.visible');
-            cy.get('[data-testid="column-header-username"]').should('be.visible');
-            cy.get('[data-testid="column-header-email"]').should('be.visible');
-            cy.get('[data-testid="column-header-phone-number"]').should('be.visible');
-            cy.get('[data-testid="column-header-role"]').should('be.visible');
-            cy.get('[data-testid="column-header-last-login-date"]').should('be.visible');
-            cy.get('[data-testid="column-header-status"]').should('be.visible');
-            cy.get('[data-testid="column-header-created-date"]').should('be.visible');
-            cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
-        };
-
-        
+			cy.get('[data-testid="column-header-company/sub-company"]').should('be.visible');
+			cy.get('[data-testid="column-header-last-name"]').should('be.visible');
+			cy.get('[data-testid="column-header-first-name"]').should('be.visible');
+			cy.get('[data-testid="column-header-username"]').should('be.visible');
+			cy.get('[data-testid="column-header-email"]').should('be.visible');
+			cy.get('[data-testid="column-header-phone-number"]').should('be.visible');
+			cy.get('[data-testid="column-header-role"]').should('be.visible');
+			cy.get('[data-testid="column-header-last-login-date"]').should('be.visible');
+			cy.get('[data-testid="column-header-status"]').should('be.visible');
+			cy.get('[data-testid="column-header-created-date"]').should('be.visible');
+			cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
+		};
 
 		/**
 		 * Validate buttons and fields on the user management table

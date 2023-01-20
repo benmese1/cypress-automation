@@ -1,4 +1,4 @@
-const sizes = ['iphone-8','ipad-2', [1170, 2532], 'samsung-note9'];
+const sizes = ['iphone-8', 'ipad-2', [1170, 2532], 'samsung-note9'];
 
 describe('Mobile Organization Management View verification', () => {
 	sizes.forEach((size) => {
@@ -11,11 +11,8 @@ describe('Mobile Organization Management View verification', () => {
 
 			cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
 				cacheSession: false,
-			})
-				.waitForLoad();
-			cy.get("[aria-label='account of current user']")
-				.should('be.visible')
-				.dashboardMenu('My Organization');
+			}).waitForLoad();
+			cy.get("[aria-label='account of current user']").should('be.visible').dashboardMenu('My Organization');
 			orgViewHeaderList();
 			validatePageView();
 			validateCreateNew();
