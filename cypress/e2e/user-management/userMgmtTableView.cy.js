@@ -10,26 +10,17 @@ describe('Verify User management table view', () => {
 
 	it('Verify user management table columns visibility in table view', () => {
 		//verifying fields on the user mgmt table
-		const columnsHeaderList = [
-			'Company/Sub Company',
-			'Last Name',
-			'First Name',
-			'Username',
-			'Email',
-			'Phone Number',
-			'Role',
-			'Last Login Date',
-			'Created Date',
-			'Status',
-			'Created Date',
-			'Updated Date',
-		];
-		cy.get('[data-testid="items-list-column-header"]')
-			.should('be.visible')
-			.each((header) => {
-				expect(header.text()).oneOf(columnsHeaderList);
-			})
-			.should('have.length', columnsHeaderList.length);
+		cy.get('[data-testid="column-header-company/sub-company"]').should('be.visible');
+		cy.get('[data-testid="column-header-last-name"]').should('be.visible');
+		cy.get('[data-testid="column-header-first-name"]').should('be.visible');
+		cy.get('[data-testid="column-header-username"]').should('be.visible');
+		cy.get('[data-testid="column-header-email"]').should('be.visible');
+		cy.get('[data-testid="column-header-phone-number"]').should('be.visible');
+		cy.get('[data-testid="column-header-role"]').should('be.visible');
+		cy.get('[data-testid="column-header-last-login-date"]').should('be.visible');
+		cy.get('[data-testid="column-header-status"]').should('be.visible');
+		cy.get('[data-testid="column-header-created-date"]').should('be.visible');
+		cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
 	});
 
 	it('Get organization name for the associated user logged', () => {

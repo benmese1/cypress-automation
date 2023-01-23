@@ -24,5 +24,5 @@ describe('Organization management page export verification', () => {
 	const downloadsPath = 'cypress/downloads/';
 	const exportFilename = 'Phillips Connect.csv';
 	const csvFileHeader =
-		'Company Name,Brand,Type,Timezone,Number of Devices,Updated Date,Created Date,Distance Unit Preference';
+		'Company Name,Parent Company,Brand,Type,Timezone,Number of Devices,Updated Date,Created Date,Distance Unit Preference';
 });
