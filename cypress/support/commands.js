@@ -207,9 +207,11 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
 //Method Name :createNewOrganization
 //Used to create a new Organization
 //Params companyname,brand,type,timezone,distancepreference
-Cypress.Commands.add('createNewOrganization', (companyname, brand, type, timezone, distancepref) => {
+Cypress.Commands.add('createNewOrganization', (companyname, parentcompany, brand, type, timezone, distancepref) => {
 	cy.get('[data-testid="btn-sub-header-action-Create New"]').click();
 	cy.get('[data-testid="input-org-name"]').type(companyname);
+	cy.get('[data-testid="input-org-parent-company"]').click();
+	cy.get('li').contains(parentcompany).click();
 	cy.get('[data-testid="input-org-brand"]').click();
 	cy.get('li').contains(brand).click();
 	cy.get('[data-testid="input-org-type"]').click();
@@ -281,6 +283,22 @@ Cypress.Commands.add('editUser', (name, lastName, firstName, phonenumber) => {
 	cy.get('[data-testid="form-control-input-phoneNumber"]').clear().type(phonenumber);
 	cy.get('[data-testid="global-button-component"]').click();
 	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('User Updated Successfully!');
+});
+
+//Method Name :editOrg
+//Used to edit a given Org
+//Params companyname, brand, type, timezone, distancepreference
+Cypress.Commands.add('editOrg', (companyname, brand, type, timezone, distancepref) => {
+	cy.xpath('//div[text()="' + companyname + '"]').click();
+	cy.get('[data-testid="input-org-brand"]').clear().type(brand);
+	cy.get('[data-testid="input-org-type"]').clear().type(type);
+	cy.get('li').contains(type).click();
+	cy.get('[data-testid="input-org-timezone"]').clear().type(timezone);
+	cy.get('li').contains(timezone).click();
+	cy.get('[data-testid="input-org-distance-unit-preference"]').clear().type(distancepref);
+	cy.get('li').contains(distancepref).click();
+	cy.get('[data-testid="btn-org-form-submit"]').click();
+	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Updated Successfully!');
 });
 
 Cypress.Commands.add('clickOutside', () => {

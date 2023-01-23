@@ -13,7 +13,8 @@ describe('Create New Organization management', () => {
 		// create new org
 		cy.log('Create New button clicked');
 		cy.createNewOrganization(
-			'SORG' + randomnumber,
+			'TRUCK' + randomnumber,
+			org[0].suborg.parentcompany,
 			org[0].suborg.Brand,
 			org[0].suborg.Type,
 			org[0].suborg.Timezone,

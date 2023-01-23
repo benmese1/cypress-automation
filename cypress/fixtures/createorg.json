@@ -1,10 +1,18 @@
 [
 	{
 		"suborg": {
+			"parentcompany": "Phillips Connect",
 			"Brand": "Phillips",
 			"Type": "Fleet",
 			"Timezone": "Mountain Standard (GMT-7)",
 			"DistanceUnitPreference": "Miles"
+		},
+		"editorg": {
+			"companyname": "UPS",
+			"Brand": "Phillips",
+			"Type": "Fleet",
+			"Timezone": "Mountain Standard (GMT-7)",
+			"DistanceUnitPreference": "KMs"
 		}
 	}
 ]
