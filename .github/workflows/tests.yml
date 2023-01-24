@@ -59,7 +59,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: results/test-result.xml
+          path: results/
           retention-days: 30
 
       - name: 'Upload screenshots'
