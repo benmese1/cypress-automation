@@ -74,6 +74,7 @@ describe('Verify and search assets using filters such as asset tags, asset searc
 		// Select Product Name and Assert the filter
 		//select the dropdown
 		cy.get("[data-testid='assets-filter__product-name']").type('active');
+		expect('No options').to.exist;
 		cy.get("[data-testid='assets-filter__product-name']").clear();
 
 		// select the second option for product name
