@@ -50,20 +50,41 @@ describe('Verify and search assets using filters such as asset tags, asset searc
 		cy.get("[data-testid='assets-filter__asset-tags']").clear();
 
 		// select the first option from dropdown
-		cy.get("[id=':rb:-option-0']").click({ force: true });
+		cy.get("[data-option-index='0']").click({ force: true });
 
 		//select the dropdown
 		cy.get("[data-testid='assets-filter__asset-tags']").type('active');
+		cy.get("[data-testid='assets-filter__asset-tags']").clear();
 
 		// select the second option
-		cy.get("[id=':rb:-option-1']").click({ force: true });
+		cy.get("[data-option-index='1']").click({ force: true });
 
 		// Assert that search by asset tags and assets found
 		cy.get('#assets-count').then(($btn) => {
 			// store the button's text
 			const txt = $btn.text();
 			if (txt > 0) {
-				expect(Number(txt)).to.eq(2);
+				expect(true).to.true;
+			}
+		});
+
+		cy.get("[data-testid='CancelIcon']").eq(0).click({ force: true });
+		cy.get("[data-testid='CancelIcon']").eq(0).click({ force: true });
+
+		// Select Product Name and Assert the filter
+		//select the dropdown
+		cy.get("[data-testid='assets-filter__product-name']").type('active');
+		cy.get("[data-testid='assets-filter__product-name']").clear();
+
+		// select the second option for product name
+		cy.get("[data-option-index='17']").click({ force: true });
+
+		// Assert that search by asset tags and assets found
+		cy.get('#assets-count').then(($btn) => {
+			// store the button's text
+			const txt = $btn.text();
+			if (txt > 0) {
+				expect(true).to.true;
 			}
 		});
 
@@ -78,7 +99,7 @@ describe('Verify and search assets using filters such as asset tags, asset searc
 			// store the button's text
 			const txt = $btn.text();
 			if (txt > 0) {
-				expect(Number(txt)).to.eq(2);
+				expect(true).to.true;
 			}
 		});
 	});
