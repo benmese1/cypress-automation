@@ -16,6 +16,11 @@
 			"Timezone": "Mountain Standard (GMT-7)",
 			"Role": "Customer Service",
 			"Phonenumber": "9876543211"
+		},
+		"searchData":{
+			"status": "active",
+			"role":"clientadmin", 
+			"company":"JB Hunt"
 		}
 	}
 ]

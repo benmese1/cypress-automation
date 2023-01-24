@@ -306,41 +306,16 @@ Cypress.Commands.add('clickOutside', () => {
 });
 
 /**
- * Search the organizations 
+ * Search for the organizations& users 
  */
-Cypress.Commands.add('searchOrgs', (searchCriteria) => {
+Cypress.Commands.add('searchOrgsAndUsers', (searchCriteria) => {
 	cy.get('[data-testid="items-list-search-input"]')
 		.should('be.visible')
 		.type(searchCriteria)
 		.wait(1000);
 });
 
-/**
- * Filter the data with specific values
- * @param {string} columnName - select the desired value from the dropdown
- * @param {string} operator - select the desired value from the dropdown
- * @param {string} value - type enter the value
- */
-Cypress.Commands.add('addOrgsFilter',(columnName,operator,value) => {
-	//Click on the Filters column
-	cy.get('[data-testid="asset-table-toolbar-filter-btn"]')
-		.should('be.visible')
-		.click({ force: true });
-	cy.get('[role="tooltip"]')
-		.should('be.visible')
-		.wait(1100);
-	//Select the value from the Columns 
-	cy.get('[data-testid="ArrowDropDownIcon"]')
-		.select(columnName);
-	//Select the value from the Operator
-	cy.get('[data-testid="ArrowDropDownIcon"]')
-		.select(operator)
-		.wait(1000);
-	if (!operator.includes('empty')) {
-		cy.get('[data-testid="ArrowDropDownIcon"]').last().type(value);
-	}
-	cy.wait(1000);
-})
+
 
 // https://reflect.run/articles/comparing-screenshots-in-cypress/
 // https://www.npmjs.com/package/cypress-image-diff-js?activeTab=readme
