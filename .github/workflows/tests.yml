@@ -56,11 +56,10 @@ jobs:
         continue-on-error: true
 
       - name: 'Upload test results'
-        if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: results/
+          path: results/test-result.xml
           retention-days: 30
 
       - name: 'Upload screenshots'
