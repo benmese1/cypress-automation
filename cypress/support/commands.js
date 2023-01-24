@@ -306,16 +306,11 @@ Cypress.Commands.add('clickOutside', () => {
 });
 
 /**
- * Search for the organizations& users 
+ * Search for the organizations& users
  */
 Cypress.Commands.add('searchOrgsAndUsers', (searchCriteria) => {
-	cy.get('[data-testid="items-list-search-input"]')
-		.should('be.visible')
-		.type(searchCriteria)
-		.wait(1000);
+	cy.get('[data-testid="items-list-search-input"]').should('be.visible').type(searchCriteria).wait(1000);
 });
-
-
 
 // https://reflect.run/articles/comparing-screenshots-in-cypress/
 // https://www.npmjs.com/package/cypress-image-diff-js?activeTab=readme
