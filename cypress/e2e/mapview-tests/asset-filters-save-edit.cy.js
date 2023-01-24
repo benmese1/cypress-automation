@@ -5,24 +5,33 @@ describe('Verify and search assets using filters such as asset tags, asset searc
 			.dashboardMenu('Asset Map');
 	});
 
-	it('verify and view asset details by selecting asset filters', () => {
-		// Click on Assets
-		cy.get("[data-testid='filter-item-Assets']").click({ force: true });
-
-		//search by name or ID
-		cy.get("[data-testid='assets-filter__keyword-input']").type('asset ');
-
-		cy.get("[data-testid='BookmarksIcon']").click({ force: true }).as('winOpenButton');
-
-		cy.window().then((win) => {
-			cy.stub(win, 'open');
-			//cy.get('@winOpen');
-			// give a name to filter
-			cy.get(["id*=':r'"]).click({ force: true });
-			cy.get(["id*=':r'"]).type('asset-filter');
-			cy.get('@winOpen').should('be.called');
-		});
-
-		// Search asset by Type
+    it('verify and view asset details by saving editing and renaming asset filters', () => {
+		
+    	// click on status filter
+		cy.get('[data-testid="filter-item-Status"]').click();
+		
+		// select moving assets
+		cy.get('[data-testid="Moving - 0"]').click();
+		
+		// clicking on bookmark save button
+		cy.get('[data-testid="BookmarksIcon"]').click();
+		
+		// entering name in modal box and clicking save
+		cy.get('[role="dialog"] input').type('asset filter 1');
+		cy.xpath('//p[contains(text(), "Save")]').click();
+		
+		//verifying success popup appeared
+		cy.get('[data-testid="snackbar-alert"]').contains('Success!');
+		
+		//deleting filter
+		
+		//click on three filter dots upper right hand corner
+		cy.get('[data-testid="MoreVertIcon"]').click();
+		
+		// click on delete filter icon
+	    cy.xpath('(//p[contains(text(), "asset filter 1")]/following::span[@title="Delete"])[1]').click();
+		
+		// click on delete in the popup modal
+		cy.xpath('//p[contains(text(), "Delete")]').click();
 	});
 });
