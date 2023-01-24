@@ -13,6 +13,11 @@
 			"Type": "Fleet",
 			"Timezone": "Mountain Standard (GMT-7)",
 			"DistanceUnitPreference": "KMs"
+		},
+		"searchData": {
+			"orgname": "Swift",
+			"parentcompany": "JB Hunt",
+			"timezone": "Pacific Standard (GMT-8)"
 		}
 	}
 ]

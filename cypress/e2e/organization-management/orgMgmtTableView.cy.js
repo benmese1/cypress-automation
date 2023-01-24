@@ -10,22 +10,15 @@ describe('Verify Organization management table view', () => {
 
 	it('Verify organization management table columns visibility in table view', () => {
 		//verifying fields on the org mgmt table
-		const columnsHeaderList = [
-			'Company Name',
-			'Brand',
-			'Type',
-			'Timezone',
-			'Number of Devices',
-			'Updated Date',
-			'Created Date',
-			'Distance Unit Preference',
-		];
-		cy.get('[data-testid="items-list-column-header"]')
-			.should('be.visible')
-			.each((header) => {
-				expect(header.text()).oneOf(columnsHeaderList);
-			})
-			.should('have.length', columnsHeaderList.length);
+		cy.get('[data-testid="column-header-company-name"]').should('be.visible');
+		cy.get('[data-testid="column-header-parent-company"]').should('be.visible');
+		cy.get('[data-testid="column-header-brand"]').should('be.visible');
+		cy.get('[data-testid="column-header-type"]').should('be.visible');
+		cy.get('[data-testid="column-header-timezone"]').should('be.visible');
+		cy.get('[data-testid="column-header-number-of-devices"]').should('be.visible');
+		cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
+		cy.get('[data-testid="column-header-created-date"]').should('be.visible');
+		cy.get('[data-testid="column-header-distance-unit-preference"]').should('be.visible');
 	});
 
 	it('Get the My organization name when user logged', () => {
