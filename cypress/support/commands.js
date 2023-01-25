@@ -48,6 +48,7 @@ Cypress.Commands.add('pinColumn', (columnName, side) => {
 		.should('be.visible')
 		.contains('Pin to ' + side)
 		.click();
+		cy.wait(1000)
 });
 
 /** Unpin column on Asset list page
@@ -141,24 +142,20 @@ Cypress.Commands.add('showHideColumnAssetsList', (columnName) => {
 });
 
 Cypress.Commands.add('addAssetsFilter', (columnName, operator, value) => {
-	cy.get('[data-testid="TripleDotsVerticalIcon"]')
-		.eq(1)
-		.click({ force: true })
-		.get('.MuiDataGrid-menuList')
-		.should('be.visible')
-		.contains('Filter')
-		.click()
-		.get('.MuiDataGrid-filterForm')
-		.should('be.visible')
-		.get('.MuiDataGrid-filterFormColumnInput select')
-		.last()
-		.select(columnName)
-		.get('.MuiDataGrid-filterFormOperatorInput select')
-		.last()
-		.select(operator);
+
+	cy.get('[data-testid="asset-table-toolbar-filter-btn"]')
+	.should('be.visible')
+	.click({ force: true })
+	.wait(500);
+	const filterPopupXpath = "//*[@data-testid='CloseIcon']//ancestor::div[2]";
+
+	cy.xpath(filterPopupXpath).find('select').eq(1).select(columnName);
+	cy.xpath(filterPopupXpath).find('select').eq(2).select(operator);
+	
 	if (!operator.includes('empty')) {
-		cy.get('.MuiDataGrid-filterFormValueInput input').last().type(value);
+		cy.xpath(filterPopupXpath).find('input').last().type(value);
 	}
+
 	cy.wait(1000);
 });
 

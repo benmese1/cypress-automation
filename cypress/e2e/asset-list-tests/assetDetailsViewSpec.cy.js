@@ -18,7 +18,7 @@ describe('Asset Management page -- details view verification', () => {
 	});
 
 	it('Verify Critical battery state on Asset Details View', () => {
-		let criticalBatteryTestId = 'battery-svg-critical';
+		let criticalBatteryTestId = '[data-testid = "battery-svg-critical"]';
 
 		cy.addAssetsFilter('Battery Icon', 'starts with', '3.1');
 		cy.clickOutside();
@@ -39,7 +39,7 @@ describe('Asset Management page -- details view verification', () => {
 	});
 
 	it('Verify Alert battery state on Asset Details View', () => {
-		let alertBatteryTestId = 'battery-svg-alert';
+		let alertBatteryTestId = '[data-testid = "battery-svg-alert"]';
 
 		cy.addAssetsFilter('Battery Icon', 'starts with', '3.3');
 		cy.clickOutside();
@@ -60,7 +60,7 @@ describe('Asset Management page -- details view verification', () => {
 	});
 
 	it('Verify Warning battery state on Asset Details View', () => {
-		let warningBatteryTestId = 'battery-svg-warning';
+		let warningBatteryTestId = '[data-testid = "battery-svg-warning"]';
 
 		cy.addAssetsFilter('Battery Icon', 'starts with', '3.5');
 		cy.clickOutside();
@@ -82,7 +82,7 @@ describe('Asset Management page -- details view verification', () => {
 
 
 	it('Verify Full battery state on Asset Details View', () => {
-		let fullBatteryTestId = 'battery-svg-full';
+		let fullBatteryTestId = '[data-testid = "battery-svg-full"]';
 
 		cy.addAssetsFilter('Battery Icon', 'starts with', '3.9');
 		cy.clickOutside();
@@ -101,16 +101,17 @@ describe('Asset Management page -- details view verification', () => {
 			expect(parseFloat($val.text())).to.be.greaterThan(3.61)
 		});
 	});
-});
+ });
 
 const verifyBatteryIconsInAssetList = (expectedBatteryLocator) => {
-	cy.get("[role='cell'][data-field='batt_v'] svg").each(($item) => {
-		cy.wrap($item).should('have.attr', 'data-testid', expectedBatteryLocator);
+	cy.xpath("//*[@role='cell'][count(//*[@data-testid='column-header-battery-icon']//ancestor::*[@role='columnheader']/preceding-sibling::div) + 1]")
+	.each(($item) => {
+		cy.wrap($item).find(expectedBatteryLocator).should('be.visible');
 	});
 };
 
 const verifyBatteryIconIsDisplayed = (expectedBatteryLocator) => {
-	cy.get(`#details-content [data-testid="${expectedBatteryLocator}"]`).should('exist');
+	cy.get(`#details-content ${expectedBatteryLocator}`).should('exist');
 };
 
 const expandDetailsSection = () => {
