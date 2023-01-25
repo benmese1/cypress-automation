@@ -2,6 +2,7 @@ node_modules/
 downloads/
 screenshots/
 videos/
+reports/
 .vscode
 results/test-results.xml
 data/files/dataTest.json

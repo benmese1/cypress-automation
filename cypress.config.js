@@ -14,10 +14,14 @@ export default defineConfig({
 	fixturesFolder: 'cypress/fixtures',
 	videosFolder: 'cypress/videos',
 	downloadsFolder: 'cypress/downloads',
-	reporter: 'junit',
 	defaultCommandTimeout: 8000,
+	reporter: 'mochawesome',
 	reporterOptions: {
-		mochaFile: 'results/test-results.xml',
+		mochaFile: 'results/test-results-[hash].xml',
+		reportDir: 'cypress/results',
+		overwrite: false,
+		html: false,
+		json: true,
 		testCaseSwitchClassnameAndName: false,
 	},
 	e2e: {
