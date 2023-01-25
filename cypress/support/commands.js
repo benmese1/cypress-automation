@@ -144,16 +144,17 @@ Cypress.Commands.add('showHideColumnAssetsList', (columnName) => {
 Cypress.Commands.add('addAssetsFilter', (columnName, operator, value) => {
 
 	cy.get('[data-testid="asset-table-toolbar-filter-btn"]')
-	.should('be.visible')
-	.click({ force: true })
-	.wait(500);
-	const filterPopupXpath = "//*[@data-testid='CloseIcon']//ancestor::div[2]";
+		.should('be.visible')
+		.click({ force: true })
+		.wait(500);
+	cy.xpath("//*[@data-testid='CloseIcon']//ancestor::div[2]").as('filterPopup');
 
-	cy.xpath(filterPopupXpath).find('select').eq(1).select(columnName);
-	cy.xpath(filterPopupXpath).find('select').eq(2).select(operator);
+	//find elements within 'Filter' Popup
+	cy.get('@filterPopup').find('select').eq(1).select(columnName);
+	cy.get('@filterPopup').find('select').eq(2).select(operator);
 	
 	if (!operator.includes('empty')) {
-		cy.xpath(filterPopupXpath).find('input').last().type(value);
+		cy.get('@filterPopup').find('input').last().type(value);
 	}
 
 	cy.wait(1000);
