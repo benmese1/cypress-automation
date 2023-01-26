@@ -60,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: results/
+          path: cypress/results/
           retention-days: 30
 
       - name: 'Upload screenshots'
@@ -79,8 +79,8 @@ jobs:
           path: cypress/video/
           retention-days: 30
 
-      - name: 'merge test results'
-        run: 'npm run combine:reports'
+      # - name: 'merge test results'
+      #   run: 'npm run combine:reports'
 
       - name: Submit results to Xray
         uses: mikepenz/xray-action@v2
