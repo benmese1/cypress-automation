@@ -154,10 +154,10 @@ Cypress.Commands.add('addAssetsFilter', (columnName, operator, value) => {
 	cy.get('@filterPopup').find('select').eq(2).select(operator);
 	
 	if (!operator.includes('empty')) {
-		cy.get('@filterPopup').find('input').last().type(value);
+		cy.get('@filterPopup').find('input').last().type(value).wait(500);
 	}
 
-	cy.wait(1000);
+	cy.clickOutside();
 });
 
 /** Set location on Asset Map page
@@ -248,6 +248,33 @@ Cypress.Commands.add('removeAsset', (assetNickname) => {
 	cy.get('[data-testid="details-drawer-remove-btn"]').click();
 
 	cy.get('[data-testid="delete-confirmation-dialog-remove-btn"]').should('be.visible').click();
+});
+
+/** Open Asset by specific header name and required value
+ *  @param {string} headerName - header of column to search cell within
+ *  @param {string} cellValue - value of cell to click
+ */
+Cypress.Commands.add('openAsset', (headerName, cellValue) => {
+	//select cells based on the column header name
+	cy.xpath(`//*[@role='cell'][count(//div[text()='${headerName}']//ancestor::*[@role='columnheader']/preceding-sibling::div)+1]`)
+	.each(($cell) => {
+		if($cell.text().includes(cellValue)) {
+			$cell.click();
+		}
+	});
+});
+
+/** Expand section with specific name on Drawer
+ *  @param {string} sectionName - section's name to expand
+ */
+Cypress.Commands.add('expandDrawerSection', (sectionName) => {
+	cy.contains('[role="button"]', sectionName).then(($section) => { 
+		$section.invoke('attr', 'aria-expanded').then(($is_expanded) => {
+			if($is_expanded === 'false') {
+				$section.click()	
+					}
+				})
+			});
 });
 
 //Method Name :createNewUser
