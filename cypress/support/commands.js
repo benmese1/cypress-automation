@@ -48,7 +48,7 @@ Cypress.Commands.add('pinColumn', (columnName, side) => {
 		.should('be.visible')
 		.contains('Pin to ' + side)
 		.click();
-		cy.wait(1000)
+	cy.wait(1000);
 });
 
 /** Unpin column on Asset list page
@@ -142,17 +142,13 @@ Cypress.Commands.add('showHideColumnAssetsList', (columnName) => {
 });
 
 Cypress.Commands.add('addAssetsFilter', (columnName, operator, value) => {
-
-	cy.get('[data-testid="asset-table-toolbar-filter-btn"]')
-		.should('be.visible')
-		.click({ force: true })
-		.wait(500);
+	cy.get('[data-testid="asset-table-toolbar-filter-btn"]').should('be.visible').click({ force: true }).wait(500);
 	cy.xpath("//*[@data-testid='CloseIcon']//ancestor::div[2]").as('filterPopup');
 
 	//find elements within 'Filter' Popup
 	cy.get('@filterPopup').find('select').eq(1).select(columnName);
 	cy.get('@filterPopup').find('select').eq(2).select(operator);
-	
+
 	if (!operator.includes('empty')) {
 		cy.get('@filterPopup').find('input').last().type(value).wait(500);
 	}
@@ -256,9 +252,10 @@ Cypress.Commands.add('removeAsset', (assetNickname) => {
  */
 Cypress.Commands.add('openAsset', (headerName, cellValue) => {
 	//select cells based on the column header name
-	cy.xpath(`//*[@role='cell'][count(//div[text()='${headerName}']//ancestor::*[@role='columnheader']/preceding-sibling::div)+1]`)
-	.each(($cell) => {
-		if($cell.text().includes(cellValue)) {
+	cy.xpath(
+		`//*[@role='cell'][count(//div[text()='${headerName}']//ancestor::*[@role='columnheader']/preceding-sibling::div)+1]`
+	).each(($cell) => {
+		if ($cell.text().includes(cellValue)) {
 			$cell.click();
 		}
 	});
@@ -268,13 +265,13 @@ Cypress.Commands.add('openAsset', (headerName, cellValue) => {
  *  @param {string} sectionName - section's name to expand
  */
 Cypress.Commands.add('expandDrawerSection', (sectionName) => {
-	cy.contains('[role="button"]', sectionName).then(($section) => { 
+	cy.contains('[role="button"]', sectionName).then(($section) => {
 		$section.invoke('attr', 'aria-expanded').then(($is_expanded) => {
-			if($is_expanded === 'false') {
-				$section.click()	
-					}
-				})
-			});
+			if ($is_expanded === 'false') {
+				$section.click();
+			}
+		});
+	});
 });
 
 //Method Name :createNewUser
