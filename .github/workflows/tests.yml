@@ -88,5 +88,5 @@ jobs:
           username: ${{ secrets.JIRA_CLIENT_ID }}
           password: ${{ secrets.JIRA_CLIENT_SECRET }}
           testFormat: "junit"
-          testPaths: "**/test-results/*.xml"
+          testPaths: "test-results/*.xml"
           projectKey: "CALC"

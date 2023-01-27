@@ -4,6 +4,5 @@ screenshots/
 videos/
 reports/
 .vscode
-results/test-results.xml
-data/files/dataTest.json
 /.idea/
+results/
