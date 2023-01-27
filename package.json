@@ -7,7 +7,9 @@
 	"scripts": {
 		"cy:dev": "npx cypress open --env fileConfig=dev",
 		"cy:qa": "npx cypress open --env fileConfig=qa",
-		"cypress": "cypress open",
+		"cy:local-dev": "npx cypress run --env fileConfig=dev --headless",
+		"cy:local-qa": "npx cypress run --env fileConfig=qa --headless",
+		"cy:open": "npx cypress open",
 		"pretty": " prettier --write ."
 	},
 	"author": "",
