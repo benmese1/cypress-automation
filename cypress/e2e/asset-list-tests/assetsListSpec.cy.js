@@ -7,18 +7,14 @@ describe('Asset Management page general tests', () => {
 
 	it('verify Material UI Premium buttons above table header', () => {
 		// Verify Material UI Premium Columns button
-		cy.get('[data-testid="asset-table-toolbar-columns-btn"]')
-			.should('be.visible')
+		cy.get('[data-testid="asset-table-toolbar-columns-btn"]').should('be.visible');
 		// Verify Material UI Premium Filters button
-		cy.get('[data-testid="asset-table-toolbar-filter-btn"]')
-			.should('be.visible')
+		cy.get('[data-testid="asset-table-toolbar-filter-btn"]').should('be.visible');
 		// Verify Material UI Premium Density button
-		cy.get('[data-testid="asset-table-toolbar-density-btn"]')
-			.should('be.visible')
+		cy.get('[data-testid="asset-table-toolbar-density-btn"]').should('be.visible');
 		// Verify Material UI Premium Export button
-		cy.get('[data-testid="asset-table-toolbar-export-btn"]')
-			.should('be.visible')
-	})
+		cy.get('[data-testid="asset-table-toolbar-export-btn"]').should('be.visible');
+	});
 
 	it('Verify assets table is displayed', () => {
 		cy.get('.MuiDataGrid-root').should('be.visible');
@@ -37,7 +33,7 @@ describe('Asset Management page general tests', () => {
 			'Asset Type',
 			'Battery Icon',
 			'Asset Tags',
-			'Last Event'
+			'Last Event',
 		];
 		cy.get('.MuiDataGrid-columnHeaderTitle')
 			.each((el) => {

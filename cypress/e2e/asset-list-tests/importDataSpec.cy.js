@@ -2,8 +2,7 @@ import crypto from 'crypto';
 
 describe('Asset Management import verification', () => {
 	const filePath = 'cypress/downloads/assets.csv';
-	const csvHeader =
-		'Asset ID,Asset Name,VIN,Category,# of Tires,# of Axles,Length,Door Type,Tags\r\n';
+	const csvHeader = 'Asset ID,Asset Name,VIN,Category,# of Tires,# of Axles,Length,Door Type,Tags\r\n';
 	const assetId = crypto.randomBytes(16).toString('hex');
 	const assetName = 'CFQU' + Math.random() * 6;
 	const otherStaticData = 'NA,Container,12,3,20,NA';
@@ -16,7 +15,9 @@ describe('Asset Management import verification', () => {
 	});
 
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad().openAssetsList();
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+			.waitForLoad()
+			.openAssetsList();
 	});
 
 	it('Verify import button is visible and upload CSV file', () => {
@@ -32,9 +33,9 @@ describe('Asset Management import verification', () => {
 			.last()
 			.click()
 			.get('.text-success')
-			.should("be.visible")
+			.should('be.visible')
 			.get('[role="dialog"] [data-testid="global-button-component"]')
-			.should("be.visible")
+			.should('be.visible')
 			.click()
 			.searchAssets(assetName)
 			.get("[data-field='name'] div")

@@ -17,7 +17,6 @@ describe('Mobile User Management View verification', () => {
 			cy.dashboardMenu('User Management');
 			validatePageView();
 			validateCreateNew();
-
 		});
 
 		/**
@@ -37,16 +36,12 @@ describe('Mobile User Management View verification', () => {
 			cy.get('[data-testid="btn-sub-header-action-Create New"]').should('be.visible');
 			// Validate table
 			// Validate Company/Sub-company name present on the table
-			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
-				.scrollTo('topLeft', { ensureScrollable: false });
-			cy.get('[data-testid="column-header-company/sub-company"]')
-				.should('be.visible');
+			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller').scrollTo('topLeft', { ensureScrollable: false });
+			cy.get('[data-testid="column-header-company/sub-company"]').should('be.visible');
 
 			// Validate Updated date field name present on the table
-			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
-				.scrollTo('topRight', { ensureScrollable: false });
-			cy.get('[data-testid="column-header-updated-date"]')
-				.should('be.visible');
+			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller').scrollTo('topRight', { ensureScrollable: false });
+			cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
 		};
 
 		/**

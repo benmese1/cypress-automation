@@ -17,8 +17,7 @@ describe('Mobile Organization Management View verification', () => {
 			cy.dashboardMenu('My Organization');
 			validatePageView();
 			validateCreateNew();
-
-		});			
+		});
 
 		/**
 		 * Validate buttons and fields on the organization management table
@@ -37,16 +36,12 @@ describe('Mobile Organization Management View verification', () => {
 			cy.get('[data-testid="btn-sub-header-action-Create New"]').should('be.visible');
 			// Validate table
 			// Validate Organization name present on the table
-			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
-				.scrollTo('topLeft', { ensureScrollable: false });
-			cy.get('[role="columnheader"][data-field="name"]')
-				.should('be.visible');
+			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller').scrollTo('topLeft', { ensureScrollable: false });
+			cy.get('[role="columnheader"][data-field="name"]').should('be.visible');
 
 			// Validate Distance unit prefence field name present on the table
-			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller')
-				.scrollTo('topRight', { ensureScrollable: false });
-			cy.get('[role="columnheader"][data-field="distance_unit_preference"]')
-				.should('be.visible');
+			cy.get('[role="grid"] div .MuiDataGrid-virtualScroller').scrollTo('topRight', { ensureScrollable: false });
+			cy.get('[role="columnheader"][data-field="distance_unit_preference"]').should('be.visible');
 		};
 
 		/**
@@ -60,4 +55,3 @@ describe('Mobile Organization Management View verification', () => {
 		};
 	});
 });
-
