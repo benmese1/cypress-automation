@@ -1,7 +1,7 @@
 // API test to genearte the JWT token
 /// <reference types="cypress" />
 
-it('cy.request() - Geneate the JWT token ', () => {
+it('cy.request() - Generate the JWT token ', () => {
 	// https://on.cypress.io/request
 	// Method and URI to be specified here along with query and path params
 
