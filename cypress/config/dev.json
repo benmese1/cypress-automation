@@ -6,6 +6,12 @@
 		"client_id": "2652adm3ps89eqhr5ap54kd85i",
 		"TESTusername": "test1",
 		"TESTpassword": "Test@!@345",
-		"screenshotsFolder": "./cypress/screenshots"
+		"screenshotsFolder": "./cypress/screenshots",
+		"X-Amz-Target": "AWSCognitoIdentityProviderService.InitiateAuth",
+		"Content-Type": "application/x-amz-json-1.1",
+		"AuthFlow": "USER_PASSWORD_AUTH",
+		"ClientId": "2652adm3ps89eqhr5ap54kd85i",
+		"graphQL_uri":"https://3bnxzltwefgavoivfmayxf3d4a.appsync-api.us-west-2.amazonaws.com/graphql",
+		"cognito_uri":"https://cognito-idp.us-west-2.amazonaws.com"
 	}
 }
