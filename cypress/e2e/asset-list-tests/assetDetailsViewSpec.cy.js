@@ -6,7 +6,7 @@ describe('Asset Management page -- details view verification', () => {
 	});
 
 	it('Verify Asset Details View is collapsable', () => {
-		cy.openAsset('Company Name', 'Phillips Connect');
+		cy.openAsset('Phillips Connect', 'Asset ID');
 		cy.get('#details-summary').should('be.visible');
 		cy.get('#battery-block').should('exist');
 
@@ -23,7 +23,7 @@ describe('Asset Management page -- details view verification', () => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-critical"]').should('exist');
 		});
 
-		cy.openAsset('Trip Status', 'Parked');
+		cy.openAsset('Logistic', 'Asset ID');
 
 		cy.expandDrawerSection('Details');
 
@@ -44,7 +44,7 @@ describe('Asset Management page -- details view verification', () => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-warning"]').should('exist');
 		});
 
-		cy.openAsset('Trip Status', 'Moving');
+		cy.openAsset('Phillips Connect', 'Asset ID');
 
 		cy.expandDrawerSection('Details');
 
@@ -65,7 +65,7 @@ describe('Asset Management page -- details view verification', () => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-full"]').should('exist');
 		});
 
-		cy.openAsset('Company Name', 'Phillips Connect');
+		cy.openAsset('Phillips Connect', 'Asset ID');
 
 		cy.expandDrawerSection('Details');
 

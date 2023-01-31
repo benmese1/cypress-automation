@@ -143,7 +143,7 @@ Cypress.Commands.add('showHideColumnAssetsList', (columnName) => {
 
 Cypress.Commands.add('addAssetsFilter', (columnName, operator, value) => {
 	cy.get('[data-testid="asset-table-toolbar-filter-btn"]').should('be.visible').click({ force: true }).wait(500);
-	cy.xpath("//*[@data-testid='CloseIcon']//ancestor::div[2]").as('filterPopup');
+	cy.get('[role="tooltip"] .MuiDataGrid-filterForm').as('filterPopup');
 
 	//find elements within 'Filter' Popup
 	cy.get('@filterPopup').find('select').eq(1).select(columnName);
@@ -246,19 +246,30 @@ Cypress.Commands.add('removeAsset', (assetNickname) => {
 	cy.get('[data-testid="delete-confirmation-dialog-remove-btn"]').should('be.visible').click();
 });
 
-/** Open Asset by specific header name and required value
- *  @param {string} headerName - header of column to search cell within
- *  @param {string} cellValue - value of cell to click
+/** Open Asset for specific organization and value
+ *  @param {string} orgName - name of organization whithin cell click should be performed
+ *  @param {string} fieldName - value of cell to click
  */
-Cypress.Commands.add('openAsset', (headerName, cellValue) => {
+Cypress.Commands.add('openAsset', (orgName, fieldName) => {
+
+	const dataField = {
+		'Icon': 'icon', 
+		'Battery Icon': 'batt_v',
+		'Asset ID': 'asset_id',
+		'Asset Nickname': 'name',
+		'Device ID': 'imei',
+		'Product Name': 'prd_cde',
+		'Trip Status': 'trip_st',
+		'Last Event': 'lst_evnt_t',
+		'City': 'city',
+		'State': 'state',
+		'Asset Type': 'category',
+		'Asset Tags': 'tags'};
+	
 	//select cells based on the column header name
 	cy.xpath(
-		`//*[@role='cell'][count(//div[text()='${headerName}']//ancestor::*[@role='columnheader']/preceding-sibling::div)+1]`
-	).each(($cell) => {
-		if ($cell.text().includes(cellValue)) {
-			$cell.click();
-		}
-	});
+		`//*[@data-field='organization']//div[contains(text(),'${orgName}')]//ancestor::*[@role='row']//div[@data-field='${dataField[fieldName]}']`
+	).eq(0).click();
 });
 
 /** Expand section with specific name on Drawer
