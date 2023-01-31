@@ -1,6 +1,6 @@
 describe('Asset Management page export verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), {
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
 			cacheSession: false,
 		})
 			.waitForLoad()
@@ -8,18 +8,16 @@ describe('Asset Management page export verification', () => {
 	});
 
 	it('verify export button is visible and downloading CSV file', () => {
-		cy.url()
-			.should('include', '/assets')
-			.contains('button', 'Export')
-			.should('be.visible')
-			.click()
-			.wait(2000)
-			.readFile(downloadsPath + exportFilename)
-			.should('contain', csvFileHeader);
+		cy.get('[data-testid = btn-sub-header-action-Export]').should('be.visible').click().wait(2000);
+
+		cy.readFile(`${downloadsPath}` + '\\' + `${getExportedFileName()}`).should('contain', csvFileHeader);
 	});
 
-	const downloadsPath = 'cypress/downloads/';
-	const exportFilename = 'Phillips Connect.csv';
+	const downloadsPath = Cypress.config('downloadsFolder');
 	const csvFileHeader =
-		'Company Name,Asset ID,Asset Name,Address,Device ID,Device IP,Latitude,Longitude,Ambient Temp,Internal Temp,Battery Power,Main Power,Received Timestamp,Time,Stale Time';
+		'Company Name,Asset ID,Asset Nickname,Device ID,Product Name,Trip Status,Last Event,City,State,Zip,Asset Type,Asset Tags,Latitude,Longitude,VIN,# of Tires,# of Axles,Length,Door Type,GPS Time';
 });
+
+function getExportedFileName() {
+	return `Phillips Connect assets - ${new Date().toLocaleDateString().split('/').join('_')}.csv`;
+}

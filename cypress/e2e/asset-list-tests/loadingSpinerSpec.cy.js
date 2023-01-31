@@ -1,6 +1,6 @@
 describe('Loading spinner verification', () => {
 	it('verify that the download icon from the landing page has disappeared on the asset list page', () => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
 		cy.url().should('include', '/dashboard');
 		clickDashboardMenu();
 		cy.get('[data-testid="side-menu"]').should('be.visible').contains('Asset List').click();
