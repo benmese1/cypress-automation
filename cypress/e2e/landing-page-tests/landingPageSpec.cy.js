@@ -1,26 +1,25 @@
 describe('Landing page view test verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {cacheSession: false})
-			.waitForLoad();
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
 	});
 
 	it('verify moving assets', () => {
 		cy.get('[data-testid="dashboard-tile-total-assets-value"]')
 			.invoke('text')
 			.then(parseFormattedTextToFloat)
-			.then(totalAssets => {
+			.then((totalAssets) => {
 				cy.get('[data-testid="active-assets-value"]')
 					.invoke('text')
 					.then(parseFormattedTextToFloat)
 					.should('be.lessThan', totalAssets)
-					.then(movingAssets => {
+					.then((movingAssets) => {
 						cy.get('[data-testid="inactive-assets-value"]')
 							.invoke('text')
 							.then(parseFormattedTextToFloat)
-							.should('eq', totalAssets - movingAssets)
-					})
-			})
-	})
+							.should('eq', totalAssets - movingAssets);
+					});
+			});
+	});
 
 	it('verify Landing page for user with first name', () => {
 		cy.url().should('include', '/dashboard');
@@ -32,9 +31,7 @@ describe('Landing page view test verification', () => {
 	});
 
 	it(' Verify search placeholder text test', () => {
-		cy.get('[data-testid="selector-input"] input')
-			.invoke('attr', 'placeholder')
-			.should('equal', 'Find An Asset');
+		cy.get('[data-testid="selector-input"] input').invoke('attr', 'placeholder').should('equal', 'Find An Asset');
 	});
 
 	it('Navigate into the map by clicking on "Asset Map" button test', () => {
@@ -43,7 +40,7 @@ describe('Landing page view test verification', () => {
 			.url()
 			.should('include', 'map')
 			.get('[aria-label="Map"]')
-			.should("be.visible");
+			.should('be.visible');
 	});
 
 	it('Navigate into the Device Management page by clicking on "My Devices" button test', () => {
@@ -66,7 +63,7 @@ describe('Landing page view test verification', () => {
 	});
 });
 
-async function parseFormattedTextToFloat (text) {
-	const value = text.match(/(\d|,|\.)+/g)[0]
-	return Number(value.replaceAll(",",""))
+async function parseFormattedTextToFloat(text) {
+	const value = text.match(/(\d|,|\.)+/g)[0];
+	return Number(value.replaceAll(',', ''));
 }
