@@ -249,8 +249,9 @@ Cypress.Commands.add('removeAsset', (assetNickname) => {
 /** Open Asset for specific organization and value
  *  @param {string} orgName - name of organization whithin cell click should be performed
  *  @param {string} fieldName - value of cell to click
+ *  @param {number} rowIndex - index of row to select cell within
  */
-Cypress.Commands.add('openAsset', (orgName, fieldName) => {
+Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex = 1) => {
 
 	const dataField = {
 		'Icon': 'icon', 
@@ -269,7 +270,7 @@ Cypress.Commands.add('openAsset', (orgName, fieldName) => {
 	//select cells based on the column header name
 	cy.xpath(
 		`//*[@data-field='organization']//div[contains(text(),'${orgName}')]//ancestor::*[@role='row']//div[@data-field='${dataField[fieldName]}']`
-	).eq(0).click();
+	).eq(rowIndex).click();
 });
 
 /** Expand section with specific name on Drawer
