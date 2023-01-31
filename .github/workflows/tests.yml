@@ -60,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: results/
+          path: results/test-results-[hash].xml
           retention-days: 30
 
       - name: 'Upload screenshots'
@@ -96,5 +96,5 @@ jobs:
           password: ${{ secrets.JIRA_CLIENT_SECRET }}
           testFormat: "junit"
           # testPaths: "cypress/results/test-results-[hash].xml"
-          testPaths: "results/test-results-[hash].xml"
+          testPaths: "results/"
           projectKey: "CALC"
