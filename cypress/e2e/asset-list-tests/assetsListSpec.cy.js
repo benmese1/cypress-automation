@@ -22,6 +22,7 @@ describe('Asset Management page general tests', () => {
 
 	it('Verify assets table columns visibility', () => {
 		const columnHeadersList = [
+			'Company Name',
 			'Icon',
 			'Asset ID',
 			'Asset Nickname',
@@ -78,27 +79,35 @@ describe('Asset Management page general tests', () => {
 
 	it('Pin and unpin column in Asset list table test', () => {
 		//pin Device ID column to the left side
-		cy.pinColumn('Device ID', 'left')
-			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
-			.should('have.text', 'Device ID')
-			//pin Battery Power colum to the right
-			.pinColumn('Battery Icon', 'right')
-			.get('[data-testid="items-list-pinned-column-right-header"] [data-testid="items-list-column-header"]')
-			.should('have.text', 'Battery Icon')
-			.unpinColumn('Device ID')
-			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
-			.should('not.exist');
+		cy.pinColumn('Device ID', 'left');
+		cy.get('[data-testid="items-list-pinned-column-left-header-0"] [data-testid = "column-header-device-id"]')
+			.should('be.visible')
+			.should('have.text', 'Device ID');
+
+		//pin Battery Power colum to the right
+		cy.pinColumn('Battery Icon', 'right');
+		cy.get('[data-testid="items-list-pinned-column-right-header-0"] [data-testid = "column-header-battery-icon"]')
+			.should('be.visible')
+			.should('have.text', 'Battery Icon');
+
+		cy.unpinColumn('Device ID');
+		cy.get('[data-testid="items-list-pinned-column-left-header-0"] [data-testid = "column-header-device-id"]').should(
+			'not.exist'
+		);
 	});
 
 	it('Pin multiple columns to one side in Asset list table test', () => {
 		//pin Device ID and Battery Power columns to the left side
 		cy.pinColumn('Device ID', 'left');
-		cy.pinColumn('Battery Icon', 'left')
-			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
-			.first()
-			.should('have.text', 'Device ID')
-			.get('[data-testid="items-list-pinned-column-left-header"] [data-testid="items-list-column-header"]')
-			.last()
-			.should('have.text', 'Battery Icon');
+		cy.pinColumn('Battery Icon', 'left');
+
+		cy.get('[data-testid="items-list-pinned-column-left-header-0"] [data-testid = "column-header-device-id"]').should(
+			'have.text',
+			'Device ID'
+		);
+
+		cy.get(
+			'[data-testid="items-list-pinned-column-left-header-0"] [data-testid = "column-header-battery-icon"]'
+		).should('have.text', 'Battery Icon');
 	});
 });
