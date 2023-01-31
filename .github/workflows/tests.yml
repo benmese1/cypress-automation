@@ -21,7 +21,7 @@ on:
         type: string
 
 jobs:
-  cypress:
+  build-project:
     name: Run Cypress
     runs-on: windows-latest
 
@@ -60,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: cypress/results/
+          path: results/
           retention-days: 30
 
       - name: 'Upload screenshots'
@@ -68,7 +68,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-screenshots
-          path: cypress/screenshots/
+          path: screenshots/
           retention-days: 30
 
       - name: 'Upload video'
@@ -76,11 +76,18 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-video
-          path: cypress/video/
+          path: video/
           retention-days: 30
 
-      # - name: 'merge test results'
-      #   run: 'npm run combine:reports'
+  release-project:
+    name: Export Test Results
+    runs-on: windows-latest
+
+    steps:
+      - name: 'Download Test Results'
+        uses: 'actions/download-artifact@v3'
+        with:
+          name: 'test-results'
 
       - name: Submit results to Xray
         uses: mikepenz/xray-action@v2
@@ -88,5 +95,6 @@ jobs:
           username: ${{ secrets.JIRA_CLIENT_ID }}
           password: ${{ secrets.JIRA_CLIENT_SECRET }}
           testFormat: "junit"
-          testPaths: "cypress/results/test-results-[hash].xml"
+          # testPaths: "cypress/results/test-results-[hash].xml"
+          testPaths: "results/test-results-[hash].xml"
           projectKey: "CALC"
