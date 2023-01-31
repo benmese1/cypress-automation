@@ -251,8 +251,10 @@ Cypress.Commands.add('removeAsset', (assetNickname) => {
  *  @param {string} fieldName - value of cell to click
  *  @param {number} rowIndex - index of row to select cell within
  */
-Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex = 1) => {
-
+Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex) => {
+	if (rowIndex === 'undefined') {
+		rowIndex= 1;
+	}
 	const dataField = {
 		'Icon': 'icon', 
 		'Battery Icon': 'batt_v',
