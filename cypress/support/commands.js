@@ -48,6 +48,7 @@ Cypress.Commands.add('pinColumn', (columnName, side) => {
 		.should('be.visible')
 		.contains('Pin to ' + side)
 		.click();
+	cy.wait(1000);
 });
 
 /** Unpin column on Asset list page
@@ -141,25 +142,18 @@ Cypress.Commands.add('showHideColumnAssetsList', (columnName) => {
 });
 
 Cypress.Commands.add('addAssetsFilter', (columnName, operator, value) => {
-	cy.get('[data-testid="TripleDotsVerticalIcon"]')
-		.eq(1)
-		.click({ force: true })
-		.get('.MuiDataGrid-menuList')
-		.should('be.visible')
-		.contains('Filter')
-		.click()
-		.get('.MuiDataGrid-filterForm')
-		.should('be.visible')
-		.get('.MuiDataGrid-filterFormColumnInput select')
-		.last()
-		.select(columnName)
-		.get('.MuiDataGrid-filterFormOperatorInput select')
-		.last()
-		.select(operator);
+	cy.get('[data-testid="asset-table-toolbar-filter-btn"]').should('be.visible').click({ force: true }).wait(500);
+	cy.get('[role="tooltip"] .MuiDataGrid-filterForm').as('filterPopup');
+
+	//find elements within 'Filter' Popup
+	cy.get('@filterPopup').find('select').eq(1).select(columnName);
+	cy.get('@filterPopup').find('select').eq(2).select(operator);
+
 	if (!operator.includes('empty')) {
-		cy.get('.MuiDataGrid-filterFormValueInput input').last().type(value);
+		cy.get('@filterPopup').find('input').last().type(value).wait(500);
 	}
-	cy.wait(1000);
+
+	cy.clickOutside();
 });
 
 /** Set location on Asset Map page
@@ -252,6 +246,48 @@ Cypress.Commands.add('removeAsset', (assetNickname) => {
 	cy.get('[data-testid="details-drawer-remove-btn"]').click();
 
 	cy.get('[data-testid="delete-confirmation-dialog-remove-btn"]').should('be.visible').click();
+});
+
+/** Open Asset for specific organization and value
+ *  @param {string} orgName - name of organization whithin cell click should be performed
+ *  @param {string} fieldName - value of cell to click
+ *  @param {number} rowIndex - index of row to select cell within
+ */
+Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex) => {
+	if (rowIndex === 'undefined') {
+		rowIndex= 1;
+	}
+	const dataField = {
+		'Icon': 'icon', 
+		'Battery Icon': 'batt_v',
+		'Asset ID': 'asset_id',
+		'Asset Nickname': 'name',
+		'Device ID': 'imei',
+		'Product Name': 'prd_cde',
+		'Trip Status': 'trip_st',
+		'Last Event': 'lst_evnt_t',
+		'City': 'city',
+		'State': 'state',
+		'Asset Type': 'category',
+		'Asset Tags': 'tags'};
+	
+	//select cells based on the column header name
+	cy.xpath(
+		`//*[@data-field='organization']//div[contains(text(),'${orgName}')]//ancestor::*[@role='row']//div[@data-field='${dataField[fieldName]}']`
+	).eq(rowIndex).click();
+});
+
+/** Expand section with specific name on Drawer
+ *  @param {string} sectionName - section's name to expand
+ */
+Cypress.Commands.add('expandDrawerSection', (sectionName) => {
+	cy.contains('[role="button"]', sectionName).then(($section) => {
+		$section.invoke('attr', 'aria-expanded').then(($is_expanded) => {
+			if ($is_expanded === 'false') {
+				$section.click();
+			}
+		});
+	});
 });
 
 //Method Name :createNewUser
