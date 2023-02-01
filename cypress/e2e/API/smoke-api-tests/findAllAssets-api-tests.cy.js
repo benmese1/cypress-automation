@@ -37,17 +37,15 @@ it(
 
 		// GraphQL query to findDevices
 		const query = `
-	 query MyQuery {
-		findDevices {
-		  imei
-		  assets_id
-		  name
-		  dev_id
-		  prd_cde
-		  serial_num
-		  device_type
-		}
-	  }`;
+		query MyQuery {
+			findAssets {
+			   asset_id
+			   name
+			   category
+			   added_date
+			 }
+		   }
+		   `;
 
 		cy.request({
 			method: 'POST',
@@ -59,9 +57,7 @@ it(
 			body: { query },
 		}).then((res) => {
 			expect(res.status).to.eq(200);
-			expect(res.body.data.findDevices[0]).to.have.property('imei');
-			// hardcoded for now , in Integration we can compare from UI
-			// expect(res.body.data.findDevices[0]).to.have.property('assets_id').to.eq('63a7cf09c45bfb7ace184f45');
+			expect(res.body.data.findAssets[0]).to.have.property('name');
 			cy.log(res.body);
 		});
 	}
