@@ -1,8 +1,8 @@
-// API test for the find all devices by generating JWT on the fly : Dev only
+// API test for the find all assets by generating JWT on the fly : Dev only
 /// <reference types="cypress" />
 
 it(
-	'Send an API request to find all Devices',
+	'Send an API request to find all Assets',
 	{
 		// Multiple attempts as the API is intermittent to respond at once
 		retries: {
@@ -35,7 +35,7 @@ it(
 			cy.log('Token = ' + token);
 		});
 
-		// GraphQL query to findDevices
+		// GraphQL query to findAssets
 		const query = `
 		query MyQuery {
 			findAssets {
