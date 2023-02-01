@@ -1,4 +1,4 @@
-name: Run tests
+name: Run Tests
 on:
   schedule:
     - cron: '30 8 * * *'
@@ -22,7 +22,7 @@ on:
 
 jobs:
   build-project:
-    name: Run Cypress
+    name: QA regression suite
     runs-on: windows-latest
 
     steps:
@@ -55,10 +55,6 @@ jobs:
         run: npx cypress run --env fileConfig=dev ${{ github.event.inputs.spec }}
         continue-on-error: true
 
-      - run: mkdir -p cypress/results/
-      - run: mkdir -p cypress/screenshots/
-      - run: mkdir -p cypress/video/
-
       - name: 'Upload test results'
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
@@ -83,9 +79,22 @@ jobs:
           path: cypress/video/
           retention-days: 30
 
+      - name: Submit results to Xray
+        uses: mikepenz/xray-action@v2
+        with:
+          username: ${{ secrets.JIRA_CLIENT_ID }}
+          password: ${{ secrets.JIRA_CLIENT_SECRET }}
+          testFormat: "junit"
+          testPaths: "cypress/results/test-results-[hash].xml"
+          projectKey: "CALC"
+
   # release-project:
     # name: Export Test Results
     # runs-on: windows-latest
+
+      # - run: mkdir -p cypress/results/
+      # - run: mkdir -p cypress/screenshots/
+      # - run: mkdir -p cypress/video/
 
     # steps:
       # - name: 'Download Test Results'
@@ -94,12 +103,12 @@ jobs:
       #     name: 'test-results'
       #     path: cypress/results/
 
-      - name: Submit results to Xray
-        uses: mikepenz/xray-action@v2
-        with:
-          username: ${{ secrets.JIRA_CLIENT_ID }}
-          password: ${{ secrets.JIRA_CLIENT_SECRET }}
-          testFormat: "junit"
-          # testPaths: "cypress/results/test-results-[hash].xml"
-          testPaths: "cypress/results/test-results-[hash].xml"
-          projectKey: "CALC"
+      # - name: Submit results to Xray
+      #   uses: mikepenz/xray-action@v2
+      #   with:
+      #     username: ${{ secrets.JIRA_CLIENT_ID }}
+      #     password: ${{ secrets.JIRA_CLIENT_SECRET }}
+      #     testFormat: "junit"
+      #     # testPaths: "cypress/results/test-results-[hash].xml"
+      #     testPaths: "cypress/results/test-results-[hash].xml"
+      #     projectKey: "CALC"
