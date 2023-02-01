@@ -55,6 +55,10 @@ jobs:
         run: npx cypress run --env fileConfig=dev ${{ github.event.inputs.spec }}
         continue-on-error: true
 
+      - run: mkdir -p cypress/results/
+      - run: mkdir -p cypress/screenshots/
+      - run: mkdir -p cypress/video/
+
       - name: 'Upload test results'
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
@@ -79,15 +83,16 @@ jobs:
           path: cypress/video/
           retention-days: 30
 
-  release-project:
-    name: Export Test Results
-    runs-on: windows-latest
+  # release-project:
+    # name: Export Test Results
+    # runs-on: windows-latest
 
-    steps:
-      - name: 'Download Test Results'
-        uses: 'actions/download-artifact@v3'
-        with:
-          name: 'test-results'
+    # steps:
+      # - name: 'Download Test Results'
+      #   uses: 'actions/download-artifact@v3'
+      #   with:
+      #     name: 'test-results'
+      #     path: cypress/results/
 
       - name: Submit results to Xray
         uses: mikepenz/xray-action@v2
@@ -96,5 +101,5 @@ jobs:
           password: ${{ secrets.JIRA_CLIENT_SECRET }}
           testFormat: "junit"
           # testPaths: "cypress/results/test-results-[hash].xml"
-          testPaths: "results/test-results-[hash].xml"
+          testPaths: "cypress/results/test-results-[hash].xml"
           projectKey: "CALC"
