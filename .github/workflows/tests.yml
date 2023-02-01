@@ -60,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: results/test-results-[hash].xml
+          path: cypress/results/
           retention-days: 30
 
       - name: 'Upload screenshots'
@@ -68,7 +68,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-screenshots
-          path: screenshots/
+          path: cypress/screenshots/
           retention-days: 30
 
       - name: 'Upload video'
@@ -76,7 +76,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-video
-          path: video/
+          path: cypress/video/
           retention-days: 30
 
   release-project:
@@ -96,5 +96,5 @@ jobs:
           password: ${{ secrets.JIRA_CLIENT_SECRET }}
           testFormat: "junit"
           # testPaths: "cypress/results/test-results-[hash].xml"
-          testPaths: "results/"
+          testPaths: "results/test-results-[hash].xml"
           projectKey: "CALC"
