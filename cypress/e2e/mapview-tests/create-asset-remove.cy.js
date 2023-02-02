@@ -9,18 +9,6 @@ describe('Verify create asset and verify it is removed sucessfully from list', (
 	});
 
 	it('verify create asset and verify it is removed sucessfully from list', () => {
-		// click on download map
-		/*cy.get('[data-testid="DownloadOutlinedIcon"]').click({ force: true });
-
-		const downloadsFolder = Cypress.config('downloadsFolder');
-		var dname = dayjs().format('MM-DD-YYYY');
-		var filename = 'Phillips Connect assets - ' + dname + '.csv';
-		const downloadedFilename = path.join(downloadsFolder, filename);
-
-		cy.readFile(downloadedFilename, 'binary', { timeout: 15000 }).should((buffer) =>
-			expect(buffer.length).to.be.gt(100)
-		);*/
-
 		// Click on More Icons
 		cy.get('[data-testid="MoreVertIcon"]').click({ force: true });
 
