@@ -1,6 +1,3 @@
-const path = require('path');
-const dayjs = require('dayjs');
-
 describe('Verify create asset and verify it is removed sucessfully from list', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
