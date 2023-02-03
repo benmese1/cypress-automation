@@ -29,6 +29,7 @@ describe('Verify the map legend filters list to understand asset status on map',
 		// click on maplegend list
 		cy.get('[data-testid="map-details-drawer"]').eq(0).scrollIntoView().click({ force: true });
 		var i = 0;
+		// assert the list for different status of assets
 		cy.get('[class="flex"]').each(($elem) => {
 			expect($elem.text()).to.eq(mapcontents[i++]);
 		});
