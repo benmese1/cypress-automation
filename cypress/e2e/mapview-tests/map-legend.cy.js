@@ -23,8 +23,10 @@ describe('Verify the map legend filters list to understand asset status on map',
 			'Parked Loaded Large Dwell',
 			'Parked Loaded Mega Dwell',
 		];
-		// click on download map
+		// make sure map legend is visible
 		cy.get('[data-testid="map-details-drawer"]').eq(0).should('be.visible');
+
+		// click on maplegend list
 		cy.get('[data-testid="map-details-drawer"]').eq(0).scrollIntoView().click({ force: true });
 		var i = 0;
 		cy.get('[class="flex"]').each(($elem) => {
