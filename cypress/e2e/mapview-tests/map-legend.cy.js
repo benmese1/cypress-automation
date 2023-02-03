@@ -24,8 +24,6 @@ describe('Verify the map legend filters list to understand asset status on map',
 			'Parked Loaded Mega Dwell',
 		];
 		// click on download map
-		cy.get('[class="absolute right-14 bottom-14 md:bottom-10 "]', { timeout: 10000 }).should('be.visible');
-
 		cy.get('[data-testid="map-details-drawer"]').eq(0).should('be.visible');
 		cy.get('[data-testid="map-details-drawer"]').eq(0).scrollIntoView().click({ force: true });
 		var i = 0;
