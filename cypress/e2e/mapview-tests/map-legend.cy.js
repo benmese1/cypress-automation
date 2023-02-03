@@ -1,11 +1,11 @@
-describe('Verify the map legend filters', () => {
+describe('Verify the map legend filters list to understand asset status on map', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
 			.waitForLoad()
 			.dashboardMenu('Asset Map');
 	});
 
-	it('verify the map legend filters', () => {
+	it('verify the map legend filters list to understand asset status on map', () => {
 		let mapcontents = [
 			'Parked Unknown Low Dwell',
 			'Parked Unknown  Medium Dwell',
