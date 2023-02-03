@@ -30,7 +30,6 @@ describe('Verify the map legend filters', () => {
 		cy.get('[data-testid="map-details-drawer"]').eq(0).scrollIntoView().click({ force: true });
 		var i = 0;
 		cy.get('[class="flex"]').each(($elem) => {
-			//cy.log($elem.text());
 			expect($elem.text()).to.eq(mapcontents[i++]);
 		});
 	});
