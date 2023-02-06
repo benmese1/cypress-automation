@@ -17,7 +17,7 @@ export default defineConfig({
 	defaultCommandTimeout: 8000,
 	reporter: 'mochawesome',
 	reporterOptions: {
-		reportDir: 'cypress/results/test-results-[hash].xml',
+		reportDir: 'cypress/results/test-results-[hash].json',
 		testCaseSwitchClassnameAndName: false,
 		overwrite: false,
 		html: false,
