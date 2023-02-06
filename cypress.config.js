@@ -15,10 +15,13 @@ export default defineConfig({
 	videosFolder: 'cypress/videos',
 	downloadsFolder: 'cypress/downloads',
 	defaultCommandTimeout: 8000,
-	reporter: 'junit',
+	reporter: 'mochawesome',
 	reporterOptions: {
-		mochaFile: 'cypress/results/test-results-[hash].xml',
+		reportDir: 'cypress/results/test-results-[hash].xml',
 		testCaseSwitchClassnameAndName: false,
+		overwrite: false,
+		html: false,
+		json: true,
 	},
 	e2e: {
 		experimentalSessionAndOrigin: true,
