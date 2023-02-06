@@ -1,13 +1,4 @@
-const searchData = [
-	{ option: 'Company/Sub Company', term: 'Phillips Connect', datafield: 'orgKeys' },
-	{ option: 'Last Name', term: 'Kurella', datafield: 'lastName' },
-	{ option: 'First Name', term: 'Dinesh', datafield: 'firstName' },
-	{ option: 'User Name', term: 'test1', datafield: 'name' },
-	{ option: 'Email', term: 'modistesters@gmail.com', datafield: 'email' },
-	{ option: 'Phone Number', term: '6308537982', datafield: 'phoneNumber' },
-	{ option: 'Role', term: 'superadmin', datafield: 'groups' },
-	{ option: 'Status', term: 'active', datafield: 'status' }
-];
+import searchData from '../../fixtures/globalsearch.json';
 
 describe('Global "Users" Search verification', () => {
 	beforeEach(() => {
@@ -82,7 +73,7 @@ describe('Global "Users" Search verification', () => {
 		});
 	});
 
-	searchData.forEach((search) => {
+	searchData.users.forEach((search) => {
 		it(`Global User Search by existing "${search.option}"'`, () => {
 			//select 'Users' option on Global search and type search term
 			cy.globalSearch('Users', search.term, false);
