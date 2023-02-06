@@ -1,0 +1,44 @@
+{
+   "users":[
+      {
+         "option":"Company/Sub Company",
+         "term":"Phillips Connect",
+         "datafield":"orgKeys"
+      },
+      {
+         "option":"Last Name",
+         "term":"Kurella",
+         "datafield":"lastName"
+      },
+      {
+         "option":"First Name",
+         "term":"Dinesh",
+         "datafield":"firstName"
+      },
+      {
+         "option":"User Name",
+         "term":"test1",
+         "datafield":"name"
+      },
+      {
+         "option":"Email",
+         "term":"modistesters@gmail.com",
+         "datafield":"email"
+      },
+      {
+         "option":"Phone Number",
+         "term":"6308537982",
+         "datafield":"phoneNumber"
+      },
+      {
+         "option":"Role",
+         "term":"superadmin",
+         "datafield":"groups"
+      },
+      {
+         "option":"Status",
+         "term":"active",
+         "datafield":"status"
+      }
+   ]
+}

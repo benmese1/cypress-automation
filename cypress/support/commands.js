@@ -110,6 +110,36 @@ Cypress.Commands.add('dashboardMenu', (menu) => {
 	});
 });
 
+/** Global search of option and provided search term
+ * Supported options: Assets, Devices, Locations, Users, Organizations
+ * @param {string} searchOption - searched option
+ * @param {string} searchTerm - searched value
+ * @param {boolean} isSubmit - type enter if true, default is true
+ */
+Cypress.Commands.add('globalSearch', (searchOption, searchTerm, isSubmit) => {
+	if (typeof isSubmit === 'undefined') {
+		isSubmit = true;
+	}
+	const dataTestid = {
+		Assets: 'global-search-select-item-Assets',
+		Locations: 'global-search-select-item-Locations',
+		Devices: 'global-search-select-item-Devices',
+		Users: 'global-search-select-item-Users',
+		Organizations: 'global-search-select-item-Organizations',
+	};
+	cy.get('[data-testid="global-search-select"] [role="button"]').click().wait(500);
+	cy.get(`[data-testid='${dataTestid[searchOption]}']`).click();
+
+	if (isSubmit) {
+		cy.get('[data-testid="selector-input"] input')
+			.first()
+			.clear()
+			.type(searchTerm + '{enter}');
+	} else {
+		cy.get('[data-testid="selector-input"] input').first().clear().type(searchTerm);
+	}
+});
+
 //logout from the application
 Cypress.Commands.add('logout', () => {
 	cy.get('[data-testid="AccountCircleIcon"]').should('be.visible').click().wait(100).get('li[role="menuitem"]').click();
@@ -255,10 +285,10 @@ Cypress.Commands.add('removeAsset', (assetNickname) => {
  */
 Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex) => {
 	if (rowIndex === 'undefined') {
-		rowIndex= 1;
+		rowIndex = 1;
 	}
 	const dataField = {
-		'Icon': 'icon', 
+		Icon: 'icon',
 		'Battery Icon': 'batt_v',
 		'Asset ID': 'asset_id',
 		'Asset Nickname': 'name',
@@ -266,15 +296,18 @@ Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex) => {
 		'Product Name': 'prd_cde',
 		'Trip Status': 'trip_st',
 		'Last Event': 'lst_evnt_t',
-		'City': 'city',
-		'State': 'state',
+		City: 'city',
+		State: 'state',
 		'Asset Type': 'category',
-		'Asset Tags': 'tags'};
-	
+		'Asset Tags': 'tags',
+	};
+
 	//select cells based on the column header name
 	cy.xpath(
 		`//*[@data-field='organization']//div[contains(text(),'${orgName}')]//ancestor::*[@role='row']//div[@data-field='${dataField[fieldName]}']`
-	).eq(rowIndex).click();
+	)
+		.eq(rowIndex)
+		.click();
 });
 
 /** Expand section with specific name on Drawer
