@@ -1,44 +1,91 @@
 {
-   "users":[
-      {
-         "option":"Company/Sub Company",
-         "term":"Phillips Connect",
-         "datafield":"orgKeys"
-      },
-      {
-         "option":"Last Name",
-         "term":"Kurella",
-         "datafield":"lastName"
-      },
-      {
-         "option":"First Name",
-         "term":"Dinesh",
-         "datafield":"firstName"
-      },
-      {
-         "option":"User Name",
-         "term":"test1",
-         "datafield":"name"
-      },
-      {
-         "option":"Email",
-         "term":"modistesters@gmail.com",
-         "datafield":"email"
-      },
-      {
-         "option":"Phone Number",
-         "term":"6308537982",
-         "datafield":"phoneNumber"
-      },
-      {
-         "option":"Role",
-         "term":"superadmin",
-         "datafield":"groups"
-      },
-      {
-         "option":"Status",
-         "term":"active",
-         "datafield":"status"
-      }
-   ]
+	"users": [
+		{
+			"option": "Company/Sub Company",
+			"term": "Phillips Connect",
+			"datafield": "orgKeys"
+		},
+		{
+			"option": "Last Name",
+			"term": "Kurella",
+			"datafield": "lastName"
+		},
+		{
+			"option": "First Name",
+			"term": "Dinesh",
+			"datafield": "firstName"
+		},
+		{
+			"option": "User Name",
+			"term": "test1",
+			"datafield": "name"
+		},
+		{
+			"option": "Email",
+			"term": "modistesters@gmail.com",
+			"datafield": "email"
+		},
+		{
+			"option": "Phone Number",
+			"term": "6308537982",
+			"datafield": "phoneNumber"
+		},
+		{
+			"option": "Role",
+			"term": "superadmin",
+			"datafield": "groups"
+		},
+		{
+			"option": "Status",
+			"term": "active",
+			"datafield": "status"
+		}
+	],
+	"devices": [
+		{
+			"option": "Company Name",
+			"term": "Werner Enterprises, Inc.",
+			"datafield": "org_name"
+		},
+		{
+			"option": "Device Id",
+			"term": "15115004727300",
+			"datafield": "imei"
+		},
+		{
+			"option": "Asset Id",
+			"term": "CFQU921152",
+			"datafield": "asset_name"
+		},
+		{
+			"option": "Product Code",
+			"term": "77-6290",
+			"datafield": "prd_cde"
+		},
+		{
+			"option": "Product Name",
+			"term": "StealthNet",
+			"datafield": "prd_name"
+		},
+		{
+			"option": "Associated",
+			"term": "Yes",
+			"datafield": "associated_to_asset"
+		},
+		{
+			"option": "Firmware Version",
+			"term": "MNT_LTF_2_6_103_B4",
+			"datafield": "firmware_version"
+		},
+		{
+			"option": "Order #",
+			"term": "AUTOOR145026",
+			"datafield": "order_num"
+		},
+		{
+			"option": "SIM ID",
+			"term": "AUTOSIM145026",
+			"datafield": "sim_num"
+		}
+	]
 }
