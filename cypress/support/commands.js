@@ -381,6 +381,16 @@ Cypress.Commands.add('searchOrgsAndUsers', (searchCriteria) => {
 	cy.get('[data-testid="items-list-search-input"]').should('be.visible').type(searchCriteria).wait(1000);
 });
 
+/**
+ * Transfer Company
+ */
+Cypress.Commands.add('transferOrg', (company,parentcompany) => {
+	cy.xpath('//div[text()="'+company+'"]').click();
+	cy.get('[data-testid="input-org-parent-company"]').click().clear().type(parentcompany)
+	cy.get('li').contains(parentcompany).click();
+	cy.get('[data-testid="btn-org-form-submit"]').click();
+	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Updated Successfully!');
+});
 // https://reflect.run/articles/comparing-screenshots-in-cypress/
 // https://www.npmjs.com/package/cypress-image-diff-js?activeTab=readme
 // takes and compares a snapshot to the snapshot in your base folder
