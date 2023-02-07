@@ -12,6 +12,12 @@
 		"AuthFlow": "USER_PASSWORD_AUTH",
 		"ClientId": "2652adm3ps89eqhr5ap54kd85i",
 		"graphQL_uri": "https://3bnxzltwefgavoivfmayxf3d4a.appsync-api.us-west-2.amazonaws.com/graphql",
-		"cognito_uri": "https://cognito-idp.us-west-2.amazonaws.com"
+		"cognito_uri": "https://cognito-idp.us-west-2.amazonaws.com",
+		"ClientadminUsername": "maniusps",
+		"ClientadminPassword": "Mani@123",
+		"EquipmentmanagerUsername": "Equipment-manager",
+		"EquipmentmanagerPassword": "Mani@123",
+		"SupervisorUsername": "supervisor",
+		"SupervisorPassword": "Super@123"
 	}
 }

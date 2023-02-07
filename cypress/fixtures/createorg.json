@@ -24,6 +24,34 @@
 			"orgname": "Swift",
 			"parentcompany": "JB Hunt",
 			"timezone": "Pacific Standard (GMT-8)"
+		},
+		"clentadminorg": {
+			"parentcompany": "USPS",
+			"Brand": "Enroad",
+			"Type": "Factory",
+			"Timezone": "Mountain Standard (GMT-7)",
+			"DistanceUnitPreference": "Miles"
+		},
+		"clientadmineditorg": {
+			"companyname": "LINDOR",
+			"Brand": "Phillips",
+			"Type": "Fleet",
+			"Timezone": "Pacific Standard (GMT-8)",
+			"DistanceUnitPreference": "Miles"
+		},
+		"supervisoreditorg": {
+			"companyname": "TJMax",
+			"Brand": "Enroad",
+			"Type": "Retail",
+			"Timezone": "Central Standard (GMT-6)",
+			"DistanceUnitPreference": "KMs"
+		},
+		"equipmentmanagereditorg": {
+			"companyname": "Truck",
+			"Brand": "Elasticm2m",
+			"Type": "Fleet",
+			"Timezone": "Eastern Standard (GMT-5)",
+			"DistanceUnitPreference": "Miles"
 		}
 	}
 ]

@@ -381,6 +381,34 @@ Cypress.Commands.add('searchOrgsAndUsers', (searchCriteria) => {
 	cy.get('[data-testid="items-list-search-input"]').should('be.visible').type(searchCriteria).wait(1000);
 });
 
+//Method Name :verifyCreateNewOrgnotExist
+//Used to verify if create new button not exists
+//Params No Param
+Cypress.Commands.add('verifyCreateNewOrgNotExist', (timeout) => {
+	if (typeof timeout === 'undefined') {
+		timeout = 1000;
+	}
+	cy.get('[data-testid="management-my-organization"]', { timeout: timeout })
+		.should('exist')
+		.get('[data-testid="btn-sub-header-action-Create New"]', { timeout: timeout })
+		.should('not.exist');
+});
+
+//Method Name :verifyMyOrganizationTableView
+//Used to verify if My Organization table exits
+//Params No Param
+Cypress.Commands.add('verifyMyOrganizationTableView', () => {
+	cy.get('[data-testid="column-header-company-name"]').should('be.visible');
+	cy.get('[data-testid="column-header-parent-company"]').should('be.visible');
+	cy.get('[data-testid="column-header-brand"]').should('be.visible');
+	cy.get('[data-testid="column-header-type"]').should('be.visible');
+	cy.get('[data-testid="column-header-time-zone"]').should('be.visible');
+	cy.get('[data-testid="column-header-number-of-devices"]').should('be.visible');
+	cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
+	cy.get('[data-testid="column-header-created-date"]').should('be.visible');
+	cy.get('[data-testid="column-header-distance-unit-preference"]').should('be.visible');
+});
+
 // https://reflect.run/articles/comparing-screenshots-in-cypress/
 // https://www.npmjs.com/package/cypress-image-diff-js?activeTab=readme
 // takes and compares a snapshot to the snapshot in your base folder
