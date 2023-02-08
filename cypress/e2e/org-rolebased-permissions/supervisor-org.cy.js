@@ -6,7 +6,8 @@ describe('View and Edit Org for supervisor role', () => {
 		cy.login(Cypress.env('SupervisorUsername'), Cypress.env('SupervisorPassword'), {
 			cacheSession: false,
 		});
-		cy.waitForLoad().get("[aria-label='account of current user']").should('be.visible');
+		cy.waitForLoad();
+		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 
 	it('Verify not exists of create new org button, My Organization view access and My Organization edit access for supervisor role', () => {
