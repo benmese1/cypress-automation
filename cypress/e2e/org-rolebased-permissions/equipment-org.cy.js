@@ -10,10 +10,10 @@ describe('View and Edit Org for Equipmentmanager', () => {
 	it('Verify not exists of create new org button, My Organization view access and My Organization edit access for equipment role', () => {
 		cy.dashboardMenu('My Organization');
 		// Verify that create New Button should not present  for Equipmentmanager Role
-		cy.verifyCreateNewOrgNotExist();
+		cy.get('[data-testid="management-my-organization"]', { timeout: 2000 }).should('exist');
+		cy.get('[data-testid="btn-sub-header-action-Create New"]', { timeout: 1000 }).should('not.exist');
 		//Verify My Organization view access for Equipmentmanager Role
-		cy.verifyMyOrganizationTableView(); //
-		cy.log('Edit Org');
+		cy.verifyMyOrganizationTableView();
 		//Verify My Organization edit access for Equipmentmanager Role
 		cy.editOrg(
 			org[0].equipmentmanagereditorg.companyname,

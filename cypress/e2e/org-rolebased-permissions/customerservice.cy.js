@@ -1,7 +1,7 @@
 import org from '../../fixtures/createorg.json';
 let randomnumber = Math.floor(Math.random() * 10000);
 
-describe('Verrify no access to My Org for customerservice', () => {
+describe('Verify no access to My Org for customerservice', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('CustomerserviceUsename'), Cypress.env('CustomerservicePassword'), { cacheSession: false });
 		cy.waitForLoad().get("[aria-label='account of current user']").should('be.visible');
