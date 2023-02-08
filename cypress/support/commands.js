@@ -381,16 +381,44 @@ Cypress.Commands.add('searchOrgsAndUsers', (searchCriteria) => {
 	cy.get('[data-testid="items-list-search-input"]').should('be.visible').type(searchCriteria).wait(1000);
 });
 
-/**
- * Transfer Company
- */
-Cypress.Commands.add('transferOrg', (company, parentcompany) => {
-	cy.xpath('//div[text()="' + company + '"]').click();
-	cy.get('[data-testid="input-org-parent-company"]').click().clear().type(parentcompany);
-	cy.get('li').contains(parentcompany).click();
-	cy.get('[data-testid="btn-org-form-submit"]').click();
-	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Updated Successfully!');
+//Method Name :verifyMyOrganizationTableView
+//Used to verify if My Organization table exits
+//Params No Param
+Cypress.Commands.add('verifyMyOrganizationTableView', () => {
+	cy.get('[role="grid"]').invoke('attr', 'aria-rowcount').then(parseInt).should('be.gte', 1);
 });
+
+//Method Name :verifyNotExistsOfAppMenuItems
+//Used to verify if My Organization table exits
+//Params menu
+Cypress.Commands.add('verifyNotExistsOfAppMenuItems', (menu) => {
+	cy.get('[data-testid="header"] [role="button"]')
+		.click()
+		.wait(500)
+		.get('[data-testid="side-menu"]')
+		.should('be.visible');
+	switch (menu) {
+		case 'Dashboard':
+			cy.get('#dashboard-cta > b').should('not.exist');
+			break;
+		case 'Assetmap':
+			cy.get('#asset-map-ctav > b').should('not.exist');
+			break;
+		case 'Assetlist':
+			cy.get('#asset-list-cta > b').should('not.exist');
+			break;
+		case 'Devices':
+			cy.get('#devices-cta > b').should('not.exist');
+			break;
+		case 'My Organization':
+			cy.get('#organization-cta > b').should('not.exist');
+			break;
+		case 'Usermanagement':
+			cy.get('#user-management-cta > b').should('not.exist');
+			break;
+	}
+});
+
 // https://reflect.run/articles/comparing-screenshots-in-cypress/
 // https://www.npmjs.com/package/cypress-image-diff-js?activeTab=readme
 // takes and compares a snapshot to the snapshot in your base folder

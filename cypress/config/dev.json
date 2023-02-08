@@ -13,7 +13,15 @@
 		"ClientId": "2652adm3ps89eqhr5ap54kd85i",
 		"graphQL_uri": "https://3bnxzltwefgavoivfmayxf3d4a.appsync-api.us-west-2.amazonaws.com/graphql",
 		"cognito_uri": "https://cognito-idp.us-west-2.amazonaws.com",
-		"clientadminusername_Acme": "Acme_clientadmin",
-		"clientadminpassword_Acme": "P@ssword@123"
+		"ClientadminUsername": "maniusps",
+		"ClientadminPassword": "Mani@123",
+		"EquipmentmanagerUsername": "Equipment-manager",
+		"EquipmentmanagerPassword": "Mani@123",
+		"SupervisorUsername": "supervisor",
+		"SupervisorPassword": "Super@123",
+		"FleetmanagerUsername": "mb_fleetmanager",
+		"FleetmanagerPassword": "Fleet@123",
+		"CustomerserviceUsename": "customerservice",
+		"CustomerservicePassword": "Test@123"
 	}
 }
