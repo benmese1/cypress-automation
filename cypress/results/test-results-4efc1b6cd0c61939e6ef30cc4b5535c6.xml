@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="0.522" tests="1" failures="0">
-  <testsuite name="Root Suite" timestamp="2023-02-08T17:45:21" tests="1" file="cypress\e2e\API\JWTToken.cy.js" time="0.519" failures="0">
-    <testcase name="cy.request() - Generate the JWT token " time="0.488" classname="cy.request() - Generate the JWT token ">
-    </testcase>
-  </testsuite>
-</testsuites>

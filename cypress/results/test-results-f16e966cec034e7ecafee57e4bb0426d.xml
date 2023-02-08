@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="19.244" tests="1" failures="0">
-  <testsuite name="Root Suite" timestamp="2023-02-08T05:52:21" tests="0" file="cypress\e2e\organization-management\orgMgmtShowHideSpec.cy.js" time="0.000" failures="0">
-  </testsuite>
-  <testsuite name="Organization management table view tests" timestamp="2023-02-08T05:52:21" tests="1" time="19.218" failures="0">
-    <testcase name="Organization management table view tests Validate hide/show column in Organization management table" time="19.146" classname="Validate hide/show column in Organization management table">
-    </testcase>
-  </testsuite>
-</testsuites>

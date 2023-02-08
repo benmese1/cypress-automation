@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="25.181" tests="1" failures="0">
-  <testsuite name="Root Suite" timestamp="2023-02-08T18:27:52" tests="0" file="cypress\e2e\mapview-tests\asset-filters-save-edit.cy.js" time="0.000" failures="0">
-  </testsuite>
-  <testsuite name="Verify and search assets using filters such as asset tags, asset search and gps signal" timestamp="2023-02-08T18:27:52" tests="1" time="25.169" failures="0">
-    <testcase name="Verify and search assets using filters such as asset tags, asset search and gps signal verify and view asset details by saving editing and renaming asset filters" time="25.060" classname="verify and view asset details by saving editing and renaming asset filters">
-    </testcase>
-  </testsuite>
-</testsuites>

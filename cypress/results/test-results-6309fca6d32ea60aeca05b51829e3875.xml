@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="1.573" tests="1" failures="0">
-  <testsuite name="Root Suite" timestamp="2023-02-08T06:19:33" tests="1" file="cypress\e2e\API\smoke-api-tests\findAllAssets-api-tests.cy.js" time="1.570" failures="0">
-    <testcase name="Send an API request to find all Assets" time="0.771" classname="Send an API request to find all Assets">
-    </testcase>
-  </testsuite>
-</testsuites>
