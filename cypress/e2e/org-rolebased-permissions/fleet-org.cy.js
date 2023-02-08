@@ -9,6 +9,6 @@ describe('Verify no access to My Org for fleetmanager', () => {
 
 	it('Verify not exists of My Organization view access and My Organization access for fleetmanager role', () => {
 		//click on AppMenu and Verify not exists of My Organization menu Item
-		cy.verifyNotExistsOfAppMenuItems('organization');
+		cy.verifyNotExistsOfAppMenuItems('My Organization');
 	});
 });

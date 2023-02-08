@@ -398,23 +398,23 @@ Cypress.Commands.add('verifyNotExistsOfAppMenuItems', (menu) => {
 		.get('[data-testid="side-menu"]')
 		.should('be.visible');
 	switch (menu) {
-		case 'dashboard':
+		case 'Dashboard':
 			cy.get('#dashboard-cta > b').should('not.exist');
 			break;
-		case 'assetmap':
-			cy.get('.asset-map-cta').should('not.exist');
+		case 'Assetmap':
+			cy.get('#asset-map-ctav > b').should('not.exist');
 			break;
-		case 'assetlist':
-			cy.get('.asset-list-cta').should('not.exist');
+		case 'Assetlist':
+			cy.get('#asset-list-cta > b').should('not.exist');
 			break;
-		case 'devices':
-			cy.get('.devices-cta').should('not.exist');
+		case 'Devices':
+			cy.get('#devices-cta > b').should('not.exist');
 			break;
-		case 'organization':
-			cy.get('#borganization-cta >').should('not.exist');
+		case 'My Organization':
+			cy.get('#organization-cta > b').should('not.exist');
 			break;
-		case 'usermanagement':
-			cy.get('.user-management-cta').should('not.exist');
+		case 'Usermanagement':
+			cy.get('#user-management-cta > b').should('not.exist');
 			break;
 	}
 });
