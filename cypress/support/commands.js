@@ -384,9 +384,9 @@ Cypress.Commands.add('searchOrgsAndUsers', (searchCriteria) => {
 /**
  * Transfer Company
  */
-Cypress.Commands.add('transferOrg', (company,parentcompany) => {
-	cy.xpath('//div[text()="'+company+'"]').click();
-	cy.get('[data-testid="input-org-parent-company"]').click().clear().type(parentcompany)
+Cypress.Commands.add('transferOrg', (company, parentcompany) => {
+	cy.xpath('//div[text()="' + company + '"]').click();
+	cy.get('[data-testid="input-org-parent-company"]').click().clear().type(parentcompany);
 	cy.get('li').contains(parentcompany).click();
 	cy.get('[data-testid="btn-org-form-submit"]').click();
 	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Updated Successfully!');

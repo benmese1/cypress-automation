@@ -25,17 +25,17 @@
 			"parentcompany": "JB Hunt",
 			"timezone": "Pacific Standard (GMT-8)"
 		},
-		"suborg1_acme":{
+		"suborg1_acme": {
 			"parentcompany": "Acme Trucking East",
 			"Brand": "Phillips",
 			"Type": "Fleet",
 			"Timezone": "Mountain Standard (GMT-7)",
 			"DistanceUnitPreference": "Miles"
 		},
-		"transferSubOrg":{
+		"transferSubOrg": {
 			"parentcompany": "Acme Trucking West"
 		},
-		"transferOrg":{
+		"transferOrg": {
 			"parentcompany": "Acme Trucking"
 		}
 	}
