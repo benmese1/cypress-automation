@@ -407,6 +407,38 @@ Cypress.Commands.add('verifyMyOrganizationTableView', () => {
 	cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
 	cy.get('[data-testid="column-header-created-date"]').should('be.visible');
 	cy.get('[data-testid="column-header-distance-unit-preference"]').should('be.visible');
+	cy.get('[role="grid"]').invoke('attr', 'aria-rowcount').then(parseInt).should('be.gte', 1);
+});
+
+//Method Name :verifyNotExistsOfAppMenuItems
+//Used to verify if My Organization table exits
+//Params menu
+Cypress.Commands.add('verifyNotExistsOfAppMenuItems', (menu) => {
+	cy.get('[data-testid="header"] [role="button"]')
+		.click()
+		.wait(500)
+		.get('[data-testid="side-menu"]')
+		.should('be.visible');
+	switch (menu) {
+		case 'dashboard':
+			cy.get('#dashboard-cta > b').should('not.exist');
+			break;
+		case 'assetmap':
+			cy.get('.asset-map-cta').should('not.exist');
+			break;
+		case 'assetlist':
+			cy.get('.asset-list-cta').should('not.exist');
+			break;
+		case 'devices':
+			cy.get('.devices-cta').should('not.exist');
+			break;
+		case 'organization':
+			cy.get('#borganization-cta >').should('not.exist');
+			break;
+		case 'usermanagement':
+			cy.get('.user-management-cta').should('not.exist');
+			break;
+	}
 });
 
 // https://reflect.run/articles/comparing-screenshots-in-cypress/

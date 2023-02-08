@@ -18,6 +18,10 @@
 		"EquipmentmanagerUsername": "Equipment-manager",
 		"EquipmentmanagerPassword": "Mani@123",
 		"SupervisorUsername": "supervisor",
-		"SupervisorPassword": "Super@123"
+		"SupervisorPassword": "Super@123",
+		"FleetmanagerUsername": "mb_fleetmanager",
+		"FleetmanagerPassword": "Fleet@123",
+		"CustomerserviceUsename": "customerservice",
+		"CustomerservicePassword": "Test@123"
 	}
 }
