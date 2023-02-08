@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="33.832" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-02-08T17:47:48" tests="0" file="cypress\e2e\asset-list-tests\assetListSearchSpec.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Asset Management page search tests" timestamp="2023-02-08T17:47:48" tests="1" time="33.815" failures="1">
+    <testcase name="Asset Management page search tests verify search results for assets table" time="0.000" classname="verify search results for assets table">
+      <failure message="Timed out retrying after 12000ms: Expected to find element: `[data-testid=&quot;autocomplete-customer_orgs_id&quot;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: Expected to find element: `[data-testid="autocomplete-customer_orgs_id"]`, but never found it.
+    at Context.eval (webpack:///./cypress/support/commands.js:257:4)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="533.951" tests="18" failures="4">
+  <testsuite name="Root Suite" timestamp="2023-02-08T17:57:12" tests="0" file="cypress\e2e\landing-page-tests\globalSearchDevicesSpec.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Global &quot;Devices&quot; Search verification" timestamp="2023-02-08T17:57:12" tests="18" time="533.939" failures="4">
+    <testcase name="Global &quot;Devices&quot; Search verification Device option can be selected for global search" time="21.460" classname="Device option can be selected for global search">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Recent Searches is not displayed while clicking on Global Search input" time="23.576" classname="Recent Searches is not displayed while clicking on Global Search input">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Suggestions should not be displayed for Global Search when less than 3 characters typed" time="21.019" classname="Suggestions should not be displayed for Global Search when less than 3 characters typed">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Suggestions should not be displayed for Global Search when not existing search term typed" time="17.423" classname="Suggestions should not be displayed for Global Search when not existing search term typed">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Suggestions should be displayed for Global Search when 3 characters of existing term typed" time="17.102" classname="Suggestions should be displayed for Global Search when 3 characters of existing term typed">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification &quot;Keep typing&quot; is displayed when Global Search is performed for less than 3 characters typed" time="0.000" classname="&quot;Keep typing&quot; is displayed when Global Search is performed for less than 3 characters typed">
+      <failure message="Timed out retrying after 12000ms: expected &apos;&lt;div.flex.h-screen.flex-col.bg-background&gt;&apos; to have text &apos;Keep typing...&apos;, but the text was &apos;DineshDevicesPhillips ConnectUploadExportAdd DeviceKeep typing...​​Columns0FiltersDensityExportCompany NameDevice IDAsset IDProduct CodeProduct NameOrder GroupCreated DateLast UpdatedAssociatedFirmware VersionConfigschneider861836055880855CFQU92109777-H101Smart ABS Harness (Includes ABS Fault Reader) (77-H101)YesTarget05433CFQU32135277-H101Smart ABS Harness (Includes ABS Fault Reader) (77-H101)YesPhillips Connect86183605972420877-6530SolarNet (77-6530)NoToyota015115008362294test asset 477-6530SolarNet (77-6530)YesWalmart34534670323486CFQU32135277-6700StealthNet (77-6700)test groupYesTruck090004785478977-6800Smart7 (77-6800)Yes3245234234584777-S500PSI TireView - 8 Tires Excluding CP Hoses (77-S500)qweqweNo015115004900378361773Yes01511500397344277-6280EZTrac (77-6280)No1 - 25 of 1941412345…777&apos;" type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: expected '<div.flex.h-screen.flex-col.bg-background>' to have text 'Keep typing...', but the text was 'DineshDevicesPhillips ConnectUploadExportAdd DeviceKeep typing...​​Columns0FiltersDensityExportCompany NameDevice IDAsset IDProduct CodeProduct NameOrder GroupCreated DateLast UpdatedAssociatedFirmware VersionConfigschneider861836055880855CFQU92109777-H101Smart ABS Harness (Includes ABS Fault Reader) (77-H101)YesTarget05433CFQU32135277-H101Smart ABS Harness (Includes ABS Fault Reader) (77-H101)YesPhillips Connect86183605972420877-6530SolarNet (77-6530)NoToyota015115008362294test asset 477-6530SolarNet (77-6530)YesWalmart34534670323486CFQU32135277-6700StealthNet (77-6700)test groupYesTruck090004785478977-6800Smart7 (77-6800)Yes3245234234584777-S500PSI TireView - 8 Tires Excluding CP Hoses (77-S500)qweqweNo015115004900378361773Yes01511500397344277-6280EZTrac (77-6280)No1 - 25 of 1941412345…777'
+    at Context.eval (webpack:///./cypress/e2e/landing-page-tests/globalSearchDevicesSpec.cy.js:47:33)
+
+      + expected - actual
+
+      -'DineshDevicesPhillips ConnectUploadExportAdd DeviceKeep typing...​​Columns0FiltersDensityExportCompany NameDevice IDAsset IDProduct CodeProduct NameOrder GroupCreated DateLast UpdatedAssociatedFirmware VersionConfigschneider861836055880855CFQU92109777-H101Smart ABS Harness (Includes ABS Fault Reader) (77-H101)YesTarget05433CFQU32135277-H101Smart ABS Harness (Includes ABS Fault Reader) (77-H101)YesPhillips Connect86183605972420877-6530SolarNet (77-6530)NoToyota015115008362294test asset 477-6530SolarNet (77-6530)YesWalmart34534670323486CFQU32135277-6700StealthNet (77-6700)test groupYesTruck090004785478977-6800Smart7 (77-6800)Yes3245234234584777-S500PSI TireView - 8 Tires Excluding CP Hoses (77-S500)qweqweNo015115004900378361773Yes01511500397344277-6280EZTrac (77-6280)No1 - 25 of 1941412345…777'
+      +'Keep typing...'
+      ]]></failure>
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification No data should be displayed on Device List table when not existing search term typed" time="26.350" classname="No data should be displayed on Device List table when not existing search term typed">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Data should be displayed on Device List table when existing search term typed" time="0.000" classname="Data should be displayed on Device List table when existing search term typed">
+      <failure message="Timed out retrying after 12000ms: Expected to find element: `data-rowindex`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: Expected to find element: `data-rowindex`, but never found it.
+    at Context.eval (webpack:///./cypress/e2e/landing-page-tests/globalSearchDevicesSpec.cy.js:69:5)]]></failure>
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Global Device Search by existing &quot;Created Date&quot;" time="0.000" classname="Global Device Search by existing &quot;Created Date&quot;">
+      <failure message="Timed out retrying after 12000ms: Expected to find element: `.MuiAutocomplete-popper li span`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: Expected to find element: `.MuiAutocomplete-popper li span`, but never found it.
+    at Context.eval (webpack:///./cypress/e2e/landing-page-tests/globalSearchDevicesSpec.cy.js:76:5)]]></failure>
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Global Search by existing &quot;Company Name&quot;&apos;" time="27.824" classname="Global Search by existing &quot;Company Name&quot;&apos;">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Global Search by existing &quot;Device Id&quot;&apos;" time="31.626" classname="Global Search by existing &quot;Device Id&quot;&apos;">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Global Search by existing &quot;Asset Id&quot;&apos;" time="0.000" classname="Global Search by existing &quot;Asset Id&quot;&apos;">
+      <failure message="Timed out retrying after 12000ms: Expected to find element: `[role=&apos;cell&apos;][data-field=&apos;asset_name&apos;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: Expected to find element: `[role='cell'][data-field='asset_name']`, but never found it.
+    at Context.eval (webpack:///./cypress/e2e/landing-page-tests/globalSearchDevicesSpec.cy.js:112:6)]]></failure>
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Global Search by existing &quot;Product Code&quot;&apos;" time="35.644" classname="Global Search by existing &quot;Product Code&quot;&apos;">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Global Search by existing &quot;Product Name&quot;&apos;" time="30.924" classname="Global Search by existing &quot;Product Name&quot;&apos;">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Global Search by existing &quot;Associated&quot;&apos;" time="29.369" classname="Global Search by existing &quot;Associated&quot;&apos;">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Global Search by existing &quot;Firmware Version&quot;&apos;" time="30.828" classname="Global Search by existing &quot;Firmware Version&quot;&apos;">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Global Search by existing &quot;Order #&quot;&apos;" time="31.144" classname="Global Search by existing &quot;Order #&quot;&apos;">
+    </testcase>
+    <testcase name="Global &quot;Devices&quot; Search verification Global Search by existing &quot;SIM ID&quot;&apos;" time="29.288" classname="Global Search by existing &quot;SIM ID&quot;&apos;">
+    </testcase>
+  </testsuite>
+</testsuites>

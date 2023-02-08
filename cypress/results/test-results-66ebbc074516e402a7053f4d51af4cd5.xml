@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="17.593" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-02-08T19:06:43" tests="0" file="cypress\e2e\user-management\userMgmtShowHideSpec.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="User management table view tests" timestamp="2023-02-08T19:06:43" tests="1" time="17.580" failures="0">
+    <testcase name="User management table view tests Validate hide/show column in User management table" time="17.489" classname="Validate hide/show column in User management table">
+    </testcase>
+  </testsuite>
+</testsuites>

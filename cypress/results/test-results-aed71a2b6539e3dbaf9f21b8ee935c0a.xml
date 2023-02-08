@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="1.634" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-02-08T18:58:57" tests="1" file="cypress\e2e\API\smoke-api-tests\findAllDevices-api-tests.cy.js" time="1.617" failures="1">
+    <testcase name="Send an API request to find all Devices" time="0.490" classname="Send an API request to find all Devices">
+      <failure message="Cannot read properties of null (reading &apos;findDevices&apos;)" type="TypeError"><![CDATA[TypeError: Cannot read properties of null (reading 'findDevices')
+    at Context.eval (webpack:///./cypress/e2e/API/smoke-api-tests/findAllDevices-api-tests.cy.js:62:24)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

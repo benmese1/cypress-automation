@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="34.054" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-02-08T03:34:42" tests="0" file="cypress\e2e\asset-list-tests\exportDataSpec.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Asset Management page export verification" timestamp="2023-02-08T03:34:42" tests="1" time="34.033" failures="1">
+    <testcase name="Asset Management page export verification &quot;before each&quot; hook for &quot;verify export button is visible and downloading CSV file&quot;" time="0.000" classname="&quot;before each&quot; hook for &quot;verify export button is visible and downloading CSV file&quot;">
+      <failure message="Timed out retrying after 30000ms: Expected &lt;div.spinner&gt; not to exist in the DOM, but it was continuously found.
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Asset Management page expor...`" type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 30000ms: Expected <div.spinner> not to exist in the DOM, but it was continuously found.
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Asset Management page expor...`
+    at Context.eval (webpack:///./cypress/support/commands.js:228:3)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

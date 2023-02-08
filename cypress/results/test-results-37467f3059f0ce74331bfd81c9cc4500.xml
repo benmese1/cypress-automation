@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="183.687" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-02-08T04:45:59" tests="0" file="cypress\e2e\mapview-tests\abbreviated-details.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Click on the canvas zoom the cluster and view the asset" timestamp="2023-02-08T04:45:59" tests="1" time="183.666" failures="1">
+    <testcase name="Click on the canvas zoom the cluster and view the asset Success canvas click test and verify and view asset details" time="0.000" classname="Success canvas click test and verify and view asset details">
+      <failure message="Timed out retrying after 180000ms: Expected to find element: `[aria-label=&apos;account of current user&apos;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 180000ms: Expected to find element: `[aria-label='account of current user']`, but never found it.
+    at Context.eval (webpack:///./cypress/e2e/mapview-tests/abbreviated-details.cy.js:7:51)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

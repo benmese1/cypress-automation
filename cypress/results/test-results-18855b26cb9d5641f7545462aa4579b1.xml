@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="36.175" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-02-08T17:53:54" tests="0" file="cypress\e2e\asset-list-tests\importDataSpec.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Asset Management import verification" timestamp="2023-02-08T17:53:54" tests="1" time="36.162" failures="1">
+    <testcase name="Asset Management import verification Verify import button is visible and upload CSV file" time="0.000" classname="Verify import button is visible and upload CSV file">
+      <failure message="Timed out retrying after 12000ms: expected &apos;&lt;div.MuiDataGrid-columnHeaderDraggableContainer&gt;&apos; to have text &apos;CFQU1.2356381279175217&apos;, but the text was &apos;Asset Nickname&apos;" type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: expected '<div.MuiDataGrid-columnHeaderDraggableContainer>' to have text 'CFQU1.2356381279175217', but the text was 'Asset Nickname'
+    at Context.eval (webpack:///./cypress/e2e/asset-list-tests/importDataSpec.cy.js:43:19)
+
+      + expected - actual
+
+      -'Asset Nickname'
+      +'CFQU1.2356381279175217'
+      ]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

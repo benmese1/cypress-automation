@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="74.708" tests="4" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-02-08T05:42:27" tests="0" file="cypress\e2e\mobile\userMgmtView.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Mobile User Management View verification" timestamp="2023-02-08T05:42:27" tests="4" time="74.687" failures="0">
+    <testcase name="Mobile User Management View verification User management table columns visibility on iphone-8 screen" time="20.981" classname="User management table columns visibility on iphone-8 screen">
+    </testcase>
+    <testcase name="Mobile User Management View verification User management table columns visibility on ipad-2 screen" time="18.659" classname="User management table columns visibility on ipad-2 screen">
+    </testcase>
+    <testcase name="Mobile User Management View verification User management table columns visibility on 1170,2532 screen" time="17.302" classname="User management table columns visibility on 1170,2532 screen">
+    </testcase>
+    <testcase name="Mobile User Management View verification User management table columns visibility on samsung-note9 screen" time="17.584" classname="User management table columns visibility on samsung-note9 screen">
+    </testcase>
+  </testsuite>
+</testsuites>

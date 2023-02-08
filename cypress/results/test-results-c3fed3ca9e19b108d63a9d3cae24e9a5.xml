@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="124.519" tests="4" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-02-08T18:37:36" tests="0" file="cypress\e2e\mobile\mobileAssetDetailsViewSpec.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Mobile Asset Management page -- details view verification" timestamp="2023-02-08T18:37:36" tests="4" time="124.497" failures="1">
+    <testcase name="Mobile Asset Management page -- details view verification &quot;before each&quot; hook for &quot;Asset details on iphone-5 portrait screen&quot;" time="0.000" classname="&quot;before each&quot; hook for &quot;Asset details on iphone-5 portrait screen&quot;">
+      <failure message="Timed out retrying after 120000ms: Expected to find element: `[data-testid=&quot;spinner&quot;]`, but never found it.
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Mobile Asset Management pag...`" type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 120000ms: Expected to find element: `[data-testid="spinner"]`, but never found it.
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Mobile Asset Management pag...`
+    at Context.eval (webpack:///./cypress/support/commands.js:24:3)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="18.602" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-02-08T18:32:40" tests="0" file="cypress\e2e\mapview-tests\map-legend.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Verify the map legend filters list to understand asset status on map" timestamp="2023-02-08T18:32:40" tests="1" time="18.590" failures="1">
+    <testcase name="Verify the map legend filters list to understand asset status on map verify the map legend filters list to understand asset status on map" time="0.000" classname="verify the map legend filters list to understand asset status on map">
+      <failure message="expected &apos;Moving Empty&apos; to equal &apos;Parked Unknown Low Dwell&apos;" type="AssertionError"><![CDATA[AssertionError: expected 'Moving Empty' to equal 'Parked Unknown Low Dwell'
+    at Context.eval (webpack:///./cypress/e2e/mapview-tests/map-legend.cy.js:34:27)
+
+      + expected - actual
+
+      -'Moving Empty'
+      +'Parked Unknown Low Dwell'
+      ]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

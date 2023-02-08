@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="228.879" tests="3" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-02-08T05:57:04" tests="0" file="cypress\e2e\organization-management\searchOrgsTests.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Search functionality in Organization management" timestamp="2023-02-08T05:57:04" tests="3" time="228.858" failures="1">
+    <testcase name="Search functionality in Organization management Search organization by providing company name" time="16.715" classname="Search organization by providing company name">
+    </testcase>
+    <testcase name="Search functionality in Organization management Search organization by providing Parent Company" time="16.195" classname="Search organization by providing Parent Company">
+    </testcase>
+    <testcase name="Search functionality in Organization management Search organization by providing Timezone" time="0.000" classname="Search organization by providing Timezone">
+      <failure message="Timed out retrying after 180000ms: Expected to find element: `[data-testid=&quot;column-header-timezone&quot;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 180000ms: Expected to find element: `[data-testid="column-header-timezone"]`, but never found it.
+    at Context.eval (webpack:///./cypress/e2e/organization-management/searchOrgsTests.cy.js:39:51)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="85.795" tests="4" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-02-08T18:50:39" tests="0" file="cypress\e2e\mobile\orgmgmtview.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Mobile Organization Management View verification" timestamp="2023-02-08T18:50:39" tests="4" time="85.777" failures="0">
+    <testcase name="Mobile Organization Management View verification Org management table columns visibility on iphone-8 screen" time="21.063" classname="Org management table columns visibility on iphone-8 screen">
+    </testcase>
+    <testcase name="Mobile Organization Management View verification Org management table columns visibility on ipad-2 screen" time="18.389" classname="Org management table columns visibility on ipad-2 screen">
+    </testcase>
+    <testcase name="Mobile Organization Management View verification Org management table columns visibility on 1170,2532 screen" time="23.727" classname="Org management table columns visibility on 1170,2532 screen">
+    </testcase>
+    <testcase name="Mobile Organization Management View verification Org management table columns visibility on samsung-note9 screen" time="22.464" classname="Org management table columns visibility on samsung-note9 screen">
+    </testcase>
+  </testsuite>
+</testsuites>

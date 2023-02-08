@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="124.598" tests="4" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-02-08T18:18:42" tests="0" file="cypress\e2e\landing-page-tests\searchLocationSpec.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Location search tests" timestamp="2023-02-08T18:18:42" tests="4" time="124.575" failures="1">
+    <testcase name="Location search tests &quot;before each&quot; hook for &quot;Location selector component is integrated to dashboard&quot;" time="0.000" classname="&quot;before each&quot; hook for &quot;Location selector component is integrated to dashboard&quot;">
+      <failure message="Timed out retrying after 120000ms: Expected to find element: `[data-testid=&quot;spinner&quot;]`, but never found it.
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Location search tests`" type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 120000ms: Expected to find element: `[data-testid="spinner"]`, but never found it.
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Location search tests`
+    at Context.eval (webpack:///./cypress/support/commands.js:24:3)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

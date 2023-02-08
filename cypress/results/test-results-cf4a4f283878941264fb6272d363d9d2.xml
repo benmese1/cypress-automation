@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="4.395" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-02-08T03:36:08" tests="0" file="cypress\e2e\asset-list-tests\loadingSpinerSpec.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Loading spinner verification" timestamp="2023-02-08T03:36:09" tests="1" time="4.382" failures="0">
+    <testcase name="Loading spinner verification verify that the download icon from the landing page has disappeared on the asset list page" time="4.366" classname="verify that the download icon from the landing page has disappeared on the asset list page">
+    </testcase>
+  </testsuite>
+</testsuites>

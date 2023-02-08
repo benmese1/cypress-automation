@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="33.492" tests="2" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-02-08T03:40:44" tests="0" file="cypress\e2e\devices\tableView.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Search and filter assets" timestamp="2023-02-08T03:40:44" tests="2" time="33.479" failures="1">
+    <testcase name="Search and filter assets &quot;before each&quot; hook for &quot;Demo Feedback on Table View&quot;" time="0.000" classname="&quot;before each&quot; hook for &quot;Demo Feedback on Table View&quot;">
+      <failure message="Timed out retrying after 30000ms: Expected to find element: `[data-testid=&quot;spinner&quot;]`, but never found it.
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Search and filter assets`" type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 30000ms: Expected to find element: `[data-testid="spinner"]`, but never found it.
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Search and filter assets`
+    at Context.eval (webpack:///./cypress/support/commands.js:226:3)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

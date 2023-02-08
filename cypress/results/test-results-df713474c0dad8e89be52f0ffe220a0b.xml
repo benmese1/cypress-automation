@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="101.746" tests="4" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-02-08T05:21:39" tests="0" file="cypress\e2e\mobile\createNewOrganization.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Create New Organization management" timestamp="2023-02-08T05:21:39" tests="4" time="101.734" failures="0">
+    <testcase name="Create New Organization management Create New Organization management filed validations on samsung-note9 screen" time="27.781" classname="Create New Organization management filed validations on samsung-note9 screen">
+    </testcase>
+    <testcase name="Create New Organization management Create New Organization management filed validations on ipad-2 screen" time="24.934" classname="Create New Organization management filed validations on ipad-2 screen">
+    </testcase>
+    <testcase name="Create New Organization management Create New Organization management filed validations on iphone-8 screen" time="23.384" classname="Create New Organization management filed validations on iphone-8 screen">
+    </testcase>
+    <testcase name="Create New Organization management Create New Organization management filed validations on 1170,2532 screen" time="25.484" classname="Create New Organization management filed validations on 1170,2532 screen">
+    </testcase>
+  </testsuite>
+</testsuites>

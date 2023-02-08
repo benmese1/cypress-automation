@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="2.993" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-02-08T19:08:17" tests="0" file="cypress\e2e\device-management\API\api-devicemanagement-test.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Token generate Requests" timestamp="2023-02-08T19:08:17" tests="1" time="2.980" failures="0">
+    <testcase name="Token generate Requests cy.request() - make an API request to find Token" time="2.967" classname="cy.request() - make an API request to find Token">
+    </testcase>
+  </testsuite>
+</testsuites>

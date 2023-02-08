@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="163.742" tests="9" failures="3">
+  <testsuite name="Root Suite" timestamp="2023-02-08T18:13:35" tests="0" file="cypress\e2e\landing-page-tests\landingPageSpec.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Landing page view test verification" timestamp="2023-02-08T18:13:35" tests="9" time="163.726" failures="3">
+    <testcase name="Landing page view test verification verify moving assets" time="0.000" classname="verify moving assets">
+      <failure message="expected 15397 to equal 15526" type="AssertionError"><![CDATA[AssertionError: expected 15397 to equal 15526
+    at Context.eval (webpack:///./cypress/e2e/landing-page-tests/landingPageSpec.cy.js:19:8)
+
+      + expected - actual
+
+      -15397
+      +15526
+      ]]></failure>
+    </testcase>
+    <testcase name="Landing page view test verification verify Landing page for user with first name" time="14.708" classname="verify Landing page for user with first name">
+    </testcase>
+    <testcase name="Landing page view test verification verify that location selector appeared" time="13.930" classname="verify that location selector appeared">
+    </testcase>
+    <testcase name="Landing page view test verification  Verify search placeholder text test" time="0.000" classname=" Verify search placeholder text test">
+      <failure message="Timed out retrying after 12000ms: expected &apos;Find an Asset&apos; to equal &apos;Find An Asset&apos;" type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: expected 'Find an Asset' to equal 'Find An Asset'
+    at Context.eval (webpack:///./cypress/e2e/landing-page-tests/landingPageSpec.cy.js:34:79)
+
+      + expected - actual
+
+      -'Find an Asset'
+      +'Find An Asset'
+      ]]></failure>
+    </testcase>
+    <testcase name="Landing page view test verification Navigate into the map by clicking on &quot;Asset Map&quot; button test" time="15.435" classname="Navigate into the map by clicking on &quot;Asset Map&quot; button test">
+    </testcase>
+    <testcase name="Landing page view test verification Navigate into the Device Management page by clicking on &quot;My Devices&quot; button test" time="16.462" classname="Navigate into the Device Management page by clicking on &quot;My Devices&quot; button test">
+    </testcase>
+    <testcase name="Landing page view test verification Navigate into the Asset Management by clicking on Total Assets dashboard tile test" time="16.404" classname="Navigate into the Asset Management by clicking on Total Assets dashboard tile test">
+    </testcase>
+    <testcase name="Landing page view test verification Navigate into the Asset Management by clicking on Assets Moving dashboard tile test" time="17.434" classname="Navigate into the Asset Management by clicking on Assets Moving dashboard tile test">
+    </testcase>
+    <testcase name="Landing page view test verification Navigate into the Asset Management by clicking on Total Miles Traveled dashboard tile test" time="0.000" classname="Navigate into the Asset Management by clicking on Total Miles Traveled dashboard tile test">
+      <failure message="Timed out retrying after 12000ms: Expected to find element: `[data-testid=&quot;dashboard-tile-total-distance&quot;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: Expected to find element: `[data-testid="dashboard-tile-total-distance"]`, but never found it.
+    at Context.eval (webpack:///./cypress/e2e/landing-page-tests/landingPageSpec.cy.js:62:5)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

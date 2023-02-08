@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="24.703" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-02-08T05:43:47" tests="0" file="cypress\e2e\organization-management\create-new-org.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Create New Organization management" timestamp="2023-02-08T05:43:47" tests="1" time="24.682" failures="0">
+    <testcase name="Create New Organization management Click on Create and verify the newly organization created" time="24.579" classname="Click on Create and verify the newly organization created">
+    </testcase>
+  </testsuite>
+</testsuites>

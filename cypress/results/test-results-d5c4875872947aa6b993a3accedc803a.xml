@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="135.703" tests="4" failures="4">
+  <testsuite name="Root Suite" timestamp="2023-02-08T17:45:24" tests="0" file="cypress\e2e\asset-list-tests\assetDetailsViewSpec.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Asset Management page -- details view verification" timestamp="2023-02-08T17:45:24" tests="4" time="135.681" failures="4">
+    <testcase name="Asset Management page -- details view verification Verify Asset Details View is collapsable" time="0.000" classname="Verify Asset Details View is collapsable">
+      <failure message="Timed out retrying after 12000ms: Expected to find element: `//*[@data-field=&apos;organization&apos;]//div[contains(text(),&apos;Phillips Connect&apos;)]//ancestor::*[@role=&apos;row&apos;]//div[@data-field=&apos;asset_id&apos;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: Expected to find element: `//*[@data-field='organization']//div[contains(text(),'Phillips Connect')]//ancestor::*[@role='row']//div[@data-field='asset_id']`, but never found it.
+    at Context.eval (webpack:///./cypress/support/commands.js:306:4)]]></failure>
+    </testcase>
+    <testcase name="Asset Management page -- details view verification Verify Critical battery state on Asset Details View" time="0.000" classname="Verify Critical battery state on Asset Details View">
+      <failure message="Timed out retrying after 12000ms: Expected to find element: `//*[@data-field=&apos;organization&apos;]//div[contains(text(),&apos;Logistic&apos;)]//ancestor::*[@role=&apos;row&apos;]//div[@data-field=&apos;asset_id&apos;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: Expected to find element: `//*[@data-field='organization']//div[contains(text(),'Logistic')]//ancestor::*[@role='row']//div[@data-field='asset_id']`, but never found it.
+    at Context.eval (webpack:///./cypress/support/commands.js:306:4)]]></failure>
+    </testcase>
+    <testcase name="Asset Management page -- details view verification Verify Warning battery state on Asset Details View" time="0.000" classname="Verify Warning battery state on Asset Details View">
+      <failure message="Timed out retrying after 12000ms: Expected to find element: `//*[@data-field=&apos;organization&apos;]//div[contains(text(),&apos;Phillips Connect&apos;)]//ancestor::*[@role=&apos;row&apos;]//div[@data-field=&apos;asset_id&apos;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: Expected to find element: `//*[@data-field='organization']//div[contains(text(),'Phillips Connect')]//ancestor::*[@role='row']//div[@data-field='asset_id']`, but never found it.
+    at Context.eval (webpack:///./cypress/support/commands.js:306:4)]]></failure>
+    </testcase>
+    <testcase name="Asset Management page -- details view verification Verify Full battery state on Asset Details View" time="0.000" classname="Verify Full battery state on Asset Details View">
+      <failure message="Timed out retrying after 12000ms: Expected to find element: `//*[@data-field=&apos;organization&apos;]//div[contains(text(),&apos;Phillips Connect&apos;)]//ancestor::*[@role=&apos;row&apos;]//div[@data-field=&apos;asset_id&apos;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 12000ms: Expected to find element: `//*[@data-field='organization']//div[contains(text(),'Phillips Connect')]//ancestor::*[@role='row']//div[@data-field='asset_id']`, but never found it.
+    at Context.eval (webpack:///./cypress/support/commands.js:306:4)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

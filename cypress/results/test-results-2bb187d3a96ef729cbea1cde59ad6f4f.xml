@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="34.666" tests="2" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-02-08T04:44:05" tests="0" file="cypress\e2e\landing-page-tests\loginDeviceManagement.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Landing page view test verification" timestamp="2023-02-08T04:44:05" tests="2" time="34.652" failures="1">
+    <testcase name="Landing page view test verification &quot;before each&quot; hook for &quot;verify that the side menu opened after the menu bar click&quot;" time="0.000" classname="&quot;before each&quot; hook for &quot;verify that the side menu opened after the menu bar click&quot;">
+      <failure message="Timed out retrying after 30000ms: Expected to find element: `[data-testid=&quot;spinner&quot;]`, but never found it.
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Landing page view test veri...`" type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 30000ms: Expected to find element: `[data-testid="spinner"]`, but never found it.
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Landing page view test veri...`
+    at Context.eval (webpack:///./cypress/support/commands.js:226:3)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

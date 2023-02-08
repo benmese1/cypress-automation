@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="203.495" tests="8" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-02-08T17:49:21" tests="0" file="cypress\e2e\asset-list-tests\assetsListSpec.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Asset Management page general tests" timestamp="2023-02-08T17:49:21" tests="8" time="203.473" failures="0">
+    <testcase name="Asset Management page general tests verify Material UI Premium buttons above table header" time="20.511" classname="verify Material UI Premium buttons above table header">
+    </testcase>
+    <testcase name="Asset Management page general tests Verify assets table is displayed" time="14.451" classname="Verify assets table is displayed">
+    </testcase>
+    <testcase name="Asset Management page general tests Verify assets table columns visibility" time="21.662" classname="Verify assets table columns visibility">
+    </testcase>
+    <testcase name="Asset Management page general tests Paging test" time="27.958" classname="Paging test">
+    </testcase>
+    <testcase name="Asset Management page general tests Search &quot;Keep typing...&quot; test" time="36.639" classname="Search &quot;Keep typing...&quot; test">
+    </testcase>
+    <testcase name="Asset Management page general tests Add Asset, Export, Upload buttons and Asset list header are visible test" time="17.417" classname="Add Asset, Export, Upload buttons and Asset list header are visible test">
+    </testcase>
+    <testcase name="Asset Management page general tests Pin and unpin column in Asset list table test" time="25.763" classname="Pin and unpin column in Asset list table test">
+    </testcase>
+    <testcase name="Asset Management page general tests Pin multiple columns to one side in Asset list table test" time="38.716" classname="Pin multiple columns to one side in Asset list table test">
+    </testcase>
+  </testsuite>
+</testsuites>
