@@ -4,7 +4,8 @@ let randomnumber = Math.floor(Math.random() * 10000);
 describe('View and Edit Org for Equipmentmanager', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('EquipmentmanagerUsername'), Cypress.env('EquipmentmanagerPassword'), { cacheSession: false });
-		cy.waitForLoad().get("[aria-label='account of current user']").should('be.visible');
+		cy.waitForLoad();
+		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 
 	it('Verify not exists of create new org button, My Organization view access and My Organization edit access for equipment role', () => {
