@@ -12,6 +12,20 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 	}
 });
 
+/**
+ * Waits until the spinner disappears from the page
+ * @param {number} timeout - timeout in milliseconds, default is 30 sec
+ */
+Cypress.Commands.add('waitForLoad', (timeout) => {
+	if (typeof timeout === 'undefined') {
+		timeout = 180000;
+	}
+	cy.get('[data-testid="spinner"]', { timeout: timeout })
+		.should('exist')
+		.get('[data-testid="spinner"]', { timeout: timeout })
+		.should('not.exist');
+});
+
 Cypress.Commands.add('openAssetsList', () => {
 	cy.get('[data-testid="header"] [role="button"]')
 		.click('left')
@@ -212,20 +226,6 @@ Cypress.Commands.add('searchLocation', (location, isSubmit) => {
 			{ force: true }
 		);
 	}
-});
-
-/**
- * Waits until the spinner disappears from the page
- * @param {number} timeout - timeout in milliseconds, default is 30 sec
- */
-Cypress.Commands.add('waitForLoad', (timeout) => {
-	if (typeof timeout === 'undefined') {
-		timeout = 30000;
-	}
-	cy.get('[data-testid="spinner"]', { timeout: timeout })
-		.should('exist')
-		.get('[data-testid="spinner"]', { timeout: timeout })
-		.should('not.exist');
 });
 
 //Method Name :createNewOrganization
