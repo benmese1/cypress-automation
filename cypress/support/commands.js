@@ -171,18 +171,9 @@ Cypress.Commands.add('assertFilterDates', (filter) => {
 });
 
 Cypress.Commands.add('showHideColumnAssetsList', (columnName) => {
-	cy.get('[data-testid="TripleDotsVerticalIcon"]')
-		.eq(1)
-		.click({ force: true })
-		.get('.MuiDataGrid-menuList')
-		.should('be.visible')
-		.contains('Show columns')
-		.click()
-		.get('.MuiDataGrid-panel')
-		.should('be.visible')
-		.contains(columnName)
-		.click()
-		.wait(1000);
+	cy.get('[data-testid="TripleDotsVerticalIcon"]').eq(1).click({ force: true });
+	cy.get('[role="tooltip"]').should('be.visible').contains('Show columns').click();
+	cy.get('[role="tooltip"]').should('be.visible').contains(columnName).click().wait(1000);
 });
 
 Cypress.Commands.add('addAssetsFilter', (columnName, operator, value) => {
@@ -254,13 +245,13 @@ Cypress.Commands.add('createNewOrganization', (companyname, parentcompany, brand
 Cypress.Commands.add('createNewAsset', (companyName, assetId, assetNickname, deviceId, assetType) => {
 	cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
 
-	cy.get('[data-testid="autocomplete-customer_orgs_id"]').click().type(`${companyName}{enter}`);
+	cy.get('[name="customer_orgs_id"]').click().type(`${companyName}{enter}`);
 	cy.get('li').contains(companyName).click();
 
-	cy.get('[data-testid="form-control-input-asset_id"]').type(assetId);
-	cy.get('[data-testid="form-control-input-name"]').type(assetNickname);
-	cy.get('[data-testid="form-control-input-imei"]').type(deviceId);
-	cy.get('[data-testid="autocomplete-category"]').click();
+	cy.get('[name="asset_id"]').type(assetId);
+	cy.get('[name="name"]').type(assetNickname);
+	cy.get('[name="imei"]').type(deviceId);
+	cy.get('[name="category"]').click();
 	cy.get('li').contains(assetType).click();
 
 	cy.get('[data-testid="global-button-component"]').click();
@@ -284,7 +275,7 @@ Cypress.Commands.add('removeAsset', (assetNickname) => {
  *  @param {number} rowIndex - index of row to select cell within
  */
 Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex) => {
-	if (rowIndex === 'undefined') {
+	if (typeof rowIndex === 'undefined') {
 		rowIndex = 1;
 	}
 	const dataField = {
@@ -304,7 +295,7 @@ Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex) => {
 
 	//select cells based on the column header name
 	cy.xpath(
-		`//*[@data-field='organization']//div[contains(text(),'${orgName}')]//ancestor::*[@role='row']//div[@data-field='${dataField[fieldName]}']`
+		`//div[@data-field='organization']//div[contains(text(),'${orgName}')]//ancestor::div[@role='row']//div[@data-field='${dataField[fieldName]}']`
 	)
 		.eq(rowIndex)
 		.click();
@@ -315,7 +306,7 @@ Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex) => {
  */
 Cypress.Commands.add('expandDrawerSection', (sectionName) => {
 	cy.contains('[role="button"]', sectionName).then(($section) => {
-		$section.invoke('attr', 'aria-expanded').then(($is_expanded) => {
+		cy.wrap($section).invoke('attr', 'aria-expanded').then(($is_expanded) => {
 			if ($is_expanded === 'false') {
 				$section.click();
 			}
