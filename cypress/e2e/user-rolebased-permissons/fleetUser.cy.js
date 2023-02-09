@@ -10,7 +10,7 @@ describe('Verify no access to Usermanagement page for fleetmanager role', () => 
 	});
 
 	it('Verify not exists of Usermanagement access for fleetmanager role', () => {
-		//click on AppMenu and Verify not exists of My Organization menu Item
+		//click on AppMenu and Verify not exists of Usermanagement menu Item
 		cy.verifyNotExistsOfAppMenuItems('Usermanagement');
 	});
 });

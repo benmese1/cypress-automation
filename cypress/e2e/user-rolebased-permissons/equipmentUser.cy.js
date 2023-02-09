@@ -9,7 +9,7 @@ describe('Verify no access to Usermanagement page for Equipmentmanager', () => {
 		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 
-	it('Verify not exists of Usermanagement access for fleetmanager role', () => {
+	it('Verify not exists of Usermanagement access for Equipmentmanager role', () => {
 		//click on AppMenu and Verify not exists of Usermanagement menu Item
 		cy.verifyNotExistsOfAppMenuItems('Usermanagement');
 	});

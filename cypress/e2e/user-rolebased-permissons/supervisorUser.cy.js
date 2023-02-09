@@ -14,7 +14,7 @@ describe('Verify view access to Usermanagement page for supervisor role', () => 
 		// Verify that create New Button should not present  for supervisor Role
 		cy.get('[data-testid="management-user-management"]', { timeout: 2000 }).should('exist');
 		cy.get('[data-testid="btn-sub-header-action-Create New"]', { timeout: 1000 }).should('not.exist');
-		//Verify My Organization view access for supervisor Role
+		//Verify Usermanagement view access for supervisor Role
 		cy.verifyMyOrganizationTableView();
 	});
 });
