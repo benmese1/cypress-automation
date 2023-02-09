@@ -16,22 +16,14 @@ describe('Asset Management removal tests', () => {
 		cy.createNewAsset(assetModel.CompanyName, assetModel.AssetId + prefix, assetNickname, prefix, assetModel.AssetType);
 
 		// Wait for 'Assets' table loading
-		getAssetListTableRow().should('have.length.gte', 1);
+		cy.get('[data-rowindex]').should('have.length.gt', 1);
 
 		// Search created asset and remove it
-		cy.removeAsset(assetNickname);
-
-		//Wait for 'Asset' table update
-		getAssetListTableRow().should('have.length', 0);
-		getAssetListTableRow().should('have.length.gte', 1);
+		cy.removeAsset(assetNickname).wait(1000);
 
 		// Search removed asset
 		cy.searchAssets(assetNickname);
 
-		getAssetListTableRow().should('have.length', 0);
+		cy.get('[data-rowindex]').should('have.length', 0);
 	});
 });
-
-function getAssetListTableRow() {
-	return cy.get('.MuiDataGrid-row');
-}

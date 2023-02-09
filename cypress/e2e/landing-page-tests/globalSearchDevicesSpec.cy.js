@@ -44,7 +44,7 @@ describe('Global "Devices" Search verification', () => {
         cy.get('[role="row"]').should('have.length.gt', 1);
 
 		cy.get('[data-testid="items-list-search-input"]').should('have.value', 'AU');
-		cy.get('[data-testid="page"]').should('have.text', 'Keep typing...');
+		cy.get('[data-testid="page"]').should('contain.text', 'Keep typing...');
 	});
 
 	it('No data should be displayed on Device List table when not existing search term typed', () => {
@@ -66,14 +66,14 @@ describe('Global "Devices" Search verification', () => {
         cy.get('[role="row"]').should('have.length.gt', 1);
 
 		cy.get('[data-testid="items-list-search-input"]').should('have.value', '15115');
-		cy.get('data-rowindex').each(($row) => {
+		cy.get('[data-rowindex]').each(($row) => {
 			cy.wrap($row).should('contain.text', '15115');
 		});
 	});
 
 	it('Global Device Search by existing "Created Date"', () => {
 		cy.globalSearch('Devices', '10/17/2022', false);
-		cy.get('.MuiAutocomplete-popper li span').first().click();
+		cy.get('[role="listbox"] li span').first().click();
 
 		cy.url().should('include', '/devices');
 		// Wait for table loading

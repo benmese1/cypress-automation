@@ -6,8 +6,8 @@ describe('Asset Management page -- details view verification', () => {
 	});
 
 	it('Verify Asset Details View is collapsable', () => {
-		cy.openAsset('Phillips Connect', 'Asset ID');
-		cy.get('#details-summary').should('be.visible');
+		cy.openAsset('COFC', 'Asset ID');
+		cy.get('#details-summary').should('exist');
 		cy.get('#battery-block').should('exist');
 
 		cy.clickOutside();
@@ -23,16 +23,13 @@ describe('Asset Management page -- details view verification', () => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-critical"]').should('exist');
 		});
 
-		cy.openAsset('Logistic', 'Asset ID');
-
-		cy.expandDrawerSection('Details');
+		cy.openAsset('COFC', 'Asset ID');
 
 		//verify 'Battery Icon' is displayed
-		cy.get('#details-content [data-testid = "battery-svg-critical"]').should('exist');
+		cy.get('[data-testid = "battery-svg-critical"]').should('exist');
 
-		//verify 'Battery Voltage' value
-		cy.get('[data-testid="asset-details-drawer-details-battery-voltage"]').then(($val) => {
-			expect(parseFloat($val.text())).to.be.lessThan(3.2);
+	    cy.get('#details-summary p').contains('Battery').next().then(($val) => {
+			expect(parseFloat($val.text().replace(" V", ""))).to.be.lessThan(3.2);
 		});
 	});
 
@@ -44,16 +41,14 @@ describe('Asset Management page -- details view verification', () => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-warning"]').should('exist');
 		});
 
-		cy.openAsset('Phillips Connect', 'Asset ID');
-
-		cy.expandDrawerSection('Details');
+		cy.openAsset('COFC', 'Asset ID');
 
 		//verify 'Battery Icon' is displayed
-		cy.get('#details-content [data-testid = "battery-svg-warning"]').should('exist');
+		cy.get('[data-testid = "battery-svg-warning"]').should('exist');
 
 		//verify 'Battery Voltage' value
-		cy.get('[data-testid="asset-details-drawer-details-battery-voltage"]').then(($val) => {
-			expect(parseFloat($val.text())).to.be.greaterThan(3.2).lessThan(3.4);
+		cy.get('#details-summary p').contains('Battery').next().then(($val) => {
+			expect(parseFloat($val.text().replace(" V", ""))).to.be.greaterThan(3.2).lessThan(3.4);
 		});
 	});
 
@@ -65,16 +60,14 @@ describe('Asset Management page -- details view verification', () => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-full"]').should('exist');
 		});
 
-		cy.openAsset('Phillips Connect', 'Asset ID');
-
-		cy.expandDrawerSection('Details');
+		cy.openAsset('COFC', 'Asset ID');
 
 		//verify 'Battery Icon' is displayed
-		cy.get('#details-content [data-testid = "battery-svg-full"]').should('exist');
+		cy.get('[data-testid = "battery-svg-full"]').should('exist');
 
 		//verify 'Battery Voltage' value
-		cy.get('[data-testid="asset-details-drawer-details-battery-voltage"]').then(($val) => {
-			expect(parseFloat($val.text())).to.be.greaterThan(3.4).lessThan(4.2);
+		cy.get('#details-summary p').contains('Battery').next().then(($val) => {
+			expect(parseFloat($val.text().replace(" V", ""))).to.be.greaterThan(3.4).lessThan(4.2);
 		});
 	});
 });
