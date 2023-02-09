@@ -1,18 +1,15 @@
 let prefix = Math.floor(100000 + Math.random() * 900000);
+import assets from '../../fixtures/createasset.json';
 
 describe('Asset Management page search tests', () => {
-	beforeEach(function () {
-		cy.fixture('createasset').then((assets) => {
-			this.assets = assets;
-		});
-
+	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
 			.waitForLoad()
 			.dashboardMenu('Asset List');
 	});
 
-	it('verify search results for assets table', function () {
-		let assetModel = this.assets[0].asset;
+	it('verify search results for assets table', () => {
+		let assetModel = assets[0].asset;
 		let assetNicknameToSearch = assetModel.AssetNickname + prefix;
 
 		// Create new asset for searching
@@ -42,14 +39,10 @@ describe('Asset Management page search tests', () => {
 
 const showColumn = (column) => {
 	// Open columns dialog
-	getColumnsButton().should('be.visible').click();
+	cy.get('[data-testid="asset-table-toolbar-columns-btn"]').should('be.visible').click();
 	// Enable only one column
 	cy.contains('button[type=button]', 'Hide all').click();
 	cy.contains('label', column).click();
 	// Hide columns dialog
-	getColumnsButton().click();
+	cy.get('[data-testid="asset-table-toolbar-columns-btn"]').click();
 };
-
-function getColumnsButton() {
-	return cy.xpath("//button[contains(text(), 'Columns')]");
-}
