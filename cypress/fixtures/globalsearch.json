@@ -87,5 +87,37 @@
 			"term": "AUTOSIM145026",
 			"datafield": "sim_num"
 		}
-	]
+	],
+   "orgasnizations": [
+      	{
+			"option": "Company Name",
+			"term": "Walmart",
+			"datafield": "name"
+		},
+      	{
+			"option": "Parent Company",
+			"term": "TATA",
+			"datafield": "parent_company"
+		},
+     	{
+			"option": "Brand",
+			"term": "Enroad",
+			"datafield": "brand"
+		},
+      	{
+			"option": "Type",
+			"term": "Fleet",
+			"datafield": "type"
+		},
+      	{
+			"option": "Time Zone",
+			"term": "Eastern Standard (GMT-5)",
+			"datafield": "time_zones"
+		},
+      	{
+			"option": "Distance Unit Preference",
+			"term": "KMs",
+			"datafield": "distance_unit_preference"
+		}
+   ]
 }
