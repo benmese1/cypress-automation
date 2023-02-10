@@ -341,7 +341,7 @@ Cypress.Commands.add('editUser', (name, lastName, firstName, phonenumber) => {
 	cy.get('[data-testid="form-control-input-lastName"]').clear().type(lastName);
 	cy.get('[data-testid="form-control-input-firstName"]').clear().type(firstName);
 	cy.get('[data-testid="form-control-input-phoneNumber"]').clear().type(phonenumber);
-	cy.get('[data-testid="global-button-component"]').click();
+	cy.get('[data-testid="btn-org-form-submit"]').click();
 	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('User Updated Successfully!');
 });
 
