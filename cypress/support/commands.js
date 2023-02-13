@@ -109,7 +109,7 @@ Cypress.Commands.add('compareText', () => {
 
 //Click on the Dashboard menu
 Cypress.Commands.add('dashboardMenu', (menu) => {
-	const dashboardMenu = ['Dashboard', 'Asset Map', 'Asset List', 'Devices', 'My Organization', 'User Management'];
+	const dashboardMenu = ['Dashboard', 'Asset Map', 'Asset List', 'Devices', 'My Organization', 'User Management','My Account'];
 	cy.get('[data-testid="header"] [role="button"]')
 		.click()
 		.wait(500)
