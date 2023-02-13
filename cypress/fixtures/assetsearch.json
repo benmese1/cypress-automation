@@ -1,0 +1,59 @@
+{
+	"assets": [
+		{
+			"option": "Company Name",
+			"term": "Acme East",
+			"datafield": "organization"
+		},
+		{
+			"option": "Asset ID",
+			"term": "CFQU921645",
+			"datafield": "asset_id"
+		},
+		{
+			"option": "Asset Nickname",
+			"term": "CFQU991908",
+			"datafield": "name"
+		},
+		{
+			"option": "Device ID",
+			"term": "01511500",
+			"datafield": "imei"
+		},
+		{
+			"option": "Product Name",
+			"term": "Smart",
+			"datafield": "prd_name"
+		},
+		{
+			"option": "Trip Status",
+			"term": "Parked",
+			"datafield": "trip_st"
+		},
+		{
+			"option": "City",
+			"term": "Kansas",
+			"datafield": "city"
+		},
+		{
+			"option": "Asset Type",
+			"term": "Container",
+			"datafield": "category"
+		},
+		{
+			"option": "Asset Tag",
+			"term": "Asset_Id:",
+			"datafield": "tags"
+		},
+		{
+			"option": "Longitude",
+			"term": "41.21",
+			"datafield": "longitude"
+		},
+		{
+			"option": "Latitude",
+			"term": "-95.91",
+			"datafield": "latitude"
+		}
+	]
+}

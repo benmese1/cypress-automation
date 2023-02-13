@@ -1,0 +1,34 @@
+{
+	"assets": [
+		{
+			"columnname": "Company Name",
+			"operator": "contains",
+			"value": "Acm",
+			"datafield": "organization"
+		},
+		{
+			"columnname": "Asset ID",
+			"operator": "equals",
+			"value": "CFQU921645",
+			"datafield": "asset_id"
+		},
+		{
+			"columnname": "Asset Nickname",
+			"operator": "starts with",
+			"value": "CFQU",
+			"datafield": "name"
+		},
+		{
+			"columnname": "City",
+			"operator": "ends with",
+			"value": "City",
+			"datafield": "city"
+		},
+		{
+			"columnname": "Asset Type",
+			"operator": "is empty",
+			"value": "",
+			"datafield": "category"
+		}
+	]
+}
