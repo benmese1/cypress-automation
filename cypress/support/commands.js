@@ -109,7 +109,15 @@ Cypress.Commands.add('compareText', () => {
 
 //Click on the Dashboard menu
 Cypress.Commands.add('dashboardMenu', (menu) => {
-	const dashboardMenu = ['Dashboard', 'Asset Map', 'Asset List', 'Devices', 'My Organization', 'User Management','My Account'];
+	const dashboardMenu = [
+		'Dashboard',
+		'Asset Map',
+		'Asset List',
+		'Devices',
+		'My Organization',
+		'User Management',
+		'My Account',
+	];
 	cy.get('[data-testid="header"] [role="button"]')
 		.click()
 		.wait(500)
@@ -306,11 +314,13 @@ Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex) => {
  */
 Cypress.Commands.add('expandDrawerSection', (sectionName) => {
 	cy.contains('[role="button"]', sectionName).then(($section) => {
-		cy.wrap($section).invoke('attr', 'aria-expanded').then(($is_expanded) => {
-			if ($is_expanded === 'false') {
-				$section.click();
-			}
-		});
+		cy.wrap($section)
+			.invoke('attr', 'aria-expanded')
+			.then(($is_expanded) => {
+				if ($is_expanded === 'false') {
+					$section.click();
+				}
+			});
 	});
 });
 
@@ -329,7 +339,7 @@ Cypress.Commands.add('createNewUser', (lastName, firstName, name, parentorg, ema
 	cy.get('[data-testid="form-control-input-phoneNumber"]').type(phonenumber);
 	cy.get('[data-testid="autocomplete-groups"]').click();
 	cy.get('li').contains(role).click();
-	cy.get('[data-testid="global-button-component"]').click();
+	cy.get('[data-testid="btn-org-form-submit"]').click();
 	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('User Created Successfully!');
 });
 
@@ -351,6 +361,7 @@ Cypress.Commands.add('editUser', (name, lastName, firstName, phonenumber) => {
 Cypress.Commands.add('editOrg', (companyname, brand, type, timezone, distancepref) => {
 	cy.xpath('//div[text()="' + companyname + '"]').click();
 	cy.get('[data-testid="input-org-brand"]').clear().type(brand);
+	cy.get('li').contains(brand).click();
 	cy.get('[data-testid="input-org-type"]').clear().type(type);
 	cy.get('li').contains(type).click();
 	cy.get('[data-testid="input-org-timezone"]').clear().type(timezone);
