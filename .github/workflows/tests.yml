@@ -83,8 +83,9 @@ jobs:
         uses: mikepenz/xray-action@v2
         with:
           xrayCloud: ${{ secrets.JIRA_SERVER_URL }}
-          username: ${{ secrets.JIRA_USERNAME }}
-          password: ${{ secrets.JIRA_PASSWORD }}
+          # xrayCloud: ${{ secrets.JIRA_SERVER_URL }}
+          # username: ${{ secrets.JIRA_USERNAME }}
+          # password: ${{ secrets.JIRA_PASSWORD }}
           testFormat: "junit"
           testPaths: cypress/results/
           testEnvironments: QA
