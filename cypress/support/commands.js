@@ -361,6 +361,7 @@ Cypress.Commands.add('editUser', (name, lastName, firstName, phonenumber) => {
 Cypress.Commands.add('editOrg', (companyname, brand, type, timezone, distancepref) => {
 	cy.xpath('//div[text()="' + companyname + '"]').click();
 	cy.get('[data-testid="input-org-brand"]').clear().type(brand);
+	cy.get('li').contains(brand).click();
 	cy.get('[data-testid="input-org-type"]').clear().type(type);
 	cy.get('li').contains(type).click();
 	cy.get('[data-testid="input-org-timezone"]').clear().type(timezone);

@@ -28,5 +28,12 @@ describe('Delete Pending User in User management', () => {
 		cy.get('[data-testid="btn-user-remove"] ').contains('Remove').click();
 		//verify if user is removed successfully
 		cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('User removed / inactivated successfully.');
+		// search for the newly created user
+		cy.get('[data-testid="items-list-search-input"]')
+			.clear()
+			.type('user_' + randomnumber);
+		cy.get('[role="grid"]')
+			.contains('user_' + randomnumber)
+			.should('not.exist');
 	});
 });
