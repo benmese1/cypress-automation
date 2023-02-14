@@ -9,7 +9,7 @@ describe('Edit and Update Org', () => {
 
 	it('Navigate to My Organization and update the Organization', () => {
 		cy.dashboardMenu('My Organization');
-		cy.log('Edit Org');
+		cy.get('[data-testid="items-list-search-input"]').type(org[0].editorg.companyname);
 		cy.editOrg(
 			org[0].editorg.companyname,
 			org[0].editorg.Brand,
