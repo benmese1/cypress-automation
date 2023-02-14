@@ -18,7 +18,7 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
  */
 Cypress.Commands.add('waitForLoad', (timeout) => {
 	if (typeof timeout === 'undefined') {
-		timeout = 180000;
+		timeout = 30000;
 	}
 	cy.get('[data-testid="spinner"]', { timeout: timeout })
 		.should('exist')
