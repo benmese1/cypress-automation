@@ -46,15 +46,6 @@ jobs:
         run: npx cypress run --env fileConfig=qa ${{ github.event.inputs.spec }}
         continue-on-error: true
 
-      - name: Run Cypress (DEV)
-        env:
-          CLIENT_ID: 2652adm3ps89eqhr5ap54kd85i
-          USERNAME: test1
-          PASSWORD: ${{ secrets.DEV_AWS_PASSWORD }}
-        if: "${{ github.event.inputs.env.default == 'dev' }}"
-        run: npx cypress run --env fileConfig=dev ${{ github.event.inputs.spec }}
-        continue-on-error: true
-
       - name: 'Upload test results'
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
@@ -71,13 +62,6 @@ jobs:
           path: cypress/screenshots/
           retention-days: 30
 
-      - name: 'Upload video'
-        if: github.event.inputs.env != ''
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-video
-          path: cypress/video/
-          retention-days: 30
   release-project:
     name: xray result submittal
     runs-on: windows-latest
