@@ -6,7 +6,8 @@ describe('Asset Management page -- details view verification', () => {
 	});
 
 	it('Verify Asset Details View is collapsable', () => {
-		cy.openAsset('COFC', 'Asset ID');
+		cy.searchAssets('377');
+		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
 		cy.get('#details-summary').should('exist');
 		cy.get('#battery-block').should('exist');
 
@@ -16,21 +17,24 @@ describe('Asset Management page -- details view verification', () => {
 	});
 
 	it('Verify Critical battery state on Asset Details View', () => {
-		cy.addAssetsFilter('Battery Icon', 'starts with', '3.1');
+		cy.addAssetsFilter('Battery Icon', 'starts with', '3.0');
 
 		//verify each 'Battery Icon' cells have appropriate icon
 		cy.get("[role='cell'][data-field='batt_v']").each(($cell) => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-critical"]').should('exist');
 		});
 
-		cy.openAsset('COFC', 'Asset ID');
+		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
 
 		//verify 'Battery Icon' is displayed
 		cy.get('[data-testid = "battery-svg-critical"]').should('exist');
 
-	    cy.get('#details-summary p').contains('Battery').next().then(($val) => {
-			expect(parseFloat($val.text().replace(" V", ""))).to.be.lessThan(3.2);
-		});
+		cy.get('#details-summary p')
+			.contains('Battery')
+			.next()
+			.then(($val) => {
+				expect(parseFloat($val.text().replace(' V', ''))).to.be.lessThan(3.2);
+			});
 	});
 
 	it('Verify Warning battery state on Asset Details View', () => {
@@ -41,15 +45,20 @@ describe('Asset Management page -- details view verification', () => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-warning"]').should('exist');
 		});
 
-		cy.openAsset('COFC', 'Asset ID');
+		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
 
 		//verify 'Battery Icon' is displayed
 		cy.get('[data-testid = "battery-svg-warning"]').should('exist');
 
 		//verify 'Battery Voltage' value
-		cy.get('#details-summary p').contains('Battery').next().then(($val) => {
-			expect(parseFloat($val.text().replace(" V", ""))).to.be.greaterThan(3.2).lessThan(3.4);
-		});
+		cy.get('#details-summary p')
+			.contains('Battery')
+			.next()
+			.then(($val) => {
+				expect(parseFloat($val.text().replace(' V', '')))
+					.to.be.greaterThan(3.2)
+					.lessThan(3.4);
+			});
 	});
 
 	it('Verify Full battery state on Asset Details View', () => {
@@ -66,8 +75,13 @@ describe('Asset Management page -- details view verification', () => {
 		cy.get('[data-testid = "battery-svg-full"]').should('exist');
 
 		//verify 'Battery Voltage' value
-		cy.get('#details-summary p').contains('Battery').next().then(($val) => {
-			expect(parseFloat($val.text().replace(" V", ""))).to.be.greaterThan(3.4).lessThan(4.2);
-		});
+		cy.get('#details-summary p')
+			.contains('Battery')
+			.next()
+			.then(($val) => {
+				expect(parseFloat($val.text().replace(' V', '')))
+					.to.be.greaterThan(3.4)
+					.lessThan(4.2);
+			});
 	});
 });
