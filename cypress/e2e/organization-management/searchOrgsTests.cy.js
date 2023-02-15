@@ -36,7 +36,7 @@ describe('Search functionality in Organization management', () => {
 	it('Search organization by providing Timezone', () => {
 		cy.searchOrgsAndUsers(org[0].searchData.timezone);
 		//Verify that results are probably based search
-		cy.get('[data-testid="column-header-timezone"]').should('be.visible');
+		cy.get('[data-testid="column-header-time-zone"]').should('be.visible');
 		cy.get("[role='cell'][data-field='time_zones'] div").each(($item) => {
 			if (cy.wrap($item).should('have.text', org[0].searchData.timezone)) {
 				cy.log('Matched the search criteria');

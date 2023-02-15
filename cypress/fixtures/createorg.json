@@ -52,6 +52,19 @@
 			"Type": "Fleet",
 			"Timezone": "Eastern Standard (GMT-5)",
 			"DistanceUnitPreference": "Miles"
+		},
+		"suborg1_acme": {
+			"parentcompany": "Acme Trucking East",
+			"Brand": "Phillips",
+			"Type": "Fleet",
+			"Timezone": "Mountain Standard (GMT-7)",
+			"DistanceUnitPreference": "Miles"
+		},
+		"transferSubOrg": {
+			"parentcompany": "Acme Trucking West"
+		},
+		"transferOrg": {
+			"parentcompany": "Acme Trucking"
 		}
 	}
 ]
