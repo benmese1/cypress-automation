@@ -22,7 +22,7 @@ on:
 
 jobs:
   build-project:
-    name: QA regression suite
+    name: QA regression suite run
     runs-on: windows-latest
 
     steps:
@@ -78,7 +78,12 @@ jobs:
           name: test-video
           path: cypress/video/
           retention-days: 30
-
+  release-project:
+    name: xray result submittal
+    runs-on: windows-latest
+    needs: build-project
+    steps: 
+    
       - name: Submit results to Xray
         uses: mikepenz/xray-action@v2
         with:
