@@ -109,7 +109,15 @@ Cypress.Commands.add('compareText', () => {
 
 //Click on the Dashboard menu
 Cypress.Commands.add('dashboardMenu', (menu) => {
-	const dashboardMenu = ['Dashboard', 'Asset Map', 'Asset List', 'Devices', 'My Organization', 'User Management','My Account'];
+	const dashboardMenu = [
+		'Dashboard',
+		'Asset Map',
+		'Asset List',
+		'Devices',
+		'My Organization',
+		'User Management',
+		'My Account',
+	];
 	cy.get('[data-testid="header"] [role="button"]')
 		.click()
 		.wait(500)
@@ -276,7 +284,7 @@ Cypress.Commands.add('removeAsset', (assetNickname) => {
  */
 Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex) => {
 	if (typeof rowIndex === 'undefined') {
-		rowIndex = 1;
+		rowIndex = 0;
 	}
 	const dataField = {
 		Icon: 'icon',
@@ -410,6 +418,76 @@ Cypress.Commands.add('verifyNotExistsOfAppMenuItems', (menu) => {
 			cy.get('#user-management-cta > b').should('not.exist');
 			break;
 	}
+});
+
+/** Select year in datepicker
+ *  @param {number} yearName - year number to select
+ */
+Cypress.Commands.add('selectYear', (yearName, limit = 50) => {
+	if (limit < 0) {
+		throw new Error('Year searching limit reached');
+	}
+	let currentYear = new Date().getFullYear();
+
+	cy.get("[role='dialog'] [role='presentation']").then(($yearAndMonthLabel) => {
+		if ($yearAndMonthLabel.text().includes(yearName)) {
+			return;
+		} else {
+			if (yearName < currentYear) {
+				cy.get("[data-testId='ArrowLeftIcon']").click();
+			} else if (yearName > currentYear) {
+				cy.get("[data-testId='ArrowRightIcon']").click();
+			}
+		}
+		cy.selectYear(yearName, limit - 1);
+	});
+});
+
+Cypress.Commands.add('selectDate', (monthName, dayName, yearName) => {
+	cy.selectYear(yearName);
+	cy.selectMonth(monthName);
+	cy.selectDay(dayName);
+});
+
+/** Select month in datepicker
+ *  @param {string} monthName - name of month to select
+ */
+Cypress.Commands.add('selectMonth', (monthName) => {
+	var months = {
+		January: '1',
+		February: '2',
+		March: '3',
+		April: '4',
+		May: '5',
+		June: '6',
+		July: '7',
+		August: '8',
+		September: '9',
+		October: '10',
+		November: '11',
+		December: '12',
+	};
+	let currentMonthNumber = new Date().getMonth() + 1;
+	let givenMonthNumber = months[monthName];
+	cy.get("[role='dialog'] [role='presentation']").then(($yearAndMonthLabel) => {
+		if ($yearAndMonthLabel.text().includes(monthName)) {
+			return;
+		} else {
+			if (givenMonthNumber < currentMonthNumber) {
+				cy.get("[data-testId='ArrowLeftIcon']").click();
+			} else if (givenMonthNumber > currentMonthNumber) {
+				cy.get("[data-testId='ArrowRightIcon']").click();
+			}
+		}
+		cy.selectMonth(monthName);
+	});
+});
+
+/** Select day in datepicker
+ *  @param {Number} dayName - day number select
+ */
+Cypress.Commands.add('selectDay', (dayName) => {
+	cy.get("[role='dialog'] button").contains(dayName).click();
 });
 
 // https://reflect.run/articles/comparing-screenshots-in-cypress/
