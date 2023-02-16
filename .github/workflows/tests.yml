@@ -74,8 +74,6 @@ jobs:
         with:
           name: test-results
           path: cypress/results/
-          retention-days: 30
-          if-no-files-found: error - no files found
     
       - name: Submit results to Xray
         uses: mikepenz/xray-action@v2
