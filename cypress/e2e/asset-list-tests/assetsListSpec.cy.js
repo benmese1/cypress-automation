@@ -17,7 +17,7 @@ describe('Asset Management page general tests', () => {
 	});
 
 	it('Verify assets table is displayed', () => {
-		cy.get('.MuiDataGrid-root').should('be.visible');
+		cy.get("[role='grid']").should('be.visible');
 	});
 
 	it('Verify assets table columns visibility', () => {
@@ -29,14 +29,14 @@ describe('Asset Management page general tests', () => {
 			'Device ID',
 			'Product Name',
 			'Trip Status',
+			'Last Reported Date',
 			'City',
 			'State',
 			'Asset Type',
 			'Battery Icon',
 			'Asset Tags',
-			'Last Event',
 		];
-		cy.get('.MuiDataGrid-columnHeaderTitle')
+		cy.get("[role='columnheader']")
 			.each((el) => {
 				expect(el.text()).oneOf(columnHeadersList);
 			})
@@ -44,19 +44,14 @@ describe('Asset Management page general tests', () => {
 	});
 
 	it('Paging test', () => {
-		cy.get('[data-rowindex="0"] .MuiDataGrid-cell')
-			.should('be.visible')
-			.get('.mr-3')
-			.should('contain.text', '1 - 100 of')
-			//go to second page
-			.get('[aria-label="Go to page 2"]')
-			.click()
-			.get('[data-rowindex="100"] .MuiDataGrid-cell')
-			.should('be.visible')
-			.get('.mr-3')
-			.should('contain.text', '101 - 200 of')
-			.get('.MuiPaginationItem-root[aria-current="true"]')
-			.should('have.text', '2');
+		cy.get('[data-rowindex="0"]').should('be.visible');
+		cy.get('[data-testid="page"]').should('contain.text', '1 - 100 of'); 
+		
+		//go to second page
+		cy.get('[aria-label="Go to page 2"]').click();
+		cy.get('[data-rowindex="100"]').should('be.visible');
+		cy.get('[data-testid="page"]').should('contain.text', '101 - 200 of');
+		cy.get('button[aria-current="true"]').should('have.text', '2');
 	});
 
 	it('Search "Keep typing..." test', () => {
@@ -64,17 +59,16 @@ describe('Asset Management page general tests', () => {
 	});
 
 	it('Add Asset, Export, Upload buttons and Asset list header are visible test', () => {
-		cy.get('.text-3xl')
-			.should('have.text', 'Asset List')
-			//Add Asset button visibility check
-			.get('[data-testid="btn-sub-header-action-Add Asset"]')
-			.should('have.text', 'Add Asset')
-			//Export button visibility check
-			.get('[data-testid="btn-sub-header-action-Export"]')
-			.should('have.text', 'Export')
-			//Upload button visibility check
-			.get('[data-testid="btn-sub-header-action-Export"]')
-			.should('have.text', 'Export');
+		cy.get("[data-testid='management-asset-list']").should('have.text', 'Asset List');
+
+		//Add Asset button visibility check
+		cy.get('[data-testid="btn-sub-header-action-Add Asset"]').should('have.text', 'Add Asset');
+
+		//Export button visibility check
+		cy.get('[data-testid="btn-sub-header-action-Export"]').should('have.text', 'Export');
+
+		//Upload button visibility check
+		cy.get('[data-testid="btn-sub-header-action-Export"]').should('have.text', 'Export');
 	});
 
 	it('Pin and unpin column in Asset list table test', () => {
@@ -82,13 +76,13 @@ describe('Asset Management page general tests', () => {
 		cy.pinColumn('Device ID', 'left');
 		cy.get('[data-testid="items-list-pinned-column-left-header-0"] [data-testid = "column-header-device-id"]')
 			.should('be.visible')
-			.should('have.text', 'Device ID');
+			.and('have.text', 'Device ID');
 
 		//pin Battery Power colum to the right
 		cy.pinColumn('Battery Icon', 'right');
 		cy.get('[data-testid="items-list-pinned-column-right-header-0"] [data-testid = "column-header-battery-icon"]')
 			.should('be.visible')
-			.should('have.text', 'Battery Icon');
+			.and('have.text', 'Battery Icon');
 
 		cy.unpinColumn('Device ID');
 		cy.get('[data-testid="items-list-pinned-column-left-header-0"] [data-testid = "column-header-device-id"]').should(

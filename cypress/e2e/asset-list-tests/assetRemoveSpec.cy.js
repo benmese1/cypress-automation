@@ -19,7 +19,7 @@ describe('Asset Management removal tests', () => {
 		cy.get('[data-rowindex]').should('have.length.gt', 1);
 
 		// Search created asset and remove it
-		cy.removeAsset(assetNickname).wait(1000);
+		cy.removeAsset(assetNickname).wait(2000);
 
 		// Search removed asset
 		cy.searchAssets(assetNickname);
