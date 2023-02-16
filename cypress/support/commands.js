@@ -453,7 +453,10 @@ Cypress.Commands.add('selectDate', (monthName, dayName, yearName) => {
 /** Select month in datepicker
  *  @param {string} monthName - name of month to select
  */
-Cypress.Commands.add('selectMonth', (monthName) => {
+Cypress.Commands.add('selectMonth', (monthName, limit = 12) => {
+	if (limit < 0) {
+		throw new Error('Month searching limit reached');
+	}
 	var months = {
 		January: '1',
 		February: '2',
@@ -480,7 +483,7 @@ Cypress.Commands.add('selectMonth', (monthName) => {
 				cy.get("[data-testId='ArrowRightIcon']").click();
 			}
 		}
-		cy.selectMonth(monthName);
+		cy.selectMonth(monthName, limit-1);
 	});
 });
 
