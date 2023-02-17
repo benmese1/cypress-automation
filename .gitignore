@@ -5,3 +5,4 @@ videos/
 reports/
 .vscode
 /.idea/
+cypress/results/
