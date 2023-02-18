@@ -80,7 +80,7 @@ jobs:
         with:
           xrayCloud: ${{ secrets.JIRA_SERVER_URL }}
           username: ${{ secrets.XRAY_CLIENT_ID }}
-          password: ${{ secrets.XRAY_CLIENT_SECRET }}
+          password: ${{ secrets.JIRA_PASSWORD }}
           testFormat: "junit"
           testPaths: "**/results/*.xml"
           testEnvironments: QA
