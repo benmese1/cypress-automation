@@ -11,7 +11,6 @@ describe('Create New Organization management', () => {
 		cy.dashboardMenu('My Organization');
 
 		// create new org
-		cy.log('Create New button clicked');
 		cy.createNewOrganization(
 			'TRUCK' + randomnumber,
 			org[0].suborg.parentcompany,

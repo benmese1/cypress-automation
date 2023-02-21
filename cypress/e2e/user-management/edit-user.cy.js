@@ -9,7 +9,7 @@ describe('Edit and Update User', () => {
 
 	it('Navigate to User Management and update the User', () => {
 		cy.dashboardMenu('User Management');
-		cy.log('Edit User');
+		cy.get('[data-testid="items-list-search-input"]').type(userdata[0].edituser.UserName);
 		cy.editUser(
 			userdata[0].edituser.UserName,
 			userdata[0].edituser.LastName,
