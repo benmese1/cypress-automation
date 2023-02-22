@@ -9,20 +9,21 @@ describe('Asset Management removal tests', () => {
 	});
 
 	it('Removed asset can`t be found in assets table', () => {
-		let assetModel = assets[0].asset;
-		let assetNickname = assetModel.AssetNickname + prefix;
+		let assetModel = assets.asset_simple;
+		assetModel.assetId += prefix;
+		assetModel.assetNickname += prefix;
 
 		// Create new asset for removing
-		cy.createNewAsset(assetModel.CompanyName, assetModel.AssetId + prefix, assetNickname, prefix, assetModel.AssetType);
+		cy.createNewAsset(assetModel);
 
 		// Wait for 'Assets' table loading
 		cy.get('[data-rowindex]').should('have.length.gt', 1);
 
 		// Search created asset and remove it
-		cy.removeAsset(assetNickname).wait(2000);
+		cy.removeAsset(assetModel.assetNickname).wait(2000);
 
 		// Search removed asset
-		cy.searchAssets(assetNickname);
+		cy.searchAssets(assetModel.assetNickname);
 
 		cy.get('[data-rowindex]').should('have.length', 0);
 	});

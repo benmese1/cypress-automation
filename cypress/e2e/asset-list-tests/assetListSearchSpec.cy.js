@@ -14,13 +14,7 @@ describe('Asset Management page search tests', () => {
 		assetModel.assetNickname += prefix;
 
 		// Create new asset for searching
-		cy.createNewAsset(
-			assetModel.CompanyName,
-			assetModel.AssetId + prefix,
-			assetNicknameToSearch,
-			prefix,
-			assetModel.AssetType
-		);
+		cy.createNewAsset(assetModel);
 
 		// Wait for 'Assets' table loading
 		cy.get("[role='cell'][data-field='name'] div").should('have.length.gte', 1);

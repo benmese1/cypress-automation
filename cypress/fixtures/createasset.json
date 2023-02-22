@@ -1,10 +1,21 @@
-[
-	{
-		"asset": {
-			"CompanyName": "Logistic",
-			"AssetId": "AUTO",
-			"AssetNickname": "AUTO",
-			"AssetType": "Container"
-		}
+{
+	"asset_simple": {
+		"companyName": "Logistic",
+		"assetId": "AUTO",
+		"assetNickname": "AUTO",
+		"assetType": "Container"
+	},
+	"asset_withoptional": {
+		"companyName": "Logistic",
+		"assetId": "AUTO",
+		"assetNickname": "AUTO",
+		"assetType": "Container",
+		"productName": "SolarNet (77-6530)",
+		"assetTags": "automation_test",
+		"vin": "AUTO",
+		"numOfTires": "2",
+		"numOfAxles": "1",
+		"length": "21",
+		"doorType": "Roll Door"
 	}
-]
+}
