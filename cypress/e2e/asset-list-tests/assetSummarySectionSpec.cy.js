@@ -32,7 +32,7 @@ describe('Asset Summary Section Verification', () => {
 		});
 	});
 
-	it.only('Verify static fields have valid value on Asset Summary Section', () => {
+	it('Verify static fields have valid value on Asset Summary Section', () => {
 		let assetModel = assets.asset_withoptional;
 		assetModel.assetId += prefix;
 		assetModel.assetNickname += prefix;
