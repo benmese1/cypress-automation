@@ -78,9 +78,9 @@ jobs:
       - name: Submit results to Xray
         uses: mikepenz/xray-action@v2
         with:
-          # xrayCloud: ${{ secrets.JIRA_SERVER_URL }}
+          xrayCloud: ${{ secrets.JIRA_SERVER_URL }}
           username: ${{ secrets.XRAY_CLIENT_ID }}
-          password: ${{ secrets.JIRA_PASSWORD }}
+          password: ${{ secrets.XRAY_SECRET }}
           testFormat: "junit"
           testPaths: "**/results/*.xml"
           testEnvironments: QA
