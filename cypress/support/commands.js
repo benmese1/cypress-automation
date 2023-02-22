@@ -249,7 +249,7 @@ Cypress.Commands.add('createNewOrganization', (companyname, parentcompany, brand
 
 //Method Name :createNewAsset
 //Used to create a new Asset
-//Params - asset model with propeties
+//Params - asset model with propeties. Properties can be optional
 Cypress.Commands.add('createNewAsset', (asset) => {
 	cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
 
@@ -448,12 +448,23 @@ const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
 compareSnapshotCommand();
 
 //#region General commands
+
+/** Safe type of value. Can be used to handle filling a large form that has many optional fields
+ * If value is empty - error is not thrown 
+ *  @param {string} value - value to set
+ *  @param {string} locator - locator of element to set value
+ */
 Cypress.Commands.add('safeType', (locator, value) => {
 	if (typeof value != 'undefined') {
 		cy.get(locator).clear().realType(value);
 	}
 });
 
+/** Safe type and select of value. Can be used to handle filling a large form that has many optional fields
+ * If value is empty - error is not thrown 
+ *  @param {string} value - value to set
+ *  @param {string} locator - locator of element to set value
+ */
 Cypress.Commands.add('safeTypeAndSelect', (locator, value) => {
 	if (typeof value != 'undefined') {
 		cy.get(locator).realClick().realType(value);
@@ -461,6 +472,12 @@ Cypress.Commands.add('safeTypeAndSelect', (locator, value) => {
 	}
 });
 
+/** Safe select of value. Can be used to handle filling a large form that has many optional fields
+ * If value is empty - error is not thrown 
+ *  @param {string} value - value to set
+ *  @param {string} locator - locator of element to set value
+ *  @param {boolean} isXpath - if true 'xPath' strategy is used to find an element
+ */
 Cypress.Commands.add('safeSelect', (locator, value, isXpath) => {
 	if (typeof isXpath === 'undefined') {
 		isXpath = false;
