@@ -84,4 +84,4 @@ jobs:
           testFormat: "junit"
           testPaths: "**/results/*.xml"
           testEnvironments: QA
-          projectKey: "TEST"
+          projectKey: "PRJIND"
