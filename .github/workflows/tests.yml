@@ -83,7 +83,7 @@ jobs:
           password: ${{ secrets.JIRA_PASSWORD }}
           testFormat: "junit"
           testPaths: "**/results/*.xml"
-          testMerge: true
+          testExecutionJson: .github/testExecJSON/QA-test-execution.json
           # testExecKey: "xrayTest"
           testEnvironments: "QA, DEV"
           projectKey: "PRJIND"
