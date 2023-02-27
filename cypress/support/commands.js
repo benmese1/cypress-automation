@@ -149,7 +149,7 @@ Cypress.Commands.add('globalSearch', (searchOption, searchTerm, isSubmit) => {
 		Users: 'global-search-select-item-Users',
 		Organizations: 'global-search-select-item-Organizations',
 	};
-	cy.get('[data-testid="global-search-select"] [role="button"]').click().wait(500);
+	cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 	cy.get(`[data-testid='${dataTestid[searchOption]}']`).click();
 
 	if (isSubmit) {

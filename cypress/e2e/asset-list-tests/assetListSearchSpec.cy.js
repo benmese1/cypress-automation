@@ -9,8 +9,9 @@ describe('Asset Management page search tests', () => {
 	});
 
 	it('verify search results for assets table', () => {
-		let assetModel = assets[0].asset;
-		let assetNicknameToSearch = assetModel.AssetNickname + prefix;
+		let assetModel = assets.asset_simple;
+		assetModel.assetId += prefix;
+		assetModel.assetNickname += prefix;
 
 		// Create new asset for searching
 		cy.createNewAsset(
@@ -25,14 +26,14 @@ describe('Asset Management page search tests', () => {
 		cy.get("[role='cell'][data-field='name'] div").should('have.length.gte', 1);
 
 		// Search created asset
-		cy.searchAssets(assetNicknameToSearch);
+		cy.searchAssets(assetModel.assetNickname);
 
 		// Select 'Asset Nickname'
 		showColumn('Asset Nickname');
 
 		// Verify search result in 'Assets' table
 		cy.get("[role='cell'][data-field='name'] div").each(($item) => {
-			cy.wrap($item).should('contain.text', assetNicknameToSearch);
+			cy.wrap($item).should('contain.text', assetModel.assetNickname);
 		});
 	});
 });
