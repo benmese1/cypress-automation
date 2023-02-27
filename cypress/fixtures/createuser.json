@@ -18,8 +18,8 @@
 			"Phonenumber": "9876543211"
 		},
 		"searchData": {
-			"status": "active",
-			"role": "clientadmin",
+			"status": "Active",
+			"role": "Client Admin",
 			"company": "JB Hunt"
 		}
 	}

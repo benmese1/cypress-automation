@@ -13,7 +13,7 @@ describe('Search functionality in User management', () => {
 		cy.searchOrgsAndUsers(userdata[0].searchData.status);
 		//Verify that results are probably based search
 		cy.get('[data-testid="column-header-status"]').should('be.visible');
-		cy.get("[role='cell'][data-field='status'] div").each(($item) => {
+		cy.get("[role='cell'][data-field='status']").each(($item) => {
 			if (cy.wrap($item).should('have.text', userdata[0].searchData.status)) {
 				cy.log('Matched the search criteria');
 				return false;
@@ -25,7 +25,7 @@ describe('Search functionality in User management', () => {
 		cy.searchOrgsAndUsers(userdata[0].searchData.role);
 		//Verify that results are probably based search
 		cy.get('[data-testid="column-header-role"]').should('be.visible');
-		cy.get("[role='cell'][data-field='groups'] div").each(($item) => {
+		cy.get("[role='cell'][data-field='groups']").each(($item) => {
 			if (cy.wrap($item).should('have.text', userdata[0].searchData.role)) {
 				cy.log('Matched the search criteria');
 				return false;
@@ -37,7 +37,7 @@ describe('Search functionality in User management', () => {
 		cy.searchOrgsAndUsers(userdata[0].searchData.company);
 		//Verify that results are probably based search
 		cy.get('[data-testid="column-header-company/sub-company"]').should('be.visible');
-		cy.get("[role='cell'][data-field='orgKeys'] div").each(($item) => {
+		cy.get("[role='cell'][data-field='orgKeys']").each(($item) => {
 			if (cy.wrap($item).should('have.text', userdata[0].searchData.company)) {
 				cy.log('Matched the search criteria');
 				return false;
