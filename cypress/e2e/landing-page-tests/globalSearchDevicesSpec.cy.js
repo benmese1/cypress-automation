@@ -6,13 +6,13 @@ describe('Global "Devices" Search verification', () => {
 	});
 
 	it('Device option can be selected for global search', () => {
-		cy.get('[data-testid="global-search-select"] [role="button"]').click().wait(500);
+		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Devices"]').click();
 		cy.get('[data-testid="selector-input"] input').invoke('attr', 'placeholder').should('equal', 'Find a Device');
 	});
 
 	it('Recent Searches is not displayed while clicking on Global Search input', () => {
-		cy.get('[data-testid="global-search-select"] [role="button"]').click().wait(500);
+		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Devices"]').click();
 		cy.get('[data-testid="selector-input"] input').first().click().wait(500);
 		cy.get('[role="listbox"]').should('not.exist');
@@ -115,7 +115,7 @@ describe('Global "Devices" Search verification', () => {
 
 			//get back to Landing page and verify 'Recent searches' list includes search term
 			cy.dashboardMenu('Dashboard');
-			cy.get('[data-testid="global-search-select"] [role="button"]').click();
+			cy.get('[data-testid="selector"] [role="button"]').click();
 			cy.get('[data-testid="global-search-select-item-Devices"]').click();
 			cy.get('[data-testid="selector-input"] input').first().click();
 			cy.get('[role="listbox"] li span').first().should('have.text', search.term);
