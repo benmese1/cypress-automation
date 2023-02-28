@@ -149,7 +149,7 @@ Cypress.Commands.add('globalSearch', (searchOption, searchTerm, isSubmit) => {
 		Users: 'global-search-select-item-Users',
 		Organizations: 'global-search-select-item-Organizations',
 	};
-	cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
+	cy.get('[data-testid="global-search-select"] [role="button"]').click().wait(500);
 	cy.get(`[data-testid='${dataTestid[searchOption]}']`).click();
 
 	if (isSubmit) {
@@ -249,21 +249,27 @@ Cypress.Commands.add('createNewOrganization', (companyname, parentcompany, brand
 
 //Method Name :createNewAsset
 //Used to create a new Asset
-//Params - mandatory fields companyname, assetId, assetNickname, deviceId, assetType
-Cypress.Commands.add('createNewAsset', (companyName, assetId, assetNickname, deviceId, assetType) => {
+//Params - asset model with propeties. Properties can be optional
+Cypress.Commands.add('createNewAsset', (asset) => {
 	cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
 
-	cy.get('[name="customer_orgs_id"]').click().type(`${companyName}{enter}`);
-	cy.get('li').contains(companyName).click();
-
-	cy.get('[name="asset_id"]').type(assetId);
-	cy.get('[name="name"]').type(assetNickname);
-	cy.get('[name="imei"]').type(deviceId);
+	cy.get('[name="customer_orgs_id"]').click().type(`${asset.companyName}{enter}`);
+	cy.get('li').contains(asset.companyName).click();
+	cy.get('[name="asset_id"]').type(asset.assetId);
+	cy.get('[name="name"]').type(asset.assetNickname);
 	cy.get('[name="category"]').click();
-	cy.get('li').contains(assetType).click();
+	cy.get('li').contains(asset.assetType).click();
+
+	//fill optional parameters
+	cy.safeTypeAndSelect('[name="prd_cde"]', asset.productName);
+	cy.safeTypeAndSelect('[data-testid="creatable-autocomplete-tags"]', asset.assetTags);
+	cy.safeType('[name="vin"]', asset.vin);
+	cy.safeSelect('//label[contains(text(),"of Tires")]/..', asset.numOfTires, true);
+	cy.safeSelect('//label[contains(text(),"of Axles")]/..', asset.numOfAxles, true);
+	cy.safeType('[name="length"]', asset.length);
+	cy.safeTypeAndSelect('[data-testid="form-control-input-door_type"]', asset.doorType);
 
 	cy.get('[data-testid="global-button-component"]').click();
-	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Asset Created Successfully!');
 });
 
 //Method Name :removeAsset
@@ -421,6 +427,81 @@ Cypress.Commands.add('verifyNotExistsOfAppMenuItems', (menu) => {
 	}
 });
 
+/**
+ * Transfer Company
+ */
+Cypress.Commands.add('transferOrg', (company, parentcompany) => {
+	cy.xpath('//div[text()="' + company + '"]').click();
+	cy.get('[data-testid="input-org-parent-company"]').click().clear().type(parentcompany);
+	cy.get('li').contains(parentcompany).click();
+	cy.get('[data-testid="btn-org-form-submit"]').click();
+	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Updated Successfully!');
+});
+
+// https://reflect.run/articles/comparing-screenshots-in-cypress/
+// https://www.npmjs.com/package/cypress-image-diff-js?activeTab=readme
+// takes and compares a snapshot to the snapshot in your base folder
+// cypress has a default screenshot funtionality built in, if all you want to do is take a screenshot
+// https://docs.cypress.io/api/commands/screenshot
+const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
+compareSnapshotCommand();
+
+//#region General commands
+
+/** Safe type of value. Can be used to handle filling a large form that has many optional fields
+ * If value is empty - error is not thrown 
+ *  @param {string} value - value to set
+ *  @param {string} locator - locator of element to set value
+ */
+Cypress.Commands.add('safeType', (locator, value) => {
+	if (typeof value != 'undefined') {
+		cy.get(locator).clear().realType(value);
+	}
+});
+
+/** Safe type and select of value. Can be used to handle filling a large form that has many optional fields
+ * If value is empty - error is not thrown 
+ *  @param {string} value - value to set
+ *  @param {string} locator - locator of element to set value
+ */
+Cypress.Commands.add('safeTypeAndSelect', (locator, value) => {
+	if (typeof value != 'undefined') {
+		cy.get(locator).realClick().realType(value);
+		cy.get('li').contains(value).realClick();
+	}
+});
+
+/** Safe select of value. Can be used to handle filling a large form that has many optional fields
+ * If value is empty - error is not thrown 
+ *  @param {string} value - value to set
+ *  @param {string} locator - locator of element to set value
+ *  @param {boolean} isXpath - if true 'xPath' strategy is used to find an element
+ */
+Cypress.Commands.add('safeSelect', (locator, value, isXpath) => {
+	if (typeof isXpath === 'undefined') {
+		isXpath = false;
+	}
+	if (typeof value != 'undefined') {
+		isXpath ? cy.xpath(locator).realClick() : cy.get(locator).realClick().wait(500);
+		cy.get(`[data-value="${value}"]`).should('be.visible').realClick().wait(500);
+	}
+});
+
+/**
+ * Returns a random integer number between min (inclusive) and max (exclusive)
+ */
+Cypress.Commands.add('generateRandom', (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+});
+
+Cypress.Commands.add('selectDate', (monthName, dayName, yearName) => {
+	cy.selectYear(yearName);
+	cy.selectMonth(monthName);
+	cy.selectDay(dayName);
+});
+
 /** Select year in datepicker
  *  @param {number} yearName - year number to select
  */
@@ -442,12 +523,6 @@ Cypress.Commands.add('selectYear', (yearName, limit = 50) => {
 		}
 		cy.selectYear(yearName, limit - 1);
 	});
-});
-
-Cypress.Commands.add('selectDate', (monthName, dayName, yearName) => {
-	cy.selectYear(yearName);
-	cy.selectMonth(monthName);
-	cy.selectDay(dayName);
 });
 
 /** Select month in datepicker
@@ -483,7 +558,7 @@ Cypress.Commands.add('selectMonth', (monthName, limit = 12) => {
 				cy.get("[data-testId='ArrowRightIcon']").click();
 			}
 		}
-		cy.selectMonth(monthName, limit-1);
+		cy.selectMonth(monthName, limit - 1);
 	});
 });
 
@@ -493,34 +568,4 @@ Cypress.Commands.add('selectMonth', (monthName, limit = 12) => {
 Cypress.Commands.add('selectDay', (dayName) => {
 	cy.get("[role='dialog'] button").contains(dayName).click();
 });
-
-/**
- * Transfer Company
- */
-Cypress.Commands.add('transferOrg', (company, parentcompany) => {
-	cy.xpath('//div[text()="' + company + '"]').click();
-	cy.get('[data-testid="input-org-parent-company"]').click().clear().type(parentcompany);
-	cy.get('li').contains(parentcompany).click();
-	cy.get('[data-testid="btn-org-form-submit"]').click();
-	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Organization Updated Successfully!');
-});
-
-// https://reflect.run/articles/comparing-screenshots-in-cypress/
-// https://www.npmjs.com/package/cypress-image-diff-js?activeTab=readme
-// takes and compares a snapshot to the snapshot in your base folder
-// cypress has a default screenshot funtionality built in, if all you want to do is take a screenshot
-// https://docs.cypress.io/api/commands/screenshot
-const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
-compareSnapshotCommand();
-
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+//#endregion

@@ -1,5 +1,4 @@
 import assets from '../../fixtures/createasset.json';
-let prefix = Math.floor(100000 + Math.random() * 900000);
 
 describe('Asset Management removal tests', () => {
 	beforeEach(() => {
@@ -9,21 +8,26 @@ describe('Asset Management removal tests', () => {
 	});
 
 	it('Removed asset can`t be found in assets table', () => {
-		let assetModel = assets[0].asset;
-		let assetNickname = assetModel.AssetNickname + prefix;
+		let assetModel = assets.asset_mandatoryfields;
+	
+		cy.generateRandom(100000, 900000).then((prefix) => {
+			assetModel.assetId += prefix;
+			assetModel.assetNickname +=  prefix;
 
-		// Create new asset for removing
-		cy.createNewAsset(assetModel.CompanyName, assetModel.AssetId + prefix, assetNickname, prefix, assetModel.AssetType);
+			// Create new asset for removing
+			cy.createNewAsset(assetModel);
+			cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Asset Created Successfully!');
 
-		// Wait for 'Assets' table loading
-		cy.get('[data-rowindex]').should('have.length.gt', 1);
+			// Wait for 'Assets' table loading
+			cy.get('[data-rowindex]').should('have.length.gt', 1);
 
-		// Search created asset and remove it
-		cy.removeAsset(assetNickname).wait(2000);
+			// Search created asset and remove it
+			cy.removeAsset(assetModel.assetNickname).wait(2000);
 
-		// Search removed asset
-		cy.searchAssets(assetNickname);
+			// Search removed asset
+			cy.searchAssets(assetModel.assetNickname);
 
-		cy.get('[data-rowindex]').should('have.length', 0);
+			cy.get('[data-rowindex]').should('have.length', 0);
+		});
 	});
 });
