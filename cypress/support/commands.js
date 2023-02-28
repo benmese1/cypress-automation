@@ -149,7 +149,7 @@ Cypress.Commands.add('globalSearch', (searchOption, searchTerm, isSubmit) => {
 		Users: 'global-search-select-item-Users',
 		Organizations: 'global-search-select-item-Organizations',
 	};
-	cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
+	cy.get('[data-testid="global-search-select"] [role="button"]').click().wait(500);
 	cy.get(`[data-testid='${dataTestid[searchOption]}']`).click();
 
 	if (isSubmit) {
@@ -270,7 +270,6 @@ Cypress.Commands.add('createNewAsset', (asset) => {
 	cy.safeTypeAndSelect('[data-testid="form-control-input-door_type"]', asset.doorType);
 
 	cy.get('[data-testid="global-button-component"]').click();
-	cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Asset Created Successfully!');
 });
 
 //Method Name :removeAsset
@@ -486,6 +485,15 @@ Cypress.Commands.add('safeSelect', (locator, value, isXpath) => {
 		isXpath ? cy.xpath(locator).realClick() : cy.get(locator).realClick().wait(500);
 		cy.get(`[data-value="${value}"]`).should('be.visible').realClick().wait(500);
 	}
+});
+
+/**
+ * Returns a random integer number between min (inclusive) and max (exclusive)
+ */
+Cypress.Commands.add('generateRandom', (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 });
 
 Cypress.Commands.add('selectDate', (monthName, dayName, yearName) => {

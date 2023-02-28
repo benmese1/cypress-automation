@@ -1,6 +1,5 @@
 import summary from '../../fixtures/assetsummary_dynamic.json';
 import assets from '../../fixtures/createasset.json';
-let prefix = Math.floor(100000 + Math.random() * 900000);
 
 describe('Asset Summary Section Verification', () => {
 	beforeEach(() => {
@@ -34,40 +33,43 @@ describe('Asset Summary Section Verification', () => {
 
 	it('Verify static fields have valid value on Asset Summary Section', () => {
 		let assetModel = assets.asset_withoptional;
-		assetModel.assetId += prefix;
-		assetModel.assetNickname += prefix;
-		assetModel.vin += prefix;
+		cy.generateRandom(100000, 900000).then((prefix) => {
+			assetModel.assetId += prefix;
+			assetModel.assetNickname += prefix;
+			assetModel.vin += prefix;
 
-		var fieldsToCheck = [
-			{ name: 'Asset ID', value: assetModel.assetId },
-			{ name: 'Asset Nickname', value: assetModel.assetNickname },
-			{ name: 'Product Name', value: assetModel.productName },
-			{ name: 'Device ID', value: '' },
-			{ name: 'Asset Type', value: assetModel.assetType },
-			{ name: 'Asset Tags', value: assetModel.assetTags },
-			{ name: 'VIN', value: assetModel.vin },
-			{ name: '# of Tires', value: assetModel.numOfTires },
-			{ name: '# of Axles', value: assetModel.numOfAxles },
-			{ name: 'Length', value: `${assetModel.length}'` },
-			{ name: 'Door Type', value: assetModel.doorType },
-		];
-		// Create new asset for removing
-		cy.createNewAsset(assetModel);
+			var fieldsToCheck = [
+				{ name: 'Asset ID', value: assetModel.assetId },
+				{ name: 'Asset Nickname', value: assetModel.assetNickname },
+				{ name: 'Product Name', value: assetModel.productName },
+				{ name: 'Device ID', value: '' },
+				{ name: 'Asset Type', value: assetModel.assetType },
+				{ name: 'Asset Tags', value: assetModel.assetTags },
+				{ name: 'VIN', value: assetModel.vin },
+				{ name: '# of Tires', value: assetModel.numOfTires },
+				{ name: '# of Axles', value: assetModel.numOfAxles },
+				{ name: 'Length', value: `${assetModel.length}'` },
+				{ name: 'Door Type', value: assetModel.doorType },
+			];
+			// Create new asset for removing
+			cy.createNewAsset(assetModel);
+			cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Asset Created Successfully!');
 
-		// Wait for 'Assets' table loading
-		cy.get('[data-rowindex]').should('have.length.gt', 1);
+			// Wait for 'Assets' table loading
+			cy.get('[data-rowindex]').should('have.length.gt', 1);
 
-		cy.openAsset(assetModel.companyName, 'Asset ID');
+			cy.openAsset(assetModel.companyName, 'Asset ID');
 
-		cy.expandDrawerSection('Summary');
+			cy.expandDrawerSection('Summary');
 
-		// Verify the following fields have correct values
-		fieldsToCheck.forEach((field) => {
-			cy.get('#details-summary p')
-				.contains(field.name)
-				.next()
-				.then(($val) => {
-					expect($val.text()).to.contain(field.value);
+			// Verify the following fields have correct values
+			fieldsToCheck.forEach((field) => {
+				cy.get('#details-summary p')
+					.contains(field.name)
+					.next()
+					.then(($val) => {
+						expect($val.text()).to.contain(field.value);
+					});
 				});
 		});
 	});
