@@ -73,7 +73,7 @@ describe('Create and remove public asset filters', () => {
 		//try make the filter public by clicking shared
 		cy.get('[data-testid="filter-checkbox"]').check({ force: true });
 
-		// Confirm that filter is public and Shared remains unchecked as we cannot make filter public by clicking delete icon
+		// Confirm that filter is unchanged and Shared remains unchecked as we cannot make filter public by clicking delete icon
 		cy.get('[data-testid="filter-checkbox"]').should('be.unchecked');
 
 		// click on Cancel in the popup modal
