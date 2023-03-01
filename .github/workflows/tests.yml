@@ -92,7 +92,7 @@ jobs:
           password: ${{ secrets.XRAY_SECRET }}
           testFormat: "junit"
           testPaths: "**/results/*.xml"
-          testExecutionJson: "cypress/test-exec/QA-test-execution.json"
+          # testExecutionJson: "cypress/test-exec/QA-test-execution.json"
           # testExecKey: "xrayTest"
           testEnvironments: "QA, DEV"
           projectKey: "PRJIND"
