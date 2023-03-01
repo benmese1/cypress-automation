@@ -17,5 +17,15 @@
 		"numOfAxles": "1",
 		"length": "21",
 		"doorType": "Roll Door"
+	},
+	"asset_withoptional_upd": {
+		"companyName": "Connect",
+		"assetId": "AUTO",
+		"assetNickname": "AUTO",
+		"assetType": "Tractor",
+		"productName": "Smart7 (77-6800)",
+		"vin": "AUTO",
+		"length": "31",
+		"doorType": "Swing Door"
 	}
 }
