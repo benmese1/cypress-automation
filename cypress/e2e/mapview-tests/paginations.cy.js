@@ -9,9 +9,6 @@ describe('Verify that pagination works for asset list', () => {
 	it('verify pagination works for asset list', () => {
 		// make sure pagination is visible
 		cy.get('[data-testid="pagination-container"]', { timeout: 10000 }).should('be.visible');
-
-		// click on pagination
-		cy.get('[data-testid="pagination-container"]').click({ force: true });
 		// click on each page to view assets
 		cy.get('[data-testid="pagination-container"]')
 			.find('li')
