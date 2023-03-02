@@ -1,0 +1,32 @@
+{
+	"assets": [
+		{
+			"fieldname": "Trip Status",
+			"value": "Moving"
+		},
+		{
+			"fieldname": "Last Reported Date",
+			"value": "1/12/2023"
+		},
+		{
+			"fieldname": "City",
+			"value": "San Bernardino County"
+		},
+		{
+			"fieldname": "State",
+			"value": "WI"
+		},
+		{
+			"fieldname": "Zip",
+			"value": "V8J 2B6"
+		},
+		{
+			"fieldname": "Longitude",
+			"value": "41.21"
+		},
+		{
+			"fieldname": "Latitude",
+			"value": "-95.91"
+		}
+	]
+}
