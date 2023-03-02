@@ -126,7 +126,7 @@ compareSnapshotCommand();
 //#region General commands
 
 /** Safe type of value. Can be used to handle filling a large form that has many optional fields
- * If value is empty - error is not thrown 
+ * If value is empty - error is not thrown
  *  @param {string} value - value to set
  *  @param {string} locator - locator of element to set value
  */
@@ -137,7 +137,7 @@ Cypress.Commands.add('safeType', (locator, value) => {
 });
 
 /** Safe type and select of value. Can be used to handle filling a large form that has many optional fields
- * If value is empty - error is not thrown 
+ * If value is empty - error is not thrown
  *  @param {string} value - value to set
  *  @param {string} locator - locator of element to set value
  */
@@ -149,7 +149,7 @@ Cypress.Commands.add('safeTypeAndSelect', (locator, value) => {
 });
 
 /** Safe select of value. Can be used to handle filling a large form that has many optional fields
- * If value is empty - error is not thrown 
+ * If value is empty - error is not thrown
  *  @param {string} value - value to set
  *  @param {string} locator - locator of element to set value
  *  @param {boolean} isXpath - if true 'xPath' strategy is used to find an element
@@ -168,9 +168,9 @@ Cypress.Commands.add('safeSelect', (locator, value, isXpath) => {
  * Returns a random integer number between min (inclusive) and max (exclusive)
  */
 Cypress.Commands.add('generateRandom', (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 });
 
 Cypress.Commands.add('selectDate', (monthName, dayName, yearName) => {
