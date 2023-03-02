@@ -31,18 +31,3 @@ Cypress.Commands.add('searchLocation', (location, isSubmit) => {
 		);
 	}
 });
-
-/** Expand section with specific name on Drawer
- *  @param {string} sectionName - section's name to expand
- */
-Cypress.Commands.add('expandDrawerSection', (sectionName) => {
-	cy.contains('[role="button"]', sectionName).then(($section) => {
-		cy.wrap($section)
-			.invoke('attr', 'aria-expanded')
-			.then(($is_expanded) => {
-				if ($is_expanded === 'false') {
-					$section.click();
-				}
-			});
-	});
-});
