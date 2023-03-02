@@ -94,7 +94,7 @@ jobs:
           testFormat: "junit"
           testPaths: "**/results/*.xml"
           testExecutionJson: "cypress/test-exec/QA-test-execution.json"
-          # testExecKey: "xrayTest"
+          testExecKey: "PRJIND-1235"
           testEnvironments: "QA, DEV"
           projectKey: "PRJIND"
           failOnImportError: true
