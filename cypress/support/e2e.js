@@ -15,6 +15,13 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands';
+import './assetList';
+import './assetMap';
+import './dashboard';
+import './devices';
+import './myAccount';
+import './organization';
+import './userManagement';
 import '@cypress/xpath';
 import 'cypress-real-events/support';
 
