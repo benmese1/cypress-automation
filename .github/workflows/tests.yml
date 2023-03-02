@@ -83,7 +83,8 @@ jobs:
           path: cypress/results/
     
       - name: Submit results to Xray
-        uses: mikepenz/xray-action@v2
+        # uses: mikepenz/xray-action@v2
+        uses: mikepenz/xray-action@v2.4.5
         with:
           # xrayCloud: ${{ secrets.JIRA_SERVER_URL }}
           # username: ${{ secrets.JIRA_USERNAME }}
