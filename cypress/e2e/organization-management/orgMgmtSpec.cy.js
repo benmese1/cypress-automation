@@ -19,8 +19,8 @@ describe('Organization management page general tests', () => {
 		cy.get('[data-testid="asset-table-toolbar-export-btn"]').should('be.visible');
 	});
 
-	it('Verify user management table, search button and create new button is displayed', () => {
-		//Verify user management table
+	it('Verify organization management table, search button and create new button is displayed', () => {
+		//Verify organization management table
 		cy.get('[role="grid"]').should('be.visible');
 		//Verify search button visiblity
 		cy.get('[data-testid="items-list-search-input"]').should('be.visible');
