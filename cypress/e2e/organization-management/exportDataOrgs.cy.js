@@ -11,18 +11,27 @@ describe('Organization management page export verification', () => {
 	it('Verify export button is visible and downloading CSV file', () => {
 		cy.url().should('include', '/organizations');
 		//Verify Export button visibility on the org management
-		cy.get('[data-testid="asset-table-toolbar-export-btn"]').should('be.visible').click({ force: true });
-		cy.wait(2000);
+		cy.get('[data-testid="SaveAltIcon"]', { timeout: 20000 }).should('be.visible').click({ force: true });
 		//From Export button verify "Download as CSV" functionality
-		cy.get('[role="menuitem"]')
-			.contains('Download as CSV')
-			.click({ force: true })
-			.readFile(downloadsPath + exportFilename)
-			.should('contain', csvFileHeader);
+		cy.get('[role="menuitem"]').contains('Download as CSV').click({ force: true }).wait(2000);
+		cy.readFile(`${downloadsPath}` + '\\' + `${getExportedFile()}`).should('contain', csvFileHeader);	
 	});
 
-	const downloadsPath = 'cypress/downloads/';
-	const exportFilename = 'Phillips Connect.csv';
+	it('Verify export button is visible and downloading Excel file', () => {
+		cy.url().should('include', '/organizations');
+		//Verify Export button visibility on the org management
+		cy.get('[data-testid="SaveAltIcon"]', { timeout: 20000 }).should('be.visible').click({ force: true });
+		//From Export button verify "Download as Excel" functionality
+		cy.get('[role="menuitem"]').contains('Download as Excel').click({ force: true }).wait(2000);
+		cy.readFile(`${downloadsPath}` + '\\' + `${getExportedFile()}`).should('contain', csvFileHeader);	
+	});
+
+	const downloadsPath = Cypress.config('downloadsFolder');
 	const csvFileHeader =
-		'Company Name,Parent Company,Brand,Type,Timezone,Number of Devices,Updated Date,Created Date,Distance Unit Preference';
+		'Company Name,Parent Company,Brand,Type,Time Zone,Number of Devices,Updated Date,Created Date,Distance Unit Preference';
 });
+
+function getExportedFile() {
+	return `Organizations - ${new Date().toLocaleDateString().split('/').join('_')}.csv`;
+}
+
