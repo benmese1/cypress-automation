@@ -87,7 +87,7 @@ jobs:
             JIRA_SERVER_URL: ${{ secrets.JIRA_SERVER_URL }}
             JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
             JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
-        run: 'curl -H "Content-Type: multipart/form-data" -u ${JIRA_USERNAME}:${JIRA_PASSWORD} -F file=@test-results "$JIRA_SERVER_URL/rest/raven/1.0/import/execution/junit?projectKey=PRJIND"'
+        run: 'curl -H "Content-Type: multipart/form-data" -u ${JIRA_USERNAME}:${JIRA_PASSWORD} -F file=@test-results/*.xml "$JIRA_SERVER_URL/rest/raven/1.0/import/execution/junit?projectKey=PRJIND"'
     
       # - name: Submit results to Xray
       #   # uses: mikepenz/xray-action@v2
