@@ -14,7 +14,7 @@ describe('Organization management page export verification', () => {
 		cy.get('[data-testid="SaveAltIcon"]', { timeout: 20000 }).should('be.visible').click({ force: true });
 		//From Export button verify "Download as CSV" functionality
 		cy.get('[role="menuitem"]').contains('Download as CSV').click({ force: true }).wait(2000);
-		cy.readFile(`${downloadsPath}` + '\\' + `${getExportedFile()}`).should('contain', csvFileHeader);	
+		cy.readFile(`${downloadsPath}` + '\\' + `${getExportedFile()}`).should('contain', FileHeader);	
 	});
 
 	it('Verify export button is visible and downloading Excel file', () => {
@@ -23,11 +23,11 @@ describe('Organization management page export verification', () => {
 		cy.get('[data-testid="SaveAltIcon"]', { timeout: 20000 }).should('be.visible').click({ force: true });
 		//From Export button verify "Download as Excel" functionality
 		cy.get('[role="menuitem"]').contains('Download as Excel').click({ force: true }).wait(2000);
-		cy.readFile(`${downloadsPath}` + '\\' + `${getExportedFile()}`).should('contain', csvFileHeader);	
+		cy.readFile(`${downloadsPath}` + '\\' + `${getExportedFile()}`).should('contain', FileHeader);	
 	});
 
 	const downloadsPath = Cypress.config('downloadsFolder');
-	const csvFileHeader =
+	const FileHeader =
 		'Company Name,Parent Company,Brand,Type,Time Zone,Number of Devices,Updated Date,Created Date,Distance Unit Preference';
 });
 
