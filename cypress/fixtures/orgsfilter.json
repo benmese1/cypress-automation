@@ -1,0 +1,23 @@
+{
+	"orgs": [
+		{
+			"columnname": "Parent Company",
+			"operator": "contains",
+			"value": "Werner Enterprises",
+			"datafield": "parent_company"
+		},
+		{
+			"columnname": "Brand",
+			"operator": "equals",
+			"value": "phillips",
+			"datafield": "brand"
+		},
+		{
+			"columnname": "Type",
+			"operator": "starts with",
+			"value": "Fleet",
+			"datafield": "type"
+		}
+		
+	]
+}
