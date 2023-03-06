@@ -261,3 +261,20 @@ Cypress.Commands.add('expandDrawerSection', (sectionName) => {
 			});
 	});
 });
+
+
+/**
+ * Filter the organizations
+ */
+Cypress.Commands.add('generic_addFilter', (columnName, operator, value) => {
+	cy.get('[data-testid="asset-table-toolbar-filter-btn"]').should('be.visible').click({ force: true }).wait(500);
+	cy.get('[role="tooltip"] .MuiDataGrid-filterForm').as('filterPopup');
+	//find elements within 'Filter' Popup
+	cy.get('@filterPopup').find('select').eq(1).select(columnName);
+	cy.get('@filterPopup').find('select').eq(2).select(operator);
+
+	if (!operator.includes('empty')) {
+		cy.get('@filterPopup').find('input').last().type(value).wait(500);
+	}
+	cy.clickOutside();
+});

@@ -12,7 +12,7 @@ describe('Filter Organizations', () => {
 
     filterData.orgs.forEach((filter) => {
 		it(`Orgs Filtering by existing "${filter.columnname}"'`, () => {
-			cy.addFilter(filter.columnname, filter.operator, filter.value);
+			cy.generic_addFilter(filter.columnname, filter.operator, filter.value);
 			//verify each cell of provided column has corresponding search value
 			cy.get(`[role='cell'][data-field='${filter.datafield}']`).each(($cell) => {
 				cy.wrap($cell).should('contain.text', filter.value);
