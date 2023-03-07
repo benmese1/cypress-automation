@@ -22,6 +22,7 @@ import './commands/devices';
 import './commands/myAccount';
 import './commands/organization';
 import './commands/userManagement';
+import './commands/MFA';
 import '@cypress/xpath';
 import 'cypress-real-events/support';
 
