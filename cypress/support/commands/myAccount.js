@@ -1,13 +1,13 @@
 //Method Name :myAccount_ImpersonateUser
 //Used to do user impersonation
-//Params impersonationusername
-Cypress.Commands.add('myAcount_ImpersonateUser', (impersonationusername, impersonationfullname) => {
+//Params impersonationUsername, impersonationFullname
+Cypress.Commands.add('myAcount_ImpersonateUser', (impersonationUsername, impersonationFullname) => {
 	cy.get("[aria-label='account of current user']").click();
 	cy.get('[data-testid="SupervisorAccountOutlinedIcon"]').should('be.visible').click();
-	cy.get('[id="impersonate-user-search"]').wait(3000).type(impersonationusername);
-	cy.get('p').contains(impersonationfullname).click();
+	cy.get('[id="impersonate-user-search"]').wait(3000).type(impersonationUsername);
+	cy.get('p').contains(impersonationFullname).click();
 	cy.waitForLoad();
-	cy.get('[data-testid="logged-in-username"]').should('be.visible').contains(impersonationusername);
+	cy.get('[data-testid="logged-in-username"]').should('be.visible').contains(impersonationUsername);
 });
 
 //Method Name :myAccount_StopImpersonating"
