@@ -14,8 +14,10 @@ on:
           - dev
           - qa
       spec:
+        # description: 'Enter specifications in format     :
+        #   --spec "cypress/e2e"'
         description: 'Enter specifications in format     :
-          --spec "cypress/e2e"'
+          --spec "cypress/e2e/org-rolebased-permissions"'
         required: false
         default: ''
         type: string
@@ -78,26 +80,27 @@ jobs:
           name: test-results
           path: cypress/test-results/
 
-      - name: Submit results to Xray
-        env:
-            JIRA_SERVER_URL: ${{ secrets.JIRA_SERVER_URL }}
-            JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
-            JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
-        run: 'curl -H "Content-Type: multipart/form-data" -u ${JIRA_USERNAME}:${JIRA_PASSWORD} -F "file=cypress/results/test-results-*.xml" "${JIRA_SERVER_URL}/rest/raven/1.0/import/execution/junit?projectKey=PRJIND"'
-    
       # - name: Submit results to Xray
-      #   # uses: mikepenz/xray-action@v2
-      #   uses: mikepenz/xray-action@v2.4.5
-      #   with:
-      #     # xrayCloud: ${{ secrets.JIRA_SERVER_URL }}
-      #     # username: ${{ secrets.JIRA_USERNAME }}
-      #     # password: ${{ secrets.JIRA_PASSWORD }}
-      #     username: ${{ secrets.XRAY_CLIENT_ID }}
-      #     password: ${{ secrets.XRAY_SECRET }}
-      #     testFormat: "junit"
-      #     testPaths: "**/results/*.xml"
-      #     # testExecutionJson: "cypress/test-exec/QA-test-execution.json"
-      #     testExecKey: "PRJIND-1235"
-      #     testEnvironments: "QA, DEV"
-      #     projectKey: "PRJIND"
-      #     failOnImportError: true
+      #   env:
+      #       JIRA_SERVER_URL: ${{ secrets.JIRA_SERVER_URL }}
+      #       JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
+      #       JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
+      #   run: 'curl -H "Content-Type: multipart/form-data" -u ${JIRA_USERNAME}:${JIRA_PASSWORD} -F "file=cypress/results/test-results-*.xml" "${JIRA_SERVER_URL}/rest/raven/1.0/import/execution/junit?projectKey=PRJIND"'
+    
+      - name: Submit results to Xray
+        # uses: mikepenz/xray-action@v2
+        uses: mikepenz/xray-action@v2.4.5
+        with:
+          # xrayCloud: ${{ secrets.JIRA_SERVER_URL }}
+          # username: ${{ secrets.JIRA_USERNAME }}
+          # password: ${{ secrets.JIRA_PASSWORD }}
+          username: ${{ secrets.XRAY_CLIENT_ID }}
+          password: ${{ secrets.XRAY_SECRET }}
+          testFormat: "junit"
+          testPaths: 'C:\Users\RUNNER~1\AppData\Local\Temp\tmp.*.xml'
+          # testExecutionJson: "cypress/test-exec/QA-test-execution.json"
+          testExecKey: "PRJIND-1235"
+          testEnvironments: "QA, DEV"
+          projectKey: "PRJIND"
+          failOnImportError: true
+          ACTIONS_RUNNER_DEBUG: true
