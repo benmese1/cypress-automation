@@ -8,7 +8,7 @@ describe('Verify from Superadmin able to see Impersonate user option in popover 
 		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 
-	it('verify from Superadmin able to see Impersonate user option in popover menu, search user and impersonation user name after switch over, Verify User Management table data from Imersonate user,Verify organization table data from Imersonate user and Stop Impersonation ', () => {
+	it('verify from Superadmin able to see Impersonate user option in popover menu, search user and impersonation user name after switch over, Verify User Management table data from Imersonate user,Verify organization table data from Imersonate user and Stop Impersonation', () => {
 		cy.myAcount_ImpersonateUser(
 			impersonationdata[0].impersonation.username,
 			impersonationdata[0].impersonation.fnamelname

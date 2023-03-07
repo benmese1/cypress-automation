@@ -1,4 +1,4 @@
-//Method Name :myAcount_ImpersonateUser
+//Method Name :myAccount_ImpersonateUser
 //Used to do user impersonation
 //Params impersonation username
 Cypress.Commands.add('myAcount_ImpersonateUser', (impersonationusername, impersonationfullname) => {
@@ -10,7 +10,7 @@ Cypress.Commands.add('myAcount_ImpersonateUser', (impersonationusername, imperso
 	cy.get('[data-testid="logged-in-username"]').should('be.visible').contains(impersonationusername);
 });
 
-//Method Name :myAcount_StopImpersonating"
+//Method Name :myAccount_StopImpersonating"
 //Used to StopImpersonating
 //Params NA
 Cypress.Commands.add('myAcount_StopImpersonating', () => {
