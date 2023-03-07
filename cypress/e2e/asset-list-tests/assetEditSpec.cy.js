@@ -63,7 +63,7 @@ describe('Asset Creation Verification', () => {
 		});
 	});
 
-	it.only('Verify asset removing mandatory fields and further submit', () => {
+	it('Verify asset removing mandatory fields and further submit', () => {
 		let assetModelInit = assets.asset_withoptional;
 	
 		// Create new asset

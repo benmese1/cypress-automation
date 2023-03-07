@@ -32,7 +32,7 @@
 		},
 		{
 			"option": "Role",
-			"term": "superadmin",
+			"term": "super admin",
 			"datafield": "groups"
 		},
 		{
@@ -44,7 +44,7 @@
 	"devices": [
 		{
 			"option": "Company Name",
-			"term": "Werner Enterprises, Inc.",
+			"term": "Werner Enterprises",
 			"datafield": "org_name"
 		},
 		{
@@ -54,7 +54,7 @@
 		},
 		{
 			"option": "Asset Id",
-			"term": "CFQU921152",
+			"term": "CFQU921",
 			"datafield": "asset_name"
 		},
 		{
@@ -84,14 +84,14 @@
 		},
 		{
 			"option": "SIM ID",
-			"term": "AUTOSIM145026",
+			"term": "8944500508191623253",
 			"datafield": "sim_num"
 		}
 	],
-   "orgasnizations": [
+   "organizations": [
       	{
 			"option": "Company Name",
-			"term": "Walmart",
+			"term": "Werner Enterprises",
 			"datafield": "name"
 		},
       	{

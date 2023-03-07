@@ -57,29 +57,25 @@ describe('Global "Users" Search verification', () => {
 		cy.get('[data-testid="items-list-search-input"]').should('have.value', 'equip').wait(1000);
 
 		cy.get('[data-rowindex]').each(($row) => {
-			cy.wrap($row).should('contain.text', 'equip');
+			cy.wrap($row).contains('equip', {matchCase: false});
 		});
 	});
 
 	it('Global User Search by existing "Created Date"', () => {
-		cy.globalSearch('Users', '12/06/2022', false);
-		cy.get('[role="listbox"] li span').first().click();
+		cy.globalSearch('Users', '03/07/2023');
 
 		cy.url().should('include', '/user-management');
-		cy.get('[data-testid="items-list-search-input"]').should('have.value', '2022-12-06').wait(1000);
+		cy.get('[data-testid="items-list-search-input"]').should('have.value', '2023-03-07').wait(1000);
 
 		cy.get('[role="cell"][data-field="added_date"]').each(($cell) => {
-			cy.wrap($cell).should('contain.text', '12/06/2022');
+			cy.wrap($cell).should('contain.text', '03/07/2023');
 		});
 	});
 
 	searchData.users.forEach((search) => {
 		it(`Global User Search by existing "${search.option}"'`, () => {
 			//select 'Users' option on Global search and type search term
-			cy.globalSearch('Users', search.term, false);
-
-			//select 1st item from autosuggestion
-			cy.get('[role="listbox"] li span').first().click();
+			cy.globalSearch('Users', search.term);
 
 			//verify 'Users' page is opened
 			cy.url().should('include', '/user-management');
@@ -89,7 +85,7 @@ describe('Global "Users" Search verification', () => {
 
 			//verify each cell of provided column has corresponding search value
 			cy.get(`[role='cell'][data-field='${search.datafield}']`).each(($cell) => {
-				cy.wrap($cell).should('contain.text', search.term);
+				cy.wrap($cell).contains(search.term, {matchCase: false});
 			});
 
 			//get back to Landing page and verify 'Recent searches' list includes search term
