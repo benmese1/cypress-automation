@@ -1,6 +1,6 @@
 //Method Name :myAccount_ImpersonateUser
 //Used to do user impersonation
-//Params impersonationUserName
+//Params impersonationusername
 Cypress.Commands.add('myAcount_ImpersonateUser', (impersonationusername, impersonationfullname) => {
 	cy.get("[aria-label='account of current user']").click();
 	cy.get('[data-testid="SupervisorAccountOutlinedIcon"]').should('be.visible').click();
