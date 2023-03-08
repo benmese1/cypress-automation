@@ -41,6 +41,11 @@ describe('Landing page view test verification', () => {
 		cy.get('[data-testid="dashboard-component"] h3').contains(/^Welcome back, (.+)/);
 	});
 
+	it.only('Verify dashboard drawer is not displayed on Landing page by clicking on the Logo', () => {
+		cy.get('[data-testid="header-logo"]').click();
+		cy.get('[role="presentation"]').should('not.exist');
+	});
+
 	it('Navigate into the map by clicking on "Asset Map" button', () => {
 		cy.get('[data-testid="dashboard-component-buttons-asset-map"] button').click();
 		cy.url().should('include', 'map');
