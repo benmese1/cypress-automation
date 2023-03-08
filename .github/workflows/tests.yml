@@ -14,7 +14,7 @@ on:
           - dev
           - qa
       spec:
-        description: 'Enter specifications in format     :
+        description: 'Enter specifications in format:
           --spec "cypress/e2e"'
         required: false
         default: ''
