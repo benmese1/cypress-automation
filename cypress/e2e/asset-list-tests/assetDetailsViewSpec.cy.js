@@ -7,7 +7,7 @@ describe('Asset Management page -- details view verification', () => {
 
 	it('Verify Asset Details View is collapsable', () => {
 		cy.searchAssets('377');
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+		cy.openAsset('COFC', 'Asset ID');
 		cy.get('#details-summary').should('exist');
 		cy.get('#battery-block').should('exist');
 
@@ -24,7 +24,7 @@ describe('Asset Management page -- details view verification', () => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-critical"]').should('exist');
 		});
 
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+		cy.openAsset('COFC', 'Asset ID');
 
 		//verify 'Battery Icon' is displayed
 		cy.get('[data-testid = "battery-svg-critical"]').should('exist');
@@ -45,7 +45,7 @@ describe('Asset Management page -- details view verification', () => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-warning"]').should('exist');
 		});
 
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 
 		//verify 'Battery Icon' is displayed
 		cy.get('[data-testid = "battery-svg-warning"]').should('exist');

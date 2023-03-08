@@ -41,6 +41,8 @@ Cypress.Commands.add('unpinColumn', (columnName) => {
 });
 
 Cypress.Commands.add('searchAssets', (searchCriteria) => {
+	// Wait for 'Assets' table loading
+	cy.get('[data-rowindex]').should('have.length.gt', 1);
 	cy.get("input[placeholder='Search']").should('be.visible').clear().type(searchCriteria).wait(1000);
 });
 
@@ -81,11 +83,23 @@ Cypress.Commands.add('addAssetsFilter', (columnName, operator, value) => {
 //Params - asset model with propeties. Properties can be optional
 Cypress.Commands.add('createNewAsset', (asset) => {
 	cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
+	
+	cy.fillAssetForm(asset);
 
-	cy.get('[name="customer_orgs_id"]').click().type(`${asset.companyName}{enter}`);
+	cy.get('[data-testid="global-button-component"]').click();
+});
+
+//Method Name :fillAssetForm
+//Used to fill the Asset Form
+//Params - asset model with propeties. Properties can be optional
+Cypress.Commands.add('fillAssetForm', (asset) => {
+
+	//wait for spinner
+	cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
+	cy.get('[name="customer_orgs_id"]').click().realType(`${asset.companyName}{enter}`);
 	cy.get('li').contains(asset.companyName).click();
-	cy.get('[name="asset_id"]').type(asset.assetId);
-	cy.get('[name="name"]').type(asset.assetNickname);
+	cy.get('[name="asset_id"]').clear().realType(asset.assetId);
+	cy.get('[name="name"]').clear().realType(asset.assetNickname);
 	cy.get('[name="category"]').click();
 	cy.get('li').contains(asset.assetType).click();
 
@@ -97,8 +111,6 @@ Cypress.Commands.add('createNewAsset', (asset) => {
 	cy.safeSelect('//label[contains(text(),"of Axles")]/..', asset.numOfAxles, true);
 	cy.safeType('[name="length"]', asset.length);
 	cy.safeTypeAndSelect('[data-testid="form-control-input-door_type"]', asset.doorType);
-
-	cy.get('[data-testid="global-button-component"]').click();
 });
 
 //Method Name :removeAsset

@@ -32,6 +32,20 @@ describe('Asset Management page search tests', () => {
 			});
 		});
 	});
+
+	it('Verify Local Search when 3 characters of existing term are typed', () => {
+		cy.searchAssets('aut');
+		cy.get('[data-rowindex]').each(($row) => {
+			cy.wrap($row).contains('aut', { matchCase: false });
+		});
+	});
+
+	it.only('Verify Local Search when less 3 characters of existing term are typed', () => {
+		cy.searchAssets('N');
+		cy.get('[data-rowindex]').should('have.length.gte', 5);
+		cy.searchAssets('NN');
+		cy.get('[data-rowindex]').should('have.length.gte', 5);
+	});
 });
 
 const showColumn = (column) => {

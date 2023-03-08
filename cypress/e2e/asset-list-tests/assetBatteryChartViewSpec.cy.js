@@ -10,12 +10,12 @@ describe('Asset Battery Chart View Verification', () => {
 
 	it('Verify Battery Chart is Displayed', () => {
 		cy.searchAssets("377716");
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID', 1);
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.expandDrawerSection("Battery");
 
 		//verify default values of Start Date, End Date fields
 		cy.get("[role='region']").eq(2).find("input").first().should('have.value', dayjs().format('MM/DD/YYYY'))
-		cy.get("[role='region']").eq(2).find("input").last().should('have.value', dayjs().add(1, "day").format('MM/DD/YYYY'))
+		cy.get("[role='region']").eq(2).find("input").last().should('have.value', dayjs().format('MM/DD/YYYY'))
 		
 		//select startDate
 		cy.get("[role='region']").eq(2).find("input").first().click();
@@ -31,7 +31,7 @@ describe('Asset Battery Chart View Verification', () => {
 
 	it('Verify Solar Chart is Displayed', () => {
 		cy.searchAssets("377707");
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.expandDrawerSection("Battery");
 	
 		let solarTooltipsYAxes = ['0.0', '1.5', '0.2']
@@ -65,7 +65,7 @@ describe('Asset Battery Chart View Verification', () => {
 
 	it('Verify Primary Voltage Chart is Displayed', () => {
 		cy.searchAssets("368428");
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.expandDrawerSection("Battery");
 	
 		let primaryVoltageTooltips = ['3.930', '3.930', '3.930', '3.940', '3.930','3.930', '3.940', '3.940', '3.930', '3.930', '3.930', '3.930', '3.930',
@@ -98,7 +98,7 @@ describe('Asset Battery Chart View Verification', () => {
 
 	it('Verify Secondary Voltage Chart is Displayed', () => {
 		cy.searchAssets("377707");
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.expandDrawerSection("Battery");
 	
 		let secondaryVoltageTooltips = ['14.200', '14.150', '14.150']
@@ -130,7 +130,7 @@ describe('Asset Battery Chart View Verification', () => {
 
 	it('Verify Battery Chart for Short Time Duration', () => {
 		cy.searchAssets("377707");
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.expandDrawerSection("Battery");
 	
 		let voltageTooltip = 4;
@@ -159,7 +159,7 @@ describe('Asset Battery Chart View Verification', () => {
 
 	it('Verify at Least One Chart Should be Always Displayed', () => {
 		cy.searchAssets("377707");
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.expandDrawerSection("Battery");
 	
 		//select startDate

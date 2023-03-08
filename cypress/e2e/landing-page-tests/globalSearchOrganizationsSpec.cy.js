@@ -74,7 +74,7 @@ describe('Global "Organizations" Search verification', () => {
 
 		//get back to Landing page and verify 'Recent searches' list includes search term
 		cy.dashboardMenu('Dashboard');
-		cy.get('[data-testid="global-search-select"] [role="button"]').click();
+		cy.get('[data-testid="selector"] [role="button"]').click();
 		cy.get('[data-testid="global-search-select-item-Organizations"]').click();
 		cy.get('[data-testid="selector-input"] input').first().click();
 		cy.get('[role="listbox"] li span').first().should('have.text', 'Retai');
@@ -85,7 +85,7 @@ describe('Global "Organizations" Search verification', () => {
 	});
 
 	it('Global Organizations Search by existing "Created Date"', () => {
-		cy.globalSearch('Organizations', '01/31/2023', false);
+		cy.globalSearch('Organizations', '03/07/2023', false);
 		cy.get('[role="listbox"] li span').first().click();
 
 		cy.url().should('include', '/organizations');
@@ -94,7 +94,7 @@ describe('Global "Organizations" Search verification', () => {
 		cy.get('[data-testid="items-list-search-input"]').should('have.value', '2023-01-31').wait(1000);
 
 		cy.get('[role="cell"][data-field="added_date"]').each(($cell) => {
-			cy.wrap($cell).should('contain.text', '01/31/2023');
+			cy.wrap($cell).should('contain.text', '03/07/2023');
 		});
 	});
 

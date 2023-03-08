@@ -56,7 +56,7 @@ describe('Asset Creation Verification', () => {
 		});
 	});
 
-	it.only('Verify asset creation with missed mandatory fields', () => {
+	it('Verify asset creation with missed mandatory fields', () => {
 		cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
 
 		//Input one optional field
