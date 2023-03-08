@@ -2,7 +2,7 @@
     "fields":{
         "summary":"QA regression suite execution",
         "issuetype":{
-            "Test Set":"PRJIND-1235"
+            "Test Execution":"PRJIND-2272"
         }
     }
 }
