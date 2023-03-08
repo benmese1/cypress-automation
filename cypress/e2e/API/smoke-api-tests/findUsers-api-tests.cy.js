@@ -66,8 +66,6 @@ it(
 		}).then((res) => {
 			expect(res.status).to.eq(200);
 			expect(res.body.data.findUsers[0]).to.have.property('firstName');
-			// hardcoded for now , in Integration we can compare from UI
-			// expect(res.body.data.findDevices[0]).to.have.property('assets_id').to.eq('63a7cf09c45bfb7ace184f45');
 			cy.log(res.body);
 		});
 	}
