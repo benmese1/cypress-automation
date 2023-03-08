@@ -25,8 +25,10 @@ describe('Verify from Superadmin able to see Impersonate user option in popover 
 		cy.dashboardMenu('My Organization');
 		cy.get('[data-testid="management-my-organization"]', { timeout: 2000 }).should('exist');
 		cy.get('[data-testid="btn-sub-header-action-Create New"]', { timeout: 1000 }).should('exist');
+		cy.xpath("//h1[@data-testid='management-my-organization']//following::h3")
+			.should('be.visible')
+			.contains(impersonationdata[0].impersonation.orgName);
 		cy.verifyMyOrganizationTableView();
-
 		//Stop Impersonating
 		cy.myAcount_StopImpersonating();
 	});
