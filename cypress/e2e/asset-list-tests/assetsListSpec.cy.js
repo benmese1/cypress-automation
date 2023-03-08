@@ -101,7 +101,6 @@ describe('Asset Management page general tests', () => {
 				{ dataField: 'last_gps_t', value: /^((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/, regex: true},
 		 	];
 
-			cy.wait(15000);
 			// Create new asset with mandatory fields
 			cy.createNewAsset(assetModel);
 			cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Asset Created Successfully!');
