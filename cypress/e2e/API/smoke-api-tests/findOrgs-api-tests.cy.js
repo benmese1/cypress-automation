@@ -1,8 +1,8 @@
-// API test for the find all devices by generating JWT on the fly : Dev only
+// API test for the find all Organizations by generating JWT on the fly : Dev only
 /// <reference types="cypress" />
 
 it(
-	'Send an API request to find all Devices',
+	'Send an API request to find all Organizations',
 	{
 		// Multiple attempts as the API is intermittent to respond at once
 		retries: {
@@ -35,28 +35,27 @@ it(
 			cy.log('Token = ' + token);
 		});
 
-		// GraphQL query to findDevices
+		// GraphQL query to findOrganizations
 		const query = `
 		 query MyQuery {
-			findDevices {
-			  imei
-			  assets_id
-			  asset_name
-			  dev_id
-			  added_dt
+			findOrgs {
+			  name
+			  description
+			  brand
+			  org_key
+			  type
+			  asset_count
+			  device_count
+			  time_zones
+			  distance_unit_preference
 			  added_date
 			  updated_date
 			  added_by
-			  prd_cde
-			  serial_num
-			  device_type
-			  carrier
-			  box_id
-			  terminated
-			  status
+			  updated_by
+			  account_number
+			  parent_org_id
 			}
-		  }
-		  `;
+		  }`;
 
 		cy.request({
 			method: 'POST',
@@ -68,9 +67,7 @@ it(
 			body: { query },
 		}).then((res) => {
 			expect(res.status).to.eq(200);
-			expect(res.body.data.findDevices[0]).to.have.property('imei');
-			// hardcoded for now , in Integration we can compare from UI
-			// expect(res.body.data.findDevices[0]).to.have.property('assets_id').to.eq('63a7cf09c45bfb7ace184f45');
+			expect(res.body.data.findOrgs[0]).to.have.property('name');
 			cy.log(res.body);
 		});
 	}
