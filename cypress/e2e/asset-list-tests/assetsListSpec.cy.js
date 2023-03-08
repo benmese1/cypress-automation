@@ -1,3 +1,6 @@
+import assets from '../../fixtures/createasset.json';
+const dayjs = require('dayjs');
+
 describe('Asset Management page general tests', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
@@ -5,7 +8,7 @@ describe('Asset Management page general tests', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('verify Material UI Premium buttons above table header', () => {
+	it('Verify Material UI Premium buttons above table header', () => {
 		// Verify Material UI Premium Columns button
 		cy.get('[data-testid="asset-table-toolbar-columns-btn"]').should('be.visible');
 		// Verify Material UI Premium Filters button
@@ -14,10 +17,6 @@ describe('Asset Management page general tests', () => {
 		cy.get('[data-testid="asset-table-toolbar-density-btn"]').should('be.visible');
 		// Verify Material UI Premium Export button
 		cy.get('[data-testid="asset-table-toolbar-export-btn"]').should('be.visible');
-	});
-
-	it('Verify assets table is displayed', () => {
-		cy.get("[role='grid']").should('be.visible');
 	});
 
 	it('Verify assets table columns visibility', () => {
@@ -36,11 +35,96 @@ describe('Asset Management page general tests', () => {
 			'Battery Icon',
 			'Asset Tags',
 		];
-		cy.get("[role='columnheader']")
-			.each((el) => {
+		cy.get("[role='columnheader']").each((el) => {
 				expect(el.text()).oneOf(columnHeadersList);
+			});
+		cy.get("[role='columnheader']").should('have.length', columnHeadersList.length);
+	});
+
+	it('Verify assets table all columns visibility', () => {
+		const allColumnHeadersList = [
+			'Company Name',
+			'Icon',
+			'Battery Icon',
+			'Asset ID',
+			'Asset Nickname',
+			'Device ID',
+			'Product Name',
+			'Last Reported Date',
+			'Associated',
+			'Trip Status',
+			'City',
+			'State',
+			'Zip',
+			'Asset Type',
+			'Asset Tags',
+			'Latitude',
+			'Longitude',
+			'Vin',
+			'# of Tires',
+			'# of Axles',
+			'Length',
+			'Door Type',
+			'GPS Time'
+		];
+
+		// Show all columns
+		cy.get('[data-testid="asset-table-toolbar-columns-btn"]').click();
+		cy.get('[role="tooltip"]').should('be.visible').contains('Show all').click();
+		cy.clickOutside();
+
+		cy.get("[role='columnheader']").each((el) => {
+				expect(el.text()).oneOf(allColumnHeadersList);
 			})
-			.should('have.length', columnHeadersList.length);
+	});
+
+	it.only('Verify all data is displayed on Asset Lists Table', () => {
+		let assetModel = assets.asset_withoptional;
+		cy.generateRandom(100000, 900000).then((prefix) => {
+			assetModel.assetId += prefix;
+			assetModel.assetNickname += prefix;
+
+			var fieldsToCheck = [
+				{ dataField: 'organization', value: assetModel.companyName, regex: false},
+				{ dataField: 'asset_id', value: assetModel.assetId, regex: false },
+				{ dataField: 'name', value: assetModel.assetNickname },
+				{ dataField: 'lst_evnt_t',  value: new RegExp(dayjs().format('MM/DD/YYYY') + ' ' 
+				 + '((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))') , regex: true },
+				{ dataField: 'device_associated', value: 'No', regex: false},
+				{ dataField: 'category', value: assetModel.assetType, regex: false },
+				{ dataField: 'tags', value: assetModel.assetTags, regex: false },
+				{ dataField: 'vin', value: assetModel.vin, regex: false},
+				{ dataField: 'wheel_config', value: assetModel.numOfTires, regex: false },
+				{ dataField: 'num_of_axles', value: assetModel.numOfAxles, regex: false},
+				{ dataField: 'length', value: assetModel.length, regex: false },
+				{ dataField: 'door_type', value: assetModel.doorType, regex: false },
+				{ dataField: 'last_gps_t', value: /^((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/, regex: true},
+		 	];
+
+			// Create new asset with mandatory fields
+			cy.createNewAsset(assetModel);
+			cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('Asset Created Successfully!');
+
+			// Show all columns
+			cy.get('[data-testid="asset-table-toolbar-columns-btn"]').click();
+			cy.get('[role="tooltip"]').should('be.visible').contains('Show all').click();
+			cy.clickOutside();
+
+			cy.searchAssets(assetModel.assetNickname);
+
+			// Verify the following fields in table have correct values
+			cy.get('[role="grid"] .MuiDataGrid-virtualScroller').scrollTo('topRight', { ensureScrollable: false });
+			fieldsToCheck.forEach((field) => {
+				cy.get('[data-rowindex]').find(`[data-field='${field.dataField}']`)
+					.then(($val) => {
+						if(field.regex == true) {
+							expect($val.text()).to.matches(field.value);
+						} else {
+							expect($val.text()).to.contain(field.value);
+						}
+					});
+				});
+		});
 	});
 
 	it('Paging test', () => {
