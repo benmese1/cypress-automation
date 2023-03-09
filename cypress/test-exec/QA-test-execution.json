@@ -2,7 +2,15 @@
     "fields":{
         "summary":"QA regression suite execution",
         "issuetype":{
-            "Test Execution":"PRJIND-2272"
-        }
+            "id":"10492"
+        },
+        "components":[
+            {
+                "name":"Test Execution"
+            },
+            {
+                "name":"QA Test Execution"
+            }
+        ]
     }
 }
