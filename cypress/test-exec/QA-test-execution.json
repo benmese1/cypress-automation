@@ -3,6 +3,14 @@
         "summary":"QA regression suite execution",
         "issuetype":{
             "id":"10492"
-        }
+        },
+        "components":[
+            {
+                "name":"Test Execution"
+            },
+            {
+                "name":"QA Test Execution"
+            }
+        ]
     }
 }
