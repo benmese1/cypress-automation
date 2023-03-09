@@ -1,18 +1,10 @@
-name: Run Tests
+name: DEV Full Regression
 on:
   schedule:
-    - cron: '30 8 * * *'
+    - cron: '30 6 * * *'
 
   workflow_dispatch:
     inputs:
-      # env:
-      #   description: 'Select environment'
-      #   required: true
-      #   default: 'qa'
-      #   type: choice
-      #   options:
-      #     - dev
-      #     - qa
       spec:
         description: 'Enter specifications in format:
           --spec "cypress/e2e"'
@@ -22,7 +14,7 @@ on:
 
 jobs:
   build-project:
-    name: QA regression suite run
+    name: DEV regression suite run
     runs-on: windows-latest
 
     steps:
@@ -37,13 +29,12 @@ jobs:
       - name: Install Node modules
         run: npm install
 
-      - name: Run Cypress (QA)
+      - name: Run Cypress (DEV)
         env:
-          CLIENT_ID: 584mrs4de25a4iqok485b6vhnc
+          CLIENT_ID: 6j2mbpt4dcv207qikq9b4ph47c
           USERNAME: test1
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
-        # if: "${{ github.event.inputs.env.default == 'qa' || github.event.inputs.env.default == '' }}"
-        run: npx cypress run --env fileConfig=qa ${{ github.event.inputs.spec }}
+        run: npx cypress run --env fileConfig=dev ${{ github.event.inputs.spec }}
         continue-on-error: true
 
       - name: 'Upload test results'
@@ -86,7 +77,7 @@ jobs:
           testFormat: "junit"
           testPaths: "**/test-results/*.xml"
           testExecutionJson: "cypress/test-exec/QA-test-execution.json"
-          testEnvironments: "QA, DEV"
+          # testEnvironments: "QA, DEV"
           projectKey: "PRJIND"
           failOnImportError: true
 

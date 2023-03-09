@@ -3,7 +3,7 @@
 	"env": {
 		"username": "qa_automation@phillips-connect.com",
 		"password": "W2iM$a!@,%y=W=z",
-		"client_id": "584mrs4de25a4iqok485b6vhnc",
+		"client_id": "7fkhb5sdufdisn6qn1bkq445je",
 		"TESTusername": "test1",
 		"TESTpassword": "Test@!@345",
 		"screenshotsFolder": "./cypress/screenshots"
