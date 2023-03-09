@@ -5,14 +5,14 @@ on:
 
   workflow_dispatch:
     inputs:
-      env:
-        description: 'Select environment'
-        required: true
-        default: 'qa'
-        type: choice
-        options:
-          - dev
-          - qa
+      # env:
+      #   description: 'Select environment'
+      #   required: true
+      #   default: 'qa'
+      #   type: choice
+      #   options:
+      #     - dev
+      #     - qa
       spec:
         description: 'Enter specifications in format:
           --spec "cypress/e2e"'
@@ -42,7 +42,7 @@ jobs:
           CLIENT_ID: 584mrs4de25a4iqok485b6vhnc
           USERNAME: test1
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
-        if: "${{ github.event.inputs.env.default == 'qa' || github.event.inputs.env.default == '' }}"
+        # if: "${{ github.event.inputs.env.default == 'qa' || github.event.inputs.env.default == '' }}"
         run: npx cypress run --env fileConfig=qa ${{ github.event.inputs.spec }}
         continue-on-error: true
 
@@ -85,7 +85,7 @@ jobs:
           password: ${{ secrets.XRAY_SECRET }}
           testFormat: "junit"
           testPaths: "**/test-results/*.xml"
-          # testExecutionJson: "cypress/test-exec/QA-test-execution.json"
+          testExecutionJson: "cypress/test-exec/QA-test-execution.json"
           testEnvironments: "QA, DEV"
           projectKey: "PRJIND"
           failOnImportError: true
