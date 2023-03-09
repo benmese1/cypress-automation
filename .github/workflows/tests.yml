@@ -5,14 +5,14 @@ on:
 
   workflow_dispatch:
     inputs:
-      env:
-        description: 'Select environment'
-        required: true
-        default: 'qa'
-        type: choice
-        options:
-          - dev
-          - qa
+      # env:
+      #   description: 'Select environment'
+      #   required: true
+      #   default: 'qa'
+      #   type: choice
+      #   options:
+      #     - dev
+      #     - qa
       spec:
         description: 'Enter specifications in format:
           --spec "cypress/e2e"'
@@ -42,7 +42,7 @@ jobs:
           CLIENT_ID: 584mrs4de25a4iqok485b6vhnc
           USERNAME: test1
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
-        if: "${{ github.event.inputs.env.default == 'qa' || github.event.inputs.env.default == '' }}"
+        # if: "${{ github.event.inputs.env.default == 'qa' || github.event.inputs.env.default == '' }}"
         run: npx cypress run --env fileConfig=qa ${{ github.event.inputs.spec }}
         continue-on-error: true
 
@@ -78,21 +78,22 @@ jobs:
           name: test-results
           path: cypress/test-results/
 
-      # - name: Submit results to Xray
-      #   env:
-      #       JIRA_SERVER_URL: ${{ secrets.JIRA_SERVER_URL }}
-      #       JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
-      #       JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
-      #   run: 'curl -H "Content-Type: multipart/form-data" -u ${JIRA_USERNAME}:${JIRA_PASSWORD} -F "file=cypress/results/test-results-*.xml" "${JIRA_SERVER_URL}/rest/raven/1.0/import/execution/junit?projectKey=PRJIND"'
-    
       - name: Submit results to Xray
-        uses: mikepenz/xray-action@v2
+        uses: mikepenz/xray-action@v2.4.5
         with:
           username: ${{ secrets.XRAY_CLIENT_ID }}
           password: ${{ secrets.XRAY_SECRET }}
           testFormat: "junit"
-          testPaths: "**/results/*.xml"
+          testPaths: "**/test-results/*.xml"
           testExecutionJson: "cypress/test-exec/QA-test-execution.json"
           testEnvironments: "QA, DEV"
           projectKey: "PRJIND"
           failOnImportError: true
+
+      # - name: Final Xray submittal
+      #   env:
+      #       JIRA_SERVER_URL: ${{ secrets.JIRA_SERVER_URL }}
+      #       JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
+      #       JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
+      #   run: 'curl -H "Content-Type: multipart/form-data" -u ${JIRA_USERNAME}:${JIRA_PASSWORD} -F "file=C:\Users\RUNNER~1\AppData\Local\Temp\tmp.*.xml" "${JIRA_SERVER_URL}/rest/raven/1.0/import/execution/junit?projectKey=PRJIND"'
+    
