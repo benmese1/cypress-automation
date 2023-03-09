@@ -78,7 +78,7 @@ jobs:
           testFormat: "junit"
           testPaths: "**/test-results/*.xml"
           testExecutionJson: "cypress/test-exec/QA-test-execution.json"
-          testEnvironments: "QA, DEV"
+          # testEnvironments: "QA, DEV"
           projectKey: "PRJIND"
           failOnImportError: true
 
