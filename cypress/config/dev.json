@@ -1,6 +1,7 @@
 {
 	"baseUrl": "https://dev-connect1.phillips-connect.com",
 	"env": {
+		"MFAenabled": false,
 		"username": "qa_automation",
 		"password": "rN57ytdZFrvVbwlBSPc0$",
 		"client_id": "6j2mbpt4dcv207qikq9b4ph47c",
@@ -11,7 +12,7 @@
 		"Content-Type": "application/x-amz-json-1.1",
 		"AuthFlow": "USER_PASSWORD_AUTH",
 		"ClientId": "6j2mbpt4dcv207qikq9b4ph47c",
-		"graphQL_uri": "https://3ghp6k24hjaxpciqgvmyjwx33m.appsync-api.us-west-2.amazonaws.com/graphql",	
+		"graphQL_uri": "https://3ghp6k24hjaxpciqgvmyjwx33m.appsync-api.us-west-2.amazonaws.com/graphql",
 		"cognito_uri": "https://cognito-idp.us-west-2.amazonaws.com",
 		"ClientadminUsername": "maniusps",
 		"ClientadminPassword": "Test@123",
