@@ -32,16 +32,18 @@ describe('Verify from Superadmin able to see Impersonate user option in popover 
 
 		//Verify targeted user, user management table has the data
 		cy.dashboardMenu('My Account');
-		cy.get('[data-testid="form-control-input-firstName"]')
-			.wait(2000)
-			.should('have.value', impersonationdata[0].impersonation.fnamelname.split(' ')[0]);
-
-		cy.get('[data-testid="form-control-input-lastName"]')
-			.wait(2000)
-			.should('have.value', impersonationdata[0].impersonation.fnamelname.split(' ')[1]);
-		cy.get('[data-testid="form-control-input-email"]')
-			.wait(2000)
-			.should('have.value', impersonationdata[0].impersonation.emailidImp);
+		cy.get('[data-testid="form-control-input-firstName"]').should(
+			'have.value',
+			impersonationdata[0].impersonation.fnamelname.split(' ')[0]
+		);
+		cy.get('[data-testid="form-control-input-lastName"]').should(
+			'have.value',
+			impersonationdata[0].impersonation.fnamelname.split(' ')[1]
+		);
+		cy.get('[data-testid="form-control-input-email"]').should(
+			'have.value',
+			impersonationdata[0].impersonation.emailidImp
+		);
 
 		//Stop Impersonating
 		cy.myAcount_StopImpersonating();
