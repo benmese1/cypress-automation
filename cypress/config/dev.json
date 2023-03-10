@@ -1,6 +1,7 @@
 {
 	"baseUrl": "https://dev-connect1.phillips-connect.com",
 	"env": {
+		"MFAenabled": "false",
 		"username": "qa_automation",
 		"password": "rN57ytdZFrvVbwlBSPc0$",
 		"client_id": "6j2mbpt4dcv207qikq9b4ph47c",

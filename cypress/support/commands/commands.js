@@ -1,3 +1,5 @@
+import * as otplib from 'otplib';
+
 /**
  * Login in to application
  * @param {string} username
@@ -9,6 +11,12 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 		cy.get('.visible-lg #signInFormUsername').type(user, { force: true });
 		cy.get('.visible-lg #signInFormPassword').type(pwd, { force: true });
 		cy.get('.visible-lg .btn-primary').click({ force: true });
+		if (Cypress.env('MFAenabled')) {
+			const secret = Cypress.env('MFASecret');
+        	const code = otplib.authenticator.generate(secret);
+        	cy.get('input[id=totpCodeInput]').type(code);
+        	cy.get('#signInButton').click(); 
+		}		
 	};
 	if (cacheSession) {
 		cy.session(user, login);
