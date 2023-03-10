@@ -1,7 +1,7 @@
 {
 	"baseUrl": "https://qa-connect1.phillips-connect.com",
 	"env": {
-		"MFAenabled": "true",
+		"MFAenabled": true,
 		"MFASecret": "WADBH2VMMY3LSSTDXQNCHRTX5K3PES4FX4KRY57KIKQLFLR7LZVQ",
 		"username": "qa_automation@phillips-connect.com",
 		"password": "W2iM$a!@,%y=W=z",
