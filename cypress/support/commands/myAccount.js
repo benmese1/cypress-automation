@@ -10,10 +10,18 @@ Cypress.Commands.add('myAcount_ImpersonateUser', (impersonationUsername, imperso
 	cy.get('[data-testid="logged-in-username"]').should('be.visible').contains(impersonationUsername);
 });
 
-//Method Name :myAccount_StopImpersonating"
+//Method Name :myAccount_StopImpersonating
 //Used to StopImpersonating
 //Params NA
 Cypress.Commands.add('myAcount_StopImpersonating', () => {
 	cy.wait(3000).get('[data-testid="logged-in-username"]').click();
 	cy.get('[data-testid="global-text-btn-component"]').should('be.visible').click();
+});
+
+//Method Name :myAcount_NotExistsOfImpersonateUser
+//Used to not exists of user impersonation
+//Params NA
+Cypress.Commands.add('myAcount_NotExistsOfImpersonateUser', () => {
+	cy.get("[aria-label='account of current user']").click();
+	cy.get('[data-testid="SupervisorAccountOutlinedIcon"]').should('not.exist');
 });
