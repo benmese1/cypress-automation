@@ -29,7 +29,35 @@ describe('Verify from Superadmin able to see Impersonate user option in popover 
 			.should('be.visible')
 			.contains(impersonationdata[0].impersonation.orgName);
 		cy.verifyMyOrganizationTableView();
+
+		//Verify targeted user, user management table has the data
+		cy.dashboardMenu('My Account');
+		cy.get('[data-testid="form-control-input-firstName"]').should(
+			'have.value',
+			impersonationdata[0].impersonation.fnamelname.split(' ')[0]
+		);
+		cy.get('[data-testid="form-control-input-lastName"]').should(
+			'have.value',
+			impersonationdata[0].impersonation.fnamelname.split(' ')[1]
+		);
+		cy.get('[data-testid="form-control-input-email"]').should(
+			'have.value',
+			impersonationdata[0].impersonation.emailidImp
+		);
+
 		//Stop Impersonating
 		cy.myAcount_StopImpersonating();
+
+		//verify actual account details
+		cy.dashboardMenu('My Account');
+		cy.get('[data-testid="form-control-input-firstName"]').should('have.value', impersonationdata[0].actualuser.fname);
+		cy.get('[data-testid="form-control-input-lastName"]').should('have.value', impersonationdata[0].actualuser.lname);
+		cy.get('[data-testid="form-control-input-email"]').should('have.value', impersonationdata[0].actualuser.emailid);
+
+		//Verify actual user organization table has the data
+		cy.dashboardMenu('My Organization');
+		cy.xpath("//h1[@data-testid='management-my-organization']//following::h3")
+			.should('be.visible')
+			.contains(impersonationdata[0].actualuser.orgName);
 	});
 });
