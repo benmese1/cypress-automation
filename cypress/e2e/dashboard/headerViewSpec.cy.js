@@ -1,3 +1,4 @@
+// @team2
 const pages = ['Asset List', 'Devices', 'My Organization', 'User Management'];
 
 describe('Header view test verification', () => {

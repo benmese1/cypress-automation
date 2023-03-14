@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 import searchData from '../../fixtures/globalsearch.json';
 
 describe('Global "Organizations" Search verification', () => {

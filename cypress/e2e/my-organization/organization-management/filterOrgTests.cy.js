@@ -1,3 +1,4 @@
+// @team4
 import filterData from '../../fixtures/orgsfilter.json';
 
 describe('Filter Organizations', () => {
@@ -10,7 +11,7 @@ describe('Filter Organizations', () => {
 		cy.dashboardMenu('My Organization');
 	});
 
-    filterData.orgs.forEach((filter) => {
+	filterData.orgs.forEach((filter) => {
 		it(`Orgs Filtering by existing "${filter.columnname}"'`, () => {
 			cy.generic_addFilter(filter.columnname, filter.operator, filter.value);
 			//verify each cell of provided column has corresponding search value

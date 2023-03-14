@@ -1,3 +1,4 @@
+// @team2
 describe('Side menu test verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false }).waitForLoad();
