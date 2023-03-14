@@ -1,4 +1,4 @@
-// @tazim
+// @team1
 describe('Create and remove public asset filters', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })

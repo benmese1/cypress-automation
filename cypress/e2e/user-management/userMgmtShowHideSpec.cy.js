@@ -1,3 +1,4 @@
+// @team4
 describe('User management table view tests', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
@@ -8,7 +9,7 @@ describe('User management table view tests', () => {
 		cy.dashboardMenu('User Management');
 	});
 
-    it('Validate hide/show column in User management table', () => {
+	it('Validate hide/show column in User management table', () => {
 		cy.get('[data-testid="column-header-username"]').should('be.visible');
 		//Click on the Menu w.r.t the column which want to Hide
 		cy.get('[role="columnheader"][aria-label="Username"] [data-testid="TripleDotsVerticalIcon"]').click({
@@ -27,5 +28,4 @@ describe('User management table view tests', () => {
 		// Check if a column is visible
 		cy.get('[data-testid="column-header-username"]').should('be.visible');
 	});
-
 });

@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 describe('Landing stats view test verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });

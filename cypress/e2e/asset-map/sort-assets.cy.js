@@ -1,4 +1,4 @@
-// @tazim
+// @team1
 const { time } = require('console');
 
 describe('Click on the canvas zoom the cluster and view the asset', () => {

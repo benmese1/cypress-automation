@@ -1,4 +1,4 @@
-// @tazim
+// @team1
 describe('Click on the canvas zoom the cluster and view the asset', () => {
 	it('Success canvas click test and verify and view asset details', () => {
 		// Login to Dev Environment

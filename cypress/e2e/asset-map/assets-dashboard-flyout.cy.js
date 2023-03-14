@@ -1,4 +1,4 @@
-// @tazim
+// @team1
 describe('Click on the asset dashboard flyout ', () => {
 	it('Success click on asset dashboard flyout and close it', () => {
 		// Login to Dev Environment

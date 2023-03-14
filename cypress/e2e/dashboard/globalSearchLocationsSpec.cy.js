@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 describe('Global "Assets" Search verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();

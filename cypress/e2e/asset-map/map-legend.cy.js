@@ -1,4 +1,4 @@
-// @tazim
+// @team1
 describe('Verify the map legend filters list to understand asset status on map', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })

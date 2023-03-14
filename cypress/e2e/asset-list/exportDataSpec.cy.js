@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 describe('Asset Management page export verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {

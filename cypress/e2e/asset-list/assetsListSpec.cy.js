@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 import assets from '../../fixtures/createasset.json';
 const dayjs = require('dayjs');
 
