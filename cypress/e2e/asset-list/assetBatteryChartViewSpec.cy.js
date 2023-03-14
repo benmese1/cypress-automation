@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 const dayjs = require('dayjs');
 
 describe('Asset Battery Chart View Verification', () => {

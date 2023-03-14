@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 import summary from '../../fixtures/assetsummary_dynamic.json';
 import assets from '../../fixtures/createasset.json';
 

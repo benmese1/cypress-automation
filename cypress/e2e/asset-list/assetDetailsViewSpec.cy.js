@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 describe('Asset Management page -- details view verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })

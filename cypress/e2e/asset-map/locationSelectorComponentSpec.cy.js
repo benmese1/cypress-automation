@@ -1,4 +1,4 @@
-// @tazim
+// @team1
 describe('Location Selector Component verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });

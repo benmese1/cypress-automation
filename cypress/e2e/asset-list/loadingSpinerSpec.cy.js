@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 describe('Loading spinner verification', () => {
 	it('verify that the download icon from the landing page has disappeared on the asset list page', () => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });

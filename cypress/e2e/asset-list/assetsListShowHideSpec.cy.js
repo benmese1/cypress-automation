@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 describe('Asset list table view tests', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })

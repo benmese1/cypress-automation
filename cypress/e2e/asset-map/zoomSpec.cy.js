@@ -1,4 +1,4 @@
-// @tazim
+// @team1
 describe('Click on the canvas zoom the cluster and view the asset', () => {
 	it('Success canvas click test', () => {
 		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });

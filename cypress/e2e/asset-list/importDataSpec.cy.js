@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 import crypto from 'crypto';
 
 describe('Asset Management import verification', () => {

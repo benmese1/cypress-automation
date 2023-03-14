@@ -1,4 +1,4 @@
-// @viktoriya
+// @team2
 import searchData from '../../fixtures/assetsearch.json';
 import filterData from '../../fixtures/assetfilter.json';
 
