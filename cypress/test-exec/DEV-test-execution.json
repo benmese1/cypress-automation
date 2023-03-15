@@ -1,0 +1,16 @@
+{
+    "fields":{
+        "summary":"DEV regression suite execution",
+        "issuetype":{
+            "id":"10492"
+        },
+        "components":[
+            {
+                "name":"Test Execution"
+            },
+            {
+                "name":"DEV Test Execution"
+            }
+        ]
+    }
+}
