@@ -1,7 +1,7 @@
 import * as otplib from 'otplib';
 
 /**
- * Login in to application with default username and two-factor authentication (authenticator) enabled/disabled
+ * Login in to application with default username and two-factor authentication
  * @param {string} username
  * @param {string} password
  */
@@ -11,7 +11,7 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 		cy.get('.visible-lg #signInFormUsername').type(user, { force: true });
 		cy.get('.visible-lg #signInFormPassword').type(pwd, { force: true });
 		cy.get('.visible-lg .btn-primary').click({ force: true });
-		if (Cypress.env('2FAenabled')) {
+		if (Cypress.env('MFAenabled')) {
 			const secret = Cypress.env('TESTMFA');
 			cy.wait(20000);
 			const code = otplib.authenticator.generate(secret);
@@ -27,7 +27,7 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 });
 
 /**
- * Login in to application with out two-factor authentication (authenticator)
+ * Login in to application with out two-factor authentication
  * @param {string} username
  * @param {string} password
  */
@@ -46,11 +46,11 @@ Cypress.Commands.add('loginWithOutAuthenticator', (user, pwd, { cacheSession = t
 });
 
 /**
- * authenticate using two-factor authentication (authenticator)
+ * authenticate using two-factor authentication
  * @param {string} securitykey
  */
 Cypress.Commands.add('authenticator', (securitykey) => {
-	if (Cypress.env('2FAenabled')) {
+	if (Cypress.env('MFAenabled')) {
 		const code = otplib.authenticator.generate(secret);
 		cy.get('input[id=totpCodeInput]').type(code);
 		cy.get('#signInButton').click();
