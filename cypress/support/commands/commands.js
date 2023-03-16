@@ -50,9 +50,11 @@ Cypress.Commands.add('loginWithOutAuthenticator', (user, pwd, { cacheSession = t
  * @param {string} securitykey
  */
 Cypress.Commands.add('authenticator', (securitykey) => {
-	const code = otplib.authenticator.generate(secret);
-	cy.get('input[id=totpCodeInput]').type(code);
-	cy.get('#signInButton').click();
+	if (Cypress.env('2FAenabled')) {
+		const code = otplib.authenticator.generate(secret);
+		cy.get('input[id=totpCodeInput]').type(code);
+		cy.get('#signInButton').click();
+	}
 });
 
 /**
