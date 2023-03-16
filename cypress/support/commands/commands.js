@@ -11,7 +11,7 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 		cy.get('.visible-lg #signInFormUsername').type(user, { force: true });
 		cy.get('.visible-lg #signInFormPassword').type(pwd, { force: true });
 		cy.get('.visible-lg .btn-primary').click({ force: true });
-		if (Cypress.env('MFAenabled')) {
+		if (Cypress.env('2FAenabled')) {
 			const secret = Cypress.env('TESTMFA');
 			cy.wait(20000);
 			const code = otplib.authenticator.generate(secret);

@@ -1,19 +1,19 @@
 {
 	"baseUrl": "https://qa-connect1.phillips-connect.com",
 	"env": {
-		"MFAenabled": true,
+		"2FAenabled": true,
 		"username": "qa_automation@phillips-connect.com",
 		"password": "W2iM$a!@,%y=W=z",
 		"client_id": "7fkhb5sdufdisn6qn1bkq445je",
 		"TESTusername": "testautomationwithmfa",
 		"TESTpassword": "Tester123@",
-		"TESTMFA": "YIRPWZBIPQ7NVRDYKJWBFPUD2OZQ3YIYUABAQTBFDBCPCYQSSZJA",
+		"TEST2FA": "YIRPWZBIPQ7NVRDYKJWBFPUD2OZQ3YIYUABAQTBFDBCPCYQSSZJA",
 		"TESTusername1": "testautomationwithmfa1",
 		"TESTpassword1": "Tester123@",
-		"TESTMFA1": "JGDYRYSET3IFXD4NO43NWIN2JMS2OMCS7Z23X7M2EH32EPY54S7A",
+		"TEST2FA1": "JGDYRYSET3IFXD4NO43NWIN2JMS2OMCS7Z23X7M2EH32EPY54S7A",
 		"TESTusername2": "testautomationwithmfa2",
 		"TESTpassword2": "Tester123@",
-		"TESTMFA2": "E7TOOOPWA53ANDW3HPXICYTK4FB5XV7FNK6GQ4HZ4UR56XTRTYHA",
+		"TEST2FA2": "E7TOOOPWA53ANDW3HPXICYTK4FB5XV7FNK6GQ4HZ4UR56XTRTYHA",
 		
 		"screenshotsFolder": "./cypress/screenshots"
 	}
