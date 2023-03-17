@@ -79,6 +79,6 @@ jobs:
           testPaths: "**/test-results/*.xml"
           testExecutionJson: "cypress/test-exec/QA-test-execution.json"
           # testEnvironments: "QA, DEV"
-          testExecKey: "PRJIND-2272"
+          # testExecKey: "PRJIND-2272"
           projectKey: "PRJIND"
           failOnImportError: true

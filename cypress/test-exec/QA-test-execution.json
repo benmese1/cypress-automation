@@ -1,16 +1,8 @@
 {
     "fields":{
-        "summary":"QA regression suite execution",
+        "summary":"QA Regression Suite Execution",
         "issuetype":{
             "id":"10492"
-        },
-        "components":[
-            {
-                "name":"Test Execution"
-            },
-            {
-                "name":"QA Test Execution"
-            }
-        ]
+        }
     }
 }
