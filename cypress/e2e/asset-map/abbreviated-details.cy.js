@@ -2,7 +2,7 @@
 describe('Click on the canvas zoom the cluster and view the asset', () => {
 	it('Success canvas click test and verify and view asset details', () => {
 		// Login to Dev Environment
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
 
 		// Assert the user is visible
 		cy.get("[aria-label='account of current user']").should('be.visible');
