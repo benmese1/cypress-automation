@@ -4,13 +4,13 @@ describe('Global "Assets" Search verification', () => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
 	});
 
-	it('Locations option can be selected for global search', () => {
+	it('Locations option can be selected for global search', {tags: ['@smoke', '@globalsearch', '@dashboard']},() => {
 		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Locations"]').click();
 		cy.get('[data-testid="selector-input"] input').invoke('attr', 'placeholder').should('equal', 'Find a Location');
 	});
 
-	it('Suggestions should not be displayed for Global Locations Search when less than 3 characters typed', () => {
+	it('Suggestions should not be displayed for Global Locations Search when less than 3 characters typed',{tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Locations', 'S', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 
@@ -18,19 +18,19 @@ describe('Global "Assets" Search verification', () => {
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Locations Search when not existing search term typed', () => {
+	it('Suggestions should not be displayed for Global Locations Search when not existing search term typed', {tags: ['@regression', '@globalsearch', '@dashboard']},() => {
 		cy.globalSearch('Locations', 'NOT_EXISTS', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed', () => {
+	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed', {tags: ['@smoke', '@globalsearch', '@dashboard']},() => {
 		cy.globalSearch('Locations', 'Argen', false);
 		cy.get('[role="listbox"] li span').each(($item) => {
 			cy.wrap($item).should('contain.text', 'Argen');
 		});
 	});
 
-	it('All data should be displayed on Asset Map List when not existing search term typed', () => {
+	it('All data should be displayed on Asset Map List when not existing search term typed',{tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Locations', 'NOT_EXISTS');
 		cy.url().should('include', '/map');
 
@@ -41,7 +41,7 @@ describe('Global "Assets" Search verification', () => {
 			expect(parseInt($val.text())).to.be.gte(10000);
 		});
 
-		it('Global Location Search by existing "Location"', () => {
+		it('Global Location Search by existing "Location"', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 			cy.globalSearch('Locations', 'New York, USA');
 
 			cy.url().should('include', '/map');

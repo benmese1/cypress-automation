@@ -6,7 +6,7 @@ describe('Global "Organizations" Search verification', () => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
 	});
 
-	it('Organizations option can be selected for global search', () => {
+	it('Organizations option can be selected for global search', {tags: ['@smoke', '@globalsearch', '@dashboard']}, () => {
 		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Organizations"]').click();
 		cy.get('[data-testid="selector-input"] input')
@@ -14,32 +14,32 @@ describe('Global "Organizations" Search verification', () => {
 			.should('equal', 'Find an Organization');
 	});
 
-	it('Recent Searches is not displayed while first time clicking on Global Search input', () => {
+	it('Recent Searches is not displayed while first time clicking on Global Search input', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Organizations"]').click();
 		cy.get('[data-testid="selector-input"] input').first().click().wait(500);
 		cy.get('[role="listbox"]').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Search when less than 3 characters typed', () => {
-		cy.globalSearch('Organizations', 'R', false);
+	it('Suggestions should not be displayed for Global Search when less than 3 characters typed',{tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
+		cy.globalSearch('Organizations', 'F', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 
-		cy.globalSearch('Organizations', 'Re', false);
+		cy.globalSearch('Organizations', 'Fl', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Search when not existing search term typed', () => {
+	it('Suggestions should not be displayed for Global Search when not existing search term typed',{tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Organizations', 'NOT_EXISTS', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed', () => {
-		cy.globalSearch('Organizations', 'Ret', false);
-		cy.get('[role="listbox"] li span').first().should('contain.text', 'Ret');
+	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed',{tags: ['@smoke', '@globalsearch', '@dashboard']}, () => {
+		cy.globalSearch('Organizations', 'Fle', false);
+		cy.get('[role="listbox"] li span').first().should('contain.text', 'Fle');
 	});
 
-	it('"Keep typing" is displayed when Global Search is performed for less than 3 characters typed', () => {
+	it('"Keep typing" is displayed when Global Search is performed for less than 3 characters typed',{tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Organizations', 'Re');
 		cy.url().should('include', '/organizations');
 
@@ -50,7 +50,7 @@ describe('Global "Organizations" Search verification', () => {
 		cy.get('[data-testid="page"]').should('contain.text', 'Keep typing...');
 	});
 
-	it('No data should be displayed on Organizations List table when not existing search term typed', () => {
+	it('No data should be displayed on Organizations List table when not existing search term typed',{tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Organizations', 'NOT_EXISTS');
 		cy.url().should('include', '/organizations');
 
@@ -61,16 +61,16 @@ describe('Global "Organizations" Search verification', () => {
 		cy.get('[data-testid="page"]').should('contain.text', 'No results found');
 	});
 
-	it('The "Recent Search" item can be removed from List', () => {
-		cy.globalSearch('Organizations', 'Retai');
+	it('The "Recent Search" item can be removed from List', {tags: ['@smoke', '@globalsearch', '@dashboard']}, () => {
+		cy.globalSearch('Organizations', 'Fleet');
 		cy.url().should('include', '/organizations');
 
 		// Wait for table loading
 		cy.get('[role="row"]').should('have.length.gt', 1);
 
-		cy.get('[data-testid="items-list-search-input"]').should('have.value', 'Retai').wait(1000);
+		cy.get('[data-testid="items-list-search-input"]').should('have.value', 'Fleet').wait(1000);
 		cy.get('[data-rowindex]').each(($row) => {
-			cy.wrap($row).should('contain.text', 'Retai');
+			cy.wrap($row).should('contain.text', 'Fleet');
 		});
 
 		//get back to Landing page and verify 'Recent searches' list includes search term
@@ -78,14 +78,14 @@ describe('Global "Organizations" Search verification', () => {
 		cy.get('[data-testid="selector"] [role="button"]').click();
 		cy.get('[data-testid="global-search-select-item-Organizations"]').click();
 		cy.get('[data-testid="selector-input"] input').first().click();
-		cy.get('[role="listbox"] li span').first().should('have.text', 'Retai');
+		cy.get('[role="listbox"] li span').first().should('have.text', 'Fleet');
 
 		//remove Recent Search item
 		cy.get('[role="listbox"] button').click();
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Global Organizations Search by existing "Created Date"', () => {
+	it('Global Organizations Search by existing "Created Date"', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Organizations', '03/07/2023', false);
 		cy.get('[role="listbox"] li span').first().click();
 
@@ -99,8 +99,8 @@ describe('Global "Organizations" Search verification', () => {
 		});
 	});
 
-	searchData.orgasnizations.forEach((search) => {
-		it(`Global Search by existing "${search.option}"'`, () => {
+	searchData.organizations.forEach((search) => {
+		it(`Global Search by existing "${search.option}"'`, {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 			//select 'Organizations' option on Global search and type search term
 			cy.globalSearch('Organizations', search.term);
 

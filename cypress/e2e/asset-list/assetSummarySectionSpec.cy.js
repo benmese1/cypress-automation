@@ -9,16 +9,16 @@ describe('Asset Summary Section Verification', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('When Solar Amparage is null than no Solar field is displayed', () => {
-		cy.searchAssets('368428');
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+	it('When Solar Amparage is null than no Solar field is displayed', {tags: ['@regression', '@view', '@asset']}, () => {
+		cy.searchAssets('377693');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.expandDrawerSection('Summary');
 
 		cy.get('#details-summary p').should('not.contain', 'Solar');
 	});
 
 	summary.assets.forEach((field) => {
-		it(`Verify dynamic field "${field.fieldname}" has valid value on Asset Summary Section'`, () => {
+		it(`Verify dynamic field "${field.fieldname}" has valid value on Asset Summary Section'`, {tags: ['@regression', '@view', '@asset']}, () => {
 			cy.addAssetsFilter(field.fieldname, 'starts with', field.value);
 			cy.get('[data-rowindex="0"]').click();
 
@@ -32,7 +32,7 @@ describe('Asset Summary Section Verification', () => {
 		});
 	});
 
-	it('Verify static fields have valid value on Asset Summary Section', () => {
+	it('Verify static fields have valid value on Asset Summary Section', {tags: ['@regression', '@view', '@asset']}, () => {
 		let assetModel = assets.asset_withoptional;
 		cy.generateRandom(100000, 900000).then((prefix) => {
 			assetModel.assetId += prefix;
@@ -75,7 +75,7 @@ describe('Asset Summary Section Verification', () => {
 		});
 	});
 
-	it('Verify voltage fields have valid value on Asset Summary Section', () => {
+	it('Verify voltage fields have valid value on Asset Summary Section', {tags: ['@regression', '@view', '@asset']}, () => {
 		var fieldsToCheck = [
 			{ name: 'Battery', value: /^[+-]?[0-9]*[.]?[0-9] V/ },
 			{ name: 'Primary Voltage', value: /^[+-]?[0-9]*[.]?[0-9] V/ },
@@ -83,8 +83,8 @@ describe('Asset Summary Section Verification', () => {
 			{ name: 'Solar', value: /^[+-]?[0-9]*[.]?[0-9] Amps+$/ },
 		];
 
-		cy.searchAssets('377707');
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+		cy.searchAssets('378343');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.wait(2000);
 		// Verify the following fields have correct values
 

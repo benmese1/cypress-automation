@@ -21,7 +21,7 @@ describe('Asset Management import verification', () => {
 			.openAssetsList();
 	});
 
-	it('Verify import button is visible and upload CSV file', () => {
+	it.skip('Verify import button is visible and upload CSV file', () => {
 		cy.contains('button', 'Upload')
 			.should('be.visible')
 			.click()

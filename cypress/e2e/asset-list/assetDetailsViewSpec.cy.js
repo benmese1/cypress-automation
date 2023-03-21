@@ -6,9 +6,11 @@ describe('Asset Management page -- details view verification', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('Verify Asset Details View is collapsable', () => {
-		cy.searchAssets('377');
-		cy.openAsset('COFC', 'Asset ID');
+	it('Verify Asset Details View is collapsable', {tags: ['@smoke', '@view', '@asset']}, () => {
+		//wait for spinner on Asset Lists Table
+		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
+		cy.searchAssets('377707');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.get('#details-summary').should('exist');
 		cy.get('#battery-block').should('exist');
 
@@ -17,15 +19,17 @@ describe('Asset Management page -- details view verification', () => {
 		cy.get('#battery-block').should('not.exist');
 	});
 
-	it('Verify Critical battery state on Asset Details View', () => {
-		cy.addAssetsFilter('Battery Icon', 'starts with', '3.0');
+	it('Verify Critical battery state on Asset Details View',{tags: ['@smoke', '@view', '@asset']}, () => {
+		//wait for spinner on Asset Lists Table
+		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
+		cy.addAssetsFilter('Battery Icon', 'starts with', '2');
 
 		//verify each 'Battery Icon' cells have appropriate icon
 		cy.get("[role='cell'][data-field='batt_v']").each(($cell) => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-critical"]').should('exist');
 		});
 
-		cy.openAsset('COFC', 'Asset ID');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 
 		//verify 'Battery Icon' is displayed
 		cy.get('[data-testid = "battery-svg-critical"]').should('exist');
@@ -38,7 +42,7 @@ describe('Asset Management page -- details view verification', () => {
 			});
 	});
 
-	it('Verify Warning battery state on Asset Details View', () => {
+	it('Verify Warning battery state on Asset Details View', {tags: ['@regression', '@view', '@asset']}, () => {
 		cy.addAssetsFilter('Battery Icon', 'starts with', '3.3');
 
 		//verify each 'Battery Icon' cells have appropriate icon
@@ -62,7 +66,9 @@ describe('Asset Management page -- details view verification', () => {
 			});
 	});
 
-	it('Verify Full battery state on Asset Details View', () => {
+	it('Verify Full battery state on Asset Details View', {tags: ['@regression', '@view', '@asset']},() => {
+		//wait for spinner on Asset Lists Table
+		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
 		cy.addAssetsFilter('Battery Icon', 'starts with', '3.9');
 
 		//verify each 'Battery Icon' cells have appropriate icon
@@ -70,7 +76,7 @@ describe('Asset Management page -- details view verification', () => {
 			cy.wrap($cell).find('[data-testid = "battery-svg-full"]').should('exist');
 		});
 
-		cy.openAsset('COFC', 'Asset ID');
+		cy.openAsset('Werner Enterprises', 'Asset ID', 2);
 
 		//verify 'Battery Icon' is displayed
 		cy.get('[data-testid = "battery-svg-full"]').should('exist');

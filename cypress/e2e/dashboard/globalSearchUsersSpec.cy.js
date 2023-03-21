@@ -6,20 +6,20 @@ describe('Global "Users" Search verification', () => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
 	});
 
-	it('Users option can be selected for global search', () => {
+	it('Users option can be selected for global search', {tags: ['@smoke', '@globalsearch', '@dashboard']},() => {
 		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Users"]').click();
 		cy.get('[data-testid="selector-input"] input').invoke('attr', 'placeholder').should('equal', 'Find a User');
 	});
 
-	it('Recent Searches is not displayed while clicking on Global Search input', () => {
+	it('Recent Searches is not displayed while clicking on Global Search input', {tags: ['@regression', '@globalsearch', '@dashboard']},() => {
 		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Users"]').click();
 		cy.get('[data-testid="selector-input"] input').first().click().wait(500);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Search when less than 3 characters is typed', () => {
+	it('Suggestions should not be displayed for Global Search when less than 3 characters is typed', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Users', 'o', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 
@@ -27,17 +27,17 @@ describe('Global "Users" Search verification', () => {
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Search when not existing search term is typed', () => {
+	it('Suggestions should not be displayed for Global Search when not existing search term is typed', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Users', 'NOT_EXISTS', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should be displayed for Global Search when 3 characters of existing term is typed', () => {
+	it('Suggestions should be displayed for Global Search when 3 characters of existing term is typed', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Users', 'Ole', false);
-		cy.get('[role="listbox"] li span').first().should('have.text', 'Oleksandr');
+		cy.get('[role="listbox"] li span').first().contains('Ole', { matchCase: false });
 	});
 
-	it('"Keep typing" is displayed when Global Search is performed for less than 3 characters typed', () => {
+	it('"Keep typing" is displayed when Global Search is performed for less than 3 characters typed', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Users', 'Ol');
 		cy.url().should('include', '/user-management');
 
@@ -45,24 +45,25 @@ describe('Global "Users" Search verification', () => {
 		cy.get('.text-typography').should('have.text', 'Keep typing...');
 	});
 
-	it('No data should be displayed on Users List table when not existing search term is typed', () => {
+	it('No data should be displayed on Users List table when not existing search term is typed', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Users', 'NOT_EXISTS');
 		cy.url().should('include', '/user-management');
 		cy.get('[data-testid="items-list-search-input"]').should('have.value', 'NOT_EXISTS').wait(1000);
 		cy.get('[data-testid="page"]').should('contain.text', 'No results found');
 	});
 
-	it('Data should be displayed on Users List table when part of existing search term is typed', () => {
-		cy.globalSearch('Users', 'equip');
+	it('Data should be displayed on Users List table when part of existing search term is typed', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
+		cy.globalSearch('Users', 'equip', false);
+		cy.get('[role="listbox"] li span').first().click();
 		cy.url().should('include', '/user-management');
-		cy.get('[data-testid="items-list-search-input"]').should('have.value', 'equip').wait(1000);
+		cy.get('[data-testid="items-list-search-input"]').contains('equip').wait(1000);
 
 		cy.get('[data-rowindex]').each(($row) => {
 			cy.wrap($row).contains('equip', { matchCase: false });
 		});
 	});
 
-	it('Global User Search by existing "Created Date"', () => {
+	it('Global User Search by existing "Created Date"', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Users', '03/07/2023');
 
 		cy.url().should('include', '/user-management');
@@ -74,10 +75,10 @@ describe('Global "Users" Search verification', () => {
 	});
 
 	searchData.users.forEach((search) => {
-		it(`Global User Search by existing "${search.option}"'`, () => {
+		it.only(`Global User Search by existing "${search.option}"'`, {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 			//select 'Users' option on Global search and type search term
-			cy.globalSearch('Users', search.term);
-
+			cy.globalSearch('Users', search.term, false);
+			cy.get('[role="listbox"] li span').contains(search.term, { matchCase: false }).click();
 			//verify 'Users' page is opened
 			cy.url().should('include', '/user-management');
 

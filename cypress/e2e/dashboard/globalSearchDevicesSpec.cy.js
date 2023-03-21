@@ -6,38 +6,38 @@ describe('Global "Devices" Search verification', () => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
 	});
 
-	it('Device option can be selected for global search', () => {
+	it('Device option can be selected for global search', {tags: ['@smoke', '@globalsearch', '@dashboard']},() => {
 		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Devices"]').click();
 		cy.get('[data-testid="selector-input"] input').invoke('attr', 'placeholder').should('equal', 'Find a Device');
 	});
 
-	it('Recent Searches is not displayed while clicking on Global Search input', () => {
+	it('Recent Searches is not displayed while clicking on Global Search input', {tags: ['@smoke', '@globalsearch', '@dashboard']}, () => {
 		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Devices"]').click();
 		cy.get('[data-testid="selector-input"] input').first().click().wait(500);
 		cy.get('[role="listbox"]').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Search when less than 3 characters typed', () => {
-		cy.globalSearch('Devices', 'A', false);
+	it('Suggestions should not be displayed for Global Search when less than 3 characters typed', {tags: ['@smoke', '@globalsearch', '@dashboard']}, () => {
+		cy.globalSearch('Devices', 'S', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 
-		cy.globalSearch('Devices', 'AU', false);
+		cy.globalSearch('Devices', 'SP', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Search when not existing search term typed', () => {
+	it('Suggestions should not be displayed for Global Search when not existing search term typed', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Devices', 'NOT_EXISTS', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed', () => {
-		cy.globalSearch('Devices', 'AUT', false);
-		cy.get('[role="listbox"] li span').first().should('contain.text', 'AUT');
+	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed', {tags: ['@amoke', '@globalsearch', '@dashboard']}, () => {
+		cy.globalSearch('Devices', 'SPI', false);
+		cy.get('[role="listbox"] li span').first().should('contain.text', 'SPI');
 	});
 
-	it('"Keep typing" is displayed when Global Search is performed for less than 3 characters typed', () => {
+	it('"Keep typing" is displayed when Global Search is performed for less than 3 characters typed', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Devices', 'AU');
 		cy.url().should('include', '/devices');
 
@@ -48,7 +48,7 @@ describe('Global "Devices" Search verification', () => {
 		cy.get('[data-testid="page"]').should('contain.text', 'Keep typing...');
 	});
 
-	it('No data should be displayed on Device List table when not existing search term typed', () => {
+	it('No data should be displayed on Device List table when not existing search term typed', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Devices', 'NOT_EXISTS');
 		cy.url().should('include', '/devices');
 
@@ -59,7 +59,7 @@ describe('Global "Devices" Search verification', () => {
 		cy.get('[data-testid="page"]').should('contain.text', 'No results found');
 	});
 
-	it('Data should be displayed on Device List table when existing search term typed', () => {
+	it('Data should be displayed on Device List table when existing search term typed', {tags: ['@regression', '@globalsearch', '@dashboard']},() => {
 		cy.globalSearch('Devices', '15115');
 		cy.url().should('include', '/devices');
 
@@ -72,7 +72,7 @@ describe('Global "Devices" Search verification', () => {
 		});
 	});
 
-	it('Global Device Search by existing "Created Date"', () => {
+	it('Global Device Search by existing "Created Date"', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Devices', '10/17/2022', false);
 		cy.get('[role="listbox"] li span').first().click();
 
@@ -87,7 +87,7 @@ describe('Global "Devices" Search verification', () => {
 	});
 
 	searchData.devices.forEach((search) => {
-		it(`Global Search by existing "${search.option}"'`, () => {
+		it(`Global Search by existing "${search.option}"'`, {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 			//select 'Devices' option on Global search and type search term
 			cy.globalSearch('Devices', search.term);
 

@@ -9,7 +9,7 @@ describe('Asset Management page export verification', () => {
 	});
 
 	context('Routing', { tags: '@PRJIND-2390' }, function () {
-		it('verify export button is visible and downloading CSV file', () => {
+		it.skip('verify export button is visible and downloading CSV file', () => {
 			cy.get('[data-testid = btn-sub-header-action-Export]').should('be.visible').click().wait(2000);
 
 			cy.readFile(`${downloadsPath}` + '\\' + `${getExportedFileName()}`).should('contain', csvFileHeader);

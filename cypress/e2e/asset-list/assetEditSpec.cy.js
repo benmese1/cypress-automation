@@ -8,7 +8,7 @@ describe('Asset Creation Verification', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('Verify asset editing with mandatory and optional fields', () => {
+	it('Verify asset editing with mandatory and optional fields', {tags: ['@smoke', '@editing', '@asset']}, () => {
 		let assetModelInit = assets.asset_withoptional;
 		let assetModelUpd = assets.asset_withoptional_upd;
 
@@ -64,7 +64,7 @@ describe('Asset Creation Verification', () => {
 		});
 	});
 
-	it('Verify asset removing mandatory fields and further submit', () => {
+	it('Verify asset removing mandatory fields and further submit', {tags: ['@regression', '@editing', '@asset']}, () => {
 		let assetModelInit = assets.asset_withoptional;
 
 		// Create new asset

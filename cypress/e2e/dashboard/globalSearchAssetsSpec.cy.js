@@ -4,13 +4,13 @@ describe('Global "Assets" Search verification', () => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
 	});
 
-	it('Assets option can be selected for global search', () => {
+	it('Assets option can be selected for global search', {tags: ['@smoke', '@globalsearch', '@dashboard']}, () => {
 		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Assets"]').click();
 		cy.get('[data-testid="selector-input"] input').invoke('attr', 'placeholder').should('equal', 'Find an Asset');
 	});
 
-	it('Suggestions should not be displayed for Global Assets Search when less than 3 characters typed', () => {
+	it('Suggestions should not be displayed for Global Assets Search when less than 3 characters typed', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Assets', 'A', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 
@@ -18,32 +18,32 @@ describe('Global "Assets" Search verification', () => {
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Assets Search when not existing search term typed', () => {
+	it('Suggestions should not be displayed for Global Assets Search when not existing search term typed', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Assets', 'NOT_EXISTS', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed', () => {
+	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed', {tags: ['@smoke', '@globalsearch', '@dashboard']}, () => {
 		cy.globalSearch('Assets', 'AUT', false);
 		cy.get('[role="listbox"] li span').first().should('contain.text', 'AUT');
 	});
 
-	it('No data should be displayed on Asset Map List when not existing search term typed', () => {
+	it('No data should be displayed on Asset Map List when not existing search term typed', {tags: ['@regression', '@globalsearch', '@dashboard']},() => {
 		cy.globalSearch('Assets', 'NOT_EXISTS');
 		cy.url().should('include', '/map');
 
 		// Wait for map load
-		cy.wait(1000);
+		cy.wait(4000);
 		cy.get('#assets-count').should('contain.text', '0');
 	});
 
-	it('Global Asset Search by existing "Asset Id"', () => {
+	it('Global Asset Search by existing "Asset Nickname"', {tags: ['@regression', '@globalsearch', '@dashboard']},() => {
 		cy.globalSearch('Assets', 'CFQU52');
 
 		cy.url().should('include', '/map');
 
 		// Wait for map load
-		cy.wait(2000);
+		cy.wait(4000);
 		cy.get('#assets-count').then(($val) => {
 			expect(parseInt($val.text())).to.be.gte(1);
 		});

@@ -8,7 +8,7 @@ describe('Asset Management page search tests', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('Verify Search Results for Assets Table', () => {
+	it('Verify Search Results for Assets Table',{tags: ['@regression', '@searching', '@asset']},  () => {
 		cy.generateRandom(100000, 900000).then((prefix) => {
 			let assetModel = assets.asset_mandatoryfields;
 			assetModel.assetId += prefix;
@@ -34,14 +34,14 @@ describe('Asset Management page search tests', () => {
 		});
 	});
 
-	it('Verify Local Search when 3 characters of existing term are typed', () => {
+	it('Verify Local Search when 3 characters of existing term are typed', {tags: ['@smoke', '@searching', '@asset']}, () => {
 		cy.searchAssets('aut');
 		cy.get('[data-rowindex]').each(($row) => {
 			cy.wrap($row).contains('aut', { matchCase: false });
 		});
 	});
 
-	it.only('Verify Local Search when less 3 characters of existing term are typed', () => {
+	it('Verify Local Search when less 3 characters of not existing term are typed', {tags: ['@regression', '@searching', '@asset']}, () => {
 		cy.searchAssets('N');
 		cy.get('[data-rowindex]').should('have.length.gte', 5);
 		cy.searchAssets('NN');

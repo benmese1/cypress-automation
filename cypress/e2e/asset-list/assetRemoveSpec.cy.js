@@ -8,7 +8,7 @@ describe('Asset Management removal tests', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('Removed asset can`t be found in assets table', () => {
+	it('Removed asset can`t be found in assets table',{tags: ['@smoke', '@removing', '@asset']}, () => {
 		let assetModel = assets.asset_mandatoryfields;
 
 		cy.generateRandom(100000, 900000).then((prefix) => {
@@ -26,8 +26,7 @@ describe('Asset Management removal tests', () => {
 			cy.removeAsset(assetModel.assetNickname).wait(2000);
 
 			// Search removed asset
-			cy.searchAssets(assetModel.assetNickname);
-
+			cy.get("input[placeholder='Search']").should('be.visible').clear().type(assetModel.assetNickname).wait(1000);
 			cy.get('[data-rowindex]').should('have.length', 0);
 		});
 	});
