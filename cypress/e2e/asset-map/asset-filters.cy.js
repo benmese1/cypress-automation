@@ -1,7 +1,7 @@
 // @team1
 describe('Verify and search assets using filters such as asset tags, asset search and gps signal', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { tags: ['@map'] }, { cacheSession: false })
 			.waitForLoad()
 			.dashboardMenu('Asset Map');
 	});
