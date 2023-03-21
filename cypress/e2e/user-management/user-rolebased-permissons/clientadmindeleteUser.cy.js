@@ -1,10 +1,11 @@
 // @team4
-import userdata from '../../fixtures/createuser.json';
+import userdata from '../../../fixtures/createuser.json';
 let randomnumber = Math.floor(Math.random() * 10000);
 
 describe('Delete Pending User in User management using client admin role', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('ClientadminUsername'), Cypress.env('ClientadminPassword'), { cacheSession: false });
+		cy.loginWithOutAuthenticator(Cypress.env('ClientadminUsername'), Cypress.env('ClientadminPassword'), { cacheSession: false });
+		cy.authenticator(Cypress.env('ClientadminMFA'));
 		cy.waitForLoad().get("[aria-label='account of current user']").should('be.visible');
 	});
 

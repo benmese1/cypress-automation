@@ -1,11 +1,12 @@
 // @team4
-import impersonationdata from '../../fixtures/impersonation.json';
+import impersonationdata from '../../../fixtures/impersonation.json';
 
 describe('Login with Supervisor user and Verify Not Exists of impersonate option', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('SupervisorUsername'), Cypress.env('SupervisorPassword'), {
+		cy.loginWithOutAuthenticator(Cypress.env('SupervisorUsername'), Cypress.env('SupervisorPassword'), {
 			cacheSession: false,
-		}).waitForLoad();
+		});
+		cy.authenticator(Cypress.env('SupervisorMFA'));
 		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 
