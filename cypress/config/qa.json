@@ -33,6 +33,9 @@
 		"CustomerUsername": "customeruser",
 		"CustomerPassword": "Test@123",
 		"CustomerMFA": "62NA7ROREENUHG3HRKPOGSIYLSOGK4NTN5XGIYHQ4D4IBI73DNAA",
+		"TransferClientadminUsername": "Acme_clientadmin",
+		"TransferClientadminPassword": "P@ssword@123",
+		"TransferClientMFA" : "7KLOIGGJIICOKSXVYHR7D7U65HI7MXKFBMNQQZK56CZEGXDUF7DA",
 
 		"screenshotsFolder": "./cypress/screenshots"
 	}

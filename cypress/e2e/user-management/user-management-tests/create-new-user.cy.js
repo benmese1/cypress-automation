@@ -1,5 +1,5 @@
 // @team4
-import userdata from '../../fixtures/createuser.json';
+import userdata from '../../../fixtures/createuser.json';
 let randomnumber = Math.floor(Math.random() * 10000);
 
 describe('Create New User in User management', () => {

@@ -1,5 +1,5 @@
 // @team4
-import impersonationdata from '../../fixtures/impersonation.json';
+import impersonationdata from '../../../fixtures/impersonation.json';
 
 describe('Login with Fleet manager user and Verify Not Exists of impersonate option', () => {
 	beforeEach(() => {
