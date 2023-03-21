@@ -65,9 +65,9 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
 	if (typeof timeout === 'undefined') {
 		timeout = 30000;
 	}
-	cy.get('[data-testid="spinner"]', { timeout: timeout })
+	cy.get('[data-testid="spinner_svg"]', { timeout: timeout })
 		.should('exist')
-		.get('[data-testid="spinner"]', { timeout: timeout })
+		.get('[data-testid="spinner_svg"]', { timeout: timeout })
 		.should('not.exist');
 });
 
