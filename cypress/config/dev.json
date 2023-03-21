@@ -24,7 +24,7 @@
 		"FleetmanagerPassword": "Fleet@123",
 		"CustomerserviceUsename": "customerservice",
 		"CustomerservicePassword": "Test@123",
-		"clientadminusername_Acme": "Acme_clientadmin",
-		"clientadminpassword_Acme": "P@ssword@123"
+		"TransferClientadminUsername": "Acme_clientadmin",
+		"TransferClientadminPassword": "P@ssword@123"
 	}
 }
