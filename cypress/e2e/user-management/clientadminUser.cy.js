@@ -1,11 +1,12 @@
 // @team4
-import impersonationdata from '../../fixtures/impersonation.json';
+import impersonationdata from '../../../fixtures/impersonation.json';
 
 describe('Login with client admin user and Verify Not Exists of impersonate option', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('ClientadminUsername'), Cypress.env('ClientadminPassword'), {
+		cy.loginWithOutAuthenticator(Cypress.env('ClientadminUsername'), Cypress.env('ClientadminPassword'), {
 			cacheSession: false,
-		}).waitForLoad();
+		});
+		cy.authenticator(Cypress.env('ClientadminMFA'));
 		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 
