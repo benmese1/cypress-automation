@@ -6,7 +6,7 @@ describe('Verify and search assets using filters such as asset tags, asset searc
 			.dashboardMenu('Asset Map');
 	});
 
-	it('verify and view asset details by selecting asset filters', () => {
+	it('verify and view asset details by selecting asset filters', { tags: ['@map'] }, () => {
 		// Click on Assets
 		cy.get("[data-testid='filter-item-Assets']").click({ force: true });
 
