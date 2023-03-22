@@ -4,8 +4,12 @@ let randomnumber = Math.floor(Math.random() * 10000);
 
 describe('Delete Pending User in User management', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
-		cy.waitForLoad().get("[aria-label='account of current user']").should('be.visible');
+		cy.loginWithOutAuthenticator(Cypress.env('SuperadminUsername'), Cypress.env('SuperadminPassword'), {
+			cacheSession: false,
+		});
+		cy.authenticator(Cypress.env('SuperadminMFA'));
+		cy.waitForLoad();
+		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 
 	it('Navigate to User Management, create and search for new user and remove the newly created user with status pending', () => {

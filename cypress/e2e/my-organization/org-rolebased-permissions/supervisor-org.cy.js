@@ -1,5 +1,5 @@
 // @team4
-import org from '../../../../fixtures/createorg.json';
+import org from '../../../fixtures/createorg.json';
 let randomnumber = Math.floor(Math.random() * 10000);
 
 describe('View and Edit Org for supervisor role', () => {
