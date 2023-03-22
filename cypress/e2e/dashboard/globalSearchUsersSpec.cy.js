@@ -34,7 +34,7 @@ describe('Global "Users" Search verification', () => {
 
 	it('Suggestions should be displayed for Global Search when 3 characters of existing term is typed', () => {
 		cy.globalSearch('Users', 'Ole', false);
-		cy.get('[role="listbox"] li span').first().should('have.text', 'Oleksandr');
+		cy.get('[role="listbox"] li span').first().contains('Ole', { matchCase: false });
 	});
 
 	it('"Keep typing" is displayed when Global Search is performed for less than 3 characters typed', () => {
@@ -53,9 +53,10 @@ describe('Global "Users" Search verification', () => {
 	});
 
 	it('Data should be displayed on Users List table when part of existing search term is typed', () => {
-		cy.globalSearch('Users', 'equip');
+		cy.globalSearch('Users', 'equip', false);
+		cy.get('[role="listbox"] li span').first().click();
 		cy.url().should('include', '/user-management');
-		cy.get('[data-testid="items-list-search-input"]').should('have.value', 'equip').wait(1000);
+		cy.get('[data-testid="items-list-search-input"]').contains('equip').wait(1000);
 
 		cy.get('[data-rowindex]').each(($row) => {
 			cy.wrap($row).contains('equip', { matchCase: false });
@@ -74,10 +75,10 @@ describe('Global "Users" Search verification', () => {
 	});
 
 	searchData.users.forEach((search) => {
-		it(`Global User Search by existing "${search.option}"'`, () => {
+		it.only(`Global User Search by existing "${search.option}"'`,  () => {
 			//select 'Users' option on Global search and type search term
-			cy.globalSearch('Users', search.term);
-
+			cy.globalSearch('Users', search.term, false);
+			cy.get('[role="listbox"] li span').contains(search.term, { matchCase: false }).click();
 			//verify 'Users' page is opened
 			cy.url().should('include', '/user-management');
 

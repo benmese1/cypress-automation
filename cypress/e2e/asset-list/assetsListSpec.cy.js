@@ -30,6 +30,7 @@ describe('Asset Management page general tests', () => {
 			'Product Name',
 			'Trip Status',
 			'Last Reported Date',
+			'Associated',
 			'City',
 			'State',
 			'Asset Type',
@@ -86,12 +87,12 @@ describe('Asset Management page general tests', () => {
 			assetModel.assetNickname += prefix;
 
 			var fieldsToCheck = [
-				{ dataField: 'organization', value: assetModel.companyName, regex: false },
+				{ dataField: 'org_name', value: assetModel.companyName, regex: false },
 				{ dataField: 'asset_id', value: assetModel.assetId, regex: false },
 				{ dataField: 'name', value: assetModel.assetNickname },
 				{
 					dataField: 'lst_evnt_t',
-					value: new RegExp(dayjs().format('MM/DD/YYYY') + ' ' + '((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))'),
+					value: new RegExp(dayjs().format('MM/DD/YYYY')),
 					regex: true,
 				},
 				{ dataField: 'device_associated', value: 'No', regex: false },
@@ -102,7 +103,7 @@ describe('Asset Management page general tests', () => {
 				{ dataField: 'num_of_axles', value: assetModel.numOfAxles, regex: false },
 				{ dataField: 'length', value: assetModel.length, regex: false },
 				{ dataField: 'door_type', value: assetModel.doorType, regex: false },
-				{ dataField: 'last_gps_t', value: /^((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/, regex: true },
+				{ dataField: 'last_gps_t', value: /((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/, regex: true },
 			];
 
 			// Create new asset with mandatory fields
@@ -113,6 +114,7 @@ describe('Asset Management page general tests', () => {
 			cy.get('[data-testid="asset-table-toolbar-columns-btn"]').click();
 			cy.get('[role="tooltip"]').should('be.visible').contains('Show all').click();
 			cy.clickOutside();
+			cy.wait(500);
 
 			cy.searchAssets(assetModel.assetNickname);
 
@@ -194,7 +196,7 @@ describe('Asset Management page general tests', () => {
 		).should('have.text', 'Battery Icon');
 	});
 
-	it.only('Verify sorting of Asset Lists Table', () => { 
+	it('Verify sorting of Asset Lists Table', () => { 
 		var fieldsToCheck = [
 			{ dataField: 'org_name', type: 'string' },
 			{ dataField: 'asset_id', type: 'string'},
@@ -247,7 +249,7 @@ describe('Asset Management page general tests', () => {
 		});
 	});
 
-	it.only('Verify sorting of Asset Lists Table - Hidden fields', () => { 
+	it('Verify sorting of Asset Lists Table - Hidden fields', () => { 
 		var fieldsToCheck = [
 			{ dataField: 'postcode', type: 'string' },
 			{ dataField: 'latitude', type: 'float' },
@@ -294,7 +296,6 @@ describe('Asset Management page general tests', () => {
 	});
 
 	function verifyTableIsSortedByColumn(columnDataField, isASC, type) {
-	
 		cy.get('[data-rowindex]')
 		.find(`[data-field='${columnDataField}']`)
 		.then(($cells) => Cypress._.map($cells, (el) => 

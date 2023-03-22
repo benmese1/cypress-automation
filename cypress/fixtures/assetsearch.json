@@ -2,8 +2,8 @@
 	"assets": [
 		{
 			"option": "Company Name",
-			"term": "Acme East",
-			"datafield": "organization"
+			"term": "Werner Enterprises",
+			"datafield": "org_name"
 		},
 		{
 			"option": "Asset ID",
@@ -42,7 +42,7 @@
 		},
 		{
 			"option": "Asset Tag",
-			"term": "Asset_Id:",
+			"term": "HyundaiAugust2021",
 			"datafield": "tags"
 		},
 		{

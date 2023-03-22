@@ -26,8 +26,7 @@ describe('Asset Management removal tests', () => {
 			cy.removeAsset(assetModel.assetNickname).wait(2000);
 
 			// Search removed asset
-			cy.searchAssets(assetModel.assetNickname);
-
+			cy.get("input[placeholder='Search']").should('be.visible').clear().type(assetModel.assetNickname).wait(1000);
 			cy.get('[data-rowindex]').should('have.length', 0);
 		});
 	});

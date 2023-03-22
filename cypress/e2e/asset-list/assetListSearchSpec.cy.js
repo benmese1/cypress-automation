@@ -41,7 +41,7 @@ describe('Asset Management page search tests', () => {
 		});
 	});
 
-	it.only('Verify Local Search when less 3 characters of existing term are typed', () => {
+	it('Verify Local Search when less 3 characters of not existing term are typed', () => {
 		cy.searchAssets('N');
 		cy.get('[data-rowindex]').should('have.length.gte', 5);
 		cy.searchAssets('NN');

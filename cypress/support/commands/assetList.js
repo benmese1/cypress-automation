@@ -150,7 +150,7 @@ Cypress.Commands.add('openAsset', (orgName, fieldName, rowIndex) => {
 
 	//select cells based on the column header name
 	cy.xpath(
-		`//div[@data-field='organization']//div[contains(text(),'${orgName}')]//ancestor::div[@role='row']//div[@data-field='${dataField[fieldName]}']`
+		`//div[@data-field='org_name']//div[contains(text(),'${orgName}')]//ancestor::div[@role='row']//div[@data-field='${dataField[fieldName]}']`
 	)
 		.eq(rowIndex)
 		.click();
