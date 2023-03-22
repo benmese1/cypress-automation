@@ -6,7 +6,7 @@ describe('Global "Organizations" Search verification', () => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
 	});
 
-	it('Organizations option can be selected for global search', {tags: ['@smoke', '@globalsearch', '@dashboard']}, () => {
+	it('Organizations option can be selected for global search', () => {
 		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Organizations"]').click();
 		cy.get('[data-testid="selector-input"] input')
@@ -14,14 +14,14 @@ describe('Global "Organizations" Search verification', () => {
 			.should('equal', 'Find an Organization');
 	});
 
-	it('Recent Searches is not displayed while first time clicking on Global Search input', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
+	it('Recent Searches is not displayed while first time clicking on Global Search input', () => {
 		cy.get('[data-testid="selector"] [role="button"]').click().wait(500);
 		cy.get('[data-testid="global-search-select-item-Organizations"]').click();
 		cy.get('[data-testid="selector-input"] input').first().click().wait(500);
 		cy.get('[role="listbox"]').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Search when less than 3 characters typed',{tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
+	it('Suggestions should not be displayed for Global Search when less than 3 characters typed', () => {
 		cy.globalSearch('Organizations', 'F', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 
@@ -29,17 +29,17 @@ describe('Global "Organizations" Search verification', () => {
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Search when not existing search term typed',{tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
+	it('Suggestions should not be displayed for Global Search when not existing search term typed', () => {
 		cy.globalSearch('Organizations', 'NOT_EXISTS', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed',{tags: ['@smoke', '@globalsearch', '@dashboard']}, () => {
+	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed', () => {
 		cy.globalSearch('Organizations', 'Fle', false);
 		cy.get('[role="listbox"] li span').first().should('contain.text', 'Fle');
 	});
 
-	it('"Keep typing" is displayed when Global Search is performed for less than 3 characters typed',{tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
+	it('"Keep typing" is displayed when Global Search is performed for less than 3 characters typed', () => {
 		cy.globalSearch('Organizations', 'Re');
 		cy.url().should('include', '/organizations');
 
@@ -50,7 +50,7 @@ describe('Global "Organizations" Search verification', () => {
 		cy.get('[data-testid="page"]').should('contain.text', 'Keep typing...');
 	});
 
-	it('No data should be displayed on Organizations List table when not existing search term typed',{tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
+	it('No data should be displayed on Organizations List table when not existing search term typed', () => {
 		cy.globalSearch('Organizations', 'NOT_EXISTS');
 		cy.url().should('include', '/organizations');
 
@@ -61,7 +61,7 @@ describe('Global "Organizations" Search verification', () => {
 		cy.get('[data-testid="page"]').should('contain.text', 'No results found');
 	});
 
-	it('The "Recent Search" item can be removed from List', {tags: ['@smoke', '@globalsearch', '@dashboard']}, () => {
+	it('The "Recent Search" item can be removed from List', () => {
 		cy.globalSearch('Organizations', 'Fleet');
 		cy.url().should('include', '/organizations');
 
@@ -85,7 +85,7 @@ describe('Global "Organizations" Search verification', () => {
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Global Organizations Search by existing "Created Date"', {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
+	it('Global Organizations Search by existing "Created Date"', () => {
 		cy.globalSearch('Organizations', '03/07/2023', false);
 		cy.get('[role="listbox"] li span').first().click();
 
@@ -100,7 +100,7 @@ describe('Global "Organizations" Search verification', () => {
 	});
 
 	searchData.organizations.forEach((search) => {
-		it(`Global Search by existing "${search.option}"'`, {tags: ['@regression', '@globalsearch', '@dashboard']}, () => {
+		it(`Global Search by existing "${search.option}"'`, () => {
 			//select 'Organizations' option on Global search and type search term
 			cy.globalSearch('Organizations', search.term);
 

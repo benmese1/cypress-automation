@@ -6,7 +6,7 @@ describe('Asset Management page -- details view verification', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('Verify Asset Details View is collapsable', {tags: ['@smoke', '@view', '@asset']}, () => {
+	it('Verify Asset Details View is collapsable', () => {
 		//wait for spinner on Asset Lists Table
 		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
 		cy.searchAssets('377707');
@@ -19,7 +19,7 @@ describe('Asset Management page -- details view verification', () => {
 		cy.get('#battery-block').should('not.exist');
 	});
 
-	it('Verify Critical battery state on Asset Details View',{tags: ['@smoke', '@view', '@asset']}, () => {
+	it('Verify Critical battery state on Asset Details View', () => {
 		//wait for spinner on Asset Lists Table
 		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
 		cy.addAssetsFilter('Battery Icon', 'starts with', '2');
@@ -42,7 +42,7 @@ describe('Asset Management page -- details view verification', () => {
 			});
 	});
 
-	it('Verify Warning battery state on Asset Details View', {tags: ['@regression', '@view', '@asset']}, () => {
+	it('Verify Warning battery state on Asset Details View', () => {
 		cy.addAssetsFilter('Battery Icon', 'starts with', '3.3');
 
 		//verify each 'Battery Icon' cells have appropriate icon
@@ -66,7 +66,7 @@ describe('Asset Management page -- details view verification', () => {
 			});
 	});
 
-	it('Verify Full battery state on Asset Details View', {tags: ['@regression', '@view', '@asset']},() => {
+	it('Verify Full battery state on Asset Details View', () => {
 		//wait for spinner on Asset Lists Table
 		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
 		cy.addAssetsFilter('Battery Icon', 'starts with', '3.9');

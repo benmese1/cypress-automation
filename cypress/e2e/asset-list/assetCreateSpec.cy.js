@@ -8,7 +8,7 @@ describe('Asset Creation Verification', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('Verify asset creation with mandatory fields only',  {tags: ['@smoke', '@creation', '@asset']}, () => {
+	it('Verify asset creation with mandatory fields only', () => {
 		let assetModel = assets.asset_mandatoryfields;
 		cy.generateRandom(100000, 900000).then((prefix) => {
 			assetModel.assetId += prefix;
@@ -40,7 +40,7 @@ describe('Asset Creation Verification', () => {
 		});
 	});
 
-	it('Verify asset creation with already existing Asset Id within the same Company',{tags: ['@regression', '@creation', '@asset']}, () => {
+	it('Verify asset creation with already existing Asset Id within the same Company', () => {
 		let assetModel = assets.asset_mandatoryfields;
 		cy.generateRandom(100000, 900000).then((prefix) => {
 			assetModel.assetId += prefix;
@@ -59,7 +59,7 @@ describe('Asset Creation Verification', () => {
 		});
 	});
 
-	it('Verify asset creation with missed mandatory fields', {tags: ['@regression', '@creation', '@asset']}, () => {
+	it('Verify asset creation with missed mandatory fields', () => {
 		cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
 
 		//Input one optional field

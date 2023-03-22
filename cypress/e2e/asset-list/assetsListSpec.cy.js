@@ -9,7 +9,7 @@ describe('Asset Management page general tests', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('Verify Material UI Premium buttons above table header', {tags: ['@smoke', '@view', '@asset']}, () => {
+	it('Verify Material UI Premium buttons above table header', () => {
 		// Verify Material UI Premium Columns button
 		cy.get('[data-testid="asset-table-toolbar-columns-btn"]').should('be.visible');
 		// Verify Material UI Premium Filters button
@@ -43,7 +43,7 @@ describe('Asset Management page general tests', () => {
 		cy.get("[role='columnheader']").should('have.length', columnHeadersList.length);
 	});
 
-	it('Verify assets table all columns visibility', {tags: ['@smoke', '@view', '@asset']}, () => {
+	it('Verify assets table all columns visibility', () => {
 		const allColumnHeadersList = [
 			'Company Name',
 			'Icon',
@@ -80,7 +80,7 @@ describe('Asset Management page general tests', () => {
 		});
 	});
 
-	it('Verify all data is displayed on Asset Lists Table', {tags: ['@smoke', '@view', '@asset']}, () => {
+	it('Verify all data is displayed on Asset Lists Table', () => {
 		let assetModel = assets.asset_withoptional;
 		cy.generateRandom(100000, 900000).then((prefix) => {
 			assetModel.assetId += prefix;
@@ -134,7 +134,7 @@ describe('Asset Management page general tests', () => {
 		});
 	});
 
-	it('Paging test', {tags: ['@regression', '@view', '@asset']}, () => {
+	it('Paging test', () => {
 		cy.get('[data-rowindex="0"]').should('be.visible');
 		cy.get('[data-testid="page"]').should('contain.text', '1 - 100 of');
 
@@ -145,11 +145,11 @@ describe('Asset Management page general tests', () => {
 		cy.get('button[aria-current="true"]').should('have.text', '2');
 	});
 
-	it('Search "Keep typing..." test', {tags: ['@regression', '@view', '@asset']}, () => {
+	it('Search "Keep typing..." test', () => {
 		cy.searchAssets('a').get('.text-typography').should('have.text', 'Keep typing...');
 	});
 
-	it('Add Asset, Export, Upload buttons and Asset list header are visible test', {tags: ['@regression', '@view', '@asset']}, () => {
+	it('Add Asset, Export, Upload buttons and Asset list header are visible test', () => {
 		cy.get("[data-testid='management-asset-list']").should('have.text', 'Asset List');
 
 		//Add Asset button visibility check
@@ -162,7 +162,7 @@ describe('Asset Management page general tests', () => {
 		cy.get('[data-testid="btn-sub-header-action-Export"]').should('have.text', 'Export');
 	});
 
-	it('Pin and unpin column in Asset list table test', {tags: ['@regression', '@view', '@asset']}, () => {
+	it('Pin and unpin column in Asset list table test', () => {
 		//pin Device ID column to the left side
 		cy.pinColumn('Device ID', 'left');
 		cy.get('[data-testid="items-list-pinned-column-left-header-0"] [data-testid = "column-header-device-id"]')
@@ -181,7 +181,7 @@ describe('Asset Management page general tests', () => {
 		);
 	});
 
-	it('Pin multiple columns to one side in Asset list table test', {tags: ['@regression', '@view', '@asset']}, () => {
+	it('Pin multiple columns to one side in Asset list table test', () => {
 		//pin Device ID and Battery Power columns to the left side
 		cy.pinColumn('Device ID', 'left');
 		cy.pinColumn('Battery Icon', 'left');
@@ -196,7 +196,7 @@ describe('Asset Management page general tests', () => {
 		).should('have.text', 'Battery Icon');
 	});
 
-	it('Verify sorting of Asset Lists Table', {tags: ['@regression', '@view', '@asset']}, () => { 
+	it('Verify sorting of Asset Lists Table', () => { 
 		var fieldsToCheck = [
 			{ dataField: 'org_name', type: 'string' },
 			{ dataField: 'asset_id', type: 'string'},
@@ -249,7 +249,7 @@ describe('Asset Management page general tests', () => {
 		});
 	});
 
-	it('Verify sorting of Asset Lists Table - Hidden fields', {tags: ['@regression', '@view', '@asset']}, () => { 
+	it('Verify sorting of Asset Lists Table - Hidden fields', () => { 
 		var fieldsToCheck = [
 			{ dataField: 'postcode', type: 'string' },
 			{ dataField: 'latitude', type: 'float' },

@@ -9,7 +9,7 @@ describe('Search and filter assets', () => {
 	});
 
 	searchData.assets.forEach((search) => {
-		it(`Asset Searching by existing "${search.option}"'`, {tags: ['@regression', '@searching', '@asset']}, () => {
+		it(`Asset Searching by existing "${search.option}"'`, () => {
 			// Show all columns
 			cy.get('[data-testid="asset-table-toolbar-columns-btn"]').click();
 			cy.get('[role="tooltip"]').should('be.visible').contains('Show all').click();
@@ -26,7 +26,7 @@ describe('Search and filter assets', () => {
 	});
 
 	filterData.assets.forEach((filter) => {
-		it(`Asset Filtering by existing "${filter.columnname}"'`, {tags: ['@regression', '@filtering', '@asset']}, () => {
+		it(`Asset Filtering by existing "${filter.columnname}"'`, () => {
 			cy.addAssetsFilter(filter.columnname, filter.operator, filter.value);
 
 			//verify each cell of provided column has corresponding search value

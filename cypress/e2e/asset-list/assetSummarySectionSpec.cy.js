@@ -9,7 +9,7 @@ describe('Asset Summary Section Verification', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('When Solar Amparage is null than no Solar field is displayed', {tags: ['@regression', '@view', '@asset']}, () => {
+	it('When Solar Amparage is null than no Solar field is displayed', () => {
 		cy.searchAssets('377693');
 		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.expandDrawerSection('Summary');
@@ -18,7 +18,7 @@ describe('Asset Summary Section Verification', () => {
 	});
 
 	summary.assets.forEach((field) => {
-		it(`Verify dynamic field "${field.fieldname}" has valid value on Asset Summary Section'`, {tags: ['@regression', '@view', '@asset']}, () => {
+		it(`Verify dynamic field "${field.fieldname}" has valid value on Asset Summary Section'`, () => {
 			cy.addAssetsFilter(field.fieldname, 'starts with', field.value);
 			cy.get('[data-rowindex="0"]').click();
 
@@ -32,7 +32,7 @@ describe('Asset Summary Section Verification', () => {
 		});
 	});
 
-	it('Verify static fields have valid value on Asset Summary Section', {tags: ['@regression', '@view', '@asset']}, () => {
+	it('Verify static fields have valid value on Asset Summary Section', () => {
 		let assetModel = assets.asset_withoptional;
 		cy.generateRandom(100000, 900000).then((prefix) => {
 			assetModel.assetId += prefix;
@@ -75,7 +75,7 @@ describe('Asset Summary Section Verification', () => {
 		});
 	});
 
-	it('Verify voltage fields have valid value on Asset Summary Section', {tags: ['@regression', '@view', '@asset']}, () => {
+	it('Verify voltage fields have valid value on Asset Summary Section', () => {
 		var fieldsToCheck = [
 			{ name: 'Battery', value: /^[+-]?[0-9]*[.]?[0-9] V/ },
 			{ name: 'Primary Voltage', value: /^[+-]?[0-9]*[.]?[0-9] V/ },

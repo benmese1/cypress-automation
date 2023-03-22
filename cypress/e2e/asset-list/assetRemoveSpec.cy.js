@@ -8,7 +8,7 @@ describe('Asset Management removal tests', () => {
 			.dashboardMenu('Asset List');
 	});
 
-	it('Removed asset can`t be found in assets table',{tags: ['@smoke', '@removing', '@asset']}, () => {
+	it('Removed asset can`t be found in assets table', () => {
 		let assetModel = assets.asset_mandatoryfields;
 
 		cy.generateRandom(100000, 900000).then((prefix) => {
