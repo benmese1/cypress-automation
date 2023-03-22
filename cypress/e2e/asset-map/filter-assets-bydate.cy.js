@@ -3,21 +3,13 @@ const { time } = require('console');
 const dayjs = require('dayjs');
 
 describe('Verify the Asset Filter by dates', () => {
+	beforeEach(() => {
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+			.waitForLoad()
+			.dashboardMenu('Asset Map');
+	});
+
 	it('Asset Filter by Dates', () => {
-		// Login to Dev Environment
-		cy.login(Cypress.env('username'), Cypress.env('password'), {
-			cacheSession: false,
-		});
-
-		// Assert the user is visible
-		cy.get("[aria-label='account of current user']").should('be.visible');
-
-		// Click Asset Maps
-		cy.dashboardMenu('Asset Map');
-
-		// Wait for the map to reload
-		cy.mapWait();
-
 		//Click Calendar
 		cy.get('[data-testid="calendar-range-result"]').click({ force: true });
 
@@ -122,7 +114,7 @@ describe('Verify the Asset Filter by dates', () => {
 		let now = new Date();
 		let month = now.getMonth() + 1;
 		let currentmonth = `${now.getFullYear()}` + '-' + `${month}` + '-01';
-		cy.get('[data-title="Dec"]').click({ force: true });
+		cy.get('[data-title="Mar"]').click({ force: true });
 
 		//Assert the assets within the date filter of current month
 		cy.get('#date-range-filter-submit-btn').click({ force: true });
@@ -141,7 +133,7 @@ describe('Verify the Asset Filter by dates', () => {
 		// Extract the 1st previous month from todays date and add a filter for assets for 2nd previous month only
 		let prevmonth = now.getMonth();
 		let previousmonth = `${now.getFullYear()}` + '-' + `${prevmonth}` + '-01';
-		cy.get('[data-title="Nov"]').click({ force: true });
+		cy.get('[data-title="Feb"]').click({ force: true });
 
 		//Assert the assets within the date filter of 1st previous month
 		cy.get('#date-range-filter-submit-btn').click({ force: true });
@@ -158,7 +150,7 @@ describe('Verify the Asset Filter by dates', () => {
 		// Extract the previous 2nd month from the today's date and assert that all assets are within the date filter range
 		let prevmonth1 = now.getMonth() - 1;
 		let previousmonth1 = `${now.getFullYear()}` + '-' + `${prevmonth1}` + '-01';
-		cy.get('[data-title="Oct"]').click({ force: true });
+		cy.get('[data-title="Jan"]').click({ force: true });
 
 		//Assert the assets within the date filter of 1st previous month
 		cy.get('#date-range-filter-submit-btn').click({ force: true });
