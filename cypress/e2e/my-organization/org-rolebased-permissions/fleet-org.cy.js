@@ -1,5 +1,4 @@
 // @team4
-import org from '../../../../fixtures/createorg.json';
 let randomnumber = Math.floor(Math.random() * 10000);
 
 describe('Verify no access to My Org for fleetmanager', () => {
