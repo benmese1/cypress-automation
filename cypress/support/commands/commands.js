@@ -12,9 +12,8 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 		cy.get('.visible-lg #signInFormPassword').type(pwd, { force: true });
 		cy.get('.visible-lg .btn-primary').click({ force: true });
 		if (Cypress.env('MFAenabled')) {
-			const secret = Cypress.env('TESTMFA');
-			cy.wait(20000);
-			const code = otplib.authenticator.generate(secret);
+			const securitykey = Cypress.env('TESTMFA');
+			let code = getMFACode(securitykey);
 			cy.get('input[id=totpCodeInput]').type(code);
 			cy.get('#signInButton').click();
 		}
@@ -51,11 +50,23 @@ Cypress.Commands.add('loginWithOutAuthenticator', (user, pwd, { cacheSession = t
  */
 Cypress.Commands.add('authenticator', (securitykey) => {
 	if (Cypress.env('MFAenabled')) {
-		const code = otplib.authenticator.generate(securitykey);
+		let code = getMFACode(securitykey);
 		cy.get('input[id=totpCodeInput]').type(code);
 		cy.get('#signInButton').click();
 	}
 });
+
+/**
+ * authenticate using two-factor authentication
+ * @param {string} securitykey
+ * @returns MFA code
+ */
+
+function getMFACode(securitykey) {
+	cy.wait(30000);
+	let code = otplib.authenticator.generate(securitykey);
+	return code
+};
 
 /**
  * Generates API token and stores in cookie for 1hr
@@ -81,16 +92,48 @@ Cypress.Commands.add('generateAPIToken', () => {
 				},
 			}).should((response) => {
 				expect(response.status).to.eq(200);
-				expect(response.body.AuthenticationResult).to.have.property('IdToken');
-				expect(response.body.AuthenticationResult).to.have.property('ExpiresIn').to.eq(3600);
-				cy.setCookie('apitoken', response.body.AuthenticationResult.IdToken, { expires: 3600 })
-				cy.getCookie('apitoken').should('exist')
-				// cy.log('Token = ' + cy.getCookie('apitoken').value);
+				if (Cypress.env('MFAenabled')) {
+					expect(response.status).to.eq(200);
+					expect(response.body).to.have.property('Session');
+					global.Session = response.body.Session;
+					let securitykey = Cypress.env('TESTMFA');
+					cy.request({
+						method: 'POST',
+						url: Cypress.env('cognito_uri'),
+						headers: {
+							'X-Amz-Target': Cypress.env('X-Amz-Target-Auth'),
+							'Content-Type': Cypress.env('Content-Type-Auth'),
+						},
+						body: {
+							ChallengeName: Cypress.env('ChallengeName'),
+							ChallengeResponses: {
+								USERNAME: Cypress.env('TESTusername'),
+								SOFTWARE_TOKEN_MFA_CODE: getMFACode(securitykey),
+							},
+							Session: global.Session,
+							ClientId: Cypress.env('ClientId'),
+							UserPoolId: Cypress.env('UserPoolId'),
+						},
+					}).should((response) => {
+						expect(response.status).to.eq(200);
+						expect(response.body.AuthenticationResult).to.have.property('IdToken');
+						expect(response.body.AuthenticationResult).to.have.property('ExpiresIn').to.eq(3600);
+						// Token is stored and will be consumed in graphQL API call
+						cy.setCookie('apitoken', response.body.AuthenticationResult.IdToken, { expires: 3600 })
+						cy.getCookie('apitoken').should('exist')
+					});
+				}
+				else {
+					expect(response.body.AuthenticationResult).to.have.property('IdToken');
+					expect(response.body.AuthenticationResult).to.have.property('ExpiresIn').to.eq(3600);
+					cy.setCookie('apitoken', response.body.AuthenticationResult.IdToken, { expires: 3600 })
+					cy.getCookie('apitoken').should('exist')
+					// cy.log('Token = ' + cy.getCookie('apitoken').value);
+				}
 			});
 		}
 	})
 });
-
 
 /**
  * Waits until the spinner disappears from the page

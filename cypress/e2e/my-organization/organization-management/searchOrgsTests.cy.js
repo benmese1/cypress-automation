@@ -1,5 +1,5 @@
 // @team4
-import org from '../../fixtures/createorg.json';
+import org from '../../../fixtures/createorg.json';
 describe('Search functionality in Organization management', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
