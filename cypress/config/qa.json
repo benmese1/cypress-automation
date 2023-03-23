@@ -39,7 +39,7 @@
 
 		"screenshotsFolder": "./cypress/screenshots",
 
-		"graphQL_uri": "https://3ghp6k24hjaxpciqgvmyjwx33m.appsync-api.us-west-2.amazonaws.com/graphql",
+		"graphQL_uri": "https://kf3rqhpd2zbyvd7npfcagcjn5u.appsync-api.us-west-2.amazonaws.com/graphql",
 		"cognito_uri": "https://cognito-idp.us-west-2.amazonaws.com",
 		"X-Amz-Target": "AWSCognitoIdentityProviderService.InitiateAuth",
 		"Content-Type": "application/x-amz-json-1.1",
