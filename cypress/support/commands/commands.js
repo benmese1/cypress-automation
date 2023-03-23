@@ -50,7 +50,7 @@ Cypress.Commands.add('loginWithOutAuthenticator', (user, pwd, { cacheSession = t
  */
 Cypress.Commands.add('authenticator', (securitykey) => {
 	if (Cypress.env('MFAenabled')) {
-		code = getMFACode(securitykey);
+		let code = getMFACode(securitykey);
 		cy.get('input[id=totpCodeInput]').type(code);
 		cy.get('#signInButton').click();
 	}
@@ -63,7 +63,7 @@ Cypress.Commands.add('authenticator', (securitykey) => {
 
 function getMFACode(securitykey) {
 	cy.wait(30000);
-	const code = otplib.authenticator.generate(securitykey);
+	let code = otplib.authenticator.generate(securitykey);
 	return code
 };
 
