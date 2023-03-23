@@ -9,7 +9,7 @@
 		{
 			"columnname": "Brand",
 			"operator": "equals",
-			"value": "phillips",
+			"value": "Elasticm2m",
 			"datafield": "brand"
 		},
 		{
