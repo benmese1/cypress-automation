@@ -59,7 +59,7 @@ Cypress.Commands.add('authenticator', (securitykey) => {
 
 /**
  * Generates API token and stores in cookie for 1hr
- * API token can retrieved in scripts by using cy.getCookie('apitoken')
+ * API token can be retrieved in scripts by using cy.getCookie('apitoken')
  */
 
 Cypress.Commands.add('generateAPIToken', () => {
