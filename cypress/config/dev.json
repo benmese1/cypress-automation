@@ -25,7 +25,7 @@
 		"SupervisorPassword": "Super@123",
 		"FleetmanagerUsername": "mb_fleetmanager",
 		"FleetmanagerPassword": "Fleet@123",
-		"CustomerserviceUsename": "customerservice",
+		"CustomerserviceUsername": "customerservice",
 		"CustomerservicePassword": "Test@123",
 		"TransferClientadminUsername": "Acme_clientadmin",
 		"TransferClientadminPassword": "P@ssword@123"
