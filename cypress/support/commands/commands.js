@@ -58,6 +58,41 @@ Cypress.Commands.add('authenticator', (securitykey) => {
 });
 
 /**
+ * Generates API token and stores in cookie for 1hr
+ * API token can be retrieved in scripts by using cy.getCookie('apitoken')
+ */
+
+Cypress.Commands.add('generateAPIToken', () => {
+	cy.getCookie('apitoken').then((token) => {
+		if (token && token.value) {
+			cy.log('token to be used is :' + cy.getCookie('apitoken'));
+		} else {
+			cy.request({
+				method: 'POST',
+				url: Cypress.env('cognito_uri'),
+				headers: {
+					'X-Amz-Target': Cypress.env('X-Amz-Target'),
+					'Content-Type': Cypress.env('Content-Type'),
+				},
+				body: {
+					AuthFlow: Cypress.env('AuthFlow'),
+					ClientId: Cypress.env('ClientId'),
+					AuthParameters: { USERNAME: Cypress.env('TESTusername'), PASSWORD: Cypress.env('TESTpassword') },
+				},
+			}).should((response) => {
+				expect(response.status).to.eq(200);
+				expect(response.body.AuthenticationResult).to.have.property('IdToken');
+				expect(response.body.AuthenticationResult).to.have.property('ExpiresIn').to.eq(3600);
+				cy.setCookie('apitoken', response.body.AuthenticationResult.IdToken, { expires: 3600 })
+				cy.getCookie('apitoken').should('exist')
+				// cy.log('Token = ' + cy.getCookie('apitoken').value);
+			});
+		}
+	})
+});
+
+
+/**
  * Waits until the spinner disappears from the page
  * @param {number} timeout - timeout in milliseconds, default is 30 sec
  */
@@ -110,7 +145,7 @@ Cypress.Commands.add('globalSearch', (searchOption, searchTerm, isSubmit) => {
 			.first()
 			.clear()
 			.type(searchTerm + '{enter}', { delay: 100 },
-			{ force: true });
+				{ force: true });
 	} else {
 		cy.get('[data-testid="selector-input"] input').first().clear().type(searchTerm);
 	}
