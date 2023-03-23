@@ -37,6 +37,21 @@
 		"TransferClientadminPassword": "P@ssword@123",
 		"TransferClientMFA": "7KLOIGGJIICOKSXVYHR7D7U65HI7MXKFBMNQQZK56CZEGXDUF7DA",
 
-		"screenshotsFolder": "./cypress/screenshots"
+		"screenshotsFolder": "./cypress/screenshots",
+
+		"graphQL_uri": "https://kf3rqhpd2zbyvd7npfcagcjn5u.appsync-api.us-west-2.amazonaws.com/graphql",
+		"cognito_uri": "https://cognito-idp.us-west-2.amazonaws.com",
+		"X-Amz-Target": "AWSCognitoIdentityProviderService.InitiateAuth",
+		"Content-Type": "application/x-amz-json-1.1",
+		"AuthFlow": "USER_PASSWORD_AUTH",
+		"UserPoolId" : "us-west-2_9Ha6k3Ysh",
+		"ClientId": "7fkhb5sdufdisn6qn1bkq445je",
+		"TESTusernameAPI": "mfaautomationtest",
+		"TESTpasswordAPI": "Tester123@",
+		"TESTMFAAPI": "K5SBDBZEH6UJPHRSOWH7OFMZ57S73W2RKXTPIN4PLGQBSFNLSWIQ",
+		"ChallengeName": "SOFTWARE_TOKEN_MFA",
+		"X-Amz-Target-Auth":"AWSCognitoIdentityProviderService.RespondToAuthChallenge",
+		"Content-Type-Auth":"application/x-amz-json-1.1"
+
 	}
 }
