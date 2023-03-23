@@ -24,7 +24,7 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 	} else {
 		login();
 	}
-})
+});
 
 /**
  * Login in to application with out two-factor authentication
