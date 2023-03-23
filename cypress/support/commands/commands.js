@@ -18,7 +18,7 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 			cy.get('input[id=totpCodeInput]').type(code);
 			cy.get('#signInButton').click();
 		}
-	};
+	}
 	if (cacheSession) {
 		cy.session(user, login);
 	} else {
