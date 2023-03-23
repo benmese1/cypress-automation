@@ -59,6 +59,7 @@ Cypress.Commands.add('authenticator', (securitykey) => {
 /**
  * authenticate using two-factor authentication
  * @param {string} securitykey
+ * @returns MFA code
  */
 
 function getMFACode(securitykey) {
