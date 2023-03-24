@@ -35,6 +35,7 @@ describe('Verify from Superadmin able to see Impersonate user option in popover 
 
 		//Verify targeted user, user management table has the data
 		cy.dashboardMenu('My Account');
+
 		cy.get('[data-testid="form-control-input-firstName"]').should(
 			'have.value',
 			impersonationdata[0].impersonation.fnamelname.split(' ')[0]

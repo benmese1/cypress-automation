@@ -6,7 +6,7 @@ describe('Verify no access to My Org for fleetmanager', () => {
 		cy.loginWithOutAuthenticator(Cypress.env('FleetmanagerUsername'), Cypress.env('FleetmanagerPassword'), {
 			cacheSession: false,
 		});
-		cy.authenticator(Cypress.env('SupervisorMFA'));
+		cy.authenticator(Cypress.env('FleetMFA'));
 		cy.waitForLoad();
 		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
