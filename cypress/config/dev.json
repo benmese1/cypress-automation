@@ -15,8 +15,8 @@
 		"graphQL_uri": "https://3ghp6k24hjaxpciqgvmyjwx33m.appsync-api.us-west-2.amazonaws.com/graphql",
 		"cognito_uri": "https://cognito-idp.us-west-2.amazonaws.com",
 
-		"SuperadminUsername": "test1",
-		"SuperadminPassword": "Test@!@345",
+		"SuperadminUsername": "ROKINON",
+		"SuperadminPassword": "Test@123",
 		"ClientadminUsername": "maniusps",
 		"ClientadminPassword": "Test@123",
 		"EquipmentmanagerUsername": "Equipment-manager",

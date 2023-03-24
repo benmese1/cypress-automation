@@ -9,12 +9,12 @@
 			"Phonenumber": "9876543210"
 		},
 		"edituser": {
-			"UserName": "user_1423",
-			"FirstName": "MuserJr",
-			"LastName": "phillip",
-			"Parentorg": "FEDEX",
+			"UserName": "testdelete",
+			"FirstName": "test",
+			"LastName": "delete",
+			"Parentorg": "Phillips Connect",
 			"Timezone": "Mountain Standard (GMT-7)",
-			"Role": "Customer Service",
+			"Role": "Client Admin",
 			"Phonenumber": "9876543211"
 		},
 		"searchData": {
