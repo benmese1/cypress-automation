@@ -1,12 +1,12 @@
-// API test for the find all assets by generating JWT on the fly : Dev only
+// API test for the find all assets by generating JWT on the fly
 /// <reference types="cypress" />
 describe('find all Assets api tests1', () => {
 	let cookieValue;
 	beforeEach(() => {
 		cy.generateAPIToken();
-		cy.getCookie('apitoken').then(cookie => {
-			cookieValue = cookie.value
-		})
+		cy.getCookie('apitoken').then((cookie) => {
+			cookieValue = cookie.value;
+		});
 	});
 	it(
 		'Send an API request to find all Assets',
@@ -44,5 +44,6 @@ describe('find all Assets api tests1', () => {
 				expect(res.body.data.findAssets[0]).to.have.property('name');
 				cy.log(res.body);
 			});
-		});
+		}
+	);
 });
