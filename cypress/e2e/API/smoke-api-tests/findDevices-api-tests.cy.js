@@ -1,6 +1,6 @@
-// API test for the find all Organizations by generating JWT on the fly
+// API test for the find all devices by generating JWT on the fly
 /// <reference types="cypress" />
-describe('find all Organizations api tests1', () => {
+describe('find all Devices api tests1', () => {
 	let cookieValue;
 	beforeEach(() => {
 		cy.generateAPIToken();
@@ -9,7 +9,7 @@ describe('find all Organizations api tests1', () => {
 		});
 	});
 	it(
-		'Send an API request to find all Organizations',
+		'Send an API request to find all Devices',
 		{
 			// Multiple attempts as the API is intermittent to respond at once
 			retries: {
@@ -20,28 +20,28 @@ describe('find all Organizations api tests1', () => {
 		() => {
 			// https://on.cypress.io/request
 			// Method and URI to be specified here along with query and path params
-			// GraphQL query to findOrganizations
+			// GraphQL query to findDevices
 			const query = `
-		 query MyQuery {
-			findOrgs {
-			  name
-			  description
-			  brand
-			  org_key
-			  type
-			  asset_count
-			  device_count
-			  time_zones
-			  distance_unit_preference
-			  added_date
-			  updated_date
-			  added_by
-			  updated_by
-			  account_number
-			  parent_org_id
+		query MyQuery {
+			findDevices {
+			imei
+			assets_id
+			asset_name
+			dev_id
+			added_dt
+			added_date
+			updated_date
+			added_by
+			prd_cde
+			serial_num
+			device_type
+			carrier
+			box_id
+			terminated
+			status
 			}
-		  }`;
-
+		}
+		   `;
 			cy.request({
 				method: 'POST',
 				url: Cypress.env('graphQL_uri'),
@@ -52,7 +52,7 @@ describe('find all Organizations api tests1', () => {
 				body: { query },
 			}).then((res) => {
 				expect(res.status).to.eq(200);
-				expect(res.body.data.findOrgs[0]).to.have.property('name');
+				expect(res.body.data.findDevices[0]).to.have.property('imei');
 				cy.log(res.body);
 			});
 		}

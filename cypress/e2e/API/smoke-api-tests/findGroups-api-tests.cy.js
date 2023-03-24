@@ -1,42 +1,27 @@
-// API test for the find all Groups by generating JWT on the fly : Dev only
+// API test for the find all groups by generating JWT on the fly
 /// <reference types="cypress" />
-
-it(
-	'Send an API request to find all Groups',
-	{
-		// Multiple attempts as the API is intermittent to respond at once
-		retries: {
-			runMode: 2,
-			openMode: 2,
-		},
-	},
-	() => {
-		// https://on.cypress.io/request
-		// Method and URI to be specified here along with query and path params
-
-		cy.request({
-			method: 'POST',
-			url: Cypress.env('cognito_uri'),
-			headers: {
-				'X-Amz-Target': Cypress.env('X-Amz-Target'),
-				'Content-Type': Cypress.env('Content-Type'),
-			},
-			body: {
-				AuthFlow: Cypress.env('AuthFlow'),
-				ClientId: Cypress.env('ClientId'),
-				AuthParameters: { USERNAME: Cypress.env('TESTusername'), PASSWORD: Cypress.env('TESTpassword') },
-			},
-		}).should((response) => {
-			expect(response.status).to.eq(200);
-			expect(response.body.AuthenticationResult).to.have.property('IdToken');
-			expect(response.body.AuthenticationResult).to.have.property('ExpiresIn').to.eq(3600);
-			// Token is stored and will be consumed in graphQL API call
-			global.token = response.body.AuthenticationResult.IdToken;
-			cy.log('Token = ' + token);
+describe('find all groups api tests1', () => {
+	let cookieValue;
+	beforeEach(() => {
+		cy.generateAPIToken();
+		cy.getCookie('apitoken').then((cookie) => {
+			cookieValue = cookie.value;
 		});
-
-		// GraphQL query to findGroups
-		const query = `
+	});
+	it(
+		'Send an API request to find all groups',
+		{
+			// Multiple attempts as the API is intermittent to respond at once
+			retries: {
+				runMode: 2,
+				openMode: 2,
+			},
+		},
+		() => {
+			// https://on.cypress.io/request
+			// Method and URI to be specified here along with query and path params
+			// GraphQL query to findGroups
+			const query = `
 		query MyQuery {
 			findGroups {
 			  groupName
@@ -44,20 +29,20 @@ it(
 			}
 		  }
 		  
-		 `;
-
-		cy.request({
-			method: 'POST',
-			url: Cypress.env('graphQL_uri'),
-			headers: {
-				Authorization: global.token,
-				'Content-Type': 'application/json',
-			},
-			body: { query },
-		}).then((res) => {
-			expect(res.status).to.eq(200);
-			expect(res.body.data.findGroups[0]).to.have.property('groupName');
-			cy.log(res.body);
-		});
-	}
-);
+		`;
+			cy.request({
+				method: 'POST',
+				url: Cypress.env('graphQL_uri'),
+				headers: {
+					Authorization: cookieValue,
+					'Content-Type': 'application/json',
+				},
+				body: { query },
+			}).then((res) => {
+				expect(res.status).to.eq(200);
+				expect(res.body.data.findGroups[0]).to.have.property('groupName');
+				cy.log(res.body);
+			});
+		}
+	);
+});
