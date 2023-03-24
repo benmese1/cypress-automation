@@ -4,7 +4,7 @@
 		"MFAenabled": false,
 		"username": "qa_automation",
 		"password": "rN57ytdZFrvVbwlBSPc0$",
-		"client_id": "6j2mbpt4dcv207qikq9b4ph47c",
+		"client_id": "6j2mbpt4dcv207qikq9b4ph47c", 
 		"TESTusername": "test1",
 		"TESTpassword": "Test@!@345",
 		"screenshotsFolder": "./cypress/screenshots",
