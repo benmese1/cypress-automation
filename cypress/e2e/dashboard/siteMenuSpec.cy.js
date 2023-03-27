@@ -1,7 +1,7 @@
 // @team2
 describe('Side menu test verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false }).waitForLoad();
+		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: true }).waitForLoad();
 	});
 
 	it('verify the header logo and side menu after clicking on the menu bar', () => {
