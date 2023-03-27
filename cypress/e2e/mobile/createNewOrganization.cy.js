@@ -10,7 +10,7 @@ describe('Create New Organization management', () => {
 			} else {
 				cy.viewport(size);
 			}
-			cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
+			cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true });
 			cy.waitForLoad();
 			cy.get("[aria-label='account of current user']").should('be.visible');
 			cy.dashboardMenu('My Organization');

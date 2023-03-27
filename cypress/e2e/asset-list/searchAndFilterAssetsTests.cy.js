@@ -4,7 +4,7 @@ import filterData from '../../fixtures/assetfilter.json';
 
 describe('Search and filter assets', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true });
 		cy.waitForLoad().openAssetsList();
 	});
 

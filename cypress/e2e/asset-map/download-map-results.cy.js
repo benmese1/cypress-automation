@@ -4,7 +4,7 @@ const dayjs = require('dayjs');
 
 describe('Verify and download the map results as excel and csv file', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset Map');
 	});

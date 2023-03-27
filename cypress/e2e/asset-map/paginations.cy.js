@@ -1,7 +1,7 @@
 // @team1
 describe('Verify that pagination works for asset list', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset Map')
 			.waitForLoad();

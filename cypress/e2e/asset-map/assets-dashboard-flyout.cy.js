@@ -1,7 +1,7 @@
 // @team1
 describe('Click on the asset dashboard flyout ', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset Map');
 	});

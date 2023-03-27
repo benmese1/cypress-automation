@@ -3,7 +3,7 @@ const dayjs = require('dayjs');
 
 describe('Asset Battery Chart View Verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset List');
 		cy.viewport(1280, 1024);
