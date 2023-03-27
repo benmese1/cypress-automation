@@ -1,6 +1,6 @@
-// API test for the find all devices by generating JWT on the fly
+// API test for the create device by generating JWT on the fly
 /// <reference types="cypress" />
-describe('find all Devices api tests1', () => {
+describe('Create device api tests', () => {
 	let cookieValue;
 	let imeiValue;
 	beforeEach(() => {
@@ -10,7 +10,7 @@ describe('find all Devices api tests1', () => {
 		});
 	});
 	it(
-		'Send an API request to find all Devices',
+		'Send an API request to create device',
 		{
 			// Multiple attempts as the API is intermittent to respond at once
 			retries: {
