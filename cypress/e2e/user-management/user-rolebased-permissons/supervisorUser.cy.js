@@ -1,12 +1,13 @@
 // @team4
-import org from '../../fixtures/createorg.json';
+import org from '../../../fixtures/createorg.json';
 let randomnumber = Math.floor(Math.random() * 10000);
 
 describe('Verify view access to Usermanagement page for supervisor role', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('SupervisorUsername'), Cypress.env('SupervisorPassword'), {
+		cy.loginWithOutAuthenticator(Cypress.env('SupervisorUsername'), Cypress.env('SupervisorPassword'), {
 			cacheSession: false,
-		}).waitForLoad();
+		});
+		cy.authenticator(Cypress.env('SupervisorMFA'));
 		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 

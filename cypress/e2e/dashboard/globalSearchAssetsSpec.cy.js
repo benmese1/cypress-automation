@@ -1,7 +1,7 @@
 // @team2
 describe('Global "Assets" Search verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
 	});
 
 	it('Assets option can be selected for global search', () => {
@@ -18,7 +18,7 @@ describe('Global "Assets" Search verification', () => {
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Assets Search when not existing search term typed', () => {
+	it('Suggestions should not be displayed for Global Assets Search when not existing search term typed',  () => {
 		cy.globalSearch('Assets', 'NOT_EXISTS', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
@@ -33,17 +33,17 @@ describe('Global "Assets" Search verification', () => {
 		cy.url().should('include', '/map');
 
 		// Wait for map load
-		cy.wait(1000);
+		cy.wait(4000);
 		cy.get('#assets-count').should('contain.text', '0');
 	});
 
-	it('Global Asset Search by existing "Asset Id"', () => {
+	it('Global Asset Search by existing "Asset Nickname"', () => {
 		cy.globalSearch('Assets', 'CFQU52');
 
 		cy.url().should('include', '/map');
 
 		// Wait for map load
-		cy.wait(2000);
+		cy.wait(4000);
 		cy.get('#assets-count').then(($val) => {
 			expect(parseInt($val.text())).to.be.gte(1);
 		});

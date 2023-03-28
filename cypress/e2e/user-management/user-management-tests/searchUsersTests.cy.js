@@ -1,5 +1,5 @@
 // @team4
-import userdata from '../../fixtures/createuser.json';
+import userdata from '../../../fixtures/createuser.json';
 describe('Search functionality in User management', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {

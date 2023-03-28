@@ -1,7 +1,7 @@
 // @team2
 describe('Landing page view test verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
+		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: true });
 		cy.waitForLoad();
 	});
 

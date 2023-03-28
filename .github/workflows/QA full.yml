@@ -1,7 +1,7 @@
 name: QA Full Regression
 on:
   schedule:
-    - cron: '30 8 * * *'
+    - cron: "30 8 * * *"
 
   workflow_dispatch:
     inputs:
@@ -9,7 +9,7 @@ on:
         description: 'Enter specifications in format:
           --spec "cypress/e2e"'
         required: false
-        default: ''
+        default: ""
         type: string
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
       - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: '18.2'
+          node-version: "18.2"
 
       - name: Install Node modules
         run: npm install
@@ -38,7 +38,7 @@ jobs:
         run: npx cypress run --env fileConfig=qa ${{ github.event.inputs.spec }}
         continue-on-error: true
 
-      - name: 'Upload test results'
+      - name: "Upload test results"
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
@@ -46,7 +46,7 @@ jobs:
           path: cypress/results/
           retention-days: 30
 
-      - name: 'Upload screenshots'
+      - name: "Upload screenshots"
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
@@ -58,12 +58,11 @@ jobs:
     name: xray result submittal
     runs-on: windows-latest
     needs: build-project
-    steps: 
-
+    steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: 'download test results'
+      - name: "download test results"
         if: ${{ always() }}
         uses: actions/download-artifact@v3
         with:
@@ -82,3 +81,27 @@ jobs:
           # testExecKey: "PRJIND-2272"
           projectKey: "PRJIND"
           failOnImportError: true
+
+  report-project:
+    name: send results by email
+    runs-on: windows-latest
+    needs: release-project
+    steps:
+      - name: Send mail
+        if: always()
+        uses: dawidd6/action-send-mail@v2
+        with:
+          # mail server settings
+          server_address: smtp.gmail.com
+          server_port: 465
+          # user credentials
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          # email subject
+          subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+          # email body as text
+          body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+          # comma-separated string, send email to
+          to: kkaiser1@phillips-connect.com
+          # from email name
+          from: github actions

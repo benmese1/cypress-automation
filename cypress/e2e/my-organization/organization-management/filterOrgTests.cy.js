@@ -1,5 +1,5 @@
 // @team4
-import filterData from '../../fixtures/orgsfilter.json';
+import filterData from '../../../fixtures/orgsfilter.json';
 
 describe('Filter Organizations', () => {
 	beforeEach(() => {

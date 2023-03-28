@@ -3,7 +3,7 @@ import searchData from '../../fixtures/globalsearch.json';
 
 describe('Global "Devices" Search verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
 	});
 
 	it('Device option can be selected for global search', () => {
@@ -20,10 +20,10 @@ describe('Global "Devices" Search verification', () => {
 	});
 
 	it('Suggestions should not be displayed for Global Search when less than 3 characters typed', () => {
-		cy.globalSearch('Devices', 'A', false);
+		cy.globalSearch('Devices', 'S', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 
-		cy.globalSearch('Devices', 'AU', false);
+		cy.globalSearch('Devices', 'SP', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
@@ -33,8 +33,8 @@ describe('Global "Devices" Search verification', () => {
 	});
 
 	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed', () => {
-		cy.globalSearch('Devices', 'AUT', false);
-		cy.get('[role="listbox"] li span').first().should('contain.text', 'AUT');
+		cy.globalSearch('Devices', 'SPI', false);
+		cy.get('[role="listbox"] li span').first().should('contain.text', 'SPI');
 	});
 
 	it('"Keep typing" is displayed when Global Search is performed for less than 3 characters typed', () => {

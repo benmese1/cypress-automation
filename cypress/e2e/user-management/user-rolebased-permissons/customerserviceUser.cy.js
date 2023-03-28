@@ -1,12 +1,13 @@
 // @team4
-import org from '../../fixtures/createorg.json';
 let randomnumber = Math.floor(Math.random() * 10000);
 
 describe('Verify no access to Usermanagement page for Customerservice', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('CustomerserviceUsename'), Cypress.env('CustomerservicePassword'), {
+		cy.loginWithOutAuthenticator(Cypress.env('CustomerserviceUsername'), Cypress.env('CustomerservicePassword'), {
 			cacheSession: false,
-		}).waitForLoad();
+		});
+		cy.authenticator(Cypress.env('CustomerMFA'));
+		cy.waitForLoad();
 		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 

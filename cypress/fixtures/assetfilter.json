@@ -3,8 +3,8 @@
 		{
 			"columnname": "Company Name",
 			"operator": "contains",
-			"value": "Acm",
-			"datafield": "organization"
+			"value": "Werner Enterprises",
+			"datafield": "org_name"
 		},
 		{
 			"columnname": "Asset ID",

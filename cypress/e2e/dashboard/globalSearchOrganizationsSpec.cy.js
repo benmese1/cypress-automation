@@ -3,7 +3,7 @@ import searchData from '../../fixtures/globalsearch.json';
 
 describe('Global "Organizations" Search verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
 	});
 
 	it('Organizations option can be selected for global search', () => {
@@ -22,10 +22,10 @@ describe('Global "Organizations" Search verification', () => {
 	});
 
 	it('Suggestions should not be displayed for Global Search when less than 3 characters typed', () => {
-		cy.globalSearch('Organizations', 'R', false);
+		cy.globalSearch('Organizations', 'F', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 
-		cy.globalSearch('Organizations', 'Re', false);
+		cy.globalSearch('Organizations', 'Fl', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
@@ -35,8 +35,8 @@ describe('Global "Organizations" Search verification', () => {
 	});
 
 	it('Suggestions should be displayed for Global Search when 3 characters of existing term typed', () => {
-		cy.globalSearch('Organizations', 'Ret', false);
-		cy.get('[role="listbox"] li span').first().should('contain.text', 'Ret');
+		cy.globalSearch('Organizations', 'Fle', false);
+		cy.get('[role="listbox"] li span').first().should('contain.text', 'Fle');
 	});
 
 	it('"Keep typing" is displayed when Global Search is performed for less than 3 characters typed', () => {
@@ -62,15 +62,15 @@ describe('Global "Organizations" Search verification', () => {
 	});
 
 	it('The "Recent Search" item can be removed from List', () => {
-		cy.globalSearch('Organizations', 'Retai');
+		cy.globalSearch('Organizations', 'Fleet');
 		cy.url().should('include', '/organizations');
 
 		// Wait for table loading
 		cy.get('[role="row"]').should('have.length.gt', 1);
 
-		cy.get('[data-testid="items-list-search-input"]').should('have.value', 'Retai').wait(1000);
+		cy.get('[data-testid="items-list-search-input"]').should('have.value', 'Fleet').wait(1000);
 		cy.get('[data-rowindex]').each(($row) => {
-			cy.wrap($row).should('contain.text', 'Retai');
+			cy.wrap($row).should('contain.text', 'Fleet');
 		});
 
 		//get back to Landing page and verify 'Recent searches' list includes search term
@@ -78,7 +78,7 @@ describe('Global "Organizations" Search verification', () => {
 		cy.get('[data-testid="selector"] [role="button"]').click();
 		cy.get('[data-testid="global-search-select-item-Organizations"]').click();
 		cy.get('[data-testid="selector-input"] input').first().click();
-		cy.get('[role="listbox"] li span').first().should('have.text', 'Retai');
+		cy.get('[role="listbox"] li span').first().should('have.text', 'Fleet');
 
 		//remove Recent Search item
 		cy.get('[role="listbox"] button').click();
@@ -99,7 +99,7 @@ describe('Global "Organizations" Search verification', () => {
 		});
 	});
 
-	searchData.orgasnizations.forEach((search) => {
+	searchData.organizations.forEach((search) => {
 		it(`Global Search by existing "${search.option}"'`, () => {
 			//select 'Organizations' option on Global search and type search term
 			cy.globalSearch('Organizations', search.term);

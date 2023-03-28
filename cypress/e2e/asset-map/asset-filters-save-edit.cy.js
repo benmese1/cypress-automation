@@ -1,12 +1,12 @@
 // @team1
 describe('Verify and search assets using filters such as asset tags, asset search and gps signal', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset Map');
 	});
 
-	it('verify and view asset details by saving editing and renaming asset filters', () => {
+	it('verify and view asset details by saving editing and renaming asset filters', { tags: ['@map'] }, () => {
 		// click on status filter
 		cy.get('[data-testid="filter-item-Status"]').click();
 

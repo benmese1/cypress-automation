@@ -3,7 +3,7 @@ const pages = ['Asset List', 'Devices', 'My Organization', 'User Management'];
 
 describe('Header view test verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false }).waitForLoad();
+		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: true }).waitForLoad();
 	});
 
 	pages.forEach((page) => {

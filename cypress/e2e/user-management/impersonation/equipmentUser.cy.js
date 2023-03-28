@@ -1,11 +1,13 @@
 // @team4
-import impersonationdata from '../../fixtures/impersonation.json';
+import impersonationdata from '../../../fixtures/impersonation.json';
 
 describe('Login with Equipment manager user and Verify Not Exists of impersonate option', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('EquipmentmanagerUsername'), Cypress.env('EquipmentmanagerPassword'), {
+		cy.loginWithOutAuthenticator(Cypress.env('EquipmentmanagerUsername'), Cypress.env('EquipmentmanagerPassword'), {
 			cacheSession: false,
-		}).waitForLoad();
+		});
+		cy.authenticator(Cypress.env('EquipmentMFA'));
+		cy.waitForLoad();
 		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 

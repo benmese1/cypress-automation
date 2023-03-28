@@ -3,7 +3,7 @@ import assets from '../../fixtures/createasset.json';
 
 describe('Asset Management page search tests', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset List');
 	});
@@ -41,7 +41,7 @@ describe('Asset Management page search tests', () => {
 		});
 	});
 
-	it.only('Verify Local Search when less 3 characters of existing term are typed', () => {
+	it('Verify Local Search when less 3 characters of not existing term are typed', () => {
 		cy.searchAssets('N');
 		cy.get('[data-rowindex]').should('have.length.gte', 5);
 		cy.searchAssets('NN');

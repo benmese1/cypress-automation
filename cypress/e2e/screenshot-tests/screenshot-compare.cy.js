@@ -1,7 +1,7 @@
 describe('comparing two screenshots for difference at the pixel level', () => {
 	beforeEach(() => {
 		// logs in with test1 username and password from config folder files
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
 	});
 
 	it(`compares the same page screenshot taken at two different times`, () => {

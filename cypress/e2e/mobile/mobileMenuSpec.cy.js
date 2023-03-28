@@ -1,6 +1,6 @@
 describe('Mobile Asset Management View verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
+		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: true });
 	});
 
 	it('Iphone portrait view', () => {

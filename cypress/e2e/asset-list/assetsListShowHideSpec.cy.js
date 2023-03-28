@@ -1,12 +1,12 @@
 // @team2
 describe('Asset list table view tests', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset List');
 	});
 
-	it('validate hide/show column in Asset list table', () => {
+	it('Validate hide/show column in Asset list table', () => {
 		cy.get('[role="columnheader"][aria-label="Product Name"]').should('be.visible');
 
 		cy.get('[role="columnheader"][aria-label="Product Name"] [data-testid="TripleDotsVerticalIcon"]')

@@ -4,9 +4,10 @@ let randomnumber = Math.floor(Math.random() * 10000);
 
 describe('View and Edit Org for supervisor role', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('SupervisorUsername'), Cypress.env('SupervisorPassword'), {
+		cy.loginWithOutAuthenticator(Cypress.env('SupervisorUsername'), Cypress.env('SupervisorPassword'), {
 			cacheSession: false,
 		});
+		cy.authenticator(Cypress.env('SupervisorMFA'));
 		cy.waitForLoad();
 		cy.get("[aria-label='account of current user']").should('be.visible');
 	});

@@ -4,14 +4,14 @@ import assets from '../../fixtures/createasset.json';
 
 describe('Asset Summary Section Verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset List');
 	});
 
 	it('When Solar Amparage is null than no Solar field is displayed', () => {
-		cy.searchAssets('368428');
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+		cy.searchAssets('377693');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.expandDrawerSection('Summary');
 
 		cy.get('#details-summary p').should('not.contain', 'Solar');
@@ -83,8 +83,8 @@ describe('Asset Summary Section Verification', () => {
 			{ name: 'Solar', value: /^[+-]?[0-9]*[.]?[0-9] Amps+$/ },
 		];
 
-		cy.searchAssets('377707');
-		cy.openAsset('Werner Enterprises, Inc.', 'Asset ID');
+		cy.searchAssets('378343');
+		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.wait(2000);
 		// Verify the following fields have correct values
 

@@ -11,6 +11,7 @@ function getConfigurationByFile(file) {
 
 export default defineConfig({
 	chromeWebSecurity: false,
+	preserveOnce: 'sessionCookie',
 	fixturesFolder: 'cypress/fixtures',
 	videosFolder: 'cypress/videos',
 	downloadsFolder: 'cypress/downloads',

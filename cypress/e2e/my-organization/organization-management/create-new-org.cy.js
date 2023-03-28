@@ -1,11 +1,15 @@
 // @team4
-import org from '../../fixtures/createorg.json';
+import org from '../../../fixtures/createorg.json';
 let randomnumber = Math.floor(Math.random() * 10000);
 
 describe('Create New Organization management', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
-		cy.waitForLoad().get("[aria-label='account of current user']").should('be.visible');
+		cy.loginWithOutAuthenticator(Cypress.env('SuperadminUsername'), Cypress.env('SuperadminPassword'), {
+			cacheSession: false,
+		});
+		cy.authenticator(Cypress.env('SuperadminMFA'));
+		cy.waitForLoad();
+		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 
 	it('Click on Create and verify the newly organization created', () => {

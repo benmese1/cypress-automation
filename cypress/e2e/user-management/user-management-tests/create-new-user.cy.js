@@ -1,11 +1,15 @@
 // @team4
-import userdata from '../../fixtures/createuser.json';
+import userdata from '../../../fixtures/createuser.json';
 let randomnumber = Math.floor(Math.random() * 10000);
 
 describe('Create New User in User management', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
-		cy.waitForLoad().get("[aria-label='account of current user']").should('be.visible');
+		cy.loginWithOutAuthenticator(Cypress.env('SuperadminUsername'), Cypress.env('SuperadminPassword'), {
+			cacheSession: false,
+		});
+		cy.authenticator(Cypress.env('SuperadminMFA'));
+		cy.waitForLoad();
+		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 
 	it('Navigate to User Management and Create new user', () => {

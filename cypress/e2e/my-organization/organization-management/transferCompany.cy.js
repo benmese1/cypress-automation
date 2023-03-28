@@ -1,13 +1,19 @@
 // @team4
-import org from '../../fixtures/createorg.json';
+import org from '../../../fixtures/createorg.json';
 let randomnumber = Math.floor(Math.random() * 10000);
 let suborgrandomnumber = Math.floor(Math.random() * 10000);
 
 describe('Organization management - Transfer Company', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('clientadminusername_Acme'), Cypress.env('clientadminpassword_Acme'), {
-			cacheSession: false,
-		}).waitForLoad();
+		cy.loginWithOutAuthenticator(
+			Cypress.env('TransferClientadminUsername'),
+			Cypress.env('TransferClientadminPassword'),
+			{
+				cacheSession: false,
+			}
+		);
+		cy.authenticator(Cypress.env('TransferClientMFA'));
+		cy.waitForLoad();
 		cy.get("[aria-label='account of current user']").should('be.visible');
 		// Click Organization Management
 		cy.dashboardMenu('My Organization');

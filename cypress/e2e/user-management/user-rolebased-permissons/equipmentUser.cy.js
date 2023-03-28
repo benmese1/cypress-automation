@@ -1,12 +1,13 @@
 // @team4
-import org from '../../fixtures/createorg.json';
 let randomnumber = Math.floor(Math.random() * 10000);
 
 describe('Verify no access to Usermanagement page for Equipmentmanager', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('EquipmentmanagerUsername'), Cypress.env('EquipmentmanagerPassword'), {
+		cy.loginWithOutAuthenticator(Cypress.env('EquipmentmanagerUsername'), Cypress.env('EquipmentmanagerPassword'), {
 			cacheSession: false,
-		}).waitForLoad();
+		});
+		cy.authenticator(Cypress.env('EquipmentMFA'));
+		cy.waitForLoad();
 		cy.get("[aria-label='account of current user']").should('be.visible');
 	});
 
