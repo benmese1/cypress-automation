@@ -68,8 +68,8 @@ Cypress.Commands.add('authenticator', (securitykey) => {
 
 function getMFACode(securitykey) {
 	let code = otplib.authenticator.generate(securitykey);
-	return code
-};
+	return code;
+}
 
 /**
  * Generates API token and stores in cookie for 1hr
@@ -122,20 +122,19 @@ Cypress.Commands.add('generateAPIToken', () => {
 						expect(response.body.AuthenticationResult).to.have.property('IdToken');
 						expect(response.body.AuthenticationResult).to.have.property('ExpiresIn').to.eq(3600);
 						// Token is stored and will be consumed in graphQL API call
-						cy.setCookie('apitoken', response.body.AuthenticationResult.IdToken, { expires: 3600 })
-						cy.getCookie('apitoken').should('exist')
+						cy.setCookie('apitoken', response.body.AuthenticationResult.IdToken, { expires: 3600 });
+						cy.getCookie('apitoken').should('exist');
 					});
-				}
-				else {
+				} else {
 					expect(response.body.AuthenticationResult).to.have.property('IdToken');
 					expect(response.body.AuthenticationResult).to.have.property('ExpiresIn').to.eq(3600);
-					cy.setCookie('apitoken', response.body.AuthenticationResult.IdToken, { expires: 3600 })
-					cy.getCookie('apitoken').should('exist')
+					cy.setCookie('apitoken', response.body.AuthenticationResult.IdToken, { expires: 3600 });
+					cy.getCookie('apitoken').should('exist');
 					// cy.log('Token = ' + cy.getCookie('apitoken').value);
 				}
 			});
 		}
-	})
+	});
 });
 
 /**
@@ -190,8 +189,7 @@ Cypress.Commands.add('globalSearch', (searchOption, searchTerm, isSubmit) => {
 		cy.get('[data-testid="selector-input"] input')
 			.first()
 			.clear()
-			.type(searchTerm + '{enter}', { delay: 100 },
-				{ force: true });
+			.type(searchTerm + '{enter}', { delay: 100 }, { force: true });
 	} else {
 		cy.get('[data-testid="selector-input"] input').first().clear().type(searchTerm);
 	}
@@ -284,6 +282,14 @@ Cypress.Commands.add('safeSelect', (locator, value, isXpath) => {
 		isXpath ? cy.xpath(locator).realClick() : cy.get(locator).realClick().wait(500);
 		cy.get(`[data-value="${value}"]`).should('be.visible').realClick().wait(500);
 	}
+});
+
+/**
+ * Returns a random integer number of length - give length as integer parameter
+ */
+
+Cypress.Commands.add('generateRandomNumber', (length) => {
+	return Math.floor(Math.pow(10, length - 1) + Math.random() * 9 * Math.pow(10, length - 1));
 });
 
 /**
@@ -383,7 +389,6 @@ Cypress.Commands.add('expandDrawerSection', (sectionName) => {
 			});
 	});
 });
-
 
 /**
  * Filter the organizations
