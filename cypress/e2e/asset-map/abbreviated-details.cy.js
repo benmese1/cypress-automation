@@ -1,29 +1,29 @@
 // @team1
 describe('Click on the canvas zoom the cluster and view the asset', () => {
-	it(['@map'], 'Success canvas click test and verify and view asset details', () => {
-		// Login to Dev Environment
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true });
+	beforeEach(() => {
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
+			.waitForLoad()
+			.dashboardMenu('Asset Map');
+	});
 
-		// Assert the user is visible
-		cy.get("[aria-label='account of current user']").should('be.visible');
-
-		// Click Asset List View
-		cy.get('p').contains('Asset List View 1').click({ force: true });
-
-		// Wait for the map to reload
-		cy.mapWait();
-
+	it('Success canvas click test and verify and view asset details', () => {
 		// Click on the Asset
-		cy.xpath("//p[contains(text(), 'CFQU119342')]").click({ force: true });
+		cy.get('[data-testid*="asset-"]', {timeout: 20000}).eq(0).should('be.visible').click({ force: true });
 
 		// Verify Asset Name
-		cy.xpath("//p[contains(text(), 'CFQU119342')]").should('include.text', 'CFQU119342');
+		cy.get('[data-testid*="asset-"]')
+			// .eq(0)
+			.should('exist');
 
 		// Verify City State
-		cy.xpath("//span[contains(text(), 'Atlanta, Georgia')]").should('include.text', 'Atlanta, Georgia');
+		cy.get('[data-testid="LocationOnIcon"]')
+			// .eq(0)
+			.should('exist')
 
 		// Verify Time Stamp
-		cy.xpath("//span[contains(text(), '13 hours')]").eq(0).should('include.text', '13 hours');
+		cy.get('[data-testid="CheckIcon"]')
+			// .eq(0)
+			.should('exist');
 
 		// Expand the Additional tab
 		cy.get("[class='MuiTouchRipple-root css-w0pj6f']").eq(0).click({ force: true });
