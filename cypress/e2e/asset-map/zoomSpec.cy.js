@@ -1,7 +1,7 @@
 // @team1
 describe('Click on the canvas zoom the cluster and view the asset', () => {
 	it('Success canvas click test', () => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
+		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: true });
 		cy.get("[aria-label='account of current user']").should('be.visible');
 		cy.get('button').contains('Show map').click();
 		cy.wait(30000);

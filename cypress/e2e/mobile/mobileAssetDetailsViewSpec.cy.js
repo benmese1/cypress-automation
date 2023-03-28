@@ -7,7 +7,7 @@ const devices = [
 
 describe('Mobile Asset Management page -- details view verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false })
+		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset List');
 	});

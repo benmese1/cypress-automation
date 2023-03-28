@@ -20,9 +20,11 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 	}
 	if (cacheSession) {
 		cy.session(user, login);
+		cy.visit('/dashboard');
+		cy.contains(`Sign In as ${user}`).click({force: true});
 	} else {
 		login();
-	}
+	}	
 });
 
 /**
@@ -39,6 +41,8 @@ Cypress.Commands.add('loginWithOutAuthenticator', (user, pwd, { cacheSession = t
 	};
 	if (cacheSession) {
 		cy.session(user, login);
+		cy.visit('/dashboard');
+		cy.contains(`Sign In as ${user}`).click({force: true});
 	} else {
 		login();
 	}
@@ -63,7 +67,6 @@ Cypress.Commands.add('authenticator', (securitykey) => {
  */
 
 function getMFACode(securitykey) {
-	cy.wait(30000);
 	let code = otplib.authenticator.generate(securitykey);
 	return code
 };

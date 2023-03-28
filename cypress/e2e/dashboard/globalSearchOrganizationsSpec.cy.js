@@ -3,7 +3,7 @@ import searchData from '../../fixtures/globalsearch.json';
 
 describe('Global "Organizations" Search verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false }).waitForLoad();
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
 	});
 
 	it('Organizations option can be selected for global search', () => {

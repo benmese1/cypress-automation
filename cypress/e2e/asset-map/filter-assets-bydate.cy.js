@@ -4,7 +4,7 @@ const dayjs = require('dayjs');
 
 describe('Verify the Asset Filter by dates', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset Map');
 	});

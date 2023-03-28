@@ -4,7 +4,7 @@ import assets from '../../fixtures/createasset.json';
 
 describe('Asset Summary Section Verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset List');
 	});

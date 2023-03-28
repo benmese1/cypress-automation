@@ -1,7 +1,7 @@
 // @team3
 describe('Search and filter assets', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
+		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: true });
 		cy.waitForLoad().openDevices();
 	});
 	it('Search device ID test', () => {
