@@ -52,9 +52,9 @@ describe('find non transmitting Assets ', () => {
 				cy.log('Transmitters = ' + transmitters);
 				let nonTransmitters = assets.reduce((a, t) => a + (t.signal !== true), 0);
 				cy.log('Non Transmitters = ' + nonTransmitters);
-				const passRate = ((nonTransmitters / assets.length) * 100).toFixed(2);
-				cy.log('Pass rate = ' + passRate);
-				cy.checkWithinLimit(passRate, 10).then((flag) => {
+				const nonTransmitRate = ((nonTransmitters / assets.length) * 100).toFixed(2);
+				cy.log('Non Transmitting rate = ' + nonTransmitRate);
+				cy.checkWithinLimit(nonTransmitRate, 10).then((flag) => {
 					cy.log(flag);
 					cy.then(() => expect(flag).to.be.equal(true));
 				});
