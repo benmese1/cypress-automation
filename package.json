@@ -9,7 +9,8 @@
 		"cy:qa": "npx cypress open --env fileConfig=qa",
 		"cy:local-dev": "npx cypress run --env fileConfig=dev --headless",
 		"cy:local-qa": "npx cypress run --env fileConfig=qa --headless",
-		"cy:open": "npx cypress open",
+		"cy:folder dev": "npx cypress run --headless --env fileConfig=dev --spec cypress/e2e/asset-list/*.cy.js",
+		"cy:folder qa": "npx cypress run --headless --env fileConfig=qa --spec cypress/e2e/asset-list/*.cy.js",
 		"pretty": " prettier --write ."
 	},
 	"author": "",
