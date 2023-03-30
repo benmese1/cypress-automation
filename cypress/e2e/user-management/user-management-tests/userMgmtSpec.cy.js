@@ -2,7 +2,7 @@
 describe('User management page general tests', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
-			cacheSession: false,
+			cacheSession: true,
 		}).waitForLoad();
 		cy.get("[aria-label='account of current user']").should('be.visible');
 		// Click User Management
