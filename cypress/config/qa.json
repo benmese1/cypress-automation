@@ -15,15 +15,15 @@
 		"TESTpassword2": "Tester123@",
 		"TESTMFA2": "E7TOOOPWA53ANDW3HPXICYTK4FB5XV7FNK6GQ4HZ4UR56XTRTYHA",
 
-		"SuperadminUsername": "ROKINON",
+		"SuperadminUsername": "superadminuser",
 		"SuperadminPassword": "Test@123",
-		"SuperadminMFA": "57KESKW5SN23EHBAAUK2JDSR2QQ5L23QUCRYUMIJXZXWQOVBNQPQ",
-		"ClientadminUsername": "clientadminuser",
+		"SuperadminMFA": "7BDHNDI6UENS35N42ANJT6MU2JSZOVOHEMAPQ747RYJAPIYTMVWA",
+		"ClientadminUsername": "client-admin",
 		"ClientadminPassword": "Test@123",
-		"ClientadminMFA": "OHTVXHV2ME5PZ2U7FHM46CDCWXQWIKOLFPCEQMYCCM2P6XWHAGPQ",
-		"SupervisorUsername": "supervisoruser",
+		"ClientadminMFA": "2GPEH3ANDK7BNLFLVMTI56MHPPT2ABSFMGMIV7NPCVPNWCZBDGJQ",
+		"SupervisorUsername": "super-visor",
 		"SupervisorPassword": "Test@123",
-		"SupervisorMFA": "OB3M5BUJCPM4VQ2R4EON44DE5F47GK5NMRUP2WA5ND3BSDK3Y5KQ",
+		"SupervisorMFA": "77PLVESNUANG547JVNQRPCGE7NWBJ7GCXMN3VVSAZX7LV4QRILKA",
 		"EquipmentmanagerUsername": "equipuser",
 		"EquipmentmanagerPassword": "Test@123",
 		"EquipmentMFA": "6NT6L6DZIMF4UZLOMF5S6ZYKQQVMQY25BM5EGBUXRT6XDKCSV2XQ",
@@ -44,14 +44,13 @@
 		"X-Amz-Target": "AWSCognitoIdentityProviderService.InitiateAuth",
 		"Content-Type": "application/x-amz-json-1.1",
 		"AuthFlow": "USER_PASSWORD_AUTH",
-		"UserPoolId" : "us-west-2_9Ha6k3Ysh",
+		"UserPoolId": "us-west-2_9Ha6k3Ysh",
 		"ClientId": "7fkhb5sdufdisn6qn1bkq445je",
 		"TESTusernameAPI": "mfaautomationtest",
 		"TESTpasswordAPI": "Tester123@",
 		"TESTMFAAPI": "K5SBDBZEH6UJPHRSOWH7OFMZ57S73W2RKXTPIN4PLGQBSFNLSWIQ",
 		"ChallengeName": "SOFTWARE_TOKEN_MFA",
-		"X-Amz-Target-Auth":"AWSCognitoIdentityProviderService.RespondToAuthChallenge",
-		"Content-Type-Auth":"application/x-amz-json-1.1"
-
+		"X-Amz-Target-Auth": "AWSCognitoIdentityProviderService.RespondToAuthChallenge",
+		"Content-Type-Auth": "application/x-amz-json-1.1"
 	}
 }
