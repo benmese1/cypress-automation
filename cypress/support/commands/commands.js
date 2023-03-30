@@ -191,7 +191,7 @@ Cypress.Commands.add('globalSearch', (searchOption, searchTerm, isSubmit) => {
 			.clear()
 			.type(searchTerm + '{enter}', { delay: 100 }, { force: true });
 	} else {
-		cy.get('[data-testid="selector-input"] input').first().clear().type(searchTerm);
+		cy.get('[data-testid="selector-input"] input').first().clear().realType(searchTerm);
 	}
 });
 

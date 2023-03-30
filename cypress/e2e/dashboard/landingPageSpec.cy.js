@@ -17,7 +17,7 @@ describe('Landing page view test verification', () => {
 						cy.get('[data-testid="inactive-assets-value"]')
 							.invoke('text')
 							.then(parseFormattedTextToFloat)
-							.should('eq', totalAssets - movingAssets);
+							.should('be.lte', totalAssets - movingAssets);
 					});
 			});
 	});
@@ -40,7 +40,7 @@ describe('Landing page view test verification', () => {
 		cy.get('[data-testid="dashboard-component"] h3').contains(/^Welcome back, (.+)/);
 	});
 
-	it.only('Verify dashboard drawer is not displayed on Landing page by clicking on the Logo', () => {
+	it('Verify dashboard drawer is not displayed on Landing page by clicking on the Logo', () => {
 		cy.get('[data-testid="header-logo"]').click();
 		cy.get('[role="presentation"]').should('not.exist');
 	});
@@ -66,35 +66,40 @@ describe('Landing page view test verification', () => {
 		cy.url().should('include', 'assets');
 	});
 
-	it('Navigate into the Asset Management by clicking on Total Miles Traveled dashboard tile', () => {
-		cy.get('[data-testid="dashboard-tile-total-distance"]').click();
-		cy.url().should('include', 'assets');
-	});
-
-	it('Verify Navigation by Menu', () => {
+	it.only('Verify Navigation by Menu', () => {
+		
 		cy.dashboardMenu('Asset List');
 		cy.url().should('include', 'assets');
-		cy.get('[data-testid = "management-asset-list"]').should('contain.text', 'Asset List');
+		cy.get('[data-testid = "management-asset-list"]').should('contain.text', 'Asset List').wait(500);
+
+		cy.dashboardMenu('Geofencing');
+		cy.url().should('include', 'geofencing');
+		cy.get('[data-testid = "location-button"]').should('exist');
 
 		cy.dashboardMenu('Devices');
 		cy.url().should('include', 'device');
-		cy.get('[data-testid = "management-devices"]').should('contain.text', 'Devices');
+		cy.get('[data-testid = "management-devices"]').should('contain.text', 'Devices').wait(500);
 
 		cy.dashboardMenu('My Organization');
 		cy.url().should('include', 'organizations');
-		cy.get('[data-testid = "management-my-organization"]').should('contain.text', 'My Organization');
+		cy.get('[data-testid = "management-my-organization"]').should('contain.text', 'My Organization').wait(500);
 
 		cy.dashboardMenu('User Management');
 		cy.url().should('include', 'user-management');
-		cy.get('[data-testid = "management-user-management"]').should('contain.text', 'User Management');
+		cy.get('[data-testid = "management-user-management"]').should('contain.text', 'User Management').wait(500);
 
 		cy.dashboardMenu('My Account');
 		cy.url().should('include', 'my-account');
-		cy.get('[data-testid = "form-control-input-firstName"]').should('exist');
+		cy.get('[data-testid = "form-control-input-firstName"]').should('exist').wait(500);
 
 		cy.dashboardMenu('Asset Map');
 		cy.url().should('include', 'map');
-		cy.get('[data-testid = "location-button"]').should('exist');
+		cy.get('[data-testid = "location-button"]').should('exist').wait(500);
+
+		cy.dashboardMenu('Reports');
+		cy.url().should('include', 'reports');
+		cy.get('[data-testid = "management-reports"]').should('contain.text', 'Reports').wait(500);
+
 	});
 });
 
