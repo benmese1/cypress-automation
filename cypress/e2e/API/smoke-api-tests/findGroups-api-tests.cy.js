@@ -1,6 +1,6 @@
 // API test for the find all groups by generating JWT on the fly
 /// <reference types="cypress" />
-describe('find all groups api tests1', () => {
+describe('find all groups api tests', () => {
 	let cookieValue;
 	beforeEach(() => {
 		cy.generateAPIToken();

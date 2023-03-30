@@ -1,6 +1,6 @@
 // API test for the find all devices by generating JWT on the fly
 /// <reference types="cypress" />
-describe('find all Devices api tests1', () => {
+describe('find all Devices api tests', () => {
 	let cookieValue;
 	beforeEach(() => {
 		cy.generateAPIToken();

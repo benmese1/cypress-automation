@@ -1,6 +1,6 @@
 // API test for the find all Organizations by generating JWT on the fly
 /// <reference types="cypress" />
-describe('find all Organizations api tests1', () => {
+describe('find all Organizations api tests', () => {
 	let cookieValue;
 	beforeEach(() => {
 		cy.generateAPIToken();
