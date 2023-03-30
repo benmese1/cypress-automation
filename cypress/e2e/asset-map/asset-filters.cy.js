@@ -53,13 +53,6 @@ describe('Verify and search assets using filters such as asset tags, asset searc
 		// select the first option from dropdown
 		cy.get("[data-option-index='0']").click({ force: true });
 
-		//select the dropdown
-		cy.get("[data-testid='assets-filter__asset-tags']").type('active');
-		cy.get("[data-testid='assets-filter__asset-tags']").clear();
-
-		// select the second option
-		cy.get("[data-option-index='1']").click({ force: true });
-
 		// Assert that search by asset tags and assets found
 		cy.get('#assets-count').then(($btn) => {
 			// store the button's text
@@ -69,7 +62,6 @@ describe('Verify and search assets using filters such as asset tags, asset searc
 			}
 		});
 
-		cy.get("[data-testid='CancelIcon']").eq(0).click({ force: true });
 		cy.get("[data-testid='CancelIcon']").eq(0).click({ force: true });
 
 		// Select Product Name and Assert the filter
@@ -91,10 +83,10 @@ describe('Verify and search assets using filters such as asset tags, asset searc
 		});
 
 		// Select the GPS filter items
-		cy.get("[data-testid='filter-item-Others']").click({ force: true });
+		cy.get("[data-testid='filter-item-More']").click({ force: true });
 		// click on multiple gps filters
-		cy.get("[data-title='Active']").click({ force: true });
-		cy.get("[data-title='Lost']").click({ force: true });
+		cy.get("[data-title='Locked']").click({ force: true });
+		cy.get("[data-title='Unlocked']").click({ force: true });
 
 		// Confirm the assets matching the filter found
 		cy.get('#assets-count').then(($btn) => {
