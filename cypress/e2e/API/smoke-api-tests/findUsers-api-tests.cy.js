@@ -1,6 +1,6 @@
 // API test for the find all Users by generating JWT on the fly
 /// <reference types="cypress" />
-describe('find all Users api tests1', () => {
+describe('find all Users api tests', () => {
 	let cookieValue;
 	beforeEach(() => {
 		cy.generateAPIToken();
@@ -39,7 +39,6 @@ describe('find all Users api tests1', () => {
 		  }
 		  
 		`;
-
 			cy.request({
 				method: 'POST',
 				url: Cypress.env('graphQL_uri'),
