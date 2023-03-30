@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 // @team4
 describe('User Management page export verification', () => {
 	beforeEach(() => {
@@ -12,18 +13,15 @@ describe('User Management page export verification', () => {
 	it('Verify export button is visible and downloading CSV file', () => {
 		cy.url().should('include', '/user-management');
 		//Verify Export button visibility on the user management
-		cy.get('[aria-label="Export"]').should('be.visible').click({ force: true });
-		cy.wait(2000);
-		//From Export button verify "Download as CSV" functionality
-		cy.get('[role="menuitem"]')
-			.should('contain.text', 'Download as CSV')
-			.click({ force: true })
-			.readFile(downloadsPath + exportFilename)
-			.should('contain', csvFileHeader);
+		cy.wait(10000);
+		cy.get('button[data-testid="asset-table-toolbar-export-btn"]').should('be.visible').click({ force: true });
+		cy.get('li[role="menuitem"]').contains('Download as CSV').click({ force: true }).readFile(downloadsPath + exportFilename)
+		.should('contain', csvFileHeader);
 	});
 
 	const downloadsPath = 'cypress/downloads/';
-	const exportFilename = 'Phillips Connect.csv';
+	const currentDate = dayjs().format('MM-DD-YYYY');
+	const exportFilename = `Phillips Connect Users - ${currentDate}.csv`;
 	const csvFileHeader =
-		'Company/Sub Company,Last Name,First Name,Username,Email,Phone Number,Role,Last Login Date,Created Date,Status,Created Date,Updated Date';
+		'Company/Sub Company,Last Name,First Name,Username,Email,Phone Number,Role,Last Login Date,Status,Created Date,Updated Date';
 });
