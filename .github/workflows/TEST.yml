@@ -1,4 +1,4 @@
-name: QA Full Regression
+name: TEST for QA
 on:
   schedule:
     - cron: "30 8 * * *"
