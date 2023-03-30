@@ -34,7 +34,6 @@ jobs:
         with:
           n: 4
         env:
-          # CLIENT_ID: 584mrs4de25a4iqok485b6vhnc
           CLIENT_ID: 7fkhb5sdufdisn6qn1bkq445je
           USERNAME: test1
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
