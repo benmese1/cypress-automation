@@ -21,10 +21,10 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 	if (cacheSession) {
 		cy.session(user, login);
 		cy.visit('/dashboard');
-		cy.contains(`Sign In as ${user}`).click({force: true});
+		cy.contains(`Sign In as ${user}`).click({ force: true });
 	} else {
 		login();
-	}	
+	}
 });
 
 /**
@@ -42,7 +42,7 @@ Cypress.Commands.add('loginWithOutAuthenticator', (user, pwd, { cacheSession = t
 	if (cacheSession) {
 		cy.session(user, login);
 		cy.visit('/dashboard');
-		cy.contains(`Sign In as ${user}`).click({force: true});
+		cy.contains(`Sign In as ${user}`).click({ force: true });
 	} else {
 		login();
 	}
@@ -282,6 +282,17 @@ Cypress.Commands.add('safeSelect', (locator, value, isXpath) => {
 		isXpath ? cy.xpath(locator).realClick() : cy.get(locator).realClick().wait(500);
 		cy.get(`[data-value="${value}"]`).should('be.visible').realClick().wait(500);
 	}
+});
+
+function isNotGreaterThanZero(num) {
+	return num <= 0;
+}
+
+/**
+ * Returns true/false and check number is greater or not
+ */
+Cypress.Commands.add('checkWithinLimit', (num, value) => {
+	return num <= value;
 });
 
 /**
