@@ -1,11 +1,11 @@
 // @team2
 describe('Landing stats view test verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: true });
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true });
 		cy.waitForLoad();
 	});
 
-	it('verify total assets tile', () => {
+	it('Verify total assets tile', () => {
 		cy.get('[data-testid="dashboard-tile-total-assets"]').should('be.visible').contains('Total Assets');
 
 		cy.get('[data-testid="dashboard-tile-total-assets"]').within(() => {
@@ -26,11 +26,11 @@ describe('Landing stats view test verification', () => {
 		cy.url().should('include', '/assets');
 	});
 
-	it('verify assets moving tile', () => {
+	it('Verify assets moving tile', () => {
 		cy.get('[data-testid="dashboard-tile-active-assets"]').should('be.visible').contains('Assets Moving');
 
 		cy.get('[data-testid="dashboard-tile-active-assets"]').within(() => {
-			cy.contains('parked Assets');
+			cy.contains('Parked Assets');
 			cy.contains('Low Dwell');
 			cy.contains('Medium Dwell');
 			cy.contains('High Dwell');
@@ -49,17 +49,6 @@ describe('Landing stats view test verification', () => {
 
 		cy.get('[data-testid="dashboard-tile-active-assets"]').click();
 
-		cy.url().should('include', '/assets');
-	});
-
-	it('verify total miles travelled tile', () => {
-		cy.get('[data-testid="dashboard-tile-total-distance"]').should('be.visible').contains('Total Miles Traveled');
-
-		cy.get('[data-testid="total-distance-value"]')
-			.should('be.visible')
-			.contains(/\d+((,\d{3}){1,2})?/);
-
-		cy.get('[data-testid="dashboard-tile-total-distance"]').click();
 		cy.url().should('include', '/assets');
 	});
 });

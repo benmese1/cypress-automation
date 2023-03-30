@@ -10,7 +10,7 @@ describe('Mobile User Management View verification', () => {
 			}
 
 			cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
-				cacheSession: false,
+				cacheSession: true,
 			}).waitForLoad();
 			cy.get("[aria-label='account of current user']").should('be.visible');
 			// Click User Management
@@ -51,7 +51,7 @@ describe('Mobile User Management View verification', () => {
 			cy.get('[data-testid="btn-sub-header-action-Create New"]').click();
 			cy.get('[data-testid="text-style-wrapper"]').contains('Create User Account').should('be.visible');
 			cy.clickOutside();
-			cy.logout();
+			// cy.logout();
 		};
 	});
 });

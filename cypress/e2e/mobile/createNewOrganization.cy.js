@@ -22,7 +22,7 @@ describe('Create New Organization management', () => {
 				org[0].suborg.Timezone,
 				org[0].suborg.DistanceUnitPreference
 			);
-			cy.logout();
+			// cy.logout();
 		});
 	});
 });

@@ -49,7 +49,7 @@ describe('Global "Assets" Search verification', () => {
 		});
 
 		//Verify Search results on Map page
-		cy.get('[data-testid*="asset-"]').each(($assetButton) => {
+		cy.get('[data-testid="asset-list-container"]').find('[data-testid*="asset-"]').each(($assetButton) => {
 			cy.wrap($assetButton).should('contain.text', 'CFQU52');
 		});
 	});

@@ -2,7 +2,7 @@
 describe('Verify User management table view', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), {
-			cacheSession: false,
+			cacheSession: true,
 		}).waitForLoad();
 		cy.get("[aria-label='account of current user']").should('be.visible');
 		// Click User Management
@@ -21,7 +21,8 @@ describe('Verify User management table view', () => {
 		cy.get('[data-testid="column-header-last-login-date"]').should('be.visible');
 		cy.get('[data-testid="column-header-status"]').should('be.visible');
 		cy.get('[data-testid="column-header-created-date"]').should('be.visible');
-		cy.get('[data-testid="column-header-updated-date"]').should('be.visible');
+		cy.get('div.MuiDataGrid-virtualScroller.css-1grl8tv').scrollTo('right')
+		cy.get('[data-testid="column-header-updated-date"]', { force: true }).should('be.visible');
 	});
 
 	it('Get organization name for the associated user logged', () => {
