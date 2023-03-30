@@ -23,7 +23,7 @@ describe('Create New User in User management', () => {
 				userdata[0].user.Phonenumber,
 				userdata[0].user.Role
 			);
-			cy.logout();
+			// cy.logout();
 		});
 	});
 });
