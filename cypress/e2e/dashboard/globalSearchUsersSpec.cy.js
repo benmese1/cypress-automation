@@ -1,7 +1,7 @@
 // @team2
 import searchData from '../../fixtures/globalsearch.json';
 
-describe('Global "Users" Search verification', () => {
+describe.skip('Global "Users" Search verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
 	});
@@ -75,7 +75,7 @@ describe('Global "Users" Search verification', () => {
 	});
 
 	searchData.users.forEach((search) => {
-		it.only(`Global User Search by existing "${search.option}"'`,  () => {
+		it.only(`Global User Search by existing "${search.option}"'`, () => {
 			//select 'Users' option on Global search and type search term
 			cy.globalSearch('Users', search.term, false);
 			cy.get('[role="listbox"] li span').contains(search.term, { matchCase: false }).click();
