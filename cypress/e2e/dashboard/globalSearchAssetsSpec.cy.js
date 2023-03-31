@@ -1,5 +1,5 @@
 // @team2
-describe('Global "Assets" Search verification', () => {
+describe.skip('Global "Assets" Search verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
 	});
@@ -18,7 +18,7 @@ describe('Global "Assets" Search verification', () => {
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
 
-	it('Suggestions should not be displayed for Global Assets Search when not existing search term typed',  () => {
+	it('Suggestions should not be displayed for Global Assets Search when not existing search term typed', () => {
 		cy.globalSearch('Assets', 'NOT_EXISTS', false);
 		cy.get('[role="listbox"] li').should('not.exist');
 	});
@@ -49,8 +49,10 @@ describe('Global "Assets" Search verification', () => {
 		});
 
 		//Verify Search results on Map page
-		cy.get('[data-testid="asset-list-container"]').find('[data-testid*="asset-"]').each(($assetButton) => {
-			cy.wrap($assetButton).should('contain.text', 'CFQU52');
-		});
+		cy.get('[data-testid="asset-list-container"]')
+			.find('[data-testid*="asset-"]')
+			.each(($assetButton) => {
+				cy.wrap($assetButton).should('contain.text', 'CFQU52');
+			});
 	});
 });

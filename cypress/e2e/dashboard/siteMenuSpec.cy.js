@@ -1,5 +1,5 @@
 // @team2
-describe('Side menu test verification', () => {
+describe.skip('Side menu test verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
 	});

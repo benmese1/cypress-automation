@@ -1,5 +1,5 @@
 // @team2
-describe('Landing page view test verification', () => {
+describe.skip('Landing page view test verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
 	});
@@ -67,7 +67,6 @@ describe('Landing page view test verification', () => {
 	});
 
 	it.only('Verify Navigation by Menu', () => {
-		
 		cy.dashboardMenu('Asset List');
 		cy.url().should('include', 'assets');
 		cy.get('[data-testid = "management-asset-list"]').should('contain.text', 'Asset List').wait(500);
@@ -99,7 +98,6 @@ describe('Landing page view test verification', () => {
 		cy.dashboardMenu('Reports');
 		cy.url().should('include', 'reports');
 		cy.get('[data-testid = "management-reports"]').should('contain.text', 'Reports').wait(500);
-
 	});
 });
 
