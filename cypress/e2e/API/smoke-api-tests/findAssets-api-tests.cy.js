@@ -1,6 +1,6 @@
 // API test for the find all assets by generating JWT on the fly
 /// <reference types="cypress" />
-describe('find all Assets api tests1', () => {
+describe('find all Assets api tests', () => {
 	let cookieValue;
 	beforeEach(() => {
 		cy.generateAPIToken();

@@ -17,7 +17,7 @@ describe('Verify and search assets using filters such as asset tags, asset searc
 		cy.get('[data-testid="BookmarksIcon"]').click();
 
 		// entering name in modal box and clicking save
-		cy.get('[role="dialog"] input').type('asset filter 1', { force: true });
+		cy.get('[role="dialog"] input').eq(0).type('asset filter 1', { force: true });
 		cy.xpath('//p[contains(text(), "Save")]').click();
 
 		//verifying success popup appeared
