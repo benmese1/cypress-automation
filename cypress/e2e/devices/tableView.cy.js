@@ -1,6 +1,4 @@
-// @team3
-
-describe('Search and filter assets', () => {
+describe('updated table wiev and column', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
 		cy.waitForLoad().openDevices();

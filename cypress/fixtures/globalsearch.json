@@ -7,27 +7,27 @@
 		},
 		{
 			"option": "Last Name",
-			"term": "Kurella",
+			"term": "dev user 4249",
 			"datafield": "lastName"
 		},
 		{
 			"option": "First Name",
-			"term": "Dinesh",
+			"term": "Automation 4249",
 			"datafield": "firstName"
 		},
 		{
 			"option": "User Name",
-			"term": "test1",
+			"term": "testautomationwithmfa",
 			"datafield": "name"
 		},
 		{
 			"option": "Email",
-			"term": "modistesters@gmail.com",
+			"term": "apyd1606@gmail.com",
 			"datafield": "email"
 		},
 		{
 			"option": "Phone Number",
-			"term": "6308537982",
+			"term": "4026804245",
 			"datafield": "phoneNumber"
 		},
 		{
@@ -79,7 +79,7 @@
 		},
 		{
 			"option": "Order #",
-			"term": "AUTOOR145026",
+			"term": "SPIOH10421",
 			"datafield": "order_num"
 		},
 		{
@@ -91,13 +91,8 @@
    "organizations": [
       	{
 			"option": "Company Name",
-			"term": "Werner Enterprises",
+			"term": "Van Fleet",
 			"datafield": "name"
-		},
-      	{
-			"option": "Parent Company",
-			"term": "TATA",
-			"datafield": "parent_company"
 		},
      	{
 			"option": "Brand",

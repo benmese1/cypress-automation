@@ -1,9 +1,10 @@
 {
 	"baseUrl": "https://dev-connect1.phillips-connect.com",
 	"env": {
+		"MFAenabled": false,
 		"username": "qa_automation",
 		"password": "rN57ytdZFrvVbwlBSPc0$",
-		"client_id": "2652adm3ps89eqhr5ap54kd85i",
+		"client_id": "6j2mbpt4dcv207qikq9b4ph47c",
 		"TESTusername": "test1",
 		"TESTpassword": "Test@!@345",
 		"screenshotsFolder": "./cypress/screenshots",
@@ -11,8 +12,11 @@
 		"Content-Type": "application/x-amz-json-1.1",
 		"AuthFlow": "USER_PASSWORD_AUTH",
 		"ClientId": "6j2mbpt4dcv207qikq9b4ph47c",
-		"graphQL_uri": "https://3ghp6k24hjaxpciqgvmyjwx33m.appsync-api.us-west-2.amazonaws.com/graphql",	
+		"graphQL_uri": "https://3ghp6k24hjaxpciqgvmyjwx33m.appsync-api.us-west-2.amazonaws.com/graphql",
 		"cognito_uri": "https://cognito-idp.us-west-2.amazonaws.com",
+
+		"SuperadminUsername": "superadminuser",
+		"SuperadminPassword": "Test@123",
 		"ClientadminUsername": "maniusps",
 		"ClientadminPassword": "Test@123",
 		"EquipmentmanagerUsername": "Equipment-manager",
@@ -21,9 +25,9 @@
 		"SupervisorPassword": "Super@123",
 		"FleetmanagerUsername": "mb_fleetmanager",
 		"FleetmanagerPassword": "Fleet@123",
-		"CustomerserviceUsename": "customerservice",
+		"CustomerserviceUsername": "customerservice",
 		"CustomerservicePassword": "Test@123",
-		"clientadminusername_Acme": "Acme_clientadmin",
-		"clientadminpassword_Acme": "P@ssword@123"
+		"TransferClientadminUsername": "Acme_clientadmin",
+		"TransferClientadminPassword": "P@ssword@123"
 	}
 }

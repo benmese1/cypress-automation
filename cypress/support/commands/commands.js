@@ -1,5 +1,7 @@
+import * as otplib from 'otplib';
+
 /**
- * Login in to application
+ * Login in to application with default username and two-factor authentication
  * @param {string} username
  * @param {string} password
  */
@@ -9,12 +11,130 @@ Cypress.Commands.add('login', (user, pwd, { cacheSession = true } = {}) => {
 		cy.get('.visible-lg #signInFormUsername').type(user, { force: true });
 		cy.get('.visible-lg #signInFormPassword').type(pwd, { force: true });
 		cy.get('.visible-lg .btn-primary').click({ force: true });
+		if (Cypress.env('MFAenabled')) {
+			const securitykey = Cypress.env('TESTMFA');
+			let code = getMFACode(securitykey);
+			cy.get('input[id=totpCodeInput]').type(code);
+			cy.get('#signInButton').click();
+		}
 	};
 	if (cacheSession) {
 		cy.session(user, login);
+		cy.visit('/dashboard');
+		cy.contains(`Sign In as ${user}`).click({ force: true });
 	} else {
 		login();
 	}
+});
+
+/**
+ * Login in to application with out two-factor authentication
+ * @param {string} username
+ * @param {string} password
+ */
+Cypress.Commands.add('loginWithOutAuthenticator', (user, pwd, { cacheSession = true } = {}) => {
+	const login = () => {
+		cy.visit('/login');
+		cy.get('.visible-lg #signInFormUsername').type(user, { force: true });
+		cy.get('.visible-lg #signInFormPassword').type(pwd, { force: true });
+		cy.get('.visible-lg .btn-primary').click({ force: true });
+	};
+	if (cacheSession) {
+		cy.session(user, login);
+		cy.visit('/dashboard');
+		cy.contains(`Sign In as ${user}`).click({ force: true });
+	} else {
+		login();
+	}
+});
+
+/**
+ * authenticate using two-factor authentication
+ * @param {string} securitykey
+ */
+Cypress.Commands.add('authenticator', (securitykey) => {
+	if (Cypress.env('MFAenabled')) {
+		let code = getMFACode(securitykey);
+		cy.get('input[id=totpCodeInput]').type(code);
+		cy.get('#signInButton').click();
+	}
+});
+
+/**
+ * authenticate using two-factor authentication
+ * @param {string} securitykey
+ * @returns MFA code
+ */
+
+function getMFACode(securitykey) {
+	let code = otplib.authenticator.generate(securitykey);
+	return code;
+}
+
+/**
+ * Generates API token and stores in cookie for 1hr
+ * API token can be retrieved in scripts by using cy.getCookie('apitoken')
+ */
+
+Cypress.Commands.add('generateAPIToken', () => {
+	cy.getCookie('apitoken').then((token) => {
+		if (token && token.value) {
+			cy.log('token to be used is :' + cy.getCookie('apitoken'));
+		} else {
+			cy.request({
+				method: 'POST',
+				url: Cypress.env('cognito_uri'),
+				headers: {
+					'X-Amz-Target': Cypress.env('X-Amz-Target'),
+					'Content-Type': Cypress.env('Content-Type'),
+				},
+				body: {
+					AuthFlow: Cypress.env('AuthFlow'),
+					ClientId: Cypress.env('ClientId'),
+					AuthParameters: { USERNAME: Cypress.env('TESTusername'), PASSWORD: Cypress.env('TESTpassword') },
+				},
+			}).should((response) => {
+				expect(response.status).to.eq(200);
+				if (Cypress.env('MFAenabled')) {
+					expect(response.status).to.eq(200);
+					expect(response.body).to.have.property('Session');
+					global.Session = response.body.Session;
+					let securitykey = Cypress.env('TESTMFA');
+					cy.request({
+						method: 'POST',
+						url: Cypress.env('cognito_uri'),
+						headers: {
+							'X-Amz-Target': Cypress.env('X-Amz-Target-Auth'),
+							'Content-Type': Cypress.env('Content-Type-Auth'),
+						},
+						body: {
+							ChallengeName: Cypress.env('ChallengeName'),
+							ChallengeResponses: {
+								USERNAME: Cypress.env('TESTusername'),
+								SOFTWARE_TOKEN_MFA_CODE: getMFACode(securitykey),
+							},
+							Session: global.Session,
+							ClientId: Cypress.env('ClientId'),
+							UserPoolId: Cypress.env('UserPoolId'),
+						},
+					}).should((response) => {
+						expect(response.status).to.eq(200);
+						expect(response.body.AuthenticationResult).to.have.property('IdToken');
+						expect(response.body.AuthenticationResult).to.have.property('ExpiresIn').to.eq(3600);
+						// Token is stored and will be consumed in graphQL API call
+						cy.setCookie('apitoken', response.body.AuthenticationResult.IdToken, { expires: 3600 });
+						cy.getCookie('apitoken').should('exist');
+					});
+				} else {
+					expect(response.body.AuthenticationResult).to.have.property('IdToken');
+					expect(response.body.AuthenticationResult).to.have.property('ExpiresIn').to.eq(3600);
+					cy.setCookie('apitoken', response.body.AuthenticationResult.IdToken, { expires: 3600 });
+					cy.getCookie('apitoken').should('exist');
+					// cy.log('Token = ' + cy.getCookie('apitoken').value);
+				}
+			});
+		}
+	});
 });
 
 /**
@@ -25,9 +145,9 @@ Cypress.Commands.add('waitForLoad', (timeout) => {
 	if (typeof timeout === 'undefined') {
 		timeout = 30000;
 	}
-	cy.get('[data-testid="spinner"]', { timeout: timeout })
+	cy.get('[data-testid="spinner_svg"]', { timeout: timeout })
 		.should('exist')
-		.get('[data-testid="spinner"]', { timeout: timeout })
+		.get('[data-testid="spinner_svg"]', { timeout: timeout })
 		.should('not.exist');
 });
 
@@ -69,9 +189,9 @@ Cypress.Commands.add('globalSearch', (searchOption, searchTerm, isSubmit) => {
 		cy.get('[data-testid="selector-input"] input')
 			.first()
 			.clear()
-			.type(searchTerm + '{enter}');
+			.type(searchTerm + '{enter}', { delay: 100 }, { force: true });
 	} else {
-		cy.get('[data-testid="selector-input"] input').first().clear().type(searchTerm);
+		cy.get('[data-testid="selector-input"] input').first().clear().realType(searchTerm);
 	}
 });
 
@@ -162,6 +282,25 @@ Cypress.Commands.add('safeSelect', (locator, value, isXpath) => {
 		isXpath ? cy.xpath(locator).realClick() : cy.get(locator).realClick().wait(500);
 		cy.get(`[data-value="${value}"]`).should('be.visible').realClick().wait(500);
 	}
+});
+
+function isNotGreaterThanZero(num) {
+	return num <= 0;
+}
+
+/**
+ * Returns true/false and check number is greater or not
+ */
+Cypress.Commands.add('checkWithinLimit', (num, value) => {
+	return num <= value;
+});
+
+/**
+ * Returns a random integer number of length - give length as integer parameter
+ */
+
+Cypress.Commands.add('generateRandomNumber', (length) => {
+	return Math.floor(Math.pow(10, length - 1) + Math.random() * 9 * Math.pow(10, length - 1));
 });
 
 /**
@@ -261,7 +400,6 @@ Cypress.Commands.add('expandDrawerSection', (sectionName) => {
 			});
 	});
 });
-
 
 /**
  * Filter the organizations

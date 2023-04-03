@@ -1,0 +1,107 @@
+// @team2
+describe.skip('Landing page view test verification', () => {
+	beforeEach(() => {
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
+	});
+
+	it('Verify moving assets', () => {
+		cy.get('[data-testid="dashboard-tile-total-assets-value"]')
+			.invoke('text')
+			.then(parseFormattedTextToFloat)
+			.then((totalAssets) => {
+				cy.get('[data-testid="active-assets-value"]')
+					.invoke('text')
+					.then(parseFormattedTextToFloat)
+					.should('be.lessThan', totalAssets)
+					.then((movingAssets) => {
+						cy.get('[data-testid="inactive-assets-value"]')
+							.invoke('text')
+							.then(parseFormattedTextToFloat)
+							.should('be.lte', totalAssets - movingAssets);
+					});
+			});
+	});
+
+	it('Verify Asset widgets display actual data', () => {
+		cy.xpath('//*[@data-testid="dashboard-tile-total-assets"]//*[@data-testid="total-assets-secondary-value"]').each(
+			($secondaryValue) => {
+				cy.wrap($secondaryValue).invoke('text').then(parseFormattedTextToFloat).should('be.gt', 0);
+			}
+		);
+		cy.xpath('//*[@data-testid="dashboard-tile-active-assets"]//*[@data-testid="total-assets-secondary-value"]').each(
+			($secondaryValue) => {
+				cy.wrap($secondaryValue).invoke('text').then(parseFormattedTextToFloat).should('be.gt', 0);
+			}
+		);
+	});
+
+	it('Verify Landing page for user with first name', () => {
+		cy.url().should('include', '/dashboard');
+		cy.get('[data-testid="dashboard-component"] h3').contains(/^Welcome back, (.+)/);
+	});
+
+	it('Verify dashboard drawer is not displayed on Landing page by clicking on the Logo', () => {
+		cy.get('[data-testid="header-logo"]').click();
+		cy.get('[role="presentation"]').should('not.exist');
+	});
+
+	it('Navigate into the map by clicking on "Asset Map" button', () => {
+		cy.get('[data-testid="dashboard-component-buttons-asset-map"] button').click();
+		cy.url().should('include', 'map');
+		cy.get('[aria-label="Map"]').should('be.visible');
+	});
+
+	it('Navigate into the Device Management page by clicking on "My Devices" button', () => {
+		cy.get('[data-testid="dashboard-component-buttons-device-management"] button').click();
+		cy.url().should('include', 'devices');
+	});
+
+	it('Navigate into the Asset Management by clicking on Total Assets dashboard tile', () => {
+		cy.get('[data-testid="dashboard-tile-total-assets"]').click();
+		cy.url().should('include', 'assets');
+	});
+
+	it('Navigate into the Asset Management by clicking on Assets Moving dashboard title', () => {
+		cy.get('[data-testid="dashboard-tile-active-assets"]').click();
+		cy.url().should('include', 'assets');
+	});
+
+	it.only('Verify Navigation by Menu', () => {
+		cy.dashboardMenu('Asset List');
+		cy.url().should('include', 'assets');
+		cy.get('[data-testid = "management-asset-list"]').should('contain.text', 'Asset List').wait(500);
+
+		cy.dashboardMenu('Geofencing');
+		cy.url().should('include', 'geofencing');
+		cy.get('[data-testid = "location-button"]').should('exist');
+
+		cy.dashboardMenu('Devices');
+		cy.url().should('include', 'device');
+		cy.get('[data-testid = "management-devices"]').should('contain.text', 'Devices').wait(500);
+
+		cy.dashboardMenu('My Organization');
+		cy.url().should('include', 'organizations');
+		cy.get('[data-testid = "management-my-organization"]').should('contain.text', 'My Organization').wait(500);
+
+		cy.dashboardMenu('User Management');
+		cy.url().should('include', 'user-management');
+		cy.get('[data-testid = "management-user-management"]').should('contain.text', 'User Management').wait(500);
+
+		cy.dashboardMenu('My Account');
+		cy.url().should('include', 'my-account');
+		cy.get('[data-testid = "form-control-input-firstName"]').should('exist').wait(500);
+
+		cy.dashboardMenu('Asset Map');
+		cy.url().should('include', 'map');
+		cy.get('[data-testid = "location-button"]').should('exist').wait(500);
+
+		cy.dashboardMenu('Reports');
+		cy.url().should('include', 'reports');
+		cy.get('[data-testid = "management-reports"]').should('contain.text', 'Reports').wait(500);
+	});
+});
+
+async function parseFormattedTextToFloat(text) {
+	const value = text.match(/(\d|,|\.)+/g)[0];
+	return Number(value.replaceAll(',%', ''));
+}

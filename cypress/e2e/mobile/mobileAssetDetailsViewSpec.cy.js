@@ -7,7 +7,7 @@ const devices = [
 
 describe('Mobile Asset Management page -- details view verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false })
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true })
 			.waitForLoad()
 			.dashboardMenu('Asset List');
 	});
@@ -22,11 +22,11 @@ describe('Mobile Asset Management page -- details view verification', () => {
 
 const validateMobileDetails = () => {
 	clickFirstCell();
-	cy.get('[id="details-summary-content"]').contains('Asset ID').should('be.visible');
+	cy.get('[id="details-summary"]').contains('Asset ID').should('be.visible');
 
-	cy.get('[id="details-summary"]').click();
+	cy.contains('div.MuiAccordionSummary-root', 'Summary').click({force: true});
 
-	cy.get('[id="details-summary-content"]').contains('Asset ID').should('not.be.visible');
+	cy.get('[id="details-summary"]').contains('Asset ID').should('not.be.visible');
 };
 
 const clickFirstCell = () => {

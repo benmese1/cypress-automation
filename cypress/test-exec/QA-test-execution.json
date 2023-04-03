@@ -1,8 +1,8 @@
 {
     "fields":{
-        "summary":"QA regression suite execution",
+        "summary":"QA Regression Suite Execution",
         "issuetype":{
-            "Test Execution":"PRJIND-2272"
+            "id":"10492"
         }
     }
 }

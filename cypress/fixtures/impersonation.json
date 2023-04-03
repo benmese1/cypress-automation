@@ -3,7 +3,14 @@
 		"impersonation": {
 			"username": "Maniusps",
 			"fnamelname": "usps maniusps",
-			"orgName": "USPS"
+			"orgName": "USPS",
+			"emailidImp": "mbommasamudram1+2@phillips-connect.com"
+		},
+		"actualuser": {
+			"fname": "super",
+			"lname": "admin",
+			"orgName": "Phillips Connect",
+			"emailid": "mbommasamudram1+1@phillips-connect.com"
 		}
 	}
 ]
