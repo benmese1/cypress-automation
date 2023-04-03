@@ -16,6 +16,9 @@ export default defineConfig({
 	videosFolder: 'cypress/videos',
 	downloadsFolder: 'cypress/downloads',
 	defaultCommandTimeout: 12000,
+	execTimeout: 12000,
+	requestTimeout: 12000,
+	responseTimeout: 12000,
 	reporter: 'junit',
 	reporterOptions: {
 		mochaFile: 'cypress/results/test-results-[hash].xml',
