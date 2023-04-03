@@ -2,9 +2,7 @@ describe('Verify device management table view', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
 		cy.waitForLoad();
-		cy.get(
-			'[data-testid="dashboard-component-buttons-device-management"] > [data-testid="global-button-component"]'
-		).click();
+		cy.dashboardMenu('Devices');
 	});
 	it('Verify Device ID can start with 0', () => {
 		//Verify Device ID can start with 0
@@ -13,18 +11,12 @@ describe('Verify device management table view', () => {
 		cy.get('[data-testid="btn-sub-header-action-Add Device"]').click();
 		cy.get('[data-testid="form-control-input-imei"]').type(deviceID);
 
-		cy.get(
-			':nth-child(1) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment > .MuiAutocomplete-popupIndicator'
-		).click();
+		cy.get('[data-testid="autocomplete-customer_orgs_id"]').click();
 		cy.get('#combo-box-demo-option-0').click();
 
-		cy.get(
-			':nth-child(3) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment'
-		).click();
+		cy.get('[data-testid="autocomplete-assets_id"]').click();
 
-		cy.get(
-			':nth-child(4) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment'
-		).click();
+		cy.get('[data-testid="autocomplete-prd_cde"]').click();
 		cy.get('#combo-box-demo-option-0').click();
 		cy.get('[data-testid="global-button-component"]').click();
 
@@ -44,18 +36,12 @@ describe('Verify device management table view', () => {
 			return text;
 		}
 
-		cy.get(
-			':nth-child(1) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment > .MuiAutocomplete-popupIndicator'
-		).click();
+		cy.get('[data-testid="autocomplete-customer_orgs_id"]').click();
 		cy.get('#combo-box-demo-option-0').click();
 
-		cy.get(
-			':nth-child(3) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment'
-		).click();
+		cy.get('[data-testid="autocomplete-assets_id"]').click();
 
-		cy.get(
-			':nth-child(4) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment'
-		).click();
+		cy.get('[data-testid="autocomplete-prd_cde"]').click();
 		cy.get('#combo-box-demo-option-0').click();
 		cy.get('[data-testid="global-button-component"]').click();
 

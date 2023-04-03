@@ -24,7 +24,7 @@ const validateMobileDetails = () => {
 	clickFirstCell();
 	cy.get('[id="details-summary"]').contains('Asset ID').should('be.visible');
 
-	cy.contains('div.MuiAccordionSummary-root', 'Summary').click({force: true});
+	cy.contains('div.MuiAccordionSummary-root', 'Summary').click({ force: true });
 
 	cy.get('[id="details-summary"]').contains('Asset ID').should('not.be.visible');
 };

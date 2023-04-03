@@ -8,7 +8,7 @@ describe('Reports: View Asset Transfer Report', () => {
 	});
 
 	it('Verify Asset Transfer Report Table', () => {
-		cy.createNewReport('Asset Transfer')
+		cy.createNewReport('Asset Transfer');
 		cy.url().should('include', 'reports/asset-transfer/template');
 		// Verify Material UI Columns button
 		cy.get('[data-testid="asset-table-toolbar-columns-btn"]').should('be.visible');
@@ -20,15 +20,7 @@ describe('Reports: View Asset Transfer Report', () => {
 		cy.get('[data-testid="asset-table-toolbar-export-btn"]').should('be.visible');
 
 		//verify columns
-		const columnHeadersList = [
-			'Date',
-			'Asset Name',
-			'Device ID',
-			'VIN',
-			'Old Company',
-			'New Company',
-			'User Name',
-		];
+		const columnHeadersList = ['Date', 'Asset Name', 'Device ID', 'VIN', 'Old Company', 'New Company', 'User Name'];
 		cy.get("[role='columnheader']").each((el) => {
 			expect(el.text()).oneOf(columnHeadersList);
 		});
@@ -36,8 +28,8 @@ describe('Reports: View Asset Transfer Report', () => {
 	});
 
 	it('Verify Asset Transfer Report Initial View', () => {
-		cy.createNewReport('Asset Transfer')
-	
+		cy.createNewReport('Asset Transfer');
+
 		//verify header text
 		cy.get('[data-testId="management-reports"]').should('have.text', 'Reports');
 		//verify sub-header text

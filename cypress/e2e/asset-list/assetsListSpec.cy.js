@@ -196,60 +196,59 @@ describe('Asset Management page general tests', () => {
 		).should('have.text', 'Battery Icon');
 	});
 
-	it('Verify sorting of Asset Lists Table', () => { 
+	it('Verify sorting of Asset Lists Table', () => {
 		var fieldsToCheck = [
 			{ dataField: 'org_name', type: 'string' },
-			{ dataField: 'asset_id', type: 'string'},
+			{ dataField: 'asset_id', type: 'string' },
 			{ dataField: 'name', type: 'string' },
 			{ dataField: 'imei', type: 'string' },
 			{ dataField: 'lst_evnt_t', type: 'date' },
 			{ dataField: 'device_associated', type: 'string' },
 			{ dataField: 'city', type: 'string' },
 			{ dataField: 'state', type: 'string' },
-			{ dataField: 'category', type: 'string' }, 
+			{ dataField: 'category', type: 'string' },
 			{ dataField: 'tags', type: 'string' },
-		]
+		];
 
 		//wait for spinner on Asset Lists Table
-		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
-		
+		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist');
+
 		fieldsToCheck.forEach((field) => {
 			//click on sort button
 			cy.get('[role="grid"] .MuiDataGrid-virtualScroller').scrollTo('top');
-			cy.get(`[data-field='${field.dataField}'] [data-testid *= 'items-list-column-sort-btn']`).click({force:true})	
+			cy.get(`[data-field='${field.dataField}'] [data-testid *= 'items-list-column-sort-btn']`).click({ force: true });
 			//verify sorting ASC: top, middle, bottom of the table
-			verifyTableIsSortedByColumn(field.dataField, true, field.type)
+			verifyTableIsSortedByColumn(field.dataField, true, field.type);
 			cy.get('[role="grid"] .MuiDataGrid-virtualScroller').scrollTo('center');
-			verifyTableIsSortedByColumn(field.dataField, true, field.type)
+			verifyTableIsSortedByColumn(field.dataField, true, field.type);
 			cy.get('[role="grid"] .MuiDataGrid-virtualScroller').scrollTo('bottom');
-			verifyTableIsSortedByColumn(field.dataField, true, field.type)
-			// navigate to page#2 and verify sorting ASC  
+			verifyTableIsSortedByColumn(field.dataField, true, field.type);
+			// navigate to page#2 and verify sorting ASC
 			cy.get('[aria-label="Go to page 2"]').click();
-			verifyTableIsSortedByColumn(field.dataField, true, field.type)
-			// navigate to page#1 and verify sorting ASC  
+			verifyTableIsSortedByColumn(field.dataField, true, field.type);
+			// navigate to page#1 and verify sorting ASC
 			cy.get('[aria-label="Go to page 1"]').click();
-			verifyTableIsSortedByColumn(field.dataField, true, field.type)
+			verifyTableIsSortedByColumn(field.dataField, true, field.type);
 
 			//click on sort button
 			cy.get('[role="grid"] .MuiDataGrid-virtualScroller').scrollTo('top');
-			cy.get(`[data-field='${field.dataField}'] [data-testid *= 'items-list-column-sort-btn']`).click({force:true})
+			cy.get(`[data-field='${field.dataField}'] [data-testid *= 'items-list-column-sort-btn']`).click({ force: true });
 			//verify sorting DESC: top, middle, bottom of the table
-			verifyTableIsSortedByColumn(field.dataField, false, field.type)
+			verifyTableIsSortedByColumn(field.dataField, false, field.type);
 			cy.get('[role="grid"] .MuiDataGrid-virtualScroller').scrollTo('center');
-			verifyTableIsSortedByColumn(field.dataField, false, field.type)
+			verifyTableIsSortedByColumn(field.dataField, false, field.type);
 			cy.get('[role="grid"] .MuiDataGrid-virtualScroller').scrollTo('bottom');
-			verifyTableIsSortedByColumn(field.dataField, false, field.type)
-			// navigate to page#2 and verify sorting DESC  
+			verifyTableIsSortedByColumn(field.dataField, false, field.type);
+			// navigate to page#2 and verify sorting DESC
 			cy.get('[aria-label="Go to page 2"]').click();
-			verifyTableIsSortedByColumn(field.dataField, false, field.type)
-			// navigate to page#1 and verify sorting DESC  
+			verifyTableIsSortedByColumn(field.dataField, false, field.type);
+			// navigate to page#1 and verify sorting DESC
 			cy.get('[aria-label="Go to page 1"]').click();
-			verifyTableIsSortedByColumn(field.dataField, false, field.type)
-
+			verifyTableIsSortedByColumn(field.dataField, false, field.type);
 		});
 	});
 
-	it('Verify sorting of Asset Lists Table - Hidden fields', () => { 
+	it('Verify sorting of Asset Lists Table - Hidden fields', () => {
 		var fieldsToCheck = [
 			{ dataField: 'postcode', type: 'string' },
 			{ dataField: 'latitude', type: 'float' },
@@ -258,13 +257,13 @@ describe('Asset Management page general tests', () => {
 			{ dataField: 'wheel_config', type: 'float' },
 			{ dataField: 'num_of_axles', type: 'float' },
 			{ dataField: 'length', type: 'float' },
-			{ dataField: 'last_gps_t', type: 'date' }, 
+			{ dataField: 'last_gps_t', type: 'date' },
 			{ dataField: 'door_type', type: 'string' },
-		]
+		];
 
 		//wait for spinner on Asset Lists Table
-		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
-		
+		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist');
+
 		// Show all columns
 		cy.get('[data-testid="asset-table-toolbar-columns-btn"]').click();
 		cy.get('[role="tooltip"]').should('be.visible').contains('Show all').click();
@@ -272,41 +271,46 @@ describe('Asset Management page general tests', () => {
 
 		fieldsToCheck.forEach((field) => {
 			cy.get('.MuiDataGrid-virtualScroller').scrollTo('topRight').wait(200);
-			//click on 'Sort by ASC' item from header menu 
+			//click on 'Sort by ASC' item from header menu
 			cy.get(`[data-field='${field.dataField}'] [data-testid="TripleDotsVerticalIcon"]`).click({ force: true });
-			cy.get('[role="tooltip"]').should('be.visible').contains('Sort by ASC').click({ force: true }, {delay: 200});
+			cy.get('[role="tooltip"]').should('be.visible').contains('Sort by ASC').click({ force: true }, { delay: 200 });
 			//verify sorting ASC: top, middle, bottom of the table
-			verifyTableIsSortedByColumn(field.dataField, true, field.type)
+			verifyTableIsSortedByColumn(field.dataField, true, field.type);
 			cy.get('[role="grid"] .MuiDataGrid-virtualScroller').scrollTo('right').wait(200);
-			verifyTableIsSortedByColumn(field.dataField, true, field.type)
+			verifyTableIsSortedByColumn(field.dataField, true, field.type);
 			cy.get('[role="grid"] .MuiDataGrid-virtualScroller').scrollTo('bottomRight').wait(200);
-			verifyTableIsSortedByColumn(field.dataField, true, field.type)
+			verifyTableIsSortedByColumn(field.dataField, true, field.type);
 
 			//click on 'Sort by DESC' item from header menu
 			cy.get('.MuiDataGrid-virtualScroller').scrollTo('topRight').wait(200);
 			cy.get(`[data-field='${field.dataField}'] [data-testid="TripleDotsVerticalIcon"]`).click({ force: true });
-			cy.get('[role="tooltip"]').should('be.visible').contains('Sort by DESC').click({ force: true },{delay: 200});
+			cy.get('[role="tooltip"]').should('be.visible').contains('Sort by DESC').click({ force: true }, { delay: 200 });
 			//verify sorting DESC: top, middle, bottom of the table
-			verifyTableIsSortedByColumn(field.dataField, false, field.type)
+			verifyTableIsSortedByColumn(field.dataField, false, field.type);
 			cy.get('[role="grid"] .MuiDataGrid-virtualScroller').scrollTo('right').wait(200);
-			verifyTableIsSortedByColumn(field.dataField, false, field.type)
+			verifyTableIsSortedByColumn(field.dataField, false, field.type);
 			cy.get('[role="grid"] .MuiDataGrid-virtualScroller').scrollTo('bottomRight').wait(200);
-			verifyTableIsSortedByColumn(field.dataField, false, field.type)
+			verifyTableIsSortedByColumn(field.dataField, false, field.type);
 		});
 	});
 
 	function verifyTableIsSortedByColumn(columnDataField, isASC, type) {
 		cy.get('[data-rowindex]')
-		.find(`[data-field='${columnDataField}']`)
-		.then(($cells) => Cypress._.map($cells, (el) => 
-			type == 'date' && el.innerText ? new Date(el.innerText) : 
-			type == 'float' && el.innerText ? parseFloat(el.innerText) :
-			el.innerText.toUpperCase()))
-		.then((cells) => {
-			const sorted = isASC ? Cypress._.sortBy(cells) : Cypress._.sortBy(cells).reverse();
-			cy.log('actual: ' + cells.join(', '))
-			cy.log('expected: '+ sorted.join(', '))
-			expect(sorted).to.deep.equal(cells)
-		});
+			.find(`[data-field='${columnDataField}']`)
+			.then(($cells) =>
+				Cypress._.map($cells, (el) =>
+					type == 'date' && el.innerText
+						? new Date(el.innerText)
+						: type == 'float' && el.innerText
+						? parseFloat(el.innerText)
+						: el.innerText.toUpperCase()
+				)
+			)
+			.then((cells) => {
+				const sorted = isASC ? Cypress._.sortBy(cells) : Cypress._.sortBy(cells).reverse();
+				cy.log('actual: ' + cells.join(', '));
+				cy.log('expected: ' + sorted.join(', '));
+				expect(sorted).to.deep.equal(cells);
+			});
 	}
 });

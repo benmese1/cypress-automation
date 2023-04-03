@@ -12,3 +12,8 @@ Cypress.Commands.add('openDevices', () => {
 Cypress.Commands.add('searchDevices', (searchCriteria) => {
 	cy.get("input[placeholder='Search']").should('be.visible').type(searchCriteria).wait(1000);
 });
+Cypress.Commands.add('searchDevices', (searchCriteria) => {
+	// Wait for 'Assets' table loading
+	cy.get('[data-rowindex]').should('have.length.gt', 1);
+	cy.get("input[placeholder='Search']").should('be.visible').clear().type(searchCriteria).wait(1000);
+});

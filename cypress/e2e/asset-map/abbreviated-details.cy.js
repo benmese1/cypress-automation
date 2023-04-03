@@ -8,7 +8,7 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
 
 	it('Success canvas click test and verify and view asset details', () => {
 		// Click on the Asset
-		cy.get('[data-testid*="asset-"]', {timeout: 20000}).eq(0).should('be.visible').click({ force: true });
+		cy.get('[data-testid*="asset-"]', { timeout: 20000 }).eq(0).should('be.visible').click({ force: true });
 
 		// Verify Asset Name
 		cy.get('[data-testid*="asset-"]')
@@ -18,7 +18,7 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
 		// Verify City State
 		cy.get('[data-testid="LocationOnIcon"]')
 			// .eq(0)
-			.should('exist')
+			.should('exist');
 
 		// Verify Time Stamp
 		cy.get('[data-testid="CheckIcon"]')

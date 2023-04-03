@@ -1,8 +1,8 @@
 {
-    "fields":{
-        "summary":"DEV Regression Suite Execution",
-        "issuetype":{
-            "id":"10492"
-        }
-    }
+	"fields": {
+		"summary": "DEV Regression Suite Execution",
+		"issuetype": {
+			"id": "10492"
+		}
+	}
 }

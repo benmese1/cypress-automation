@@ -10,7 +10,7 @@
 			"term": "CFQU921645",
 			"datafield": "asset_name"
 		},
-		
+
 		{
 			"option": "Device ID",
 			"term": "01511500",
@@ -26,6 +26,5 @@
 			"term": "77-6530",
 			"datafield": "prd_cde"
 		}
-	
 	]
 }

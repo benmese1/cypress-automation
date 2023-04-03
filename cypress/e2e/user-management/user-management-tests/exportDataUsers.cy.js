@@ -15,8 +15,11 @@ describe('User Management page export verification', () => {
 		//Verify Export button visibility on the user management
 		cy.wait(10000);
 		cy.get('button[data-testid="asset-table-toolbar-export-btn"]').should('be.visible').click({ force: true });
-		cy.get('li[role="menuitem"]').contains('Download as CSV').click({ force: true }).readFile(downloadsPath + exportFilename)
-		.should('contain', csvFileHeader);
+		cy.get('li[role="menuitem"]')
+			.contains('Download as CSV')
+			.click({ force: true })
+			.readFile(downloadsPath + exportFilename)
+			.should('contain', csvFileHeader);
 	});
 
 	const downloadsPath = 'cypress/downloads/';

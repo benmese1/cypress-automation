@@ -8,7 +8,7 @@ describe('Asset Management page -- details view verification', () => {
 
 	it('Verify Asset Details View is collapsable', () => {
 		//wait for spinner on Asset Lists Table
-		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
+		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist');
 		cy.searchAssets('377707');
 		cy.openAsset('Werner Enterprises', 'Asset ID');
 		cy.get('#details-summary').should('exist');
@@ -21,7 +21,7 @@ describe('Asset Management page -- details view verification', () => {
 
 	it('Verify Critical battery state on Asset Details View', () => {
 		//wait for spinner on Asset Lists Table
-		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
+		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist');
 		cy.addAssetsFilter('Battery Icon', 'starts with', '2');
 
 		//verify each 'Battery Icon' cells have appropriate icon
@@ -68,7 +68,7 @@ describe('Asset Management page -- details view verification', () => {
 
 	it('Verify Full battery state on Asset Details View', () => {
 		//wait for spinner on Asset Lists Table
-		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
+		cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist');
 		cy.addAssetsFilter('Battery Icon', 'starts with', '3.9');
 
 		//verify each 'Battery Icon' cells have appropriate icon

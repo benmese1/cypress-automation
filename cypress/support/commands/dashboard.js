@@ -9,7 +9,7 @@ Cypress.Commands.add('dashboardMenu', (menu) => {
 		'User Management',
 		'My Account',
 		'Reports',
-		'Geofencing'
+		'Geofencing',
 	];
 	cy.get('[data-testid="header"] [role="button"]')
 		.click()

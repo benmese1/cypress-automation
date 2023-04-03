@@ -88,31 +88,31 @@
 			"datafield": "sim_num"
 		}
 	],
-   "organizations": [
-      	{
+	"organizations": [
+		{
 			"option": "Company Name",
 			"term": "Van Fleet",
 			"datafield": "name"
 		},
-     	{
+		{
 			"option": "Brand",
 			"term": "Enroad",
 			"datafield": "brand"
 		},
-      	{
+		{
 			"option": "Type",
 			"term": "Fleet",
 			"datafield": "type"
 		},
-      	{
+		{
 			"option": "Time Zone",
 			"term": "Eastern Standard (GMT-5)",
 			"datafield": "time_zones"
 		},
-      	{
+		{
 			"option": "Distance Unit Preference",
 			"term": "KMs",
 			"datafield": "distance_unit_preference"
 		}
-   ]
+	]
 }

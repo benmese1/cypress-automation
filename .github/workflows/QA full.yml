@@ -1,7 +1,7 @@
 name: QA Full Regression
 on:
   schedule:
-    - cron: "30 8 * * *"
+    - cron: '30 8 * * *'
 
   workflow_dispatch:
     inputs:
@@ -9,7 +9,7 @@ on:
         description: 'Enter specifications in format:
           --spec "cypress/e2e"'
         required: false
-        default: ""
+        default: ''
         type: string
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
       - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: "18.2"
+          node-version: '18.2'
 
       - name: Install Node modules
         run: npm install
@@ -38,7 +38,7 @@ jobs:
         run: npx cypress run --env fileConfig=qa ${{ github.event.inputs.spec }}
         continue-on-error: true
 
-      - name: "Upload test results"
+      - name: 'Upload test results'
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
@@ -46,7 +46,7 @@ jobs:
           path: cypress/results/
           retention-days: 30
 
-      - name: "Upload screenshots"
+      - name: 'Upload screenshots'
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
@@ -62,7 +62,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: "download test results"
+      - name: 'download test results'
         if: ${{ always() }}
         uses: actions/download-artifact@v3
         with:
@@ -74,12 +74,12 @@ jobs:
         with:
           username: ${{ secrets.XRAY_CLIENT_ID }}
           password: ${{ secrets.XRAY_SECRET }}
-          testFormat: "junit"
-          testPaths: "**/test-results/*.xml"
-          testExecutionJson: "cypress/test-exec/QA-test-execution.json"
+          testFormat: 'junit'
+          testPaths: '**/test-results/*.xml'
+          testExecutionJson: 'cypress/test-exec/QA-test-execution.json'
           # testEnvironments: "QA, DEV"
           # testExecKey: "PRJIND-2272"
-          projectKey: "PRJIND"
+          projectKey: 'PRJIND'
           failOnImportError: true
 
   report-project:

@@ -18,19 +18,19 @@ describe('Verify My Account page', () => {
 		let lastName = account[0].myaccount.lastname + ' ' + randomnumber;
 		cy.get('[data-testid="form-control-input-firstName"]').should('be.visible').clear().type(firstName).wait(2000);
 		cy.get('[data-testid="form-control-input-lastName"]').should('be.visible').clear().type(lastName).wait(1000);
-		cy.get('[data-testid="autocomplete-time_zones"]').click().type('Eastern Standard (GMT-5)').type('{enter}')
+		cy.get('[data-testid="autocomplete-time_zones"]').click().type('Eastern Standard (GMT-5)').type('{enter}');
 		//Save the data
 		cy.get('[data-testid="btn-account-form-submit"]').click();
 		// cy.get('[data-testid="snackbar-title"]').should('be.visible').contains('User Updated Successfully!');
 		//Go to Dashboard and check the user firstname
 		cy.dashboardMenu('Dashboard');
-		cy.wait(5000)
-		// update - first name to be displayed with welcome message 
+		cy.wait(5000);
+		// update - first name to be displayed with welcome message
 		cy.get('.MuiTypography-h3').then(($elem) => {
 			const message = $elem.text();
 			expect(message).to.contain(firstName);
 			console.log('Firstname matched with the Account details');
-		  });
+		});
 		//Go to User management and check the user lastname
 		cy.dashboardMenu('User Management');
 		cy.searchOrgsAndUsers(account[0].myaccount.email);

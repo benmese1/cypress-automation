@@ -11,7 +11,9 @@ describe('Organization management page export verification', () => {
 
 	it('Verify export button is visible and downloading as Excel file', () => {
 		//Verify Export button visibility on the org management
-		cy.get('[data-testid="btn-sub-header-action-Export"]', { timeout: 20000 }).should('be.visible').click({ force: true });
+		cy.get('[data-testid="btn-sub-header-action-Export"]', { timeout: 20000 })
+			.should('be.visible')
+			.click({ force: true });
 		cy.readFile(`${downloadsPath}` + '\\' + `${getExportedFile()}`).should('contain', FileHeader);
 	});
 
@@ -23,4 +25,3 @@ describe('Organization management page export verification', () => {
 function getExportedFile() {
 	return `Organizations - ${new Date().toLocaleDateString().split('/').join('_')}.xlsx`;
 }
-

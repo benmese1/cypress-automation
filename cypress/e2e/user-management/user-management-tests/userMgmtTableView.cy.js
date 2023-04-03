@@ -21,7 +21,7 @@ describe('Verify User management table view', () => {
 		cy.get('[data-testid="column-header-last-login-date"]').should('be.visible');
 		cy.get('[data-testid="column-header-status"]').should('be.visible');
 		cy.get('[data-testid="column-header-created-date"]').should('be.visible');
-		cy.get('div.MuiDataGrid-virtualScroller.css-1grl8tv').scrollTo('right')
+		cy.get('div.MuiDataGrid-virtualScroller.css-1grl8tv').scrollTo('right');
 		cy.get('[data-testid="column-header-updated-date"]', { force: true }).should('be.visible');
 	});
 

@@ -39,7 +39,7 @@ describe('Mobile Asset Management View verification', () => {
 		// Validate table
 		cy.get('.MuiDataGrid-virtualScroller').scrollTo('topLeft');
 		cy.get('[role="columnheader"][ aria-label="Company Name"]').should('be.visible');
-// no "Battery Power" on screen but instead "Battery Icon" exists
+		// no "Battery Power" on screen but instead "Battery Icon" exists
 		cy.get('.MuiDataGrid-virtualScroller').scrollTo('topRight');
 		// cy.get('[role="columnheader"][ aria-label="Battery Power"]').should('be.visible');
 

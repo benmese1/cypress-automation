@@ -83,7 +83,7 @@ Cypress.Commands.add('addAssetsFilter', (columnName, operator, value) => {
 //Params - asset model with propeties. Properties can be optional
 Cypress.Commands.add('createNewAsset', (asset) => {
 	cy.get('[data-testid="btn-sub-header-action-Add Asset"]').click();
-	
+
 	cy.fillAssetForm(asset);
 
 	cy.get('[data-testid="global-button-component"]').click();
@@ -93,9 +93,8 @@ Cypress.Commands.add('createNewAsset', (asset) => {
 //Used to fill the Asset Form
 //Params - asset model with propeties. Properties can be optional
 Cypress.Commands.add('fillAssetForm', (asset) => {
-
 	//wait for spinner
-	cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist')
+	cy.get('[role="progressbar"]', { timeout: 30000 }).should('not.exist');
 	cy.get('[name="customer_orgs_id"]').click().realType(`${asset.companyName}{enter}`);
 	cy.get('li').contains(asset.companyName).click();
 	cy.get('[name="asset_id"]').clear().realType(asset.assetId);

@@ -1,6 +1,6 @@
 /** Create new Report
  * @param {string} reportTemplate - name of template to be applied for Report creation
-*/
+ */
 Cypress.Commands.add('createNewReport', (reportTemplate) => {
 	cy.get('[data-testId="btn-sub-header-action-Create New Report"]').click();
 	cy.get('[data-testId="report-type-autocomplete-field"]').clear().realType(reportTemplate);
