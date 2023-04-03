@@ -1,7 +1,7 @@
 // @team2
 import searchData from '../../fixtures/globalsearch.json';
 
-describe.skip('Global "Users" Search verification', () => {
+describe('Global "Users" Search verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
 	});
