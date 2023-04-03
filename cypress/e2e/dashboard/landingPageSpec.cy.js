@@ -1,5 +1,5 @@
 // @team2
-describe.skip('Landing page view test verification', () => {
+describe('Landing page view test verification', () => {
 	beforeEach(() => {
 		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: true }).waitForLoad();
 	});
