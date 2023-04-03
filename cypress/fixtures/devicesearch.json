@@ -1,0 +1,31 @@
+{
+	"devices": [
+		{
+			"option": "Company Name",
+			"term": "Andrew's Comp",
+			"datafield": "org_name"
+		},
+		{
+			"option": "Asset ID",
+			"term": "CFQU921645",
+			"datafield": "asset_name"
+		},
+		
+		{
+			"option": "Device ID",
+			"term": "01511500",
+			"datafield": "imei"
+		},
+		{
+			"option": "Product Name",
+			"term": "Smart",
+			"datafield": "prd_name"
+		},
+		{
+			"option": "Product Code",
+			"term": "77-6530",
+			"datafield": "prd_cde"
+		}
+	
+	]
+}

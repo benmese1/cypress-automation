@@ -21,6 +21,7 @@
 		"clipboardy": "^3.0.0",
 		"cypress": "^10.11.0",
 		"cypress-image-diff-js": "^1.23.0",
+		"cypress-xpath": "^2.0.1",
 		"faker": "^5.5.3",
 		"mocha": "^10.2.0",
 		"mochawesome": "^7.1.3",

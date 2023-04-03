@@ -1,6 +1,6 @@
 describe('Landing page view test verification', () => {
 	beforeEach(() => {
-		cy.login(Cypress.env('username'), Cypress.env('password'), { cacheSession: false });
+		cy.login(Cypress.env('TESTusername'), Cypress.env('TESTpassword'), { cacheSession: false });
 		cy.waitForLoad();
 	});
 
@@ -9,7 +9,7 @@ describe('Landing page view test verification', () => {
 		cy.get('[data-testid="side-menu"]').should('be.visible');
 	});
 
-	it('verify that menu item Devices are linked to assets page', () => {
+	it('verify that menu item Devices are linked to devices page', () => {
 		clickDashboardMenu();
 		cy.get('[data-testid="side-menu"]').should('be.visible').contains('Devices').click();
 		cy.url().should('include', '/devices');

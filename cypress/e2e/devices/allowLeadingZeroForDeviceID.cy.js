@@ -8,17 +8,10 @@ describe('Verify device management table view', () => {
 	});
 	it('Verify Device ID can start with 0', () => {
 		//Verify Device ID can start with 0
+
+		let deviceID = '0' + Math.floor(Math.random() * 900000000000000);
 		cy.get('[data-testid="btn-sub-header-action-Add Device"]').click();
-		cy.get('[data-testid="form-control-input-imei"]').type(deviceID_Numeric());
-
-		function deviceID_Numeric(max) {
-			var text = '';
-			var possible = '0123456789';
-
-			for (var i = 0; i < 10; i++) text += '0' + possible.charAt(Math.floor(Math.random() * 16));
-
-			return text;
-		}
+		cy.get('[data-testid="form-control-input-imei"]').type(deviceID);
 
 		cy.get(
 			':nth-child(1) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment > .MuiAutocomplete-popupIndicator'
@@ -28,7 +21,7 @@ describe('Verify device management table view', () => {
 		cy.get(
 			':nth-child(3) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment'
 		).click();
-		cy.get('#combo-box-demo-option-0').click();
+
 		cy.get(
 			':nth-child(4) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment'
 		).click();
@@ -59,7 +52,7 @@ describe('Verify device management table view', () => {
 		cy.get(
 			':nth-child(3) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment'
 		).click();
-		cy.get('#combo-box-demo-option-0').click();
+
 		cy.get(
 			':nth-child(4) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root > .MuiAutocomplete-endAdornment'
 		).click();
