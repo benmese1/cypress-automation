@@ -35,7 +35,7 @@ jobs:
           CLIENT_ID: 7fkhb5sdufdisn6qn1bkq445je
           USERNAME: test1
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
-        run: npx cypress run --env fileConfig=qa --spec cypress/e2e/asset-list/*.cy.js
+        run: npx cypress run --env fileConfig=qa --spec cypress/e2e/dashboard/*.cy.js
         continue-on-error: true
 
       - name: "Upload test results"
