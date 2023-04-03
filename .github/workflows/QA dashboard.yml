@@ -3,14 +3,14 @@ on:
   schedule:
     - cron: "30 8 * * *"
 
-  # workflow_dispatch:
-  #   inputs:
-  #     spec:
-  #       description: 'Enter specifications in format:
-  #         --spec "cypress/e2e/dashboard/*.cy.js"'
-  #       required: false
-  #       default: ""
-  #       type: string
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: 'Enter specifications in format:
+          --spec "cypress/e2e/dashboard/*.cy.js"'
+        required: false
+        default: ""
+        type: string
 
 jobs:
   build-project:
