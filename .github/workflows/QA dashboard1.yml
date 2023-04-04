@@ -1,4 +1,4 @@
-name: QA Dashboard Folder
+name: QA test Folder
 on:
   schedule:
     - cron: "30 8 * * *"
