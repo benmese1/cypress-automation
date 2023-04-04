@@ -6,8 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       spec:
-        description: 'Enter specifications in format:
-          --spec "cypress/e2e/user-management/*.cy.js"'
+        description: 'Enter specifications in format: --spec "cypress/e2e/user-management/*.cy.js"'
         required: false
         default: ""
         type: string
