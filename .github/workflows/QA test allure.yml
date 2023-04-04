@@ -1,4 +1,4 @@
-name: QA test Folder
+name: QA user-management Folder
 on:
   schedule:
     - cron: "30 8 * * *"
@@ -7,14 +7,14 @@ on:
     inputs:
       spec:
         description: 'Enter specifications in format:
-          --spec "cypress/e2e/*.cy.js"'
+          --spec "cypress/e2e/user-management/*.cy.js"'
         required: false
         default: ""
         type: string
 
 jobs:
   build-project:
-    name: QA dashboard tests run
+    name: QA user-management tests run
     runs-on: windows-latest
 
     steps:
@@ -35,7 +35,7 @@ jobs:
           CLIENT_ID: 7fkhb5sdufdisn6qn1bkq445je
           USERNAME: test1
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
-        run: npx cypress run --env fileConfig=qa --spec cypress/e2e/dashboard/*.cy.js
+        run: npx cypress run --env fileConfig=qa --spec cypress/e2e/user-management/*.cy.js
         continue-on-error: true
 
       - name: "Upload test results"
@@ -61,7 +61,7 @@ jobs:
           allure-report-path: 'cypress/allure-report'
 
   release-project:
-    name: dashboard xray result submittal
+    name: user-management xray result submittal
     runs-on: windows-latest
     needs: build-project
     steps:
@@ -89,7 +89,7 @@ jobs:
           failOnImportError: true
 
   report-project:
-    name: send dashboard test results by email
+    name: send user-management test results by email
     runs-on: windows-latest
     needs: release-project
     steps:
