@@ -1,4 +1,4 @@
-name: QA user-management Folder
+name: QA Dashboard Folder
 on:
   schedule:
     - cron: "30 8 * * *"
@@ -7,14 +7,14 @@ on:
     inputs:
       spec:
         description: 'Enter specifications in format:
-          --spec "cypress/e2e/user-management/*.cy.js"'
+          --spec "cypress/e2e/*.cy.js"'
         required: false
         default: ""
         type: string
 
 jobs:
   build-project:
-    name: QA user-management tests run
+    name: QA dashboard tests run
     runs-on: windows-latest
 
     steps:
@@ -53,28 +53,7 @@ jobs:
           name: test-screenshots
           path: cypress/screenshots/
           retention-days: 30
-   - name: Get Allure history
-              uses: actions/checkout@v3
-              if: always()
-              continue-on-error: true
-              with:
-                  ref: allure
-                  path: allure
 
-            - name: Generate Allure Report
-              uses: simple-elf/allure-report-action@master
-              if: always()
-              with:
-                  allure_results: allure-results
-                  gh_pages: allure
-
-            - name: Deploy report to Github Pages
-              if: always()
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  publish_branch: allure
-                  publish_dir: allure-history
   release-project:
     name: dashboard xray result submittal
     runs-on: windows-latest
