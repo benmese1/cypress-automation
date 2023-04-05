@@ -6,3 +6,5 @@ reports/
 .vscode
 /.idea/
 cypress/results/
+allure-results
+allure-reports
