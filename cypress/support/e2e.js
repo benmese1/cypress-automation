@@ -26,6 +26,7 @@ import './commands/MFA';
 import './commands/reports';
 import '@cypress/xpath';
 import 'cypress-real-events/support';
+import '@shelex/cypress-allure-plugin';
 
 Cypress.on(
 	'uncaught:exception',
