@@ -37,13 +37,12 @@ jobs:
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
         run: npx cypress run --env fileConfig=qa --spec cypress/e2e/API/smoke-api-tests/*.cy.js
         continue-on-error: true
-        
-       - name: Install Allure Commandline tool
-        if: ${{ always() }}
+
+      - name: Download allurectl
         run: |
-          wget https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.17.1/allure-commandline-2.17.1.zip
-          unzip -q allure-commandline-2.17.1.zip
-          export PATH=$PATH:$(pwd)/allure-2.17.1/bin
+          wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_386 -O ./allurectl 
+          chmod +x ./allurectl
+
       - name: Generate Allure report
         if: ${{ always() }}
         run: |
