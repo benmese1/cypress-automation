@@ -1,4 +1,4 @@
-name: QA api smoke Folder
+name: QA test allure Folder
 on:
   schedule:
     - cron: "30 8 * * *"
@@ -7,14 +7,14 @@ on:
     inputs:
       spec:
         description: 'Enter specifications in format:
-          --spec "cypress/e2e/API/smoke-api-tests/*.cy.js"'
+          --spec "cypress/e2e/user-management/*.cy.js"'
         required: false
         default: ""
         type: string
 
 jobs:
   build-project:
-    name: QA api smoke tests run
+    name: QA user-management tests run
     runs-on: windows-latest
 
     steps:
@@ -35,29 +35,8 @@ jobs:
           CLIENT_ID: 7fkhb5sdufdisn6qn1bkq445je
           USERNAME: test1
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
-        run: npx cypress run --env fileConfig=qa --spec cypress/e2e/API/smoke-api-tests/*.cy.js
+        run: npx cypress run --headless --env fileConfig=qa,allure=true --spec cypress/e2e/user-management/*.cy.js
         continue-on-error: true
-
-      - name: Download allurectl
-        run: |
-          wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_386 -O ./allurectl 
-          chmod +x ./allurectl
-
-      - name: Generate Allure report
-        if: ${{ always() }}
-        run: |
-          allure generate cypress/results/ --clean -o cypress/allure-report/
-
-      - name: Upload Allure report to Allure TestOps
-        if: ${{ always() }}
-        uses: allure-framework/allure-github-action@v2
-        with:
-          allure-results-path: cypress/results/
-          allure-report-path: cypress/allure-report/
-          allure-commandline-version: 2.17.1
-          allure-endpoint: ${{ secrets.ALLURE_ENDPOINT }}
-          allure-project-id: ${{ secrets.ALLURE_PROJECT_ID }}
-          allure-token: ${{ secrets.ALLURE_TOKEN }}
 
       - name: "Upload test results"
         if: ${{ always() }}
@@ -74,9 +53,22 @@ jobs:
           name: test-screenshots
           path: cypress/screenshots/
           retention-days: 30
+    
+    - name: Generate Allure report
+        uses: shelex/cypress-allure-plugin@v0.1.6
+        with:
+          allure-results-path: 'allure-results'
+          allure-report-path: 'allure-report'
+
+    - name: 'Upload artifact allure'
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: 'cypress-allure-report'
+          path: allure-results
 
   release-project:
-    name: QA api smoke tests xray result submittal
+    name: user-management xray result submittal
     runs-on: windows-latest
     needs: build-project
     steps:
@@ -104,7 +96,7 @@ jobs:
           failOnImportError: true
 
   report-project:
-    name: QA api smoke test results by email
+    name: send user-management test results by email
     runs-on: windows-latest
     needs: release-project
     steps:
