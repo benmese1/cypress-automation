@@ -1,4 +1,4 @@
-name: QA user-management Folder
+name: QA test allure Folder
 on:
   schedule:
     - cron: "30 8 * * *"
@@ -35,7 +35,7 @@ jobs:
           CLIENT_ID: 7fkhb5sdufdisn6qn1bkq445je
           USERNAME: test1
           PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
-        run: npx cypress run --env fileConfig=qa --spec cypress/e2e/user-management/*.cy.js
+        run: npx cypress run --headless --env fileConfig=qa,allure=true --spec cypress/e2e/user-management/*.cy.js
         continue-on-error: true
 
       - name: "Upload test results"
@@ -57,8 +57,15 @@ jobs:
     - name: Generate Allure report
         uses: shelex/cypress-allure-plugin@v0.1.6
         with:
-          allure-results-path: 'cypress/results/'
-          allure-report-path: 'cypress/allure-report'
+          allure-results-path: 'allure-results'
+          allure-report-path: 'allure-report'
+
+    - name: 'Upload artifact allure'
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: 'cypress-allure-report'
+          path: allure-results
 
   release-project:
     name: user-management xray result submittal
