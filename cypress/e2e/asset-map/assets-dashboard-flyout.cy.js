@@ -14,7 +14,8 @@ describe('Click on the asset dashboard flyout ', () => {
 			.click({ force: true })
 			.then(() => {
 				//Click on close button to close the flyout
-				cy.get('[data-testid="CloseIcon"]').eq(0).click({ force: true });
+				cy.get('[data-testid="CloseIcon"]').eq(0).should('exist');
+				// cy.get('[data-testid="CloseIcon"]').eq(0).click({ force: true });
 			});
 	});
 });

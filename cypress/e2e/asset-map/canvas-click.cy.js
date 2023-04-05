@@ -7,8 +7,6 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
 	});
 
 	it('Success canvas click test', () => {
-		//  cy.intercept('https://cognito-identity.us-west-2.amazonaws.com/').as('map');
-		//    cy.wait('@map');
 		cy.get("[class='mapboxgl-canvas']").then(($canvas) => {
 			// Get dimension of the canvas
 
@@ -33,8 +31,6 @@ describe('Click on the canvas zoom the cluster and view the asset', () => {
 	});
 
 	it('Success canvas click test and zoom the cluster', () => {
-		//  cy.intercept('https://cognito-identity.us-west-2.amazonaws.com/').as('map');
-		//    cy.wait('@map');
 		cy.get("[class='mapboxgl-canvas']").then(($canvas) => {
 			// Get dimension of the canvas
 
