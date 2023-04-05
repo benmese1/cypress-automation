@@ -53,18 +53,18 @@ jobs:
           name: test-screenshots
           path: cypress/screenshots/
           retention-days: 30
-    
-    - name: Generate Allure report
+
+      - name: Generate Allure report
         uses: shelex/cypress-allure-plugin@v0.1.6
         with:
-          allure-results-path: 'allure-results'
-          allure-report-path: 'allure-report'
+          allure-results-path: "allure-results"
+          allure-report-path: "allure-report"
 
-    - name: 'Upload artifact allure'
+      - name: "Upload artifact allure"
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
-          name: 'cypress-allure-report'
+          name: "cypress-allure-report"
           path: allure-results
 
   release-project:

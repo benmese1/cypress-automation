@@ -3,7 +3,7 @@ import * as path from 'path';
 import fs from 'fs-extra';
 import getCompareSnapshotsPlugin from 'cypress-image-diff-js/dist/plugin';
 import cypressSplit from 'cypress-split';
-import allureWriter from "@shelex/cypress-allure-plugin/writer";
+import allureWriter from '@shelex/cypress-allure-plugin/writer';
 
 function getConfigurationByFile(file) {
 	const pathToConfigFile = path.resolve('..', 'connect1-qa/cypress/config', `${file}.json`);
@@ -21,9 +21,9 @@ export default defineConfig({
 	execTimeout: 12000,
 	requestTimeout: 12000,
 	responseTimeout: 12000,
-	reporter: "cypress-multi-reporters",
+	reporter: 'cypress-multi-reporters',
 	reporterOptions: {
-		reporterEnabled: "mochawesome,mocha-junit-reporter",
+		reporterEnabled: 'mochawesome,mocha-junit-reporter',
 		mochawesomeReporterOptions: {
 			reportDir: 'cypress/results/mochawesome-report',
 			reportFilename: '[name].html',
@@ -32,18 +32,17 @@ export default defineConfig({
 			charts: true,
 			embeddedScreenshots: true,
 			inlineAssets: false,
-			html: true
+			html: true,
 		},
-    	mochaJunitReporterReporterOptions: {
+		mochaJunitReporterReporterOptions: {
 			mochaFile: 'cypress/results/test-results-[hash].xml',
 			testCaseSwitchClassnameAndName: false,
-    	},
+		},
 	},
 	e2e: {
 		experimentalSessionAndOrigin: true,
 		setupNodeEvents(on, config) {
-			cypressSplit(on, config)
-			allureWriter(on, config);
+			cypressSplit(on, config), allureWriter(on, config);
 			getCompareSnapshotsPlugin(on, config);
 
 			const file = config.env.fileConfig;
