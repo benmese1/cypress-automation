@@ -15,11 +15,10 @@ describe('User management table view tests', () => {
 		cy.get('[role="columnheader"][aria-label="Username"] [data-testid="TripleDotsVerticalIcon"]').click({
 			force: true,
 		});
-		cy.get('[role="tooltip"]').should('be.visible');
-		cy.get('[data-testid="items-list-column-actions-menu-item-5"]').click();
+		cy.get('[role="tooltip"]').should('be.visible').contains('Hide Columns').click();
 		// Check if a column is hidden
 		cy.get('[data-testid="column-header-username"]').should('not.exist');
-
+		cy.wait(3000);
 		// Show hidden column
 		cy.get('[data-testid="asset-table-toolbar-columns-btn"]').should('be.visible').click();
 		cy.get('[role="tooltip"]').should('be.visible').contains('Username').click();

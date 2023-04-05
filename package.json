@@ -11,22 +11,33 @@
 		"cy:local-qa": "npx cypress run --env fileConfig=qa --headless",
 		"cy:folder dev": "npx cypress run --headless --env fileConfig=dev --spec cypress/e2e/asset-list/*.cy.js",
 		"cy:folder qa": "npx cypress run --headless --env fileConfig=qa --spec cypress/e2e/asset-list/*.cy.js",
+		"cy:all-reports": "npx cypress run --headless --env fileConfig=qa,allure=true --spec cypress/e2e/user-management/*.cy.js",
+		"allure:clear": "rm -r allure-results/ allure-report cypress/screenshots || true",
+		"allure:report": "allure generate allure-results --clean -o allure-report",
+		"allure:history": "mv -f allure-report/history allure-results/history && rm -r allure-report || true",
 		"pretty": " prettier --write ."
 	},
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
 		"@cypress/xpath": "^2.0.3",
+		"@shelex/cypress-allure-plugin": "^2.38.3",
 		"@types/node": "^18.11.2",
 		"chainable": "^0.1.4",
 		"clipboardy": "^3.0.0",
 		"cypress": "^10.11.0",
 		"cypress-image-diff-js": "^1.23.0",
+
 		"cypress-xpath": "^2.0.1",
+
+		"cypress-multi-reporters": "^1.6.3",
+		"cypress-split": "^1.3.4",
+
 		"faker": "^5.5.3",
 		"mocha": "^10.2.0",
+		"mocha-junit-reporter": "^2.2.0",
 		"mochawesome": "^7.1.3",
-		"mochawesome-merge": "^4.2.1",
+		"mochawesome-merge": "^4.3.0",
 		"mochawesome-report-generator": "^6.2.0",
 		"typescript": "^4.5.3"
 	},

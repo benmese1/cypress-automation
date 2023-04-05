@@ -1,0 +1,120 @@
+name: QA test allure Folder
+on:
+  schedule:
+    - cron: "30 8 * * *"
+
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: 'Enter specifications in format:
+          --spec "cypress/e2e/user-management/*.cy.js"'
+        required: false
+        default: ""
+        type: string
+
+jobs:
+  build-project:
+    name: QA user-management tests run
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.2"
+
+      - name: Install Node modules
+        run: npm install
+
+      - name: Run Cypress (QA)
+        env:
+          # CLIENT_ID: 584mrs4de25a4iqok485b6vhnc
+          CLIENT_ID: 7fkhb5sdufdisn6qn1bkq445je
+          USERNAME: test1
+          PASSWORD: ${{ secrets.QA_AWS_PASSWORD }}
+        run: npx cypress run --headless --env fileConfig=qa,allure=true --spec cypress/e2e/user-management/*.cy.js
+        continue-on-error: true
+
+      - name: "Upload test results"
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: cypress/results/
+          retention-days: 30
+
+      - name: "Upload screenshots"
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-screenshots
+          path: cypress/screenshots/
+          retention-days: 30
+    
+    - name: Generate Allure report
+        uses: shelex/cypress-allure-plugin@v0.1.6
+        with:
+          allure-results-path: 'allure-results'
+          allure-report-path: 'allure-report'
+
+    - name: 'Upload artifact allure'
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: 'cypress-allure-report'
+          path: allure-results
+
+  release-project:
+    name: user-management xray result submittal
+    runs-on: windows-latest
+    needs: build-project
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: "download test results"
+        if: ${{ always() }}
+        uses: actions/download-artifact@v3
+        with:
+          name: test-results
+          path: cypress/test-results/
+
+      - name: Submit results to Xray
+        uses: mikepenz/xray-action@v2.4.5
+        with:
+          username: ${{ secrets.XRAY_CLIENT_ID }}
+          password: ${{ secrets.XRAY_SECRET }}
+          testFormat: "junit"
+          testPaths: "**/test-results/*.xml"
+          testExecutionJson: "cypress/test-exec/QA-test-execution.json"
+          # testEnvironments: "QA, DEV"
+          # testExecKey: "PRJIND-2272"
+          projectKey: "PRJIND"
+          failOnImportError: true
+
+  report-project:
+    name: send user-management test results by email
+    runs-on: windows-latest
+    needs: release-project
+    steps:
+      - name: Send mail
+        if: always()
+        uses: dawidd6/action-send-mail@v2
+        with:
+          # mail server settings
+          server_address: smtp.gmail.com
+          server_port: 465
+          # user credentials
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          # email subject
+          subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+          # email body as text
+          body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+          # comma-separated string, send email to
+          to: kkaiser1@phillips-connect.com
+          # from email name
+          from: github actions
